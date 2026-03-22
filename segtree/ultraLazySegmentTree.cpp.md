@@ -1,0 +1,48 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/area_of_union_of_rectangles.test.cpp
+    title: test/area_of_union_of_rectangles.test.cpp
+  - icon: ':x:'
+    path: test/range_add_range_min.test.cpp
+    title: test/range_add_range_min.test.cpp
+  - icon: ':x:'
+    path: test/range_affine_range_sum.test.cpp
+    title: test/range_affine_range_sum.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':question:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"segtree/ultraLazySegmentTree.cpp\"\n//#include<segtree/lazySegmentTree.cpp>\n\
+    \ntemplate<class AM>\nstruct ultraLazySegmentTree : lazySegmentTree<typename AM::M,\
+    \ AM::Mid, AM::Mop, typename AM::T, AM::Tid, AM::Top, AM::act> {\n  using base\
+    \ = lazySegmentTree<typename AM::M, AM::Mid, AM::Mop, typename AM::T, AM::Tid,\
+    \ AM::Top, AM::act>;\n  ultraLazySegmentTree(vector<typename AM::M> init) : base(init)\
+    \ {}\n  ultraLazySegmentTree(int size) : base(size) {}\n};\n"
+  code: "//#include<segtree/lazySegmentTree.cpp>\n\ntemplate<class AM>\nstruct ultraLazySegmentTree\
+    \ : lazySegmentTree<typename AM::M, AM::Mid, AM::Mop, typename AM::T, AM::Tid,\
+    \ AM::Top, AM::act> {\n  using base = lazySegmentTree<typename AM::M, AM::Mid,\
+    \ AM::Mop, typename AM::T, AM::Tid, AM::Top, AM::act>;\n  ultraLazySegmentTree(vector<typename\
+    \ AM::M> init) : base(init) {}\n  ultraLazySegmentTree(int size) : base(size)\
+    \ {}\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: segtree/ultraLazySegmentTree.cpp
+  requiredBy: []
+  timestamp: '2026-03-22 16:32:23+08:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/range_add_range_min.test.cpp
+  - test/area_of_union_of_rectangles.test.cpp
+  - test/range_affine_range_sum.test.cpp
+documentation_of: segtree/ultraLazySegmentTree.cpp
+layout: document
+redirect_from:
+- /library/segtree/ultraLazySegmentTree.cpp
+- /library/segtree/ultraLazySegmentTree.cpp.html
+title: segtree/ultraLazySegmentTree.cpp
+---

@@ -1,0 +1,54 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/enumerate_quotients.test.cpp
+    title: test/enumerate_quotients.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"numtheory/quotient_enumerate.cpp\"\nauto quotient_floor_enumerate(ll\
+    \ x) {\n  vector<ll> v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 *\
+    \ (sqrt(x) + 32));\n  for(ll i = x; i; ) {\n    v.emplace_back(x / i);\n    s.emplace_back(x\
+    \ / v.back() + 1);\n    i = x / (v.back() + 1);\n  }\n  s.emplace_back(1);\n\n\
+    \  struct Data { ll quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int\
+    \ i = 0; i < ssize(v); i++)\n    res[i] = Data{v[i], s[i + 1], s[i]};\n\n  return\
+    \ res;\n}\n\nauto quotient_ceil_enumerate(ll x) {\n  vector<ll> v, s;\n  v.reserve(2\
+    \ * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n  for(ll i = 1; ;) {\n\
+    \    v.emplace_back((x + i - 1) / i);\n    s.emplace_back((x + v.back() - 1) /\
+    \ v.back());\n    if (v.back() == 1) break;\n    i = (x + v.back() - 2) / (v.back()\
+    \ - 1);\n  }\n  s.emplace_back(x + 1);\n\n  struct Data { ll quotient, l, r; };\n\
+    \  vector<Data> res(size(v));\n  for(int i = 0; i < ssize(v); i++)\n    res[i]\
+    \ = Data{v[i], s[i], s[i + 1]};\n\n  return res;\n}\n"
+  code: "auto quotient_floor_enumerate(ll x) {\n  vector<ll> v, s;\n  v.reserve(2\
+    \ * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n  for(ll i = x; i; ) {\n\
+    \    v.emplace_back(x / i);\n    s.emplace_back(x / v.back() + 1);\n    i = x\
+    \ / (v.back() + 1);\n  }\n  s.emplace_back(1);\n\n  struct Data { ll quotient,\
+    \ l, r; };\n  vector<Data> res(size(v));\n  for(int i = 0; i < ssize(v); i++)\n\
+    \    res[i] = Data{v[i], s[i + 1], s[i]};\n\n  return res;\n}\n\nauto quotient_ceil_enumerate(ll\
+    \ x) {\n  vector<ll> v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 *\
+    \ (sqrt(x) + 32));\n  for(ll i = 1; ;) {\n    v.emplace_back((x + i - 1) / i);\n\
+    \    s.emplace_back((x + v.back() - 1) / v.back());\n    if (v.back() == 1) break;\n\
+    \    i = (x + v.back() - 2) / (v.back() - 1);\n  }\n  s.emplace_back(x + 1);\n\
+    \n  struct Data { ll quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int\
+    \ i = 0; i < ssize(v); i++)\n    res[i] = Data{v[i], s[i], s[i + 1]};\n\n  return\
+    \ res;\n}\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: numtheory/quotient_enumerate.cpp
+  requiredBy: []
+  timestamp: '2026-03-22 16:32:23+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/enumerate_quotients.test.cpp
+documentation_of: numtheory/quotient_enumerate.cpp
+layout: document
+redirect_from:
+- /library/numtheory/quotient_enumerate.cpp
+- /library/numtheory/quotient_enumerate.cpp.html
+title: numtheory/quotient_enumerate.cpp
+---

@@ -1,0 +1,38 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"combi/stirlingSecondCol.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
+    \n//#include \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\ntemplate<class\
+    \ Mint>\nFPS<Mint> stirling_number_second_col(int n, int k) {\n  vector<FPS<Mint>>\
+    \ fs(k);\n  for(int i = 0; i < k; i++) fs[i] = {1, -(i + 1)};\n  auto F = FPS<Mint>::allProd(fs).inv(n\
+    \ - k);\n  return F;\n}\n"
+  code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
+    \n//#include \"poly/FPS.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> stirling_number_second_col(int\
+    \ n, int k) {\n  vector<FPS<Mint>> fs(k);\n  for(int i = 0; i < k; i++) fs[i]\
+    \ = {1, -(i + 1)};\n  auto F = FPS<Mint>::allProd(fs).inv(n - k);\n  return F;\n\
+    }\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: combi/stirlingSecondCol.cpp
+  requiredBy: []
+  timestamp: '2026-03-22 16:32:23+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+documentation_of: combi/stirlingSecondCol.cpp
+layout: document
+redirect_from:
+- /library/combi/stirlingSecondCol.cpp
+- /library/combi/stirlingSecondCol.cpp.html
+title: combi/stirlingSecondCol.cpp
+---
