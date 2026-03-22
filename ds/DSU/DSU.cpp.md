@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Prim.test.cpp
     title: test/minimum_spanning_tree_Prim.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/DSU/DSU.cpp\"\ntemplate<class T = int, typename F = void*>\n\
@@ -53,7 +53,7 @@ data:
   path: ds/DSU/DSU.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/minimum_spanning_tree_Prim.test.cpp
   - test/unionfind.test.cpp

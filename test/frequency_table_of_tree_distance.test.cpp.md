@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution_ll.cpp
     title: poly/convolution_ll.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   _extendedRequiredBy: []

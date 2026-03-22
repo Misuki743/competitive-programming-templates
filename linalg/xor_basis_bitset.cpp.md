@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/matrix_rank_mod_2.test.cpp
     title: test/matrix_rank_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2895_2.test.cpp
     title: test/yuki_2895_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor_basis_bitset.cpp\"\ntemplate<int W>\nstruct xor_basis\
@@ -39,7 +39,7 @@ data:
   path: linalg/xor_basis_bitset.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/matrix_rank_mod_2.test.cpp
   - test/yuki_2895_2.test.cpp
