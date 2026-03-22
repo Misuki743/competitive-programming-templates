@@ -1,7 +1,7 @@
 vll frequency_of_tree_distance(vvi g) {
   const int n = ssize(g);
 
-  auto [T, R] = centroidTree(g);
+  auto [T, R] = centroid_tree(g);
   vector<bool> vis(n, false);
   auto calc = [&](int s, int d0) {
     vll freq(1);
