@@ -1,64 +1,64 @@
-template<class V, class E, typename BASE, typename ADD_EDGE, typename OP, typename ADD_VERTEX>
-requires
-  R_invocable<V, BASE, int> &&
-  R_invocable<E, ADD_EDGE, const V, int> &&
-  R_invocable<E, OP, const E, const E> &&
-  R_invocable<V, ADD_VERTEX, const E, int>
-vector<V> rerooting_DP(vector<array<int, 2>> e, BASE base, ADD_EDGE add_edge, OP op, ADD_VERTEX add_vertex) {
-  int n = ssize(e) + 1;
-  vector<vector<int>> g(n);
-  for(int i = 0; auto [u, v] : e)
-    g[u].emplace_back(i), g[v].emplace_back(i++);
+template<class V, class E>
+struct rerooting_DP {
+  HLD &tree;
+  vc<V> dp_down, dp_up, dp_full;
 
-  vector<V> data(n);
-  for(int v = 0; v < n; v++) data[v] = base(v);
-  auto precalc = [&](int v, int p, auto &&self) -> void {
-    bool leaf = true;
-    E prod;
-    for(int eid : g[v]) {
-      int x = e[eid][0] ^ e[eid][1] ^ v;
-      if (x == p) continue;
-      self(x, v, self);
-      if (leaf)
-        prod = add_edge(data[x], eid), leaf = false;
-      else
-        prod = op(prod, add_edge(data[x], eid));
-    }
-    if (!leaf) data[v] = add_vertex(prod, v);
-  };
+  template<typename ID, typename EE, typename ADD_V, typename ADD_E>
+  requires
+  R_invocable<V, ID,    int             > &&
+  R_invocable<E, EE,    const E, const E> &&
+  R_invocable<V, ADD_V, const E, int    > &&
+  R_invocable<E, ADD_E, const V, int    >
+  rerooting_DP(HLD &_tree, ID id, EE ee, ADD_V add_v, ADD_E add_e) : tree(_tree) {
+    const int n = tree.n;
+    dp_down = dp_up = dp_full = vc<V>(n);
 
-  precalc(0, -1, precalc);
+    vc<V> data(n);
+    for(int v = 0; v < n; v++) data[v] = id(v);
+    auto dfs = [&](int v, auto &self) -> void {
+      E prod;
+      bool leaf = 1;
+      for(int x : tree.childs(v)) {
+        self(x, self);
+        if (leaf) prod = add_e(data[x], tree.parent_eid(x)), leaf = 0;
+        else prod = ee(prod, add_e(data[x], tree.parent_eid(x)));
+      }
+      if (!leaf) data[v] = add_v(prod, v);
+    };
+    
+    dfs(tree.root, dfs);
 
-  vector<V> ret(n);
-  auto reroot = [&](int v, int p, auto &&self) -> void {
-    int deg = ssize(g[v]);
-    vector<E> pre(deg), suf(deg);
-    for(int i = 0; int eid : g[v]) {
-      int x = e[eid][0] ^ e[eid][1] ^ v;
-      pre[i] = suf[i] = add_edge(data[x], eid), i++;
-    }
-    for(int i = 1; i < deg; i++) pre[i] = op(pre[i - 1], pre[i]);
-    for(int i = deg - 2; i >= 0; i--) suf[i] = op(suf[i], suf[i + 1]);
-    V tmp = data[v];
-    ret[v] = data[v] = (deg ? add_vertex(suf[0], v) : base(v));
-    for(int i = 0; int eid : g[v]) {
-      int x = e[eid][0] ^ e[eid][1] ^ v;
-      if (x != p) {
-        bool leaf = true;
+    auto dfs2 = [&](int v, auto &self) -> void {
+      const int deg = ssize(tree.childs(v)) + (v != tree.root);
+      vc<E> pre(deg), suf(deg);
+      if (v != tree.root) {
+        dp_up[v] = data[tree.parent(v)];
+        pre.back() = suf.back() = add_e(data[tree.parent(v)], tree.parent_eid(v));
+      }
+      for(int i = 0; int x : tree.childs(v)) {
+        dp_down[x] = data[x];
+        pre[i] = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;
+      }
+      pSum(pre, ee), pSum(suf | views::reverse, ee);
+      V tmp = data[v];
+      dp_full[v] = data[v] = (deg ? add_v(suf[0], v) : id(v));
+      for(int i = -1; int x : tree.childs(v)) {
+        i++;
+        bool leaf = 1;
         E prod;
-        if (i > 0) prod = pre[i - 1], leaf = false;
-        if (i + 1 < deg) prod = (leaf ? suf[i + 1] : op(prod, suf[i + 1])), leaf = false;
+        if (i) prod = pre[i - 1], leaf = 0;
+        if (i + 1 < deg) prod = (leaf ? suf[i + 1] : ee(prod, suf[i + 1])), leaf = 0;
         V tmp2 = data[v];
-        data[v] = (leaf ? base(v) : add_vertex(prod, v));
-        self(x, v, self);
+        data[v] = (leaf ? id(v) : add_v(prod, v));
+        self(x, self);
         data[v] = tmp2;
       }
-      i++;
-    }
-    data[v] = tmp;
-  };
+      data[v] = tmp;
+    };
 
-  reroot(0, -1, reroot);
+    dfs2(tree.root, dfs2);
+  }
 
-  return ret;
-}
+  V operator[](int v) { return dp_full[v]; }
+  V get(int v, int r) { return tree.in_subtree_of(v, r) ? dp_down[v] : dp_up[tree.kth(v, r, 1)]; }
+};

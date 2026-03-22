@@ -1,6 +1,6 @@
 struct HLD {
   int n, root;
-  vi dep, sz, p, head, tin, tout, inv_tin, child_list, c;
+  vi dep, sz, p, head, tin, tout, inv_tin, child_list, c, v_to_e;
   vc<int32_t> lb;
 
   inline int head_parent(int v) const { return p[head[v]]; }
@@ -22,7 +22,7 @@ struct HLD {
   void precompute(vc<pii> &e) {
     n = ssize(e) + 1;
 
-    dep = p = head = tin = tout = vi(n);
+    dep = p = head = tin = tout = v_to_e = vi(n);
     sz = vi(n, 1);
 
     vi mx_child_sz(n, -1);
@@ -82,6 +82,12 @@ struct HLD {
     for(int v = 0; v < n; v++)
       if (v != root and head[v] != v)
         child_list[--lb[p[v]]] = v;
+
+    v_to_e[root] = -1;
+    for(int i = 0; auto [u, v] : e) {
+      if (dep[u] > dep[v]) swap(u, v);
+      v_to_e[v] = i++;
+    }
   }
 
   auto query_path(int u, int v, bool edge = false) {
@@ -198,4 +204,6 @@ struct HLD {
     }
     return c;
   }
+
+  inline int parent_eid(int v) { return v_to_e[v]; }
 };
