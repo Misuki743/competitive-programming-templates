@@ -7,32 +7,32 @@ data:
   - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/auxiliary_tree.cpp
     title: tree/auxiliary_tree.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -411,7 +411,7 @@ data:
   path: test/mytest_auxiliary_tree.test.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_auxiliary_tree.test.cpp
 layout: document

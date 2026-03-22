@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/random.cpp
     title: misc/random.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
