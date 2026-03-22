@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/frequency_of_tree_distance.cpp\"\nvll frequency_of_tree_distance(vvi\
-    \ g) {\n  const int n = ssize(g);\n\n  auto [T, R] = centroidTree(g);\n  vector<bool>\
+    \ g) {\n  const int n = ssize(g);\n\n  auto [T, R] = centroid_tree(g);\n  vector<bool>\
     \ vis(n, false);\n  auto calc = [&](int s, int d0) {\n    vll freq(1);\n    auto\
     \ dfs = [&](int v, int p, int d, auto &self) -> void {\n      if (ssize(freq)\
     \ <= d) freq.eb(0);\n      if (d > 0) freq[d] += 1;\n      for(int x : g[v])\n\
@@ -28,7 +28,7 @@ data:
     \ dfs);\n\n  ans.erase(ans.begin());\n  for(ll &x : ans) x /= 2;\n  return ans;\n\
     }\n"
   code: "vll frequency_of_tree_distance(vvi g) {\n  const int n = ssize(g);\n\n  auto\
-    \ [T, R] = centroidTree(g);\n  vector<bool> vis(n, false);\n  auto calc = [&](int\
+    \ [T, R] = centroid_tree(g);\n  vector<bool> vis(n, false);\n  auto calc = [&](int\
     \ s, int d0) {\n    vll freq(1);\n    auto dfs = [&](int v, int p, int d, auto\
     \ &self) -> void {\n      if (ssize(freq) <= d) freq.eb(0);\n      if (d > 0)\
     \ freq[d] += 1;\n      for(int x : g[v])\n        if (x != p and !vis[x])\n  \
@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: ds_problem/frequency_of_tree_distance.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-03-22 19:35:41+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/frequency_table_of_tree_distance.test.cpp
 documentation_of: ds_problem/frequency_of_tree_distance.cpp

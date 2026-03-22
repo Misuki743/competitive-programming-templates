@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: poly/NTTmint.cpp
     title: poly/NTTmint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_ll.cpp
     title: poly/convolution_ll.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -223,7 +223,7 @@ data:
     \      x = self(x, self);\n      tr[c].emplace_back(x);\n      tr[x].emplace_back(c);\n\
     \    }\n\n    return c;\n  };\n\n  int root = dfs(0, dfs);\n\n  return pair(tr,\
     \ root);\n}\n#line 1 \"ds_problem/frequency_of_tree_distance.cpp\"\nvll frequency_of_tree_distance(vvi\
-    \ g) {\n  const int n = ssize(g);\n\n  auto [T, R] = centroidTree(g);\n  vector<bool>\
+    \ g) {\n  const int n = ssize(g);\n\n  auto [T, R] = centroid_tree(g);\n  vector<bool>\
     \ vis(n, false);\n  auto calc = [&](int s, int d0) {\n    vll freq(1);\n    auto\
     \ dfs = [&](int v, int p, int d, auto &self) -> void {\n      if (ssize(freq)\
     \ <= d) freq.eb(0);\n      if (d > 0) freq[d] += 1;\n      for(int x : g[v])\n\
@@ -260,8 +260,8 @@ data:
   isVerificationFile: true
   path: test/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-03-22 19:35:41+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/frequency_table_of_tree_distance.test.cpp
 layout: document
