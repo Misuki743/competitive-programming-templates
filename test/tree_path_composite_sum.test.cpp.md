@@ -10,6 +10,9 @@ data:
   - icon: ':question:'
     path: modint/MontgomeryModInt.cpp
     title: modint/MontgomeryModInt.cpp
+  - icon: ':question:'
+    path: tree/HLD.cpp
+    title: tree/HLD.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -142,65 +145,135 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = MontgomeryModInt<1'000'000'007>;\nusing mint\
-    \ = MontgomeryModInt<998'244'353>;\n#line 1 \"dp/rerooting_DP.cpp\"\ntemplate<class\
-    \ V, class E, typename BASE, typename ADD_EDGE, typename OP, typename ADD_VERTEX>\n\
-    requires\n  R_invocable<V, BASE, int> &&\n  R_invocable<E, ADD_EDGE, const V,\
-    \ int> &&\n  R_invocable<E, OP, const E, const E> &&\n  R_invocable<V, ADD_VERTEX,\
-    \ const E, int>\nvector<V> rerooting_DP(vector<array<int, 2>> e, BASE base, ADD_EDGE\
-    \ add_edge, OP op, ADD_VERTEX add_vertex) {\n  int n = ssize(e) + 1;\n  vector<vector<int>>\
-    \ g(n);\n  for(int i = 0; auto [u, v] : e)\n    g[u].emplace_back(i), g[v].emplace_back(i++);\n\
-    \n  vector<V> data(n);\n  for(int v = 0; v < n; v++) data[v] = base(v);\n  auto\
-    \ precalc = [&](int v, int p, auto &&self) -> void {\n    bool leaf = true;\n\
-    \    E prod;\n    for(int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^\
-    \ v;\n      if (x == p) continue;\n      self(x, v, self);\n      if (leaf)\n\
-    \        prod = add_edge(data[x], eid), leaf = false;\n      else\n        prod\
-    \ = op(prod, add_edge(data[x], eid));\n    }\n    if (!leaf) data[v] = add_vertex(prod,\
-    \ v);\n  };\n\n  precalc(0, -1, precalc);\n\n  vector<V> ret(n);\n  auto reroot\
-    \ = [&](int v, int p, auto &&self) -> void {\n    int deg = ssize(g[v]);\n   \
-    \ vector<E> pre(deg), suf(deg);\n    for(int i = 0; int eid : g[v]) {\n      int\
-    \ x = e[eid][0] ^ e[eid][1] ^ v;\n      pre[i] = suf[i] = add_edge(data[x], eid),\
-    \ i++;\n    }\n    for(int i = 1; i < deg; i++) pre[i] = op(pre[i - 1], pre[i]);\n\
-    \    for(int i = deg - 2; i >= 0; i--) suf[i] = op(suf[i], suf[i + 1]);\n    V\
-    \ tmp = data[v];\n    ret[v] = data[v] = (deg ? add_vertex(suf[0], v) : base(v));\n\
-    \    for(int i = 0; int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n\
-    \      if (x != p) {\n        bool leaf = true;\n        E prod;\n        if (i\
-    \ > 0) prod = pre[i - 1], leaf = false;\n        if (i + 1 < deg) prod = (leaf\
-    \ ? suf[i + 1] : op(prod, suf[i + 1])), leaf = false;\n        V tmp2 = data[v];\n\
-    \        data[v] = (leaf ? base(v) : add_vertex(prod, v));\n        self(x, v,\
-    \ self);\n        data[v] = tmp2;\n      }\n      i++;\n    }\n    data[v] = tmp;\n\
-    \  };\n\n  reroot(0, -1, reroot);\n\n  return ret;\n}\n#line 6 \"test/tree_path_composite_sum.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n;\
-    \ cin >> n;\n  vector<mint> a(n), b(n - 1), c(n - 1);\n  for(mint &x : a) cin\
-    \ >> x;\n  vector<array<int, 2>> e(n - 1);\n  for(int i = 0; i < n - 1; i++)\n\
-    \    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\n  using V = array<mint, 2>;\n\
-    \  using E = array<mint, 2>;\n  auto base = [&](int i) { return V{a[i], 1}; };\n\
-    \  auto add_edge = [&](const V &v, int i) { return E{b[i] * v[0] + c[i] * v[1],\
-    \ v[1]}; };\n  auto op = [&](const E &l, const E &r) { return E{l[0] + r[0], l[1]\
-    \ + r[1]}; };\n  auto add_vertex = [&](const E &e, int i) { return V{e[0] + a[i],\
-    \ e[1] + 1}; };\n\n  auto ans = rerooting_DP<V, E>(e, base, add_edge, op, add_vertex);\n\
-    \  for(int i = 0; i < n; i++)\n    cout << ans[i][0] << \" \\n\"[i + 1 == n];\n\
-    \n  return 0;\n}\n"
+    \ = MontgomeryModInt<998'244'353>;\n#line 1 \"tree/HLD.cpp\"\nstruct HLD {\n \
+    \ int n, root;\n  vi dep, sz, p, head, tin, tout, inv_tin, child_list, c, v_to_e;\n\
+    \  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return p[head[v]];\
+    \ }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e); }\n  HLD(vi\
+    \ _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p); v++)\
+    \ {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n   \
+    \     e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n  }\n\
+    \n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p = head\
+    \ = tin = tout = v_to_e = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n,\
+    \ -1);\n    {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v,\
+    \ p[v] ^= u, d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n;\
+    \ i++) {\n        int v = i;\n        while(d[v] == 1) {\n          d[v] = 0,\
+    \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
+    \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
+    \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
+    \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
+    \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
+    \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
+    \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
+    \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
+    \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
+    \          head[v] = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n   \
+    \ lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
+    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
+    \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
+    \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
+    \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
+    \ = 0; auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
+    \ = i++;\n    }\n  }\n\n  auto query_path(int u, int v, bool edge = false) {\n\
+    \    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if (dep[head[u]] > dep[head[v]])\n\
+    \        swap(u, v);\n      lr.emplace_back(tin[head[v]], tin[v] + 1);\n     \
+    \ v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u, v);\n    if (tin[u]\
+    \ + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge, tin[v] + 1);\n\n   \
+    \ return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l > r: op(r - 1, op(r\
+    \ - 2, ...))\n  auto query_path_non_commutative(int u, int v, bool edge = false)\
+    \ {\n    vc<pii> lr1, lr2;\n    while(head[u] != head[v]) {\n      if (dep[head[u]]\
+    \ > dep[head[v]]) {\n        lr1.emplace_back(tin[u] + 1, tin[head[u]]);\n   \
+    \     u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head[v]],\
+    \ tin[v] + 1);\n        v = head_parent(v);\n      }\n    }\n\n    if (tin[u]\
+    \ + edge <= tin[v])\n      lr2.emplace_back(tin[u] + edge, tin[v] + 1);\n    else\
+    \ if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u] + 1, tin[v] + edge);\n\
+    \n    lr1.insert(end(lr1), lr2.rbegin(), lr2.rend());\n\n    return lr1;\n  }\n\
+    \n  auto query_subtree(int v) { return pii(tin[v], tout[v]); }\n\n  int query_point(int\
+    \ v) { return tin[v]; }\n\n  int lca(int u, int v) {\n    while(head[u] != head[v])\
+    \ {\n      if (dep[head[u]] > dep[head[v]])\n        swap(u, v);\n      v = head_parent(v);\n\
+    \    }\n    return tin[u] < tin[v] ? u : v;\n  }\n\n  int dis(int u, int v) {\n\
+    \    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  int kth(int s, int\
+    \ t, int k) {\n    int l = lca(s, t);\n    if (int d = dep[s] + dep[t] - 2 * dep[l];\
+    \ k > d)\n      return -1;\n    else if (k > dep[s] - dep[l])\n      k = d - k,\
+    \ swap(s, t);\n    while(k > dep[s] - dep[head[s]]) {\n      k -= dep[s] - dep[head[s]]\
+    \ + 1;\n      s = head_parent(s);\n    }\n    return inv_tin[tin[s] - k];\n  }\n\
+    \n  int median(int u, int v, int w) {\n    return lca(u, v) ^ lca(u, w) ^ lca(v,\
+    \ w);\n  }\n\n  template<class M>\n  vc<M> reorder_init(vc<M> init) {\n    assert(ssize(init)\
+    \ == ssize(dep));\n    auto r = init;\n    for(int i = 0; i < ssize(init); i++)\n\
+    \      r[tin[i]] = init[i];\n    return r;\n  }\n\n  const span<int> childs(int\
+    \ v) {\n    return span(child_list.begin() + lb[v], lb[v + 1] - lb[v]);\n  }\n\
+    \  const span<int> light_childs(int v) {\n    return span(child_list.begin() +\
+    \ lb[v] + 1, max(lb[v + 1] - lb[v] - 1, 0));\n  }\n  inline int heavy_child(int\
+    \ v) {\n    return lb[v] == lb[v + 1] ? -1 : child_list[lb[v]];\n  }\n  inline\
+    \ int parent(int v) {\n    return p[v];\n  }\n\n  inline int depth(int v) { return\
+    \ dep[v]; }\n  inline int size(int v) { return sz[v]; }\n  bool in_subtree_of(int\
+    \ a, int b) { return tin[b] <= tin[a] and tout[a] <= tout[b]; }\n  const span<int>\
+    \ centroid() {\n    if (c.empty()) {\n      vc<bool> ok(n, true);\n      for(int\
+    \ v = 0; v < n; v++) {\n        if (2 * (n - sz[v]) > n)\n          ok[v] = false;\n\
+    \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
+    \ }\n      for(int v = 0; v < n; v++)\n        if (ok[v])\n          c.eb(v);\n\
+    \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
+    \ }\n};\n#line 1 \"dp/rerooting_DP.cpp\"\ntemplate<class V, class E>\nstruct rerooting_DP\
+    \ {\n  HLD &tree;\n  vc<V> dp_down, dp_up, dp_full;\n\n  template<typename ID,\
+    \ typename EE, typename ADD_V, typename ADD_E>\n  requires\n  R_invocable<V, ID,\
+    \    int             > &&\n  R_invocable<E, EE,    const E, const E> &&\n  R_invocable<V,\
+    \ ADD_V, const E, int    > &&\n  R_invocable<E, ADD_E, const V, int    >\n  rerooting_DP(HLD\
+    \ &_tree, ID id, EE ee, ADD_V add_v, ADD_E add_e) : tree(_tree) {\n    const int\
+    \ n = tree.n;\n    dp_down = dp_up = dp_full = vc<V>(n);\n\n    vc<V> data(n);\n\
+    \    for(int v = 0; v < n; v++) data[v] = id(v);\n    auto dfs = [&](int v, auto\
+    \ &self) -> void {\n      E prod;\n      bool leaf = 1;\n      for(int x : tree.childs(v))\
+    \ {\n        self(x, self);\n        if (leaf) prod = add_e(data[x], tree.parent_eid(x)),\
+    \ leaf = 0;\n        else prod = ee(prod, add_e(data[x], tree.parent_eid(x)));\n\
+    \      }\n      if (!leaf) data[v] = add_v(prod, v);\n    };\n    \n    dfs(tree.root,\
+    \ dfs);\n\n    auto dfs2 = [&](int v, auto &self) -> void {\n      const int deg\
+    \ = ssize(tree.childs(v)) + (v != tree.root);\n      vc<E> pre(deg), suf(deg);\n\
+    \      if (v != tree.root) {\n        dp_up[v] = data[tree.parent(v)];\n     \
+    \   pre.back() = suf.back() = add_e(data[tree.parent(v)], tree.parent_eid(v));\n\
+    \      }\n      for(int i = 0; int x : tree.childs(v)) {\n        dp_down[x] =\
+    \ data[x];\n        pre[i] = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n\
+    \      }\n      pSum(pre, ee), pSum(suf | views::reverse, ee);\n      V tmp =\
+    \ data[v];\n      dp_full[v] = data[v] = (deg ? add_v(suf[0], v) : id(v));\n \
+    \     for(int i = -1; int x : tree.childs(v)) {\n        i++;\n        bool leaf\
+    \ = 1;\n        E prod;\n        if (i) prod = pre[i - 1], leaf = 0;\n       \
+    \ if (i + 1 < deg) prod = (leaf ? suf[i + 1] : ee(prod, suf[i + 1])), leaf = 0;\n\
+    \        V tmp2 = data[v];\n        data[v] = (leaf ? id(v) : add_v(prod, v));\n\
+    \        self(x, self);\n        data[v] = tmp2;\n      }\n      data[v] = tmp;\n\
+    \    };\n\n    dfs2(tree.root, dfs2);\n  }\n\n  V operator[](int v) { return dp_full[v];\
+    \ }\n  V get(int v, int r) { return tree.in_subtree_of(v, r) ? dp_down[v] : dp_up[tree.kth(v,\
+    \ r, 1)]; }\n};\n#line 7 \"test/tree_path_composite_sum.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint>\
+    \ a(n), b(n - 1), c(n - 1);\n  for(mint &x : a) cin >> x;\n  vc<pii> e(n - 1);\n\
+    \  for(int i = 0; i < n - 1; i++)\n    cin >> e[i].first >> e[i].second >> b[i]\
+    \ >> c[i];\n\n  using V = array<mint, 2>;\n  using E = array<mint, 2>;\n  auto\
+    \ id = [&](int i) { return V{a[i], 1}; };\n  auto add_e = [&](const V &v, int\
+    \ i) { return E{b[i] * v[0] + c[i] * v[1], v[1]}; };\n  auto ee = [&](const E\
+    \ &l, const E &r) { return E{l[0] + r[0], l[1] + r[1]}; };\n  auto add_v = [&](const\
+    \ E &e, int i) { return V{e[0] + a[i], e[1] + 1}; };\n\n  HLD hld(e);\n  for(int\
+    \ v = 0; v < n; v++)\n    dbg(v, hld.parent_eid(v));\n  rerooting_DP<V, E> dp(hld,\
+    \ id, ee, add_v, add_e);\n  for(int v = 0; v < n; v++)\n    cout << dp[v][0] <<\
+    \ \" \\n\"[v + 1 == n];\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../dp/rerooting_DP.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n - 1), c(n - 1);\n\
-    \  for(mint &x : a) cin >> x;\n  vector<array<int, 2>> e(n - 1);\n  for(int i\
-    \ = 0; i < n - 1; i++)\n    cin >> e[i][0] >> e[i][1] >> b[i] >> c[i];\n\n  using\
-    \ V = array<mint, 2>;\n  using E = array<mint, 2>;\n  auto base = [&](int i) {\
-    \ return V{a[i], 1}; };\n  auto add_edge = [&](const V &v, int i) { return E{b[i]\
-    \ * v[0] + c[i] * v[1], v[1]}; };\n  auto op = [&](const E &l, const E &r) { return\
-    \ E{l[0] + r[0], l[1] + r[1]}; };\n  auto add_vertex = [&](const E &e, int i)\
-    \ { return V{e[0] + a[i], e[1] + 1}; };\n\n  auto ans = rerooting_DP<V, E>(e,\
-    \ base, add_edge, op, add_vertex);\n  for(int i = 0; i < n; i++)\n    cout <<\
-    \ ans[i][0] << \" \\n\"[i + 1 == n];\n\n  return 0;\n}\n"
+    \n#include \"../tree/HLD.cpp\"\n#include \"../dp/rerooting_DP.cpp\"\n\nsigned\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
+    \  vector<mint> a(n), b(n - 1), c(n - 1);\n  for(mint &x : a) cin >> x;\n  vc<pii>\
+    \ e(n - 1);\n  for(int i = 0; i < n - 1; i++)\n    cin >> e[i].first >> e[i].second\
+    \ >> b[i] >> c[i];\n\n  using V = array<mint, 2>;\n  using E = array<mint, 2>;\n\
+    \  auto id = [&](int i) { return V{a[i], 1}; };\n  auto add_e = [&](const V &v,\
+    \ int i) { return E{b[i] * v[0] + c[i] * v[1], v[1]}; };\n  auto ee = [&](const\
+    \ E &l, const E &r) { return E{l[0] + r[0], l[1] + r[1]}; };\n  auto add_v = [&](const\
+    \ E &e, int i) { return V{e[0] + a[i], e[1] + 1}; };\n\n  HLD hld(e);\n  for(int\
+    \ v = 0; v < n; v++)\n    dbg(v, hld.parent_eid(v));\n  rerooting_DP<V, E> dp(hld,\
+    \ id, ee, add_v, add_e);\n  for(int v = 0; v < n; v++)\n    cout << dp[v][0] <<\
+    \ \" \\n\"[v + 1 == n];\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/MontgomeryModInt.cpp
+  - tree/HLD.cpp
   - dp/rerooting_DP.cpp
   isVerificationFile: true
   path: test/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-03-22 17:48:48+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree_path_composite_sum.test.cpp

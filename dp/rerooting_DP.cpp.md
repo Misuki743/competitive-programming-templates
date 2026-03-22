@@ -11,65 +11,68 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"dp/rerooting_DP.cpp\"\ntemplate<class V, class E, typename\
-    \ BASE, typename ADD_EDGE, typename OP, typename ADD_VERTEX>\nrequires\n  R_invocable<V,\
-    \ BASE, int> &&\n  R_invocable<E, ADD_EDGE, const V, int> &&\n  R_invocable<E,\
-    \ OP, const E, const E> &&\n  R_invocable<V, ADD_VERTEX, const E, int>\nvector<V>\
-    \ rerooting_DP(vector<array<int, 2>> e, BASE base, ADD_EDGE add_edge, OP op, ADD_VERTEX\
-    \ add_vertex) {\n  int n = ssize(e) + 1;\n  vector<vector<int>> g(n);\n  for(int\
-    \ i = 0; auto [u, v] : e)\n    g[u].emplace_back(i), g[v].emplace_back(i++);\n\
-    \n  vector<V> data(n);\n  for(int v = 0; v < n; v++) data[v] = base(v);\n  auto\
-    \ precalc = [&](int v, int p, auto &&self) -> void {\n    bool leaf = true;\n\
-    \    E prod;\n    for(int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^\
-    \ v;\n      if (x == p) continue;\n      self(x, v, self);\n      if (leaf)\n\
-    \        prod = add_edge(data[x], eid), leaf = false;\n      else\n        prod\
-    \ = op(prod, add_edge(data[x], eid));\n    }\n    if (!leaf) data[v] = add_vertex(prod,\
-    \ v);\n  };\n\n  precalc(0, -1, precalc);\n\n  vector<V> ret(n);\n  auto reroot\
-    \ = [&](int v, int p, auto &&self) -> void {\n    int deg = ssize(g[v]);\n   \
-    \ vector<E> pre(deg), suf(deg);\n    for(int i = 0; int eid : g[v]) {\n      int\
-    \ x = e[eid][0] ^ e[eid][1] ^ v;\n      pre[i] = suf[i] = add_edge(data[x], eid),\
-    \ i++;\n    }\n    for(int i = 1; i < deg; i++) pre[i] = op(pre[i - 1], pre[i]);\n\
-    \    for(int i = deg - 2; i >= 0; i--) suf[i] = op(suf[i], suf[i + 1]);\n    V\
-    \ tmp = data[v];\n    ret[v] = data[v] = (deg ? add_vertex(suf[0], v) : base(v));\n\
-    \    for(int i = 0; int eid : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n\
-    \      if (x != p) {\n        bool leaf = true;\n        E prod;\n        if (i\
-    \ > 0) prod = pre[i - 1], leaf = false;\n        if (i + 1 < deg) prod = (leaf\
-    \ ? suf[i + 1] : op(prod, suf[i + 1])), leaf = false;\n        V tmp2 = data[v];\n\
-    \        data[v] = (leaf ? base(v) : add_vertex(prod, v));\n        self(x, v,\
-    \ self);\n        data[v] = tmp2;\n      }\n      i++;\n    }\n    data[v] = tmp;\n\
-    \  };\n\n  reroot(0, -1, reroot);\n\n  return ret;\n}\n"
-  code: "template<class V, class E, typename BASE, typename ADD_EDGE, typename OP,\
-    \ typename ADD_VERTEX>\nrequires\n  R_invocable<V, BASE, int> &&\n  R_invocable<E,\
-    \ ADD_EDGE, const V, int> &&\n  R_invocable<E, OP, const E, const E> &&\n  R_invocable<V,\
-    \ ADD_VERTEX, const E, int>\nvector<V> rerooting_DP(vector<array<int, 2>> e, BASE\
-    \ base, ADD_EDGE add_edge, OP op, ADD_VERTEX add_vertex) {\n  int n = ssize(e)\
-    \ + 1;\n  vector<vector<int>> g(n);\n  for(int i = 0; auto [u, v] : e)\n    g[u].emplace_back(i),\
-    \ g[v].emplace_back(i++);\n\n  vector<V> data(n);\n  for(int v = 0; v < n; v++)\
-    \ data[v] = base(v);\n  auto precalc = [&](int v, int p, auto &&self) -> void\
-    \ {\n    bool leaf = true;\n    E prod;\n    for(int eid : g[v]) {\n      int\
-    \ x = e[eid][0] ^ e[eid][1] ^ v;\n      if (x == p) continue;\n      self(x, v,\
-    \ self);\n      if (leaf)\n        prod = add_edge(data[x], eid), leaf = false;\n\
-    \      else\n        prod = op(prod, add_edge(data[x], eid));\n    }\n    if (!leaf)\
-    \ data[v] = add_vertex(prod, v);\n  };\n\n  precalc(0, -1, precalc);\n\n  vector<V>\
-    \ ret(n);\n  auto reroot = [&](int v, int p, auto &&self) -> void {\n    int deg\
-    \ = ssize(g[v]);\n    vector<E> pre(deg), suf(deg);\n    for(int i = 0; int eid\
-    \ : g[v]) {\n      int x = e[eid][0] ^ e[eid][1] ^ v;\n      pre[i] = suf[i] =\
-    \ add_edge(data[x], eid), i++;\n    }\n    for(int i = 1; i < deg; i++) pre[i]\
-    \ = op(pre[i - 1], pre[i]);\n    for(int i = deg - 2; i >= 0; i--) suf[i] = op(suf[i],\
-    \ suf[i + 1]);\n    V tmp = data[v];\n    ret[v] = data[v] = (deg ? add_vertex(suf[0],\
-    \ v) : base(v));\n    for(int i = 0; int eid : g[v]) {\n      int x = e[eid][0]\
-    \ ^ e[eid][1] ^ v;\n      if (x != p) {\n        bool leaf = true;\n        E\
-    \ prod;\n        if (i > 0) prod = pre[i - 1], leaf = false;\n        if (i +\
-    \ 1 < deg) prod = (leaf ? suf[i + 1] : op(prod, suf[i + 1])), leaf = false;\n\
-    \        V tmp2 = data[v];\n        data[v] = (leaf ? base(v) : add_vertex(prod,\
-    \ v));\n        self(x, v, self);\n        data[v] = tmp2;\n      }\n      i++;\n\
-    \    }\n    data[v] = tmp;\n  };\n\n  reroot(0, -1, reroot);\n\n  return ret;\n\
-    }\n"
+  bundledCode: "#line 1 \"dp/rerooting_DP.cpp\"\ntemplate<class V, class E>\nstruct\
+    \ rerooting_DP {\n  HLD &tree;\n  vc<V> dp_down, dp_up, dp_full;\n\n  template<typename\
+    \ ID, typename EE, typename ADD_V, typename ADD_E>\n  requires\n  R_invocable<V,\
+    \ ID,    int             > &&\n  R_invocable<E, EE,    const E, const E> &&\n\
+    \  R_invocable<V, ADD_V, const E, int    > &&\n  R_invocable<E, ADD_E, const V,\
+    \ int    >\n  rerooting_DP(HLD &_tree, ID id, EE ee, ADD_V add_v, ADD_E add_e)\
+    \ : tree(_tree) {\n    const int n = tree.n;\n    dp_down = dp_up = dp_full =\
+    \ vc<V>(n);\n\n    vc<V> data(n);\n    for(int v = 0; v < n; v++) data[v] = id(v);\n\
+    \    auto dfs = [&](int v, auto &self) -> void {\n      E prod;\n      bool leaf\
+    \ = 1;\n      for(int x : tree.childs(v)) {\n        self(x, self);\n        if\
+    \ (leaf) prod = add_e(data[x], tree.parent_eid(x)), leaf = 0;\n        else prod\
+    \ = ee(prod, add_e(data[x], tree.parent_eid(x)));\n      }\n      if (!leaf) data[v]\
+    \ = add_v(prod, v);\n    };\n    \n    dfs(tree.root, dfs);\n\n    auto dfs2 =\
+    \ [&](int v, auto &self) -> void {\n      const int deg = ssize(tree.childs(v))\
+    \ + (v != tree.root);\n      vc<E> pre(deg), suf(deg);\n      if (v != tree.root)\
+    \ {\n        dp_up[v] = data[tree.parent(v)];\n        pre.back() = suf.back()\
+    \ = add_e(data[tree.parent(v)], tree.parent_eid(v));\n      }\n      for(int i\
+    \ = 0; int x : tree.childs(v)) {\n        dp_down[x] = data[x];\n        pre[i]\
+    \ = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n      }\n      pSum(pre,\
+    \ ee), pSum(suf | views::reverse, ee);\n      V tmp = data[v];\n      dp_full[v]\
+    \ = data[v] = (deg ? add_v(suf[0], v) : id(v));\n      for(int i = -1; int x :\
+    \ tree.childs(v)) {\n        i++;\n        bool leaf = 1;\n        E prod;\n \
+    \       if (i) prod = pre[i - 1], leaf = 0;\n        if (i + 1 < deg) prod = (leaf\
+    \ ? suf[i + 1] : ee(prod, suf[i + 1])), leaf = 0;\n        V tmp2 = data[v];\n\
+    \        data[v] = (leaf ? id(v) : add_v(prod, v));\n        self(x, self);\n\
+    \        data[v] = tmp2;\n      }\n      data[v] = tmp;\n    };\n\n    dfs2(tree.root,\
+    \ dfs2);\n  }\n\n  V operator[](int v) { return dp_full[v]; }\n  V get(int v,\
+    \ int r) { return tree.in_subtree_of(v, r) ? dp_down[v] : dp_up[tree.kth(v, r,\
+    \ 1)]; }\n};\n"
+  code: "template<class V, class E>\nstruct rerooting_DP {\n  HLD &tree;\n  vc<V>\
+    \ dp_down, dp_up, dp_full;\n\n  template<typename ID, typename EE, typename ADD_V,\
+    \ typename ADD_E>\n  requires\n  R_invocable<V, ID,    int             > &&\n\
+    \  R_invocable<E, EE,    const E, const E> &&\n  R_invocable<V, ADD_V, const E,\
+    \ int    > &&\n  R_invocable<E, ADD_E, const V, int    >\n  rerooting_DP(HLD &_tree,\
+    \ ID id, EE ee, ADD_V add_v, ADD_E add_e) : tree(_tree) {\n    const int n = tree.n;\n\
+    \    dp_down = dp_up = dp_full = vc<V>(n);\n\n    vc<V> data(n);\n    for(int\
+    \ v = 0; v < n; v++) data[v] = id(v);\n    auto dfs = [&](int v, auto &self) ->\
+    \ void {\n      E prod;\n      bool leaf = 1;\n      for(int x : tree.childs(v))\
+    \ {\n        self(x, self);\n        if (leaf) prod = add_e(data[x], tree.parent_eid(x)),\
+    \ leaf = 0;\n        else prod = ee(prod, add_e(data[x], tree.parent_eid(x)));\n\
+    \      }\n      if (!leaf) data[v] = add_v(prod, v);\n    };\n    \n    dfs(tree.root,\
+    \ dfs);\n\n    auto dfs2 = [&](int v, auto &self) -> void {\n      const int deg\
+    \ = ssize(tree.childs(v)) + (v != tree.root);\n      vc<E> pre(deg), suf(deg);\n\
+    \      if (v != tree.root) {\n        dp_up[v] = data[tree.parent(v)];\n     \
+    \   pre.back() = suf.back() = add_e(data[tree.parent(v)], tree.parent_eid(v));\n\
+    \      }\n      for(int i = 0; int x : tree.childs(v)) {\n        dp_down[x] =\
+    \ data[x];\n        pre[i] = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n\
+    \      }\n      pSum(pre, ee), pSum(suf | views::reverse, ee);\n      V tmp =\
+    \ data[v];\n      dp_full[v] = data[v] = (deg ? add_v(suf[0], v) : id(v));\n \
+    \     for(int i = -1; int x : tree.childs(v)) {\n        i++;\n        bool leaf\
+    \ = 1;\n        E prod;\n        if (i) prod = pre[i - 1], leaf = 0;\n       \
+    \ if (i + 1 < deg) prod = (leaf ? suf[i + 1] : ee(prod, suf[i + 1])), leaf = 0;\n\
+    \        V tmp2 = data[v];\n        data[v] = (leaf ? id(v) : add_v(prod, v));\n\
+    \        self(x, self);\n        data[v] = tmp2;\n      }\n      data[v] = tmp;\n\
+    \    };\n\n    dfs2(tree.root, dfs2);\n  }\n\n  V operator[](int v) { return dp_full[v];\
+    \ }\n  V get(int v, int r) { return tree.in_subtree_of(v, r) ? dp_down[v] : dp_up[tree.kth(v,\
+    \ r, 1)]; }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: dp/rerooting_DP.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-03-22 17:48:48+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/tree_path_composite_sum.test.cpp

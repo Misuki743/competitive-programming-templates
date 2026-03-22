@@ -106,7 +106,7 @@ data:
       title: ds/DSU/rollback_DSU.cpp
   - name: ds
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/RMQ.cpp
       title: ds/RMQ.cpp
     - icon: ':x:'
@@ -251,7 +251,7 @@ data:
       title: graph/connectivity/incrementalSCC.cpp
   - name: graph/flow
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/flow/Dinic.cpp
       title: graph/flow/Dinic.cpp
     - icon: ':heavy_check_mark:'
@@ -278,10 +278,10 @@ data:
       title: graph/matching/minimumVertexCover.cpp
   - name: graph/minimum_spanning_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree/Kruskal.cpp
       title: graph/minimum_spanning_tree/Kruskal.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree/Prim.cpp
       title: graph/minimum_spanning_tree/Prim.cpp
   - name: graph/misc
@@ -289,7 +289,7 @@ data:
     - icon: ':x:'
       path: graph/misc/2sat.cpp
       title: graph/misc/2sat.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/misc/MIS.cpp
       title: graph/misc/MIS.cpp
     - icon: ':heavy_check_mark:'
@@ -301,7 +301,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/misc/eulerianTrail.cpp
       title: graph/misc/eulerianTrail.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/misc/steinerTree.cpp
       title: graph/misc/steinerTree.cpp
     - icon: ':warning:'
@@ -379,7 +379,7 @@ data:
     - icon: ':warning:'
       path: linalg/suffix_xor_basis_i64.cpp
       title: linalg/suffix_xor_basis_i64.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/xor_basis_bitset.cpp
       title: linalg/xor_basis_bitset.cpp
     - icon: ':x:'
@@ -387,19 +387,19 @@ data:
       title: linalg/xor_basis_i64.cpp
   - name: misc
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: misc/LIS.cpp
       title: misc/LIS.cpp
     - icon: ':warning:'
       path: misc/arrayUtility.cpp
       title: misc/arrayUtility.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: misc/bigint.cpp
       title: misc/bigint.cpp
     - icon: ':x:'
       path: misc/compression.cpp
       title: misc/compression.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: misc/random.cpp
       title: misc/random.cpp
     - icon: ':x:'
@@ -442,7 +442,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/gcd_convolution.cpp
       title: numtheory/gcd_convolution.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/lcm_convolution.cpp
       title: numtheory/lcm_convolution.cpp
     - icon: ':question:'
@@ -469,7 +469,7 @@ data:
     - icon: ':warning:'
       path: numtheory/sum_of_floor_of_linear.cpp
       title: numtheory/sum_of_floor_of_linear.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
       title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   - name: poly
@@ -477,7 +477,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/BerlekampMassey.cpp
       title: poly/BerlekampMassey.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/BostanMori.cpp
       title: poly/BostanMori.cpp
     - icon: ':warning:'
@@ -525,10 +525,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/kthTermOfPowers.cpp
       title: poly/kthTermOfPowers.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/min_plus_convolution.cpp
       title: poly/min_plus_convolution.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/mulConvolution.cpp
       title: poly/mulConvolution.cpp
     - icon: ':warning:'
@@ -551,7 +551,7 @@ data:
     - icon: ':question:'
       path: segtree/lazySegmentTree.cpp
       title: segtree/lazySegmentTree.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: segtree/lichaoSegmentTree.cpp
       title: segtree/lichaoSegmentTree.cpp
     - icon: ':x:'
@@ -597,7 +597,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/Manacher.cpp
       title: string/Manacher.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/longestCommonSubstring.cpp
       title: string/longestCommonSubstring.cpp
     - icon: ':x:'
@@ -606,7 +606,7 @@ data:
     - icon: ':warning:'
       path: string/rollingHash.cpp
       title: string/rollingHash.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/suffixArray.cpp
       title: string/suffixArray.cpp
     - icon: ':warning:'
@@ -623,7 +623,7 @@ data:
     - icon: ':question:'
       path: tree/HLD.cpp
       title: tree/HLD.cpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
     - icon: ':x:'
@@ -803,79 +803,79 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/jump_on_tree_2.test.cpp
       title: test/jump_on_tree_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/jump_on_tree_3.test.cpp
       title: test/jump_on_tree_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lca_2.test.cpp
       title: test/lca_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lca_3.test.cpp
       title: test/lca_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lca_4.test.cpp
       title: test/lca_4.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lcm_convolution.test.cpp
       title: test/lcm_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/line_add_get_min.test.cpp
       title: test/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/log_of_formal_power_series.test.cpp
       title: test/log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/log_of_formal_power_series_sparse.test.cpp
       title: test/log_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/longest_common_substring.test.cpp
       title: test/longest_common_substring.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/longest_increasing_subsequence.test.cpp
       title: test/longest_increasing_subsequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matching_on_bipartite_graph.test.cpp
       title: test/matching_on_bipartite_graph.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix_product.test.cpp
       title: test/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix_rank.test.cpp
       title: test/matrix_rank.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/matrix_rank_mod_2.test.cpp
       title: test/matrix_rank_mod_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/maximum_independent_set.test.cpp
       title: test/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/min_plus_convolution_convex_arbitrary.test.cpp
       title: test/min_plus_convolution_convex_arbitrary.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/minimum_spanning_tree_Kruskal.test.cpp
       title: test/minimum_spanning_tree_Kruskal.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/minimum_spanning_tree_Prim.test.cpp
       title: test/minimum_spanning_tree_Prim.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/minimum_steiner_tree.test.cpp
       title: test/minimum_steiner_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mul_modp_convolution.test.cpp
       title: test/mul_modp_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/multiplication_of_big_intergers.test.cpp
       title: test/multiplication_of_big_intergers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/multiplication_of_big_intergers_2.test.cpp
       title: test/multiplication_of_big_intergers_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/multipoint_evaluation.test.cpp
       title: test/multipoint_evaluation.test.cpp
     - icon: ':x:'

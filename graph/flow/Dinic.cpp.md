@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/bipartitematching.test.cpp
     title: test/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matching_on_bipartite_graph.test.cpp
     title: test/matching_on_bipartite_graph.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/flow/Dinic.cpp\"\ntemplate<class T>\nstruct Dinic\
@@ -61,7 +61,7 @@ data:
   path: graph/flow/Dinic.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/matching_on_bipartite_graph.test.cpp
   - test/bipartitematching.test.cpp
