@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: combi/binom.cpp
     title: combi/binom.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: combi/countEulerianCircuit.cpp
     title: combi/countEulerianCircuit.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: combi/countSpanningForest.cpp
     title: combi/countSpanningForest.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrixMint.cpp
     title: linalg/matrixMint.cpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_eulerian_circuits
@@ -274,7 +274,7 @@ data:
   path: test/counting_eulerian_circuits.test.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/counting_eulerian_circuits.test.cpp
 layout: document

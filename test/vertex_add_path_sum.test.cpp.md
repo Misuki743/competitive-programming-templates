@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/fenwickTree.cpp
     title: ds/fenwickTree.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []

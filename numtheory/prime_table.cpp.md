@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/enumerate_primes.test.cpp
     title: test/enumerate_primes.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/mytest_prime_table.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t C>\nclass\
@@ -64,7 +64,7 @@ data:
   path: numtheory/prime_table.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest_prime_table.test.cpp
   - test/enumerate_primes.test.cpp

@@ -191,7 +191,7 @@ data:
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
     \  }\n};\n//using mint = MontgomeryModInt<998'244'353>;\n\n\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n\n\n  return 0;\n}\n"
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -374,12 +374,12 @@ data:
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
     \  }\n};\n//using mint = MontgomeryModInt<998'244'353>;\n\n\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n\n\n  return 0;\n}\n"
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-03-22 16:51:56+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

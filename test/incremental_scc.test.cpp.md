@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/DSU/DSU.cpp
     title: ds/DSU/DSU.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/connectivity/SCC.cpp
     title: graph/connectivity/SCC.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connectivity/incrementalSCC.cpp
     title: graph/connectivity/incrementalSCC.cpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: modint/MontgomeryModInt.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/incremental_scc
@@ -230,7 +230,7 @@ data:
   path: test/incremental_scc.test.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/incremental_scc.test.cpp
 layout: document
