@@ -49,7 +49,7 @@
 #include <ranges>
 #include <span>
 
-//#define int ll
+#define int ll
 #define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)
 #define INT128_MIN (-INT128_MAX - 1)
 

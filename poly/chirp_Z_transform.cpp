@@ -1,3 +1,4 @@
+//evaluate P(x) at x = ar^i, 0 <= i < m
 template<NTT Ntt, class Mint>
 vector<Mint> chirp_Z_transform(vector<Mint> P, Mint a, Mint r, int m) {
   const int n = ssize(P);
