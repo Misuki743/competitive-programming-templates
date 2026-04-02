@@ -69,10 +69,10 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/primality_test.test.cpp
   - test/primitive_root.test.cpp
   - test/factorize.test.cpp
   - test/chromatic_number.test.cpp
+  - test/primality_test.test.cpp
   - test/mytest_factorize_sqrt.test.cpp
 documentation_of: numtheory/factorize_pollard_rho.cpp
 layout: document

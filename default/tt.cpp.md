@@ -20,7 +20,7 @@ data:
     #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
     \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
     \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
-    \ <numbers>\n#include <ranges>\n#include <span>\n\n//#define int ll\n#define INT128_MAX\
+    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define int ll\n#define INT128_MAX\
     \ (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1))\
     \ - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define pb push_back\n#define\
     \ eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
@@ -204,7 +204,7 @@ data:
     \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
     \ <tuple>\n#include <type_traits>\n#include <variant>\n#include <bit>\n#include\
     \ <compare>\n#include <concepts>\n#include <numbers>\n#include <ranges>\n#include\
-    \ <span>\n\n//#define int ll\n#define INT128_MAX (__int128)(((unsigned __int128)\
+    \ <span>\n\n#define int ll\n#define INT128_MAX (__int128)(((unsigned __int128)\
     \ 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
     \ - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
@@ -379,7 +379,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:51:56+08:00'
+  timestamp: '2026-04-03 02:38:47+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

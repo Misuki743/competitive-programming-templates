@@ -170,14 +170,14 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/counting_eulerian_circuits.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
-  - test/system_of_linear_equations.test.cpp
-  - test/pow_of_matrix.test.cpp
+  - test/matrix_product.test.cpp
   - test/determinant_of_matrix.test.cpp
   - test/inverse_matrix.test.cpp
-  - test/matrix_product.test.cpp
-  - test/counting_spanning_tree_undirected.test.cpp
-  - test/counting_eulerian_circuits.test.cpp
+  - test/system_of_linear_equations.test.cpp
+  - test/pow_of_matrix.test.cpp
   - test/matrix_rank.test.cpp
 documentation_of: linalg/matrixMint.cpp
 layout: document

@@ -64,13 +64,13 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/static_range_frequency.test.cpp
-  - test/rectangle_sum.test.cpp
+  - test/static_range_count_distinct.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/range_kth_smallest2.test.cpp
   - test/rectangle_add_point_get.test.cpp
-  - test/static_range_count_distinct.test.cpp
+  - test/static_range_frequency.test.cpp
   - test/range_kth_smallest.test.cpp
+  - test/rectangle_sum.test.cpp
 documentation_of: misc/compression.cpp
 layout: document
 title: misc/compression.cpp

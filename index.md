@@ -424,6 +424,9 @@ data:
     - icon: ':warning:'
       path: numtheory/AP_sqrt_heuristic.cpp
       title: numtheory/AP_sqrt_heuristic.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/Stern_Brocot_tree.cpp
+      title: numtheory/Stern_Brocot_tree.cpp
     - icon: ':warning:'
       path: numtheory/crt.cpp
       title: numtheory/crt.cpp
@@ -1028,6 +1031,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/static_range_frequency.test.cpp
       title: test/static_range_frequency.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/stern_brocot_tree.test.cpp
+      title: test/stern_brocot_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
       title: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
