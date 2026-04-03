@@ -135,6 +135,7 @@
 "test/tree_path_composite_sum.test.cpp": "2026-03-22 17:48:48 +0800",
 "test/two_edge_connected_components.test.cpp": "2026-03-22 16:32:23 +0800",
 "test/two_sat.test.cpp": "2026-03-22 16:32:23 +0800",
+"test/two_square_sum.test.cpp": "2026-04-03 23:26:29 +0800",
 "test/unionfind.test.cpp": "2026-03-22 16:32:23 +0800",
 "test/unionfind_with_potential.test.cpp": "2026-03-22 16:32:23 +0800",
 "test/unionfind_with_potential_non_commutative_group.test.cpp": "2026-03-22 16:32:23 +0800",
