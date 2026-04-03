@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/two_square_sum.test.cpp
+    title: test/two_square_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   verifiedWith:
   - test/primitive_root.test.cpp
   - test/factorize.test.cpp
+  - test/two_square_sum.test.cpp
   - test/chromatic_number.test.cpp
   - test/primality_test.test.cpp
   - test/mytest_factorize_sqrt.test.cpp

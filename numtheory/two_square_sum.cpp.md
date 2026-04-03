@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/two_square_sum.test.cpp
     title: test/two_square_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://maspypy.github.io/library/mod/min_of_linear.hpp
     - https://maspypy.github.io/library/mod/min_of_linear_segments.hpp
   bundledCode: "#line 1 \"numtheory/two_square_sum.cpp\"\n//#include \"numtheory/factorize_pollard_rho.cpp\"\
-    \n//#include \"numtheory/primitive_root.cpp\"\n//min of mod of linear come from\
+    \n//#include \"numtheory/primitive_root.cpp\"\n\n//min of mod of linear come from\
     \ maspy's library\n//link: https://maspypy.github.io/library/mod/min_of_linear.hpp\n\
     //      https://maspypy.github.io/library/mod/min_of_linear_segments.hpp\n\n/*\n\
     ax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\
@@ -67,7 +67,7 @@ data:
     \n  vc<pii> res;\n  for(auto [a, b] : sol)\n    if (min(a, b) >= 0)\n      res.eb(a,\
     \ b);\n  return res;\n}\n"
   code: "//#include \"numtheory/factorize_pollard_rho.cpp\"\n//#include \"numtheory/primitive_root.cpp\"\
-    \n//min of mod of linear come from maspy's library\n//link: https://maspypy.github.io/library/mod/min_of_linear.hpp\n\
+    \n\n//min of mod of linear come from maspy's library\n//link: https://maspypy.github.io/library/mod/min_of_linear.hpp\n\
     //      https://maspypy.github.io/library/mod/min_of_linear_segments.hpp\n\n/*\n\
     ax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\
     \u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\
@@ -122,8 +122,8 @@ data:
   isVerificationFile: false
   path: numtheory/two_square_sum.cpp
   requiredBy: []
-  timestamp: '2026-04-03 17:54:56+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-04-03 23:26:29+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/two_square_sum.test.cpp
 documentation_of: numtheory/two_square_sum.cpp

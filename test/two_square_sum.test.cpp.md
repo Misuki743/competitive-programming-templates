@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
-    path: numtheory/factorize_sqrt.cpp
-    title: numtheory/factorize_sqrt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: numtheory/factorize_pollard_rho.cpp
+    title: numtheory/factorize_pollard_rho.cpp
+  - icon: ':heavy_check_mark:'
     path: numtheory/primitive_root.cpp
     title: numtheory/primitive_root.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/two_square_sum.cpp
     title: numtheory/two_square_sum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_square_sum
@@ -113,29 +113,34 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/factorize_sqrt.cpp\"\
-    \nvc<pair<int64_t, int64_t>> prime_factorize_sqrt(int64_t x) {\n  using i64 =\
-    \ int64_t;\n  vc<pair<i64, i64>> res;\n  for(i64 d = 2; d * d <= x; d++) {\n \
-    \   if (x % d != 0) continue;\n    res.emplace_back(d, 0ll);\n    while(x % d\
-    \ == 0)\n      x /= d, res.back().second++;\n  }\n  if (x != 1) res.emplace_back(x,\
-    \ 1);\n  return res;\n}\n\nvc<int64_t> prime_factor_sqrt(int64_t x) {\n  using\
-    \ i64 = int64_t;\n  vc<i64> res;\n  for(i64 d = 2; d * d <= x; d++) {\n    if\
-    \ (x % d != 0) continue;\n    res.emplace_back(d);\n    while(x % d == 0)\n  \
-    \    x /= d;\n  }\n  if (x != 1) res.emplace_back(x);\n  return res;\n}\n\nvc<int64_t>\
-    \ divisor_sqrt(int64_t x, bool sorted = true) {\n  using i64 = int64_t;\n  vc<i64>\
-    \ divisor = {1};\n  for(auto [p, f] : prime_factorize_sqrt(x)) {\n    vc<i64>\
-    \ nxt;\n    nxt.reserve(ssize(divisor) * (f + 1));\n    uint64_t q = 1;\n    for(int\
-    \ i = 0; i <= f; i++, q *= p)\n      for(i64 d : divisor)\n        nxt.emplace_back(d\
-    \ * q);\n    divisor.swap(nxt);\n  }\n  if (sorted)\n    ranges::sort(divisor);\n\
-    \  return divisor;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"\
-    numtheory/fastFactorize.cpp\"\n\null primitiveRoot(ull p) {\n  auto fac = factor(p\
-    \ - 1);\n  ranges::sort(fac);\n  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n\
-    \  auto test = [p, fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p\
-    \ - 1) / d, p) == 1)\n        return false;\n    return true;\n  };\n  static\
-    \ mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(1, p - 1);\n  ull\
-    \ root;\n  while(!test(root = unif(rng)));\n  return root;\n}\n#line 1 \"numtheory/two_square_sum.cpp\"\
-    \n//#include \"numtheory/factorize_pollard_rho.cpp\"\n//#include \"numtheory/primitive_root.cpp\"\
-    \n//min of mod of linear come from maspy's library\n//link: https://maspypy.github.io/library/mod/min_of_linear.hpp\n\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/factorize_pollard_rho.cpp\"\
+    \n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\null\
+    \ modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\
+    \treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull\
+    \ e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /= 2)\n\t\
+    \tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
+    \ n) {\n\tif (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325,\
+    \ 9375, 28178, 450775, 9780504, 1795265022},\n\t    s = __builtin_ctzll(n-1),\
+    \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
+    \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
+    \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
+    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
+    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
+    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
+    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
+    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
+    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
+    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
+    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
+    \treturn l;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
+    \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
+    \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
+    \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
+    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
+    \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
+    \ = unif(rng)));\n  return root;\n}\n#line 1 \"numtheory/two_square_sum.cpp\"\n\
+    //#include \"numtheory/factorize_pollard_rho.cpp\"\n//#include \"numtheory/primitive_root.cpp\"\
+    \n\n//min of mod of linear come from maspy's library\n//link: https://maspypy.github.io/library/mod/min_of_linear.hpp\n\
     //      https://maspypy.github.io/library/mod/min_of_linear_segments.hpp\n\n/*\n\
     ax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\
     \u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\
@@ -191,22 +196,22 @@ data:
     \ << '\\n';\n    for(auto pr : sol)\n      cout << pr << '\\n';\n  }\n\n  return\
     \ 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_square_sum\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_sqrt.cpp\"\n#include\
-    \ \"../numtheory/primitive_root.cpp\"\n#include \"../numtheory/two_square_sum.cpp\"\
+    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\
+    #include \"../numtheory/primitive_root.cpp\"\n#include \"../numtheory/two_square_sum.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q;\
     \ cin >> q;\n  while(q--) {\n    ll n; cin >> n;\n    auto sol = two_square_sum(n);\n\
     \    cout << size(sol) << '\\n';\n    for(auto pr : sol)\n      cout << pr <<\
     \ '\\n';\n  }\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/factorize_sqrt.cpp
+  - numtheory/factorize_pollard_rho.cpp
   - numtheory/primitive_root.cpp
   - numtheory/two_square_sum.cpp
   isVerificationFile: true
   path: test/two_square_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 17:54:56+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-04-03 23:26:29+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/two_square_sum.test.cpp
 layout: document
