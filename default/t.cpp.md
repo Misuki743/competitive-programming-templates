@@ -411,6 +411,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/two_sat.test.cpp
     title: test/two_sat.test.cpp
+  - icon: ':x:'
+    path: test/two_square_sum.test.cpp
+    title: test/two_square_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/unionfind.test.cpp
     title: test/unionfind.test.cpp
@@ -465,9 +468,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2895_2.test.cpp
     title: test/yuki_2895_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -654,7 +657,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-03-22 15:52:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/enumerate_primes.test.cpp
@@ -713,6 +716,7 @@ data:
   - test/strongly_connected_components.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/lca_2.test.cpp
+  - test/two_square_sum.test.cpp
   - test/mytest_divisor_table.test.cpp
   - test/jump_on_tree_3.test.cpp
   - test/yuki_2613.test.cpp

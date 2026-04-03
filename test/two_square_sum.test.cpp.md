@@ -4,23 +4,26 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: numtheory/factorize_pollard_rho.cpp
-    title: numtheory/factorize_pollard_rho.cpp
+  - icon: ':question:'
+    path: numtheory/factorize_sqrt.cpp
+    title: numtheory/factorize_sqrt.cpp
   - icon: ':question:'
     path: numtheory/primitive_root.cpp
     title: numtheory/primitive_root.cpp
+  - icon: ':x:'
+    path: numtheory/two_square_sum.cpp
+    title: numtheory/two_square_sum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
+    PROBLEM: https://judge.yosupo.jp/problem/two_square_sum
     links:
-    - https://judge.yosupo.jp/problem/primitive_root
-  bundledCode: "#line 1 \"test/primitive_root.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\
+    - https://judge.yosupo.jp/problem/two_square_sum
+  bundledCode: "#line 1 \"test/two_square_sum.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/two_square_sum\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -110,54 +113,105 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/factorize_pollard_rho.cpp\"\
-    \n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\null\
-    \ modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\
-    \treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull\
-    \ e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /= 2)\n\t\
-    \tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
-    \ n) {\n\tif (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325,\
-    \ 9375, 28178, 450775, 9780504, 1795265022},\n\t    s = __builtin_ctzll(n-1),\
-    \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
-    \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
-    \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
-    \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
-    \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
-    \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
-    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
-    \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
-    \ = unif(rng)));\n  return root;\n}\n#line 6 \"test/primitive_root.test.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
-    \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << primitiveRoot(x) <<\
-    \ '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\
-    #include \"../numtheory/primitive_root.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
-    \    cout << primitiveRoot(x) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/factorize_sqrt.cpp\"\
+    \nvc<pair<int64_t, int64_t>> prime_factorize_sqrt(int64_t x) {\n  using i64 =\
+    \ int64_t;\n  vc<pair<i64, i64>> res;\n  for(i64 d = 2; d * d <= x; d++) {\n \
+    \   if (x % d != 0) continue;\n    res.emplace_back(d, 0ll);\n    while(x % d\
+    \ == 0)\n      x /= d, res.back().second++;\n  }\n  if (x != 1) res.emplace_back(x,\
+    \ 1);\n  return res;\n}\n\nvc<int64_t> prime_factor_sqrt(int64_t x) {\n  using\
+    \ i64 = int64_t;\n  vc<i64> res;\n  for(i64 d = 2; d * d <= x; d++) {\n    if\
+    \ (x % d != 0) continue;\n    res.emplace_back(d);\n    while(x % d == 0)\n  \
+    \    x /= d;\n  }\n  if (x != 1) res.emplace_back(x);\n  return res;\n}\n\nvc<int64_t>\
+    \ divisor_sqrt(int64_t x, bool sorted = true) {\n  using i64 = int64_t;\n  vc<i64>\
+    \ divisor = {1};\n  for(auto [p, f] : prime_factorize_sqrt(x)) {\n    vc<i64>\
+    \ nxt;\n    nxt.reserve(ssize(divisor) * (f + 1));\n    uint64_t q = 1;\n    for(int\
+    \ i = 0; i <= f; i++, q *= p)\n      for(i64 d : divisor)\n        nxt.emplace_back(d\
+    \ * q);\n    divisor.swap(nxt);\n  }\n  if (sorted)\n    ranges::sort(divisor);\n\
+    \  return divisor;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"\
+    numtheory/fastFactorize.cpp\"\n\null primitiveRoot(ull p) {\n  auto fac = factor(p\
+    \ - 1);\n  ranges::sort(fac);\n  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n\
+    \  auto test = [p, fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p\
+    \ - 1) / d, p) == 1)\n        return false;\n    return true;\n  };\n  static\
+    \ mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(1, p - 1);\n  ull\
+    \ root;\n  while(!test(root = unif(rng)));\n  return root;\n}\n#line 1 \"numtheory/two_square_sum.cpp\"\
+    \n//#include \"numtheory/factorize_pollard_rho.cpp\"\n//#include \"numtheory/primitive_root.cpp\"\
+    \n//min of mod of linear come from maspy's library\n//link: https://maspypy.github.io/library/mod/min_of_linear.hpp\n\
+    //      https://maspypy.github.io/library/mod/min_of_linear_segments.hpp\n\n/*\n\
+    ax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\
+    \u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\
+    \u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\u6B21\
+    \u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\u3068\
+    \u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\u306E\
+    \u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<ll>, vc<ll>> min_of_linear_segments(ll\
+    \ a, ll b, ll mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
+    \  vc<ll> X = {0};\n  vc<ll> DX;\n  ll g = gcd(a, mod);\n  a /= g, b /= g, mod\
+    \ /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  ll p = 0, q = 1, r = 1, s = 1;\n  ll\
+    \ det_l = mod - a, det_r = a;\n  ll x = 0, y = b;\n\n  while (y) {\n    // upd\
+    \ r/s\n    ll k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r == 0) {\n\
+    \      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k * q;\n \
+    \   while (1) {\n      ll k = max(0ll, ceilDiv(det_l - y, det_r));\n      if (det_l\
+    \ - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n   \
+    \   q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092 y\
+    \ \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n    \
+    \  x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
+    \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
+    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n\n// min_{x in [L, R)} (ax+b mod)\n\
+    using i128 = __int128;\npair<i128, ll> min_of_linear(i128 L, i128 R, ll a, ll\
+    \ b, ll mod) {\n  i128 n = R - L;\n  b = (b + a * L) % mod;\n  if (b < 0) b +=\
+    \ mod;\n  auto [X, DX] = min_of_linear_segments(a, b, mod);\n  ll x = 0;\n  for\
+    \ (int i = 0; i < int(X.size()) - 1; ++i) {\n    ll xl = X[i], xr = X[i + 1];\n\
+    \    if (xr < n) {\n      x = xr;\n      continue;\n    }\n    x = xl + (n - 1\
+    \ - x) / DX[i] * DX[i];\n    break;\n  }\n  ll y = (i128(a) * x + b) % mod;\n\
+    \  return {L + x, y};\n}\n//\n\nstruct Gauss_int { ll a, b; };\nGauss_int operator+(Gauss_int\
+    \ x, Gauss_int y) { return {x.a + y.a, x.b + y.b}; }\nGauss_int operator-(Gauss_int\
+    \ x, Gauss_int y) { return {x.a - y.a, x.b - y.b}; }\nGauss_int operator*(Gauss_int\
+    \ x, Gauss_int y) { return {x.a * y.a - x.b * y.b, x.b * y.a + x.a * y.b}; }\n\
+    \nvc<pii> two_square_sum(ll n) {\n  if (n == 0) return {pii(0, 0)};\n  auto D\
+    \ = factor(n);\n  ranges::sort(D);\n\n  vc<Gauss_int> sol;\n  sol.pb({-1, 0});\n\
+    \  sol.pb({0, -1});\n  sol.pb({1, 0});\n  sol.pb({0, 1});\n  for(auto [l, r] :\
+    \ equal_subarrays(D)) {\n    ll p = D[l];\n    int e = r - l;\n    if (p == 2)\
+    \ {\n      Gauss_int y{1, 0};\n      for(int i = 0; i < e; i++)\n        y = y\
+    \ * Gauss_int{1, 1};\n      for(auto &x : sol)\n        x = x * y;\n    } else\
+    \ if (p % 4 == 1) {\n      ll i = modpow(primitiveRoot(p), (p - 1) / 4, p);\n\n\
+    \      ll d;\n      {\n        ll U = sqrtl(p);\n        while(U * U < p) U++;\n\
+    \        auto [d1, mn1] = min_of_linear(1, U, i, 0, p);\n        auto [d2, mn2]\
+    \ = min_of_linear(1, U, p - i, 0, p);\n        d = mn1 < U ? d1 : d2;\n      }\n\
+    \n      vc<Gauss_int> pw(e + 1);\n      pw[0] = {1, 0};\n      pw[1] = {(ll)((i128)(d)\
+    \ * i % p), d};\n      for(int j = 1; j <= e; j++)\n        pw[j] = pw[j - 1]\
+    \ * pw[1];\n\n      vc<Gauss_int> nxt;\n      for(auto x : sol) {\n        for(int\
+    \ j = 0; j <= e; j++) {\n          auto y = pw[j];\n          auto z = pw[e -\
+    \ j];\n          swap(z.a, z.b);\n          nxt.pb(x * y * z);\n        }\n  \
+    \    }\n\n      sol.swap(nxt);\n\n    } else if (e % 2 == 0) {\n      ll q = 1;\n\
+    \      for(int i = 0; i < e / 2; i++)\n        q *= p;\n      for(auto &x : sol)\n\
+    \        x = x * Gauss_int{q, 0};\n    } else {\n      return {};\n    }\n  }\n\
+    \n  vc<pii> res;\n  for(auto [a, b] : sol)\n    if (min(a, b) >= 0)\n      res.eb(a,\
+    \ b);\n  return res;\n}\n#line 7 \"test/two_square_sum.test.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--)\
+    \ {\n    ll n; cin >> n;\n    auto sol = two_square_sum(n);\n    cout << size(sol)\
+    \ << '\\n';\n    for(auto pr : sol)\n      cout << pr << '\\n';\n  }\n\n  return\
+    \ 0;\n}\n\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_square_sum\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_sqrt.cpp\"\n#include\
+    \ \"../numtheory/primitive_root.cpp\"\n#include \"../numtheory/two_square_sum.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q;\
+    \ cin >> q;\n  while(q--) {\n    ll n; cin >> n;\n    auto sol = two_square_sum(n);\n\
+    \    cout << size(sol) << '\\n';\n    for(auto pr : sol)\n      cout << pr <<\
+    \ '\\n';\n  }\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/factorize_pollard_rho.cpp
+  - numtheory/factorize_sqrt.cpp
   - numtheory/primitive_root.cpp
+  - numtheory/two_square_sum.cpp
   isVerificationFile: true
-  path: test/primitive_root.test.cpp
+  path: test/two_square_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-03 17:54:56+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/primitive_root.test.cpp
+documentation_of: test/two_square_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/primitive_root.test.cpp
-- /verify/test/primitive_root.test.cpp.html
-title: test/primitive_root.test.cpp
+- /verify/test/two_square_sum.test.cpp
+- /verify/test/two_square_sum.test.cpp.html
+title: test/two_square_sum.test.cpp
 ---

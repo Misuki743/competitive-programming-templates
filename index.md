@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -442,7 +442,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/factorize_pollard_rho.cpp
       title: numtheory/factorize_pollard_rho.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/factorize_sqrt.cpp
       title: numtheory/factorize_sqrt.cpp
     - icon: ':heavy_check_mark:'
@@ -454,6 +454,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
+    - icon: ':warning:'
+      path: numtheory/min_of_mod_of_linear.cpp
+      title: numtheory/min_of_mod_of_linear.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/mu_table.cpp
       title: numtheory/mu_table.cpp
@@ -463,7 +466,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/prime_table.cpp
       title: numtheory/prime_table.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/primitive_root.cpp
       title: numtheory/primitive_root.cpp
     - icon: ':heavy_check_mark:'
@@ -475,6 +478,9 @@ data:
     - icon: ':warning:'
       path: numtheory/sum_of_floor_of_linear.cpp
       title: numtheory/sum_of_floor_of_linear.cpp
+    - icon: ':x:'
+      path: numtheory/two_square_sum.cpp
+      title: numtheory/two_square_sum.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
       title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
@@ -1070,6 +1076,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/two_sat.test.cpp
       title: test/two_sat.test.cpp
+    - icon: ':x:'
+      path: test/two_square_sum.test.cpp
+      title: test/two_square_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp

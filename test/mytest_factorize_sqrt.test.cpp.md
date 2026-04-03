@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/factorize_sqrt.cpp
     title: numtheory/factorize_sqrt.cpp
   _extendedRequiredBy: []
