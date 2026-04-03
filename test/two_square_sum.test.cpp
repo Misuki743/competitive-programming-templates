@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_square_sum"
 
 #include "../default/t.cpp"
-#include "../numtheory/factorize_sqrt.cpp"
+#include "../numtheory/factorize_pollard_rho.cpp"
 #include "../numtheory/primitive_root.cpp"
 #include "../numtheory/two_square_sum.cpp"
 

@@ -1,5 +1,6 @@
 //#include "numtheory/factorize_pollard_rho.cpp"
 //#include "numtheory/primitive_root.cpp"
+
 //min of mod of linear come from maspy's library
 //link: https://maspypy.github.io/library/mod/min_of_linear.hpp
 //      https://maspypy.github.io/library/mod/min_of_linear_segments.hpp
