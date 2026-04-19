@@ -1,20 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
-    path: ds/fenwickTree.cpp
-    title: ds/fenwickTree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.cpp
     title: ds/wavelet_matrix.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -110,35 +107,26 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class\
-    \ T>\nstruct fenwickTree {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int\
-    \ _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> init)\
-    \ : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
-    \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
-    \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
-    \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
-    \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
-    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
-    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"ds/wavelet_matrix.cpp\"\ntemplate<class\
-    \ T, int H>\nstruct wavelet_matrix {\n  using u32 = uint32_t;\n  struct bitvec\
-    \ {\n    static constexpr u32 W = 64;\n    int cnt_0 = 0, sz;\n    vc<ull> bit_vec;\n\
-    \    vi ps;\n\n    bitvec(u32 _sz) : sz(_sz), bit_vec(sz / W + 1), ps(sz / W +\
-    \ 1) {}\n    void set(u32 i) { bit_vec[i / W] |= 1LL << (i % W); }\n    u32 get(u32\
-    \ i) { return bit_vec[i / W] >> (i % W) & 1; }\n    void build() {\n      for(int\
-    \ i = 1; i < ssize(ps); i++)\n        ps[i] = ps[i - 1] + popcount(bit_vec[i -\
-    \ 1]);\n      cnt_0 = rank_0(sz);\n    }\n    int rank_1(u32 i) { return ps[i\
-    \ / W] + popcount(bit_vec[i / W] & ((1LL << i) - 1)); }\n    int rank_0(u32 i)\
-    \ { return i - rank_1(i); }\n  };\n\n  vc<bitvec> mat;\n  vvi perms; //(H + 1)\
-    \ permutations\n\n  //prepare (H + 1) x size(init) array to maintain extra datas.\n\
-    \  wavelet_matrix(vc<T> init, bool keep = false) : mat(H, bitvec(size(init)))\
-    \ {\n    vi perm(size(init));\n    iota(perm.begin(), perm.end(), 0);\n    if\
-    \ (keep) perms.eb(perm);\n    for(int bit = H; auto &v : mat | views::reverse)\
-    \ {\n      bit--;\n      for(int i = 0; i < ssize(init); i++)\n        if (init[perm[i]]\
-    \ >> bit & 1)\n          v.set(i);\n      v.build();\n      vi nxt(size(init));\n\
-    \      array<int, 2> p = {0, v.cnt_0};\n      for(int i = 0; i < ssize(init);\
-    \ i++)\n        nxt[p[v.get(i)]++] = perm[i];\n      perm.swap(nxt);\n      if\
-    \ (keep) perms.eb(perm);\n    }\n    if (keep) ranges::reverse(perms);\n  }\n\n\
-    \  pii next_range(int i, int l, int r, bool right) {\n    auto &v = mat[i];\n\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/wavelet_matrix.cpp\"\n\
+    template<class T, int H>\nstruct wavelet_matrix {\n  using u32 = uint32_t;\n \
+    \ struct bitvec {\n    static constexpr u32 W = 64;\n    int cnt_0 = 0, sz;\n\
+    \    vc<ull> bit_vec;\n    vi ps;\n\n    bitvec(u32 _sz) : sz(_sz), bit_vec(sz\
+    \ / W + 1), ps(sz / W + 1) {}\n    void set(u32 i) { bit_vec[i / W] |= 1LL <<\
+    \ (i % W); }\n    u32 get(u32 i) { return bit_vec[i / W] >> (i % W) & 1; }\n \
+    \   void build() {\n      for(int i = 1; i < ssize(ps); i++)\n        ps[i] =\
+    \ ps[i - 1] + popcount(bit_vec[i - 1]);\n      cnt_0 = rank_0(sz);\n    }\n  \
+    \  int rank_1(u32 i) { return ps[i / W] + popcount(bit_vec[i / W] & ((1LL << i)\
+    \ - 1)); }\n    int rank_0(u32 i) { return i - rank_1(i); }\n  };\n\n  vc<bitvec>\
+    \ mat;\n  vvi perms; //(H + 1) permutations\n\n  //prepare (H + 1) x size(init)\
+    \ array to maintain extra datas.\n  wavelet_matrix(vc<T> init, bool keep = false)\
+    \ : mat(H, bitvec(size(init))) {\n    vi perm(size(init));\n    iota(perm.begin(),\
+    \ perm.end(), 0);\n    if (keep) perms.eb(perm);\n    for(int bit = H; auto &v\
+    \ : mat | views::reverse) {\n      bit--;\n      for(int i = 0; i < ssize(init);\
+    \ i++)\n        if (init[perm[i]] >> bit & 1)\n          v.set(i);\n      v.build();\n\
+    \      vi nxt(size(init));\n      array<int, 2> p = {0, v.cnt_0};\n      for(int\
+    \ i = 0; i < ssize(init); i++)\n        nxt[p[v.get(i)]++] = perm[i];\n      perm.swap(nxt);\n\
+    \      if (keep) perms.eb(perm);\n    }\n    if (keep) ranges::reverse(perms);\n\
+    \  }\n\n  pii next_range(int i, int l, int r, bool right) {\n    auto &v = mat[i];\n\
     \    if (right)\n      return pii(v.cnt_0 + v.rank_1(l), v.cnt_0 + v.rank_1(r));\n\
     \    else\n      return pii(v.rank_0(l), v.rank_0(r));\n  }\n\n  T kth(int l,\
     \ int r, int k) {\n    T ans = 0;\n    for(int i = H - 1; i >= 0; i--) {\n   \
@@ -160,28 +148,49 @@ data:
     \ j)\n  template<typename F> requires R_invocable<void, F, int, int>\n  void point_update(int\
     \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
     \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
-    \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 6 \"test/rectangle_sum2.test.cpp\"\
+    \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 5 \"test/rectangle_sum2.test.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<tuple<int, int, ll>> pts(n);\n  for(auto &[x, y,\
-    \ w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query(q);\n  for(auto\
-    \ &[l, d, r, u] : query)\n    cin >> l >> r >> d >> u;\n\n  for(ll ans : rectangleSum(pts,\
-    \ query))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
+    \ q; cin >> n >> q;\n  vc<tuple<int, int, int>> xyw(n);\n  for(auto &[x, y, w]\
+    \ : xyw) \n    cin >> x >> y >> w;\n\n  vi xs, ys;\n  for(auto [x, y, w] : xyw)\n\
+    \    xs.eb(x), ys.eb(y);\n  ranges::sort(xs), ranges::sort(ys);\n\n  vi tx(n),\
+    \ ty(n);\n  for(auto &[x, y, w] : xyw) {\n    int xi = ranges::lower_bound(xs,\
+    \ x) - xs.begin();\n    x = xi + tx[xi]++;\n    y = ranges::lower_bound(ys, y)\
+    \ - ys.begin();\n  }\n\n  vi a(n), z(n);\n  for(auto [x, y, w] : xyw)\n    a[x]\
+    \ = y, z[x] = w;\n\n  wavelet_matrix<int, 19> WM(a, 1);\n  vc ps(20, vll(n));\n\
+    \  for(int i = 0; i < 20; i++) {\n    for(int j = 0; j < n; j++)\n      ps[i][j]\
+    \ = z[WM.perms[i][j]];\n    pSum(ps[i]);\n  }\n\n  while(q--) {\n    int l, d,\
+    \ r, u; cin >> l >> d >> r >> u;\n    l = ranges::lower_bound(xs, l) - xs.begin();\n\
+    \    r = ranges::lower_bound(xs, r) - xs.begin();\n    d = ranges::lower_bound(ys,\
+    \ d) - ys.begin();\n    u = ranges::lower_bound(ys, u) - ys.begin();\n\n    ll\
+    \ ans = 0;\n    WM.rect_query(l, r, d, u, [&](int I, int L, int R) {\n      ans\
+    \ += ps[I][R - 1] - (L == 0 ? 0 : ps[I][L - 1]);\n    });\n\n    cout << ans <<\
+    \ '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../ds/fenwickTree.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<tuple<int, int, ll>> pts(n);\n  for(auto &[x, y,\
-    \ w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query(q);\n  for(auto\
-    \ &[l, d, r, u] : query)\n    cin >> l >> r >> d >> u;\n\n  for(ll ans : rectangleSum(pts,\
-    \ query))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
+    \ \"../default/t.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\n\nsigned main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vc<tuple<int, int, int>> xyw(n);\n  for(auto &[x, y, w] : xyw) \n    cin\
+    \ >> x >> y >> w;\n\n  vi xs, ys;\n  for(auto [x, y, w] : xyw)\n    xs.eb(x),\
+    \ ys.eb(y);\n  ranges::sort(xs), ranges::sort(ys);\n\n  vi tx(n), ty(n);\n  for(auto\
+    \ &[x, y, w] : xyw) {\n    int xi = ranges::lower_bound(xs, x) - xs.begin();\n\
+    \    x = xi + tx[xi]++;\n    y = ranges::lower_bound(ys, y) - ys.begin();\n  }\n\
+    \n  vi a(n), z(n);\n  for(auto [x, y, w] : xyw)\n    a[x] = y, z[x] = w;\n\n \
+    \ wavelet_matrix<int, 19> WM(a, 1);\n  vc ps(20, vll(n));\n  for(int i = 0; i\
+    \ < 20; i++) {\n    for(int j = 0; j < n; j++)\n      ps[i][j] = z[WM.perms[i][j]];\n\
+    \    pSum(ps[i]);\n  }\n\n  while(q--) {\n    int l, d, r, u; cin >> l >> d >>\
+    \ r >> u;\n    l = ranges::lower_bound(xs, l) - xs.begin();\n    r = ranges::lower_bound(xs,\
+    \ r) - xs.begin();\n    d = ranges::lower_bound(ys, d) - ys.begin();\n    u =\
+    \ ranges::lower_bound(ys, u) - ys.begin();\n\n    ll ans = 0;\n    WM.rect_query(l,\
+    \ r, d, u, [&](int I, int L, int R) {\n      ans += ps[I][R - 1] - (L == 0 ? 0\
+    \ : ps[I][L - 1]);\n    });\n\n    cout << ans << '\\n';\n  }\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - default/t.cpp
-  - ds/fenwickTree.cpp
   - ds/wavelet_matrix.cpp
   isVerificationFile: true
   path: test/rectangle_sum2.test.cpp
   requiredBy: []
-  timestamp: '2026-04-19 19:02:40+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-04-19 19:09:11+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rectangle_sum2.test.cpp
 layout: document
