@@ -4,20 +4,23 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
-    path: graph/flow/Dinic.cpp
-    title: graph/flow/Dinic.cpp
+  - icon: ':question:'
+    path: ds/fenwickTree.cpp
+    title: ds/fenwickTree.cpp
+  - icon: ':question:'
+    path: ds/wavelet_matrix.cpp
+    title: ds/wavelet_matrix.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
+    PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/bipartitematching
-  bundledCode: "#line 1 \"test/bipartitematching.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\
+    - https://judge.yosupo.jp/problem/rectangle_sum
+  bundledCode: "#line 1 \"test/rectangle_sum2.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -107,59 +110,83 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"graph/flow/Dinic.cpp\"\n\
-    template<class T>\nstruct Dinic {\n  struct edge {\n    int to, rev;\n    T cap;\n\
-    \    edge(int _to, T _cap, int _rev)\n     : to(_to), rev(_rev), cap(_cap) {}\n\
-    \  };\n\n  int n;\n  const T CAP_MAX = numeric_limits<T>::max();\n  vector<vector<edge>>\
-    \ g;\n  vector<int> lev, iter;\n\n  Dinic(int _n) : n(_n), g(n), lev(n), iter(n)\
-    \ {}\n\n  void addEdge(int from, int to, T cap) {\n    g[from].emplace_back(to,\
-    \ cap, ssize(g[to]));\n    g[to].emplace_back(from, 0, ssize(g[from]) - 1);\n\
-    \  }\n\n  bool bfs(int s, int t) {\n    fill(lev.begin(), lev.end(), INT_MAX);\n\
-    \    lev[s] = 0;\n    queue<int> q;\n    q.push(s);\n    while(!q.empty()) {\n\
-    \      int v = q.front(); q.pop();\n      for(edge &e : g[v]) if (e.cap > 0 and\
-    \ lev[e.to] == INT_MAX) {\n        lev[e.to] = lev[v] + 1;\n        q.push(e.to);\n\
-    \      }\n    }\n    return lev[t] != INT_MAX;\n  }\n\n  T runFlow(int s, int\
-    \ t) {\n    auto dfs = [&](int v, T f, auto &&self) -> T {\n      if (v == s)\
-    \ return f;\n      for(int &i = iter[v]; i < ssize(g[v]); i++) {\n        edge\
-    \ &e = g[v][i];\n        if (T tmp; lev[e.to] == lev[v] - 1 and g[e.to][e.rev].cap\
-    \ > 0) {\n          if ((tmp = self(e.to, min(f, g[e.to][e.rev].cap), self)) >\
-    \ 0) {\n            e.cap += tmp, g[e.to][e.rev].cap -= tmp;\n            return\
-    \ tmp;\n          }\n        }\n      }\n      return 0;\n    };\n    T flow =\
-    \ 0, del;\n    while(bfs(s, t)) {\n      fill(iter.begin(), iter.end(), 0);\n\
-    \      while((del = dfs(t, CAP_MAX, dfs)) > 0)\n        flow = (flow >= CAP_MAX\
-    \ - del ? CAP_MAX : flow + del);\n    }\n\n    return flow;\n  }\n\n  bool left(int\
-    \ idx) { return lev[idx] != INT_MAX; }\n};\n#line 5 \"test/bipartitematching.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l,\
-    \ r, m; cin >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int>\
-    \ dinic(l + r + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int\
-    \ i = l; i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++)\
-    \ {\n    int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout\
-    \ << dinic.runFlow(s, t) << '\\n';\n  for(int v = 0; v < l; v++)\n    for(auto\
-    \ &e : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v <<\
-    \ ' ' << e.to - l << '\\n';\n\n  return 0;\n}\n\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n\
-    #include \"../default/t.cpp\"\n#include \"../graph/flow/Dinic.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l, r, m; cin\
-    \ >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int> dinic(l\
-    \ + r + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int i\
-    \ = l; i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++) {\n\
-    \    int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout\
-    \ << dinic.runFlow(s, t) << '\\n';\n  for(int v = 0; v < l; v++)\n    for(auto\
-    \ &e : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v <<\
-    \ ' ' << e.to - l << '\\n';\n\n  return 0;\n}\n\n"
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fenwickTree.cpp\"\ntemplate<class\
+    \ T>\nstruct fenwickTree {\n  const int size;\n  vector<T> data;\n\n  fenwickTree(int\
+    \ _size) : size(_size + 1), data(_size + 1) {}\n  fenwickTree(vector<T> init)\
+    \ : size(ssize(init) + 1), data(ssize(init) + 1) {\n    partial_sum(init.begin(),\
+    \ init.end(), data.begin() + 1);\n    for(int i = size - 1; i > 0; i--)\n    \
+    \  data[i] -= data[i - (i & (-i))];\n  }\n\n  void add(int i, T d) {\n    for(i\
+    \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
+    \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
+    \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"ds/wavelet_matrix.cpp\"\ntemplate<class\
+    \ T, int H>\nstruct wavelet_matrix {\n  using u32 = uint32_t;\n  struct bitvec\
+    \ {\n    static constexpr u32 W = 64;\n    int cnt_0 = 0, sz;\n    vc<ull> bit_vec;\n\
+    \    vi ps;\n\n    bitvec(u32 _sz) : sz(_sz), bit_vec(sz / W + 1), ps(sz / W +\
+    \ 1) {}\n    void set(u32 i) { bit_vec[i / W] |= 1LL << (i % W); }\n    u32 get(u32\
+    \ i) { return bit_vec[i / W] >> (i % W) & 1; }\n    void build() {\n      for(int\
+    \ i = 1; i < ssize(ps); i++)\n        ps[i] = ps[i - 1] + popcount(bit_vec[i -\
+    \ 1]);\n      cnt_0 = rank_0(sz);\n    }\n    int rank_1(u32 i) { return ps[i\
+    \ / W] + popcount(bit_vec[i / W] & ((1LL << i) - 1)); }\n    int rank_0(u32 i)\
+    \ { return i - rank_1(i); }\n  };\n\n  vc<bitvec> mat;\n  vvi perms; //(H + 1)\
+    \ permutations\n\n  //prepare (H + 1) x size(init) array to maintain extra datas.\n\
+    \  wavelet_matrix(vc<T> init, bool keep = false) : mat(H, bitvec(size(init)))\
+    \ {\n    vi perm(size(init));\n    iota(perm.begin(), perm.end(), 0);\n    if\
+    \ (keep) perms.eb(perm);\n    for(int bit = H; auto &v : mat | views::reverse)\
+    \ {\n      bit--;\n      for(int i = 0; i < ssize(init); i++)\n        if (init[perm[i]]\
+    \ >> bit & 1)\n          v.set(i);\n      v.build();\n      vi nxt(size(init));\n\
+    \      array<int, 2> p = {0, v.cnt_0};\n      for(int i = 0; i < ssize(init);\
+    \ i++)\n        nxt[p[v.get(i)]++] = perm[i];\n      perm.swap(nxt);\n      if\
+    \ (keep) perms.eb(perm);\n    }\n    if (keep) ranges::reverse(perms);\n  }\n\n\
+    \  pii next_range(int i, int l, int r, bool right) {\n    auto &v = mat[i];\n\
+    \    if (right)\n      return pii(v.cnt_0 + v.rank_1(l), v.cnt_0 + v.rank_1(r));\n\
+    \    else\n      return pii(v.rank_0(l), v.rank_0(r));\n  }\n\n  T kth(int l,\
+    \ int r, int k) {\n    T ans = 0;\n    for(int i = H - 1; i >= 0; i--) {\n   \
+    \   if (auto [l0, r0] = next_range(i, l, r, 0); r0 - l0 <= k) {\n        ans |=\
+    \ T(1) << i, k -= r0 - l0;\n        tie(l, r) = next_range(i, l, r, 1);\n    \
+    \  } else {\n        tie(l, r) = tie(l0, r0);\n      }\n    }\n    return ans;\n\
+    \  }\n\n  //F(i, l, r)\n  template<typename F> requires R_invocable<void, F, int,\
+    \ int, int>\n  void rect_query(int L, int R, T D, T U, F f) {\n    auto dfs =\
+    \ [&](int i, T ql, T qr, int l, int r, T d, T u, auto &self) {\n      if (l ==\
+    \ r or d == u) return;\n      if (d == ql and u == qr) {\n        f(i + 1, l,\
+    \ r);\n        return;\n      }\n\n      T mid = (ql + qr) / 2;\n      if (u <=\
+    \ mid) {\n        tie(l, r) = next_range(i, l, r, 0);\n        self(i - 1, ql,\
+    \ mid, l, r, d, u, self);\n      } else if (mid <= d) {\n        tie(l, r) = next_range(i,\
+    \ l, r, 1);\n        self(i - 1, mid, qr, l, r, d, u, self);\n      } else {\n\
+    \        auto [l0, r0] = next_range(i, l, r, 0);\n        self(i - 1, ql, mid,\
+    \ l0, r0, d, mid, self);\n        auto [l1, r1] = next_range(i, l, r, 1);\n  \
+    \      self(i - 1, mid, qr, l1, r1, mid, u, self);\n      }\n    };\n\n    dfs(H\
+    \ - 1, T(0), T(1) << H, L, R, D, U, dfs);\n  }\n\n  vvi inv_perms;\n\n  //F(i,\
+    \ j)\n  template<typename F> requires R_invocable<void, F, int, int>\n  void point_update(int\
+    \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
+    \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
+    \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 6 \"test/rectangle_sum2.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<tuple<int, int, ll>> pts(n);\n  for(auto &[x, y,\
+    \ w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query(q);\n  for(auto\
+    \ &[l, d, r, u] : query)\n    cin >> l >> r >> d >> u;\n\n  for(ll ans : rectangleSum(pts,\
+    \ query))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
+    \ \"../default/t.cpp\"\n#include \"../ds/fenwickTree.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
+    \ q; cin >> n >> q;\n  vector<tuple<int, int, ll>> pts(n);\n  for(auto &[x, y,\
+    \ w] : pts)\n    cin >> x >> y >> w;\n  vector<array<int, 4>> query(q);\n  for(auto\
+    \ &[l, d, r, u] : query)\n    cin >> l >> r >> d >> u;\n\n  for(ll ans : rectangleSum(pts,\
+    \ query))\n    cout << ans << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - graph/flow/Dinic.cpp
+  - ds/fenwickTree.cpp
+  - ds/wavelet_matrix.cpp
   isVerificationFile: true
-  path: test/bipartitematching.test.cpp
+  path: test/rectangle_sum2.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-04-19 19:02:40+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/bipartitematching.test.cpp
+documentation_of: test/rectangle_sum2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/bipartitematching.test.cpp
-- /verify/test/bipartitematching.test.cpp.html
-title: test/bipartitematching.test.cpp
+- /verify/test/rectangle_sum2.test.cpp
+- /verify/test/rectangle_sum2.test.cpp.html
+title: test/rectangle_sum2.test.cpp
 ---

@@ -33,10 +33,10 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest_tree.test.cpp
+  - test/mytest_enumerate_twelvefold.test.cpp
   - test/mytest_auxiliary_tree.test.cpp
   - test/mytest_tree_diameter.test.cpp
-  - test/mytest_enumerate_twelvefold.test.cpp
-  - test/mytest_tree.test.cpp
 documentation_of: enumerate/enumerate_bit.cpp
 layout: document
 redirect_from:

@@ -61,11 +61,11 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest_phi_table.test.cpp
+  - test/mytest_linear_sieve.test.cpp
+  - test/mytest_mu_table.test.cpp
   - test/lcm_convolution.test.cpp
   - test/gcd_convolution.test.cpp
-  - test/mytest_phi_table.test.cpp
-  - test/mytest_mu_table.test.cpp
-  - test/mytest_linear_sieve.test.cpp
 documentation_of: numtheory/linear_sieve.cpp
 layout: document
 redirect_from:

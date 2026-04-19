@@ -67,7 +67,7 @@ data:
       title: combi/stirlingSecondModP.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -130,7 +130,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fast_set.cpp
       title: ds/fast_set.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwickTree.cpp
       title: ds/fenwickTree.cpp
     - icon: ':heavy_check_mark:'
@@ -169,6 +169,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/waveletMatrix.cpp
       title: ds/waveletMatrix.cpp
+    - icon: ':question:'
+      path: ds/wavelet_matrix.cpp
+      title: ds/wavelet_matrix.cpp
   - name: ds_problem
     pages:
     - icon: ':heavy_check_mark:'
@@ -933,6 +936,9 @@ data:
       path: test/point_add_rectangle_sum.test.cpp
       title: test/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/point_add_rectangle_sum2.test.cpp
+      title: test/point_add_rectangle_sum2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/point_set_range_composite.test.cpp
       title: test/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -987,6 +993,9 @@ data:
       path: test/range_kth_smallest2.test.cpp
       title: test/range_kth_smallest2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/range_kth_smallest3.test.cpp
+      title: test/range_kth_smallest3.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/range_reverse_range_sum.test.cpp
       title: test/range_reverse_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -998,6 +1007,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/rectangle_sum.test.cpp
       title: test/rectangle_sum.test.cpp
+    - icon: ':x:'
+      path: test/rectangle_sum2.test.cpp
+      title: test/rectangle_sum2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/rooted_tree_isomorphism_classification.test.cpp
       title: test/rooted_tree_isomorphism_classification.test.cpp

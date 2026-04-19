@@ -49,8 +49,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/frequency_table_of_tree_distance.test.cpp
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: tree/centroid_tree.cpp
 layout: document
 redirect_from:
