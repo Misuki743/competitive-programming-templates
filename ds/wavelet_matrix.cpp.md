@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/rectangle_sum2.test.cpp
     title: test/rectangle_sum2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/static_range_sum_with_upper_bound.test.cpp
+    title: test/static_range_sum_with_upper_bound.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -107,6 +110,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_add_rectangle_sum2.test.cpp
+  - test/static_range_sum_with_upper_bound.test.cpp
   - test/range_kth_smallest3.test.cpp
   - test/rectangle_sum2.test.cpp
 documentation_of: ds/wavelet_matrix.cpp

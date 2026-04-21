@@ -99,17 +99,17 @@ data:
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n//constantly used templates\n\nstruct\
     \ HLD {\n  int n, root;\n  vi dep, sz, p, head, tin, tout, inv_tin, child_list,\
-    \ c;\n  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return p[head[v]];\
-    \ }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e); }\n  HLD(vi\
-    \ _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p); v++)\
-    \ {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n   \
-    \     e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n  }\n\
-    \n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p = head\
-    \ = tin = tout = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n, -1);\n  \
-    \  {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v, p[v] ^= u,\
-    \ d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n; i++) {\n  \
-    \      int v = i;\n        while(d[v] == 1) {\n          d[v] = 0, d[p[v]]--,\
-    \ p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
+    \ c, v_to_e;\n  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return\
+    \ p[head[v]]; }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e);\
+    \ }\n  HLD(vi _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p);\
+    \ v++) {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n\
+    \        e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n\
+    \  }\n\n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p\
+    \ = head = tin = tout = v_to_e = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n,\
+    \ -1);\n    {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v,\
+    \ p[v] ^= u, d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n;\
+    \ i++) {\n        int v = i;\n        while(d[v] == 1) {\n          d[v] = 0,\
+    \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
     \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
     \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
     \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
@@ -123,16 +123,18 @@ data:
     \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
-    \        child_list[--lb[p[v]]] = v;\n  }\n\n  auto query_path(int u, int v, bool\
-    \ edge = false) {\n    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if\
-    \ (dep[head[u]] > dep[head[v]])\n        swap(u, v);\n      lr.emplace_back(tin[head[v]],\
-    \ tin[v] + 1);\n      v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u,\
-    \ v);\n    if (tin[u] + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge,\
-    \ tin[v] + 1);\n\n    return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l\
-    \ > r: op(r - 1, op(r - 2, ...))\n  auto query_path_non_commutative(int u, int\
-    \ v, bool edge = false) {\n    vc<pii> lr1, lr2;\n    while(head[u] != head[v])\
-    \ {\n      if (dep[head[u]] > dep[head[v]]) {\n        lr1.emplace_back(tin[u]\
-    \ + 1, tin[head[u]]);\n        u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head[v]],\
+    \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
+    \ = 0; auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
+    \ = i++;\n    }\n  }\n\n  auto query_path(int u, int v, bool edge = false) {\n\
+    \    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if (dep[head[u]] > dep[head[v]])\n\
+    \        swap(u, v);\n      lr.emplace_back(tin[head[v]], tin[v] + 1);\n     \
+    \ v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u, v);\n    if (tin[u]\
+    \ + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge, tin[v] + 1);\n\n   \
+    \ return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l > r: op(r - 1, op(r\
+    \ - 2, ...))\n  auto query_path_non_commutative(int u, int v, bool edge = false)\
+    \ {\n    vc<pii> lr1, lr2;\n    while(head[u] != head[v]) {\n      if (dep[head[u]]\
+    \ > dep[head[v]]) {\n        lr1.emplace_back(tin[u] + 1, tin[head[u]]);\n   \
+    \     u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head[v]],\
     \ tin[v] + 1);\n        v = head_parent(v);\n      }\n    }\n\n    if (tin[u]\
     \ + edge <= tin[v])\n      lr2.emplace_back(tin[u] + edge, tin[v] + 1);\n    else\
     \ if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u] + 1, tin[v] + edge);\n\
@@ -161,21 +163,22 @@ data:
     \ v = 0; v < n; v++) {\n        if (2 * (n - sz[v]) > n)\n          ok[v] = false;\n\
     \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
     \ }\n      for(int v = 0; v < n; v++)\n        if (ok[v])\n          c.eb(v);\n\
-    \    }\n    return c;\n  }\n};\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt\
-    \ {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n  using u32 = uint32_t;\n\
-    \  using u64 = uint64_t;\n\n  static constexpr u32 get_r() {\n    u32 res = 1,\
-    \ base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n\
-    \    return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
-    \  }\n\n  static constexpr u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr\
-    \ u32 r = get_r(); //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64\
-    \ &b) {\n    return (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const\
-    \ u64 &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0)\
-    \ {}\n  MontgomeryModInt(const int64_t &b) \n    : a(transform(b % mod + mod))\
-    \ {}\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
-    \ {\n      if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n \
-    \   }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
-    \ - 2); }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >=\
-    \ mod ? res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
+    \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
+    \ }\n};\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n\
+    \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
+    \  static constexpr u32 get_r() {\n    u32 res = 1, base = mod;\n    for(i32 i\
+    \ = 0; i < 31; i++)\n      res *= base, base *= base;\n    return -res;\n  }\n\
+    \n  static constexpr u32 get_mod() {\n    return mod;\n  }\n\n  static constexpr\
+    \ u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr u32 r = get_r();\
+    \ //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64 &b) {\n    return\
+    \ (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const u64\
+    \ &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0) {}\n\
+    \  MontgomeryModInt(const int64_t &b) \n    : a(transform(b % mod + mod)) {}\n\
+    \n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k) {\n \
+    \     if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n    }\n\
+    \    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod - 2);\
+    \ }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >= mod ?\
+    \ res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
     \ += b.a - 2 * mod) < 0) a += 2 * mod;\n    return *this;\n  }\n\n  mint& operator-=(const\
     \ mint &b) {\n    if (i32(a -= b.a) < 0) a += 2 * mod;\n    return *this;\n  }\n\
     \n  mint& operator*=(const mint &b) {\n    a = reduce(u64(a) * b.a);\n    return\
@@ -282,17 +285,17 @@ data:
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n//constantly used templates\n\nstruct\
     \ HLD {\n  int n, root;\n  vi dep, sz, p, head, tin, tout, inv_tin, child_list,\
-    \ c;\n  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return p[head[v]];\
-    \ }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e); }\n  HLD(vi\
-    \ _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p); v++)\
-    \ {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n   \
-    \     e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n  }\n\
-    \n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p = head\
-    \ = tin = tout = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n, -1);\n  \
-    \  {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v, p[v] ^= u,\
-    \ d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n; i++) {\n  \
-    \      int v = i;\n        while(d[v] == 1) {\n          d[v] = 0, d[p[v]]--,\
-    \ p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
+    \ c, v_to_e;\n  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return\
+    \ p[head[v]]; }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e);\
+    \ }\n  HLD(vi _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p);\
+    \ v++) {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n\
+    \        e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n\
+    \  }\n\n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p\
+    \ = head = tin = tout = v_to_e = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n,\
+    \ -1);\n    {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v,\
+    \ p[v] ^= u, d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n;\
+    \ i++) {\n        int v = i;\n        while(d[v] == 1) {\n          d[v] = 0,\
+    \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
     \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
     \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
     \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
@@ -306,16 +309,18 @@ data:
     \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
-    \        child_list[--lb[p[v]]] = v;\n  }\n\n  auto query_path(int u, int v, bool\
-    \ edge = false) {\n    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if\
-    \ (dep[head[u]] > dep[head[v]])\n        swap(u, v);\n      lr.emplace_back(tin[head[v]],\
-    \ tin[v] + 1);\n      v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u,\
-    \ v);\n    if (tin[u] + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge,\
-    \ tin[v] + 1);\n\n    return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l\
-    \ > r: op(r - 1, op(r - 2, ...))\n  auto query_path_non_commutative(int u, int\
-    \ v, bool edge = false) {\n    vc<pii> lr1, lr2;\n    while(head[u] != head[v])\
-    \ {\n      if (dep[head[u]] > dep[head[v]]) {\n        lr1.emplace_back(tin[u]\
-    \ + 1, tin[head[u]]);\n        u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head[v]],\
+    \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
+    \ = 0; auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
+    \ = i++;\n    }\n  }\n\n  auto query_path(int u, int v, bool edge = false) {\n\
+    \    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if (dep[head[u]] > dep[head[v]])\n\
+    \        swap(u, v);\n      lr.emplace_back(tin[head[v]], tin[v] + 1);\n     \
+    \ v = head_parent(v);\n    }\n\n    if (tin[u] > tin[v]) swap(u, v);\n    if (tin[u]\
+    \ + edge <= tin[v])\n      lr.emplace_back(tin[u] + edge, tin[v] + 1);\n\n   \
+    \ return lr;\n  }\n\n  //l < r: op(l, op(l + 1, ...))\n  //l > r: op(r - 1, op(r\
+    \ - 2, ...))\n  auto query_path_non_commutative(int u, int v, bool edge = false)\
+    \ {\n    vc<pii> lr1, lr2;\n    while(head[u] != head[v]) {\n      if (dep[head[u]]\
+    \ > dep[head[v]]) {\n        lr1.emplace_back(tin[u] + 1, tin[head[u]]);\n   \
+    \     u = head_parent(u);\n      } else {\n        lr2.emplace_back(tin[head[v]],\
     \ tin[v] + 1);\n        v = head_parent(v);\n      }\n    }\n\n    if (tin[u]\
     \ + edge <= tin[v])\n      lr2.emplace_back(tin[u] + edge, tin[v] + 1);\n    else\
     \ if (tin[v] + edge <= tin[u])\n      lr1.emplace_back(tin[u] + 1, tin[v] + edge);\n\
@@ -344,21 +349,22 @@ data:
     \ v = 0; v < n; v++) {\n        if (2 * (n - sz[v]) > n)\n          ok[v] = false;\n\
     \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
     \ }\n      for(int v = 0; v < n; v++)\n        if (ok[v])\n          c.eb(v);\n\
-    \    }\n    return c;\n  }\n};\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt\
-    \ {\n  using mint = MontgomeryModInt;\n  using i32 = int32_t;\n  using u32 = uint32_t;\n\
-    \  using u64 = uint64_t;\n\n  static constexpr u32 get_r() {\n    u32 res = 1,\
-    \ base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n\
-    \    return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
-    \  }\n\n  static constexpr u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr\
-    \ u32 r = get_r(); //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64\
-    \ &b) {\n    return (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const\
-    \ u64 &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0)\
-    \ {}\n  MontgomeryModInt(const int64_t &b) \n    : a(transform(b % mod + mod))\
-    \ {}\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
-    \ {\n      if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n \
-    \   }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
-    \ - 2); }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >=\
-    \ mod ? res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
+    \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
+    \ }\n};\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n\
+    \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
+    \  static constexpr u32 get_r() {\n    u32 res = 1, base = mod;\n    for(i32 i\
+    \ = 0; i < 31; i++)\n      res *= base, base *= base;\n    return -res;\n  }\n\
+    \n  static constexpr u32 get_mod() {\n    return mod;\n  }\n\n  static constexpr\
+    \ u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr u32 r = get_r();\
+    \ //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64 &b) {\n    return\
+    \ (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const u64\
+    \ &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0) {}\n\
+    \  MontgomeryModInt(const int64_t &b) \n    : a(transform(b % mod + mod)) {}\n\
+    \n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k) {\n \
+    \     if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n    }\n\
+    \    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod - 2);\
+    \ }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >= mod ?\
+    \ res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
     \ += b.a - 2 * mod) < 0) a += 2 * mod;\n    return *this;\n  }\n\n  mint& operator-=(const\
     \ mint &b) {\n    if (i32(a -= b.a) < 0) a += 2 * mod;\n    return *this;\n  }\n\
     \n  mint& operator*=(const mint &b) {\n    a = reduce(u64(a) * b.a);\n    return\
@@ -379,7 +385,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-04-03 02:38:47+08:00'
+  timestamp: '2026-04-21 21:29:26+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

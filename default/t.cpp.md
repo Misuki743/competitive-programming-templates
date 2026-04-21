@@ -382,6 +382,9 @@ data:
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/static_range_sum_with_upper_bound.test.cpp
+    title: test/static_range_sum_with_upper_bound.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/stern_brocot_tree.test.cpp
     title: test/stern_brocot_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -716,6 +719,7 @@ data:
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/cartesian_tree.test.cpp
   - test/frequency_table_of_tree_distance.test.cpp
+  - test/static_range_sum_with_upper_bound.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/cycle_detection_undirected.test.cpp
   - test/two_square_sum.test.cpp

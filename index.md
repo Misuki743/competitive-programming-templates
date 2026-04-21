@@ -1050,6 +1050,9 @@ data:
       path: test/static_range_frequency.test.cpp
       title: test/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/static_range_sum_with_upper_bound.test.cpp
+      title: test/static_range_sum_with_upper_bound.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/stern_brocot_tree.test.cpp
       title: test/stern_brocot_tree.test.cpp
     - icon: ':heavy_check_mark:'
