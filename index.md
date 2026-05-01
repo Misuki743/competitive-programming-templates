@@ -333,6 +333,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/path_recover.cpp
       title: graph/shortest_path/path_recover.cpp
+    - icon: ':warning:'
+      path: graph/shortest_path/shortest_path_LP.cpp
+      title: graph/shortest_path/shortest_path_LP.cpp
   - name: icpc
     pages:
     - icon: ':warning:'
