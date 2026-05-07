@@ -547,6 +547,9 @@ data:
       path: poly/min_plus_convolution.cpp
       title: poly/min_plus_convolution.cpp
     - icon: ':heavy_check_mark:'
+      path: poly/min_plus_convolution_both_convex.cpp
+      title: poly/min_plus_convolution_both_convex.cpp
+    - icon: ':heavy_check_mark:'
       path: poly/mulConvolution.cpp
       title: poly/mulConvolution.cpp
     - icon: ':warning:'
@@ -875,6 +878,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/min_plus_convolution_convex_arbitrary.test.cpp
       title: test/min_plus_convolution_convex_arbitrary.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/min_plus_convolution_convex_convex.test.cpp
+      title: test/min_plus_convolution_convex_convex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/minimum_spanning_tree_Kruskal.test.cpp
       title: test/minimum_spanning_tree_Kruskal.test.cpp

@@ -205,6 +205,9 @@ data:
     path: test/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/min_plus_convolution_convex_arbitrary.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/min_plus_convolution_convex_convex.test.cpp
+    title: test/min_plus_convolution_convex_convex.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Kruskal.test.cpp
     title: test/minimum_spanning_tree_Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -803,6 +806,7 @@ data:
   - test/counting_spanning_tree_directed.test.cpp
   - test/find_linear_recurrence.test.cpp
   - test/mytest_tree_diameter.test.cpp
+  - test/min_plus_convolution_convex_convex.test.cpp
   - test/maximum_independent_set.test.cpp
   - test/bernoulli_number.test.cpp
   - test/deque_operate_all_composite.test.cpp
