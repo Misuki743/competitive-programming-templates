@@ -598,6 +598,9 @@ data:
     - icon: ':warning:'
       path: setfunc/FWHT.cpp
       title: setfunc/FWHT.cpp
+    - icon: ':warning:'
+      path: setfunc/dynamic_SOS.cpp
+      title: setfunc/dynamic_SOS.cpp
     - icon: ':heavy_check_mark:'
       path: setfunc/fastSubsetTransform.cpp
       title: setfunc/fastSubsetTransform.cpp
