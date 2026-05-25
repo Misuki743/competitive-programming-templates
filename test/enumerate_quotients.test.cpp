@@ -7,11 +7,14 @@ signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   ll n; cin >> n;
-  auto tmp = quotient_floor_enumerate(n);
-  cout << ssize(tmp) << '\n';
-  for(auto [x, _, __] : tmp)
-    cout << x << ' ';
-  cout << '\n';
+  ll x = sqrtl(n);
+  while(x * (x + 1) <= n) x++;
+  cout << n / x + x - 1 << '\n';
+  vll sol;
+  sol.reserve(n / x + x - 1);
+  quotient_floor_enumerate(n, [&](ll v, ll, ll) { sol.eb(v); });
+  ranges::reverse(sol);
+  cout << sol << '\n';
 
   return 0;
 }

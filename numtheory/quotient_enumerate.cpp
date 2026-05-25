@@ -1,38 +1,26 @@
-auto quotient_floor_enumerate(ll x) {
-  vector<ll> v, s;
-  v.reserve(2 * (sqrt(x) + 32));
-  s.reserve(2 * (sqrt(x) + 32));
-  for(ll i = x; i; ) {
-    v.emplace_back(x / i);
-    s.emplace_back(x / v.back() + 1);
-    i = x / (v.back() + 1);
+template<typename F>
+void quotient_floor_enumerate(ll n, F f) {
+  ll x = sqrtl(n);
+  while(x * (x + 1) <= n) x++;
+  ll m = n / x;
+  for(ll i = 1; i < x; i++) {
+    ll q = n / i;
+    f(q, n / (q + 1) + 1, n / q + 1);
   }
-  s.emplace_back(1);
-
-  struct Data { ll quotient, l, r; };
-  vector<Data> res(size(v));
-  for(int i = 0; i < ssize(v); i++)
-    res[i] = Data{v[i], s[i + 1], s[i]};
-
-  return res;
+  for(ll q = m; q >= 1; q--)
+    f(q, n / (q + 1) + 1, n / q + 1);
 }
 
-auto quotient_ceil_enumerate(ll x) {
-  vector<ll> v, s;
-  v.reserve(2 * (sqrt(x) + 32));
-  s.reserve(2 * (sqrt(x) + 32));
-  for(ll i = 1; ;) {
-    v.emplace_back((x + i - 1) / i);
-    s.emplace_back((x + v.back() - 1) / v.back());
-    if (v.back() == 1) break;
-    i = (x + v.back() - 2) / (v.back() - 1);
+template<typename F>
+void quotient_ceil_enumerate(ll n, F f) {
+  ll x = sqrtl(n);
+  while(x * (x + 1) <= n) x++;
+  ll m = (n + x - 1) / x;
+  for(ll i = 1; i < x; i++) {
+    ll q = (n + i - 1) / i;
+    f(q, (n + q - 1) / q, (n + q - 2) / (q - 1));
   }
-  s.emplace_back(x + 1);
-
-  struct Data { ll quotient, l, r; };
-  vector<Data> res(size(v));
-  for(int i = 0; i < ssize(v); i++)
-    res[i] = Data{v[i], s[i], s[i + 1]};
-
-  return res;
+  for(ll q = m; q >= 2; q--)
+    f(q, (n + q - 1) / q, (n + q - 2) / (q - 1));
+  f(1, n, n + 1);
 }
