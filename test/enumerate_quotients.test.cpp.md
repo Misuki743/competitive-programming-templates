@@ -108,35 +108,34 @@ data:
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/quotient_enumerate.cpp\"\
-    \nauto quotient_floor_enumerate(ll x) {\n  vector<ll> v, s;\n  v.reserve(2 * (sqrt(x)\
-    \ + 32));\n  s.reserve(2 * (sqrt(x) + 32));\n  for(ll i = x; i; ) {\n    v.emplace_back(x\
-    \ / i);\n    s.emplace_back(x / v.back() + 1);\n    i = x / (v.back() + 1);\n\
-    \  }\n  s.emplace_back(1);\n\n  struct Data { ll quotient, l, r; };\n  vector<Data>\
-    \ res(size(v));\n  for(int i = 0; i < ssize(v); i++)\n    res[i] = Data{v[i],\
-    \ s[i + 1], s[i]};\n\n  return res;\n}\n\nauto quotient_ceil_enumerate(ll x) {\n\
-    \  vector<ll> v, s;\n  v.reserve(2 * (sqrt(x) + 32));\n  s.reserve(2 * (sqrt(x)\
-    \ + 32));\n  for(ll i = 1; ;) {\n    v.emplace_back((x + i - 1) / i);\n    s.emplace_back((x\
-    \ + v.back() - 1) / v.back());\n    if (v.back() == 1) break;\n    i = (x + v.back()\
-    \ - 2) / (v.back() - 1);\n  }\n  s.emplace_back(x + 1);\n\n  struct Data { ll\
-    \ quotient, l, r; };\n  vector<Data> res(size(v));\n  for(int i = 0; i < ssize(v);\
-    \ i++)\n    res[i] = Data{v[i], s[i], s[i + 1]};\n\n  return res;\n}\n#line 5\
-    \ \"test/enumerate_quotients.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  ll n; cin >> n;\n  auto tmp = quotient_floor_enumerate(n);\n\
-    \  cout << ssize(tmp) << '\\n';\n  for(auto [x, _, __] : tmp)\n    cout << x <<\
-    \ ' ';\n  cout << '\\n';\n\n  return 0;\n}\n"
+    \ntemplate<typename F>\nvoid quotient_floor_enumerate(ll n, F f) {\n  ll x = sqrtl(n);\n\
+    \  while(x * (x + 1) <= n) x++;\n  ll m = n / x;\n  for(ll i = 1; i < x; i++)\
+    \ {\n    ll q = n / i;\n    f(q, n / (q + 1) + 1, n / q + 1);\n  }\n  for(ll q\
+    \ = m; q >= 1; q--)\n    f(q, n / (q + 1) + 1, n / q + 1);\n}\n\ntemplate<typename\
+    \ F>\nvoid quotient_ceil_enumerate(ll n, F f) {\n  ll x = sqrtl(n);\n  while(x\
+    \ * (x + 1) <= n) x++;\n  ll m = (n + x - 1) / x;\n  for(ll i = 1; i < x; i++)\
+    \ {\n    ll q = (n + i - 1) / i;\n    f(q, (n + q - 1) / q, (n + q - 2) / (q -\
+    \ 1));\n  }\n  for(ll q = m; q >= 2; q--)\n    f(q, (n + q - 1) / q, (n + q -\
+    \ 2) / (q - 1));\n  f(1, n, n + 1);\n}\n#line 5 \"test/enumerate_quotients.test.cpp\"\
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
+    \ cin >> n;\n  ll x = sqrtl(n);\n  while(x * (x + 1) <= n) x++;\n  cout << n /\
+    \ x + x - 1 << '\\n';\n  vll sol;\n  sol.reserve(n / x + x - 1);\n  quotient_floor_enumerate(n,\
+    \ [&](ll v, ll, ll) { sol.eb(v); });\n  ranges::reverse(sol);\n  cout << sol <<\
+    \ '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../numtheory/quotient_enumerate.cpp\"\
     \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
-    \ cin >> n;\n  auto tmp = quotient_floor_enumerate(n);\n  cout << ssize(tmp) <<\
-    \ '\\n';\n  for(auto [x, _, __] : tmp)\n    cout << x << ' ';\n  cout << '\\n';\n\
-    \n  return 0;\n}\n"
+    \ cin >> n;\n  ll x = sqrtl(n);\n  while(x * (x + 1) <= n) x++;\n  cout << n /\
+    \ x + x - 1 << '\\n';\n  vll sol;\n  sol.reserve(n / x + x - 1);\n  quotient_floor_enumerate(n,\
+    \ [&](ll v, ll, ll) { sol.eb(v); });\n  ranges::reverse(sol);\n  cout << sol <<\
+    \ '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/quotient_enumerate.cpp
   isVerificationFile: true
   path: test/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-05-26 04:21:07+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/enumerate_quotients.test.cpp

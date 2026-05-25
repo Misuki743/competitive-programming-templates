@@ -109,10 +109,10 @@ data:
   timestamp: '2026-04-19 19:02:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/point_add_rectangle_sum2.test.cpp
   - test/static_range_sum_with_upper_bound.test.cpp
   - test/range_kth_smallest3.test.cpp
   - test/rectangle_sum2.test.cpp
+  - test/point_add_rectangle_sum2.test.cpp
 documentation_of: ds/wavelet_matrix.cpp
 layout: document
 redirect_from:
