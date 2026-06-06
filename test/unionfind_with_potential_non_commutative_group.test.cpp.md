@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/DSU/potential_DSU.cpp
     title: ds/DSU/potential_DSU.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   _extendedRequiredBy: []

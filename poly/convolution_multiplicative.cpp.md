@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/convolution_multiplicative.cpp\"\n//#include \"poly/NTT.cpp\"\
@@ -72,7 +72,7 @@ data:
   path: poly/convolution_multiplicative.cpp
   requiredBy: []
   timestamp: '2026-06-07 02:16:52+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mul_modp_convolution.test.cpp
   - test/yuki_2613.test.cpp

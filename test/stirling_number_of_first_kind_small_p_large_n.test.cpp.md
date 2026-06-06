@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: combi/stirling_first_kind_mod_P.cpp
     title: combi/stirling_first_kind_mod_P.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/dynamic_modint.cpp
     title: modint/dynamic_modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
@@ -136,24 +136,24 @@ data:
     \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
     \ dynamic_modint<0>::mod = 2;\nusing mint = dynamic_modint<0>;\n#line 1 \"combi/stirling_first_kind_mod_P.cpp\"\
     \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct stirling_first_kind_mod_P\
-    \ {\n  const int p;\n  vector<vector<Mint>> _s, _c;\n  stirlingFirstModP() : p(Mint::get_mod()),\n\
-    \    _s(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {\n    for(int i = 0; i <\
-    \ p; i++) {\n      for(int j = 1; j < i; j++)\n        _s[i][j] = _s[i - 1][j\
-    \ - 1] + _s[i - 1][j] * -(i - 1);\n      _s[i][i] = 1;\n    }\n    for(int i =\
-    \ 0; i < p; i++) {\n      _c[i][0] = 1;\n      for(int j = 1; j < i; j++)\n  \
-    \      _c[i][j] = _c[i - 1][j - 1] + _c[i - 1][j];\n      _c[i][i] = 1;\n    }\n\
-    \  }\n\n  Mint binom(int64_t n, int64_t k) {\n    if (k < 0 or n < k) return Mint(0);\n\
-    \    Mint r = 1;\n    while(n)\n      r *= _c[n % p][k % p], n /= p, k /= p;\n\
-    \    return r;\n  }\n\n  Mint s(int64_t n, int64_t k) {\n    int64_t i = n / p,\
-    \ j = n % p;\n    int64_t b = ((k - i) % (p - 1) + (p - 1)) % (p - 1);\n    int64_t\
-    \ a = (k - i - b) / (p - 1);\n    mint r = binom(i, a) * ((i - a) % 2 == 1 ? -1\
-    \ : 1) * _s[j][b];\n    if (b == 0 and a > 0)\n      r += binom(i, a - 1) * ((i\
-    \ - a + 1) % 2 == 1 ? -1 : 1) * _s[j][p - 1];\n    return r;\n  }\n};\n#line 6\
-    \ \"test/stirling_number_of_first_kind_small_p_large_n.test.cpp\"\n\nint main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t, p; cin >> t >>\
-    \ p;\n  mint::set_mod(p);\n  stirling_first_kind_mod_P<mint> stir;\n  while(t--)\
-    \ {\n    ll n, k; cin >> n >> k;\n    cout << stir.s(n, k) << '\\n';\n  }\n\n\
-    \  return 0;\n}\n"
+    \ {\n  const int p;\n  vector<vector<Mint>> _s, _c;\n  stirling_first_kind_mod_P()\
+    \ : p(Mint::get_mod()),\n    _s(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {\n\
+    \    for(int i = 0; i < p; i++) {\n      for(int j = 1; j < i; j++)\n        _s[i][j]\
+    \ = _s[i - 1][j - 1] + _s[i - 1][j] * -(i - 1);\n      _s[i][i] = 1;\n    }\n\
+    \    for(int i = 0; i < p; i++) {\n      _c[i][0] = 1;\n      for(int j = 1; j\
+    \ < i; j++)\n        _c[i][j] = _c[i - 1][j - 1] + _c[i - 1][j];\n      _c[i][i]\
+    \ = 1;\n    }\n  }\n\n  Mint binom(int64_t n, int64_t k) {\n    if (k < 0 or n\
+    \ < k) return Mint(0);\n    Mint r = 1;\n    while(n)\n      r *= _c[n % p][k\
+    \ % p], n /= p, k /= p;\n    return r;\n  }\n\n  Mint s(int64_t n, int64_t k)\
+    \ {\n    int64_t i = n / p, j = n % p;\n    int64_t b = ((k - i) % (p - 1) + (p\
+    \ - 1)) % (p - 1);\n    int64_t a = (k - i - b) / (p - 1);\n    mint r = binom(i,\
+    \ a) * ((i - a) % 2 == 1 ? -1 : 1) * _s[j][b];\n    if (b == 0 and a > 0)\n  \
+    \    r += binom(i, a - 1) * ((i - a + 1) % 2 == 1 ? -1 : 1) * _s[j][p - 1];\n\
+    \    return r;\n  }\n};\n#line 6 \"test/stirling_number_of_first_kind_small_p_large_n.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t, p;\
+    \ cin >> t >> p;\n  mint::set_mod(p);\n  stirling_first_kind_mod_P<mint> stir;\n\
+    \  while(t--) {\n    ll n, k; cin >> n >> k;\n    cout << stir.s(n, k) << '\\\
+    n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamic_modint.cpp\"\n\
     #include \"../combi/stirling_first_kind_mod_P.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
@@ -167,8 +167,8 @@ data:
   isVerificationFile: true
   path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 03:13:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
 layout: document

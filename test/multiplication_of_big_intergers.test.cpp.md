@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/bigint.cpp
     title: misc/bigint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []

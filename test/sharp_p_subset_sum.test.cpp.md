@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: misc/sharp_P_subset_sum.cpp
     title: misc/sharp_P_subset_sum.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []

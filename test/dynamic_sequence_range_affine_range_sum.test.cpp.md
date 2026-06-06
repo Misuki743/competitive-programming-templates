@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/treap.cpp
     title: ds/treap.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   _extendedRequiredBy: []

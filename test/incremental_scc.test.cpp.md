@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connectivity/incremental_SCC.cpp
     title: graph/connectivity/incremental_SCC.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   _extendedRequiredBy: []

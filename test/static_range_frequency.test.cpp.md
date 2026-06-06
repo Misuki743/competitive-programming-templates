@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
-    path: ds/wavelet_matrix.cpp
-    title: ds/wavelet_matrix.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix_old.cpp
+    title: ds/wavelet_matrix_old.cpp
+  - icon: ':heavy_check_mark:'
     path: misc/compression.cpp
     title: misc/compression.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -124,57 +124,42 @@ data:
     \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
     \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
     \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds/wavelet_matrix.cpp\"\ntemplate<class\
-    \ T, int H>\nstruct wavelet_matrix {\n  using u32 = uint32_t;\n  struct bitvec\
-    \ {\n    static constexpr u32 W = 64;\n    int cnt_0 = 0, sz;\n    vc<ull> bit_vec;\n\
-    \    vi ps;\n\n    bitvec(u32 _sz) : sz(_sz), bit_vec(sz / W + 1), ps(sz / W +\
-    \ 1) {}\n    void set(u32 i) { bit_vec[i / W] |= 1LL << (i % W); }\n    u32 get(u32\
-    \ i) { return bit_vec[i / W] >> (i % W) & 1; }\n    void build() {\n      for(int\
-    \ i = 1; i < ssize(ps); i++)\n        ps[i] = ps[i - 1] + popcount(bit_vec[i -\
-    \ 1]);\n      cnt_0 = rank_0(sz);\n    }\n    int rank_1(u32 i) { return ps[i\
-    \ / W] + popcount(bit_vec[i / W] & ((1LL << i) - 1)); }\n    int rank_0(u32 i)\
-    \ { return i - rank_1(i); }\n  };\n\n  vc<bitvec> mat;\n  vvi perms; //(H + 1)\
-    \ permutations\n\n  //prepare (H + 1) x size(init) array to maintain extra datas.\n\
-    \  wavelet_matrix(vc<T> init, bool keep = false) : mat(H, bitvec(size(init)))\
-    \ {\n    vi perm(size(init));\n    iota(perm.begin(), perm.end(), 0);\n    if\
-    \ (keep) perms.eb(perm);\n    for(int bit = H; auto &v : mat | views::reverse)\
-    \ {\n      bit--;\n      for(int i = 0; i < ssize(init); i++)\n        if (init[perm[i]]\
-    \ >> bit & 1)\n          v.set(i);\n      v.build();\n      vi nxt(size(init));\n\
-    \      array<int, 2> p = {0, v.cnt_0};\n      for(int i = 0; i < ssize(init);\
-    \ i++)\n        nxt[p[v.get(i)]++] = perm[i];\n      perm.swap(nxt);\n      if\
-    \ (keep) perms.eb(perm);\n    }\n    if (keep) ranges::reverse(perms);\n  }\n\n\
-    \  pii next_range(int i, int l, int r, bool right) {\n    auto &v = mat[i];\n\
-    \    if (right)\n      return pii(v.cnt_0 + v.rank_1(l), v.cnt_0 + v.rank_1(r));\n\
-    \    else\n      return pii(v.rank_0(l), v.rank_0(r));\n  }\n\n  T kth(int l,\
-    \ int r, int k) {\n    T ans = 0;\n    for(int i = H - 1; i >= 0; i--) {\n   \
-    \   if (auto [l0, r0] = next_range(i, l, r, 0); r0 - l0 <= k) {\n        ans |=\
-    \ T(1) << i, k -= r0 - l0;\n        tie(l, r) = next_range(i, l, r, 1);\n    \
-    \  } else {\n        tie(l, r) = tie(l0, r0);\n      }\n    }\n    return ans;\n\
-    \  }\n\n  //F(i, l, r)\n  template<typename F> requires R_invocable<void, F, int,\
-    \ int, int>\n  void rect_query(int L, int R, T D, T U, F f) {\n    auto dfs =\
-    \ [&](int i, T ql, T qr, int l, int r, T d, T u, auto &self) {\n      if (l ==\
-    \ r or d == u) return;\n      if (d == ql and u == qr) {\n        f(i + 1, l,\
-    \ r);\n        return;\n      }\n\n      T mid = (ql + qr) / 2;\n      if (u <=\
-    \ mid) {\n        tie(l, r) = next_range(i, l, r, 0);\n        self(i - 1, ql,\
-    \ mid, l, r, d, u, self);\n      } else if (mid <= d) {\n        tie(l, r) = next_range(i,\
-    \ l, r, 1);\n        self(i - 1, mid, qr, l, r, d, u, self);\n      } else {\n\
-    \        auto [l0, r0] = next_range(i, l, r, 0);\n        self(i - 1, ql, mid,\
-    \ l0, r0, d, mid, self);\n        auto [l1, r1] = next_range(i, l, r, 1);\n  \
-    \      self(i - 1, mid, qr, l1, r1, mid, u, self);\n      }\n    };\n\n    dfs(H\
-    \ - 1, T(0), T(1) << H, L, R, D, U, dfs);\n  }\n\n  vvi inv_perms;\n\n  //F(i,\
-    \ j)\n  template<typename F> requires R_invocable<void, F, int, int>\n  void point_update(int\
-    \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
-    \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
-    \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 6 \"test/static_range_frequency.test.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n\n  a.emplace_back(INT_MAX);\n\
-    \  compression<int> xs(a);\n  wavelet_matrix<int, 18> wv(xs.ord);\n\n  while(q--)\
-    \ {\n    int l, r, x; cin >> l >> r >> x;\n    int y = xs.lower_bound(x);\n  \
-    \  if (xs.val[y] != x)\n      cout << 0 << '\\n';\n    else\n      cout << wv.rect_query(l,\
-    \ r, y, y + 1) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds/wavelet_matrix_old.cpp\"\n\
+    template<class T, int H>\nstruct wavelet_matrix {\n  using uint = uint32_t;\n\
+    \  struct bitvec {\n    static constexpr uint W = 64;\n    int cnt0 = 0, size;\n\
+    \    vector<ull> bv;\n    vector<int> pre;\n\n    bitvec(uint _size) : size(_size),\
+    \ bv(size / W + 1), pre(size / W + 1) {};\n    void set(uint i) { bv[i / W] |=\
+    \ 1LL << (i % W); }\n    uint get(uint i) { return bv[i / W] >> (i % W) & 1; }\n\
+    \    void build() {\n      for(int i = 1; i < ssize(pre); i++)\n        pre[i]\
+    \ = pre[i - 1] + popcount(bv[i - 1]);\n      cnt0 = rank0(size);\n    }\n    int\
+    \ rank1(uint i) { return pre[i / W] + popcount(bv[i / W] & ((1LL << i) - 1));\
+    \ }\n    int rank0(uint i) { return i - rank1(i); }\n  };\n\n  vector<bitvec>\
+    \ data;\n  wavelet_matrix(vector<T> init) : data(H + 1, bitvec(init.size())) {\n\
+    \    for(int bit = H; auto &v : data) {\n      for(int i = 0; i < ssize(init);\
+    \ i++)\n        if (init[i] >> bit & 1)\n          v.set(i);\n      v.build();\n\
+    \      vector<T> tmp(ssize(init));\n      int ptr[2] = {0, v.cnt0};\n      for(int\
+    \ i = 0; i < ssize(init); i++)\n        tmp[ptr[v.get(i)]++] = init[i];\n    \
+    \  init.swap(tmp);\n      bit--;\n    }\n  }\n\n  T kth(int l, int r, int k) {\n\
+    \    T res = 0;\n    for(int bit = H; auto &v : data) {\n      if (int l0 = v.rank0(l),\
+    \ r0 = v.rank0(r); r0 - l0 <= k) {\n        res |= T(1) << bit, k -= r0 - l0;\n\
+    \        l = v.cnt0 + v.rank1(l), r = v.cnt0 + v.rank1(r);\n      } else {\n \
+    \       l = l0, r = r0;\n      }\n      bit--;\n    }\n    return res;\n  }\n\n\
+    \  int less(int l, int r, T u) {\n    if (u >= (T(2) << H)) return r - l;\n  \
+    \  int cnt = 0;\n    for(int bit = H; auto &v : data) {\n      if (u >> bit &\
+    \ 1) {\n        cnt += v.rank0(r) - v.rank0(l);\n        l = v.cnt0 + v.rank1(l),\
+    \ r = v.cnt0 + v.rank1(r);\n      } else {\n        l = v.rank0(l), r = v.rank0(r);\n\
+    \      }\n      bit--;\n    }\n    return cnt;\n  }\n\n  int rect_query(int l,\
+    \ int r, T d, T u) {\n    return less(l, r, u) - less(l, r, d);\n  }\n};\n#line\
+    \ 6 \"test/static_range_frequency.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
+    \ &x : a)\n    cin >> x;\n\n  a.emplace_back(INT_MAX);\n  compression<int> xs(a);\n\
+    \  wavelet_matrix<int, 18> wv(xs.ord);\n\n  while(q--) {\n    int l, r, x; cin\
+    \ >> l >> r >> x;\n    int y = xs.lower_bound(x);\n    if (xs.val[y] != x)\n \
+    \     cout << 0 << '\\n';\n    else\n      cout << wv.rect_query(l, r, y, y +\
+    \ 1) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../misc/compression.cpp\"\n#include\
-    \ \"../ds/wavelet_matrix.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ \"../ds/wavelet_matrix_old.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n\n  a.emplace_back(INT_MAX);\n  compression<int> xs(a);\n\
     \  wavelet_matrix<int, 18> wv(xs.ord);\n\n  while(q--) {\n    int l, r, x; cin\
@@ -184,12 +169,12 @@ data:
   dependsOn:
   - default/t.cpp
   - misc/compression.cpp
-  - ds/wavelet_matrix.cpp
+  - ds/wavelet_matrix_old.cpp
   isVerificationFile: true
   path: test/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 03:13:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/static_range_frequency.test.cpp
 layout: document

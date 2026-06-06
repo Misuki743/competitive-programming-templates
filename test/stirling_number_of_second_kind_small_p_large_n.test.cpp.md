@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: combi/stirling_second_kind_mod_P.cpp
     title: combi/stirling_second_kind_mod_P.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/dynamic_modint.cpp
     title: modint/dynamic_modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
@@ -136,8 +136,8 @@ data:
     \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
     \ dynamic_modint<0>::mod = 2;\nusing mint = dynamic_modint<0>;\n#line 1 \"combi/stirling_second_kind_mod_P.cpp\"\
     \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct stirling_second_kind_mod_P\
-    \ {\n  const int p;\n  vector<vector<Mint>> _S, _c;\n  stirlingSecondModP() :\
-    \ p(Mint::get_mod()),\n    _S(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {\n\
+    \ {\n  const int p;\n  vector<vector<Mint>> _S, _c;\n  stirling_second_kind_mod_P()\
+    \ : p(Mint::get_mod()),\n    _S(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {\n\
     \    for(int i = 0; i < p; i++) {\n      for(int j = 1; j < i; j++)\n        _S[i][j]\
     \ = _S[i - 1][j - 1] + _S[i - 1][j] * j;\n      _S[i][i] = 1;\n    }\n    for(int\
     \ i = 0; i < p; i++) {\n      _c[i][0] = 1;\n      for(int j = 1; j < i; j++)\n\
@@ -167,8 +167,8 @@ data:
   isVerificationFile: true
   path: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 03:13:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
 layout: document

@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/FPS_sqrt.cpp\"\n//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<numtheory/sqrtMod.cpp>\n\ntemplate<class Mint>\nFPS<Mint> FPS_sqrt(FPS<Mint>\
     \ F, int k) {\n  assert(!F.empty());\n  if (F[0] == 0) {\n    for(int i = 1; i\
     \ < ssize(F); i++) {\n      if (F[i] != 0) {\n        if (i & 1) return {}; //no\
-    \ solution\n        if (i / 2 >= k) break;\n        auto Q = FPSsqrt(FPS<Mint>(F.begin()\
+    \ solution\n        if (i / 2 >= k) break;\n        auto Q = FPS_sqrt(FPS<Mint>(F.begin()\
     \ + i, F.end()), k - i / 2);\n        if (Q.empty()) return {}; //no solution\n\
     \        Q.resize(k, 0);\n        ranges::rotate(Q, Q.begin() + k - i / 2);\n\
     \        return Q;\n      }\n    }\n    return FPS<Mint>(k, 0);\n  }\n\n  Mint\
@@ -30,10 +30,10 @@ data:
     \ntemplate<class Mint>\nFPS<Mint> FPS_sqrt(FPS<Mint> F, int k) {\n  assert(!F.empty());\n\
     \  if (F[0] == 0) {\n    for(int i = 1; i < ssize(F); i++) {\n      if (F[i] !=\
     \ 0) {\n        if (i & 1) return {}; //no solution\n        if (i / 2 >= k) break;\n\
-    \        auto Q = FPSsqrt(FPS<Mint>(F.begin() + i, F.end()), k - i / 2);\n   \
-    \     if (Q.empty()) return {}; //no solution\n        Q.resize(k, 0);\n     \
-    \   ranges::rotate(Q, Q.begin() + k - i / 2);\n        return Q;\n      }\n  \
-    \  }\n    return FPS<Mint>(k, 0);\n  }\n\n  Mint sqr = sqrt(F[0].get(), Mint::get_mod()),\
+    \        auto Q = FPS_sqrt(FPS<Mint>(F.begin() + i, F.end()), k - i / 2);\n  \
+    \      if (Q.empty()) return {}; //no solution\n        Q.resize(k, 0);\n    \
+    \    ranges::rotate(Q, Q.begin() + k - i / 2);\n        return Q;\n      }\n \
+    \   }\n    return FPS<Mint>(k, 0);\n  }\n\n  Mint sqr = sqrt(F[0].get(), Mint::get_mod()),\
     \ inv2 = 1 / Mint(2);\n  if (sqr == -1) return {}; //no solution\n  FPS<Mint>\
     \ Q(1, sqr);\n  for(int i = 1; (1 << (i - 1)) < k; i++) {\n    FPS<Mint> P(1 <<\
     \ i, 0);\n    copy(F.begin(), F.begin() + min(1 << i, (int)F.size()), P.begin());\n\
@@ -44,8 +44,8 @@ data:
   isVerificationFile: false
   path: poly/FPS_sqrt.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 03:13:20+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/sqrt_of_formal_power_series.test.cpp
 documentation_of: poly/FPS_sqrt.cpp

@@ -310,8 +310,23 @@ data:
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/queue_operate_all_composite.test.cpp
+    title: test/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_add_range_min.test.cpp
+    title: test/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_affine_range_sum.test.cpp
+    title: test/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_kth_smallest.test.cpp
+    title: test/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_kth_smallest2.test.cpp
+    title: test/range_kth_smallest2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest3.test.cpp
     title: test/range_kth_smallest3.test.cpp
@@ -319,9 +334,12 @@ data:
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_set_range_composite.test.cpp
+    title: test/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -330,7 +348,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/rooted_tree_isomorphism_classification.test.cpp
     title: test/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
   - icon: ':x:'
@@ -345,7 +363,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/shortest_path_sparse.test.cpp
     title: test/shortest_path_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -363,7 +381,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/static_range_count_distinct.test.cpp
     title: test/static_range_count_distinct.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
@@ -372,10 +390,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/stern_brocot_tree.test.cpp
     title: test/stern_brocot_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
   - icon: ':heavy_check_mark:'
@@ -430,6 +448,12 @@ data:
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
   - icon: ':heavy_check_mark:'
@@ -441,16 +465,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_1868.test.cpp
     title: test/yuki_1868.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
   - icon: ':x:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2654.test.cpp
     title: test/yuki_2654.test.cpp
   - icon: ':heavy_check_mark:'
@@ -664,6 +688,7 @@ data:
   - test/sharp_p_subset_sum.test.cpp
   - test/Z_algorithm.test.cpp
   - test/minimum_spanning_tree_Prim.test.cpp
+  - test/queue_operate_all_composite.test.cpp
   - test/matching_on_bipartite_graph.test.cpp
   - test/bell_number.test.cpp
   - test/lca.test.cpp
@@ -697,9 +722,11 @@ data:
   - test/addition_of_big_integers_2.test.cpp
   - test/lca_3.test.cpp
   - test/pow_of_matrix.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/eulerian_trail_undirected.test.cpp
+  - test/range_kth_smallest2.test.cpp
   - test/frequency_table_of_tree_distance.test.cpp
   - test/yuki_2606.test.cpp
   - test/static_convex_hull.test.cpp
@@ -707,7 +734,9 @@ data:
   - test/division_of_polynomials.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/bipartitematching_2.test.cpp
+  - test/range_affine_range_sum.test.cpp
   - test/yuki_1868.test.cpp
+  - test/range_add_range_min.test.cpp
   - test/segment_add_get_min.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/longest_increasing_subsequence.test.cpp
@@ -720,6 +749,7 @@ data:
   - test/mytest_auxiliary_tree.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/chromatic_number.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/unionfind.test.cpp
   - test/rectangle_sum2.test.cpp
   - test/mytest_factorize_sqrt.test.cpp
@@ -771,6 +801,7 @@ data:
   - test/enumerate_palindromes.test.cpp
   - test/vertex_add_path_sum.test.cpp
   - test/strongly_connected_components.test.cpp
+  - test/range_set_range_composite.test.cpp
   - test/convolution.test.cpp
   - test/biconnected_components.test.cpp
   - test/range_reverse_range_sum.test.cpp
@@ -798,6 +829,7 @@ data:
   - test/maximum_independent_set.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/aho_corasick.test.cpp
+  - test/range_kth_smallest.test.cpp
   - test/yuki_2613.test.cpp
   - test/min_plus_convolution_convex_arbitrary.test.cpp
   - test/lca_2.test.cpp

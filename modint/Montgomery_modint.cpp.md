@@ -130,12 +130,21 @@ data:
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/queue_operate_all_composite.test.cpp
+    title: test/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/range_affine_range_sum.test.cpp
+    title: test/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_set_range_composite.test.cpp
+    title: test/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -166,17 +175,20 @@ data:
     path: test/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/unionfind_with_potential_non_commutative_group.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
@@ -249,7 +261,7 @@ data:
   path: modint/Montgomery_modint.cpp
   requiredBy: []
   timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inverse_matrix.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
@@ -257,6 +269,7 @@ data:
   - test/range_affine_point_get.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/sharp_p_subset_sum.test.cpp
+  - test/queue_operate_all_composite.test.cpp
   - test/bell_number.test.cpp
   - test/bernoulli_number.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
@@ -273,11 +286,13 @@ data:
   - test/frequency_table_of_tree_distance.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/range_affine_range_sum.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/exp_of_formal_power_series.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/inv_of_formal_power_series.test.cpp
   - test/lcm_convolution.test.cpp
   - test/multiplication_of_big_intergers.test.cpp
@@ -296,6 +311,7 @@ data:
   - test/incremental_scc.test.cpp
   - test/unionfind_with_potential.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/range_set_range_composite.test.cpp
   - test/convolution.test.cpp
   - test/matrix_product.test.cpp
   - test/multiplication_of_big_intergers_2.test.cpp

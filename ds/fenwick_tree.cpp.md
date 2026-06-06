@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/vertex_get_range_contour_add_on_tree.test.cpp
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fenwick_tree.cpp\"\ntemplate<class T>\nstruct fenwick_tree\
@@ -56,10 +59,11 @@ data:
   path: ds/fenwick_tree.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_add_subtree_sum.test.cpp
   - test/static_range_count_distinct.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/rectangle_sum.test.cpp
   - test/point_add_rectangle_sum2.test.cpp
   - test/point_set_range_frequency.test.cpp

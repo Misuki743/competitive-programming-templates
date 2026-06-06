@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':heavy_check_mark:'

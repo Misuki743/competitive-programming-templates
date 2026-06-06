@@ -2,14 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/range_kth_smallest.test.cpp
+    title: test/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/static_range_frequency.test.cpp
+    title: test/static_range_frequency.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/wavelet_matrix_old.cpp\"\ntemplate<class T, int H>\n\
-    struct waveletMatrix {\n  using uint = uint32_t;\n  struct bitvec {\n    static\
+    struct wavelet_matrix {\n  using uint = uint32_t;\n  struct bitvec {\n    static\
     \ constexpr uint W = 64;\n    int cnt0 = 0, size;\n    vector<ull> bv;\n    vector<int>\
     \ pre;\n\n    bitvec(uint _size) : size(_size), bv(size / W + 1), pre(size / W\
     \ + 1) {};\n    void set(uint i) { bv[i / W] |= 1LL << (i % W); }\n    uint get(uint\
@@ -17,7 +23,7 @@ data:
     \ = 1; i < ssize(pre); i++)\n        pre[i] = pre[i - 1] + popcount(bv[i - 1]);\n\
     \      cnt0 = rank0(size);\n    }\n    int rank1(uint i) { return pre[i / W] +\
     \ popcount(bv[i / W] & ((1LL << i) - 1)); }\n    int rank0(uint i) { return i\
-    \ - rank1(i); }\n  };\n\n  vector<bitvec> data;\n  waveletMatrix(vector<T> init)\
+    \ - rank1(i); }\n  };\n\n  vector<bitvec> data;\n  wavelet_matrix(vector<T> init)\
     \ : data(H + 1, bitvec(init.size())) {\n    for(int bit = H; auto &v : data) {\n\
     \      for(int i = 0; i < ssize(init); i++)\n        if (init[i] >> bit & 1)\n\
     \          v.set(i);\n      v.build();\n      vector<T> tmp(ssize(init));\n  \
@@ -32,9 +38,9 @@ data:
     \ bit = H; auto &v : data) {\n      if (u >> bit & 1) {\n        cnt += v.rank0(r)\
     \ - v.rank0(l);\n        l = v.cnt0 + v.rank1(l), r = v.cnt0 + v.rank1(r);\n \
     \     } else {\n        l = v.rank0(l), r = v.rank0(r);\n      }\n      bit--;\n\
-    \    }\n    return cnt;\n  }\n\n  int rectQuery(int l, int r, T d, T u) {\n  \
-    \  return less(l, r, u) - less(l, r, d);\n  }\n};\n"
-  code: "template<class T, int H>\nstruct waveletMatrix {\n  using uint = uint32_t;\n\
+    \    }\n    return cnt;\n  }\n\n  int rect_query(int l, int r, T d, T u) {\n \
+    \   return less(l, r, u) - less(l, r, d);\n  }\n};\n"
+  code: "template<class T, int H>\nstruct wavelet_matrix {\n  using uint = uint32_t;\n\
     \  struct bitvec {\n    static constexpr uint W = 64;\n    int cnt0 = 0, size;\n\
     \    vector<ull> bv;\n    vector<int> pre;\n\n    bitvec(uint _size) : size(_size),\
     \ bv(size / W + 1), pre(size / W + 1) {};\n    void set(uint i) { bv[i / W] |=\
@@ -43,7 +49,7 @@ data:
     \ = pre[i - 1] + popcount(bv[i - 1]);\n      cnt0 = rank0(size);\n    }\n    int\
     \ rank1(uint i) { return pre[i / W] + popcount(bv[i / W] & ((1LL << i) - 1));\
     \ }\n    int rank0(uint i) { return i - rank1(i); }\n  };\n\n  vector<bitvec>\
-    \ data;\n  waveletMatrix(vector<T> init) : data(H + 1, bitvec(init.size())) {\n\
+    \ data;\n  wavelet_matrix(vector<T> init) : data(H + 1, bitvec(init.size())) {\n\
     \    for(int bit = H; auto &v : data) {\n      for(int i = 0; i < ssize(init);\
     \ i++)\n        if (init[i] >> bit & 1)\n          v.set(i);\n      v.build();\n\
     \      vector<T> tmp(ssize(init));\n      int ptr[2] = {0, v.cnt0};\n      for(int\
@@ -57,15 +63,17 @@ data:
     \  int cnt = 0;\n    for(int bit = H; auto &v : data) {\n      if (u >> bit &\
     \ 1) {\n        cnt += v.rank0(r) - v.rank0(l);\n        l = v.cnt0 + v.rank1(l),\
     \ r = v.cnt0 + v.rank1(r);\n      } else {\n        l = v.rank0(l), r = v.rank0(r);\n\
-    \      }\n      bit--;\n    }\n    return cnt;\n  }\n\n  int rectQuery(int l,\
+    \      }\n      bit--;\n    }\n    return cnt;\n  }\n\n  int rect_query(int l,\
     \ int r, T d, T u) {\n    return less(l, r, u) - less(l, r, d);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/wavelet_matrix_old.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-06-07 03:13:20+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/static_range_frequency.test.cpp
+  - test/range_kth_smallest.test.cpp
 documentation_of: ds/wavelet_matrix_old.cpp
 layout: document
 redirect_from:

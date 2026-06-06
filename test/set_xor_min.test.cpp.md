@@ -126,13 +126,13 @@ data:
     \ != -1 and cnt[nxt[v][to]] >= 1)\n        v = nxt[v][to];\n      else\n     \
     \   res |= 1LL << bit, v = nxt[v][to ^ 1];\n    }\n    return res;\n  }\n};\n\
     #line 5 \"test/set_xor_min.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  binaryTrie<29> tr(500000 * 30);\n\n  int q; cin >> q;\n\
+    \ cin.tie(NULL);\n\n  binary_trie<29> tr(500000 * 30);\n\n  int q; cin >> q;\n\
     \  while(q--) {\n    int t, x; cin >> t >> x;\n    if (t == 0)\n      tr.insert(x);\n\
     \    else if (t == 1)\n      tr.erase(x);\n    else if (t == 2)\n      cout <<\
     \ tr.query_min(x) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/binary_trie.cpp\"\n\nint main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binaryTrie<29> tr(500000 *\
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binary_trie<29> tr(500000 *\
     \ 30);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n \
     \   if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
     \    else if (t == 2)\n      cout << tr.query_min(x) << '\\n';\n  }\n\n  return\
@@ -143,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-07 03:13:20+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/set_xor_min.test.cpp

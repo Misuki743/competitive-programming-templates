@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS_sqrt.cpp
     title: poly/FPS_sqrt.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
@@ -289,7 +289,7 @@ data:
     //#include<numtheory/sqrtMod.cpp>\n\ntemplate<class Mint>\nFPS<Mint> FPS_sqrt(FPS<Mint>\
     \ F, int k) {\n  assert(!F.empty());\n  if (F[0] == 0) {\n    for(int i = 1; i\
     \ < ssize(F); i++) {\n      if (F[i] != 0) {\n        if (i & 1) return {}; //no\
-    \ solution\n        if (i / 2 >= k) break;\n        auto Q = FPSsqrt(FPS<Mint>(F.begin()\
+    \ solution\n        if (i / 2 >= k) break;\n        auto Q = FPS_sqrt(FPS<Mint>(F.begin()\
     \ + i, F.end()), k - i / 2);\n        if (Q.empty()) return {}; //no solution\n\
     \        Q.resize(k, 0);\n        ranges::rotate(Q, Q.begin() + k - i / 2);\n\
     \        return Q;\n      }\n    }\n    return FPS<Mint>(k, 0);\n  }\n\n  Mint\
@@ -321,8 +321,8 @@ data:
   isVerificationFile: true
   path: test/sqrt_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 03:13:20+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sqrt_of_formal_power_series.test.cpp
 layout: document

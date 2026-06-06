@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/vertex_set_path_composite.test.cpp
+    title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -172,6 +175,7 @@ data:
   - test/jump_on_tree_2.test.cpp
   - test/lca_4.test.cpp
   - test/tree_path_composite_sum.test.cpp
+  - test/vertex_set_path_composite.test.cpp
   - test/jump_on_tree_3.test.cpp
   - test/vertex_add_path_sum.test.cpp
 documentation_of: tree/HLD.cpp

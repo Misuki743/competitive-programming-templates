@@ -6,6 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_add_range_min.test.cpp
+    title: test/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/range_affine_range_sum.test.cpp
+    title: test/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -30,6 +36,8 @@ data:
   timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/range_affine_range_sum.test.cpp
+  - test/range_add_range_min.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
 documentation_of: segtree/acted_monoid_segment_tree.cpp
 layout: document
