@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/dynamic_modint.cpp
     title: modint/dynamic_modint.cpp
   _extendedRequiredBy: []

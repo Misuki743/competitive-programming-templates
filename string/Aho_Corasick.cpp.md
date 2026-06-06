@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aho_corasick.test.cpp
     title: test/aho_corasick.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/Aho_Corasick.cpp\"\nstruct AhoCorasick {\n  struct\
+  bundledCode: "#line 1 \"string/Aho_Corasick.cpp\"\nstruct Aho_Corasick {\n  struct\
     \ node {\n    static const int size = 26;\n    int nxt[size], p, link = -1, ex\
     \ = -1, leaf = 0;\n    char ch;\n\n    node(int _p = -1, char _ch = ' ') : p(_p),\
     \ ch(_ch) {\n      fill(nxt, nxt + size, -1);\n    }\n  };\n\n  vector<node> v;\n\
-    \  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n  }\n\n  int insert(string\
+    \  Aho_Corasick(int sz) : v(1) {\n    v.reserve(sz);\n  }\n\n  int insert(string\
     \ s) {\n    int now = 0;\n    for(char x : s) {\n      int id = x - 'a';\n   \
     \   if (v[now].nxt[id] == -1) {\n        v[now].nxt[id] = v.size();\n        v.emplace_back(now,\
     \ x);\n      }\n      now = v[now].nxt[id];\n    }\n    v[now].leaf = 1;\n   \
@@ -30,10 +30,10 @@ data:
     \      v[now].ex = calcExit(now);\n      for(int j = 0; j < node::size; j++)\n\
     \        if (v[now].nxt[j] != -1)\n          q.emplace_back(v[now].nxt[j]);\n\
     \    }\n    return q;\n  }\n};\n"
-  code: "struct AhoCorasick {\n  struct node {\n    static const int size = 26;\n\
+  code: "struct Aho_Corasick {\n  struct node {\n    static const int size = 26;\n\
     \    int nxt[size], p, link = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int\
     \ _p = -1, char _ch = ' ') : p(_p), ch(_ch) {\n      fill(nxt, nxt + size, -1);\n\
-    \    }\n  };\n\n  vector<node> v;\n  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n\
+    \    }\n  };\n\n  vector<node> v;\n  Aho_Corasick(int sz) : v(1) {\n    v.reserve(sz);\n\
     \  }\n\n  int insert(string s) {\n    int now = 0;\n    for(char x : s) {\n  \
     \    int id = x - 'a';\n      if (v[now].nxt[id] == -1) {\n        v[now].nxt[id]\
     \ = v.size();\n        v.emplace_back(now, x);\n      }\n      now = v[now].nxt[id];\n\
@@ -52,8 +52,8 @@ data:
   isVerificationFile: false
   path: string/Aho_Corasick.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 01:57:54+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aho_corasick.test.cpp
 documentation_of: string/Aho_Corasick.cpp

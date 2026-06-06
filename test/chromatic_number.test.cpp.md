@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: modint/dynamic_modint.cpp
     title: modint/dynamic_modint.cpp
   - icon: ':question:'
@@ -173,14 +173,14 @@ data:
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
     \ cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0; i <\
     \ m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n  }\n\
-    \n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
+    \n  cout << chromatic_number<mint>(g) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"modint/dynamic_modint.cpp\"\n#include\
     \ \"numtheory/factorize_pollard_rho.cpp\"\n#include \"combi/chromatic_number.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
     \ cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0; i <\
     \ m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n  }\n\
-    \n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
+    \n  cout << chromatic_number<mint>(g) << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/dynamic_modint.cpp
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
+  timestamp: '2026-06-07 01:57:54+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp

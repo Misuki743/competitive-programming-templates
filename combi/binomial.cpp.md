@@ -7,6 +7,9 @@ data:
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/binomial_coefficient_prime_mod.test.cpp
+    title: test/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
@@ -68,6 +71,7 @@ data:
   verifiedWith:
   - test/bell_number.test.cpp
   - test/yuki_2544.test.cpp
+  - test/binomial_coefficient_prime_mod.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/min_plus_convolution_convex_convex.test.cpp
     title: test/min_plus_convolution_convex_convex.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/min_plus_convolution_both_convex.cpp\"\n//both a and\
@@ -27,7 +27,7 @@ data:
   path: poly/min_plus_convolution_both_convex.cpp
   requiredBy: []
   timestamp: '2026-05-07 13:54:37+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/min_plus_convolution_convex_convex.test.cpp
 documentation_of: poly/min_plus_convolution_both_convex.cpp

@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/Aho_Corasick.cpp
     title: string/Aho_Corasick.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aho_corasick
@@ -108,10 +108,10 @@ data:
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"string/Aho_Corasick.cpp\"\
-    \nstruct AhoCorasick {\n  struct node {\n    static const int size = 26;\n   \
-    \ int nxt[size], p, link = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int\
+    \nstruct Aho_Corasick {\n  struct node {\n    static const int size = 26;\n  \
+    \  int nxt[size], p, link = -1, ex = -1, leaf = 0;\n    char ch;\n\n    node(int\
     \ _p = -1, char _ch = ' ') : p(_p), ch(_ch) {\n      fill(nxt, nxt + size, -1);\n\
-    \    }\n  };\n\n  vector<node> v;\n  AhoCorasick(int sz) : v(1) {\n    v.reserve(sz);\n\
+    \    }\n  };\n\n  vector<node> v;\n  Aho_Corasick(int sz) : v(1) {\n    v.reserve(sz);\n\
     \  }\n\n  int insert(string s) {\n    int now = 0;\n    for(char x : s) {\n  \
     \    int id = x - 'a';\n      if (v[now].nxt[id] == -1) {\n        v[now].nxt[id]\
     \ = v.size();\n        v.emplace_back(now, x);\n      }\n      now = v[now].nxt[id];\n\
@@ -146,8 +146,8 @@ data:
   isVerificationFile: true
   path: test/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 01:57:54+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aho_corasick.test.cpp
 layout: document

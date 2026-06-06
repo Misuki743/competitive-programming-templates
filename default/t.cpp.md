@@ -15,9 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aho_corasick.test.cpp
     title: test/aho_corasick.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/area_of_union_of_rectangles.test.cpp
+    title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/assignment.test.cpp
     title: test/assignment.test.cpp
@@ -36,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/biconnected_components.test.cpp
     title: test/biconnected_components.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/binomial_coefficient_prime_mod.test.cpp
+    title: test/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/bipartitematching.test.cpp
     title: test/bipartitematching.test.cpp
@@ -90,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/double_ended_priority_queue.test.cpp
     title: test/double_ended_priority_queue.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/enumerate_palindromes.test.cpp
     title: test/enumerate_palindromes.test.cpp
@@ -166,57 +175,60 @@ data:
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/longest_common_substring.test.cpp
+    title: test/longest_common_substring.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/matching_on_bipartite_graph.test.cpp
     title: test/matching_on_bipartite_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix_rank.test.cpp
     title: test/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/matrix_rank_mod_2.test.cpp
     title: test/matrix_rank_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/maximum_independent_set.test.cpp
     title: test/maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/min_plus_convolution_convex_arbitrary.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/min_plus_convolution_convex_convex.test.cpp
     title: test/min_plus_convolution_convex_convex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Kruskal.test.cpp
     title: test/minimum_spanning_tree_Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Prim.test.cpp
     title: test/minimum_spanning_tree_Prim.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/minimum_steiner_tree.test.cpp
     title: test/minimum_steiner_tree.test.cpp
   - icon: ':x:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers.test.cpp
     title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multiplication_of_big_intergers_2.test.cpp
     title: test/multiplication_of_big_intergers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_divisor_table.test.cpp
     title: test/mytest_divisor_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,13 +240,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_mu_table.test.cpp
     title: test/mytest_mu_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_phi_table.test.cpp
     title: test/mytest_phi_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/persistent_unionfind.test.cpp
     title: test/persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_add_range_sum.test.cpp
     title: test/point_add_range_sum.test.cpp
   - icon: ':x:'
@@ -634,6 +646,7 @@ data:
   verifiedWith:
   - test/vertex_add_subtree_sum.test.cpp
   - test/inverse_matrix.test.cpp
+  - test/longest_common_substring.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
   - test/double_ended_priority_queue.test.cpp
   - test/associative_array.test.cpp
@@ -668,6 +681,7 @@ data:
   - test/log_of_formal_power_series.test.cpp
   - test/mytest_tree.test.cpp
   - test/static_range_count_distinct.test.cpp
+  - test/binomial_coefficient_prime_mod.test.cpp
   - test/two_edge_connected_components.test.cpp
   - test/minimum_spanning_tree_Kruskal.test.cpp
   - test/lca_4.test.cpp
@@ -727,6 +741,7 @@ data:
   - test/mytest_enumerate_twelvefold.test.cpp
   - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/system_of_linear_equations.test.cpp
+  - test/area_of_union_of_rectangles.test.cpp
   - test/point_add_rectangle_sum2.test.cpp
   - test/point_set_range_frequency.test.cpp
   - test/predecessor_problem.test.cpp
@@ -763,6 +778,7 @@ data:
   - test/find_linear_recurrence.test.cpp
   - test/connected_components_of_complement_graph.test.cpp
   - test/counting_eulerian_circuits.test.cpp
+  - test/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/cartesian_tree.test.cpp
   - test/shortest_path_dense.test.cpp
   - test/mytest_divisor_table.test.cpp
