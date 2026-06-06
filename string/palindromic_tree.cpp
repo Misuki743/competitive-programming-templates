@@ -4,7 +4,7 @@ struct palindromic_tree {
   vector<ll> freq;
   vector<array<int, sigma>> go;
 
-  palindromicTree(string s) {
+  palindromic_tree(string s) {
     array<int, sigma> unit;
     fill(unit.begin(), unit.end(), -1);
     len = link = {-1, 0}, go = {unit, unit}, freq = {0, 0};

@@ -3,7 +3,7 @@ struct binary_trie {
   vector<array<int, 2>> nxt;
   vector<int> cnt;
 
-  binaryTrie(int size = 0) : nxt(1, {-1, -1}), cnt(1) {
+  binary_trie(int size = 0) : nxt(1, {-1, -1}), cnt(1) {
     nxt.reserve(size);
     cnt.reserve(size);
   }
