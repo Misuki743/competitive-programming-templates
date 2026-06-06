@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lca_2.test.cpp
     title: test/lca_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
   - icon: ':heavy_check_mark:'

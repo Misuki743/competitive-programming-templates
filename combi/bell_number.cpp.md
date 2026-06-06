@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"combi/bell_number.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
+  bundledCode: "#line 1 \"combi/bell_number.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\
     \n//#include \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n//#include \"\
     combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> bell_number(int n) {\n  binomial<Mint>\
     \ bn(n);\n  FPS<Mint> f(n);\n  for(int i = 1; i < n; i++) f[i] = bn.faci(i);\n\
     \  f = f.exp(n);\n  for(int i = 0; i < n; i++) f[i] *= bn.fac(i);\n  return f;\n\
     }\n"
-  code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
+  code: "//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTTmint.cpp\"\
     \n//#include \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class\
     \ Mint>\nFPS<Mint> bell_number(int n) {\n  binomial<Mint> bn(n);\n  FPS<Mint>\
     \ f(n);\n  for(int i = 1; i < n; i++) f[i] = bn.faci(i);\n  f = f.exp(n);\n  for(int\
@@ -26,8 +26,8 @@ data:
   isVerificationFile: false
   path: combi/bell_number.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/bell_number.test.cpp
 documentation_of: combi/bell_number.cpp

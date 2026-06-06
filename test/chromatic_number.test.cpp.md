@@ -155,13 +155,13 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"combi/chromatic_number.cpp\"\n//#include \"modint/dynamicMontgomeryModInt.cpp\"\
-    \n//#include \"numtheory/fastFactorize.cpp\"\n\ntemplate<> uint32_t MontgomeryModInt<123>::mod\
-    \ = 0;\ntemplate<> uint32_t MontgomeryModInt<123>::n2 = 0;\ntemplate<> uint32_t\
-    \ MontgomeryModInt<123>::r = 0;\nint chromatic_number(vector<vector<bool>> g)\
-    \ {\n  const int n = ssize(g);\n\n  mt19937 rng(clock);\n  uniform_int_distribution<int>\
+    \treturn l;\n}\n#line 1 \"combi/chromatic_number.cpp\"\n//#include \"modint/dynamic_Montgomery_modint.cpp\"\
+    \n//#include \"numtheory/fastFactorize.cpp\"\n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod\
+    \ = 0;\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::n2 = 0;\ntemplate<>\
+    \ uint32_t dynamic_Montgomery_modint<123>::r = 0;\nint chromatic_number(vector<vector<bool>>\
+    \ g) {\n  const int n = ssize(g);\n\n  mt19937 rng(clock);\n  uniform_int_distribution<int>\
     \ unif(1 << 29, 1 << 30);\n  int p = 4;\n  while(!isPrime(p)) p = unif(rng);\n\
-    \  using Mint = MontgomeryModInt<123>;\n  Mint::set_mod(p);\n\n  vector<Mint>\
+    \  using Mint = dynamic_Montgomery_modint<123>;\n  Mint::set_mod(p);\n\n  vector<Mint>\
     \ I(1 << n);\n  I[0] = 1;\n  for(unsigned msk = 1; msk < (1 << n); msk++) {\n\
     \    int v = countr_zero(bit_floor(msk));\n    I[msk] = I[msk ^ (1 << v)];\n \
     \   unsigned msk2 = msk ^ (1 << v);\n    for(int x = 0; x < n; x++)\n      if\
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp

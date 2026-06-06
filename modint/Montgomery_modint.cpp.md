@@ -3,25 +3,25 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers.test.cpp
     title: test/addition_of_big_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':x:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/convolution.test.cpp
     title: test/convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,16 +39,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,22 +57,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/incremental_scc.test.cpp
     title: test/incremental_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':x:'

@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/FPS_sqrt.cpp\"\n//#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n\
+  bundledCode: "#line 1 \"poly/FPS_sqrt.cpp\"\n//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<numtheory/sqrtMod.cpp>\n\ntemplate<class Mint>\nFPS<Mint> FPS_sqrt(FPS<Mint>\
     \ F, int k) {\n  assert(!F.empty());\n  if (F[0] == 0) {\n    for(int i = 1; i\
     \ < ssize(F); i++) {\n      if (F[i] != 0) {\n        if (i & 1) return {}; //no\
@@ -26,7 +26,7 @@ data:
     \ i);\n    for(int j = 0; Mint &x : Q)\n      R[j++] += x;\n    for(Mint &x :\
     \ R)\n      x *= inv2;\n    R.resize(1 << i);\n    R.swap(Q);\n  }\n  Q.resize(k);\n\
     \  return Q;\n}\n"
-  code: "//#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\
+  code: "//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\
     \ntemplate<class Mint>\nFPS<Mint> FPS_sqrt(FPS<Mint> F, int k) {\n  assert(!F.empty());\n\
     \  if (F[0] == 0) {\n    for(int i = 1; i < ssize(F); i++) {\n      if (F[i] !=\
     \ 0) {\n        if (i & 1) return {}; //no solution\n        if (i / 2 >= k) break;\n\
@@ -44,7 +44,7 @@ data:
   isVerificationFile: false
   path: poly/FPS_sqrt.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/sqrt_of_formal_power_series.test.cpp

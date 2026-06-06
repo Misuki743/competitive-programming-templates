@@ -11,11 +11,11 @@ data:
     - https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10
   bundledCode: "#line 1 \"modint/dynamic_Montgomery_modint.cpp\"\n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t ver>\n\
-    struct dynamic_Montgomery_modint {\n  using mint = MontgomeryModInt;\n  using\
-    \ i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static\
-    \ u32 mod, n2, r;\n\n  static constexpr u32 get_r() {\n    u32 res = 1, base =\
-    \ mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n  \
-    \  return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
+    struct dynamic_Montgomery_modint {\n  using mint = dynamic_Montgomery_modint;\n\
+    \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
+    \  static u32 mod, n2, r;\n\n  static constexpr u32 get_r() {\n    u32 res = 1,\
+    \ base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n\
+    \    return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
     \  }\n\n  static void set_mod(u32 _mod) {\n    mod = _mod;\n    n2 = -u64(mod)\
     \ % mod;\n    r = get_r();\n  }\n\n  u32 a;\n\n  static u32 reduce(const u64 &b)\
     \ {\n    return (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const\
@@ -44,11 +44,11 @@ data:
     \ = 0;\ntemplate<> uint32_t mint::n2 = 0;\ntemplate<> uint32_t mint::r = 0;\n"
   code: "//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t ver>\n\
-    struct dynamic_Montgomery_modint {\n  using mint = MontgomeryModInt;\n  using\
-    \ i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static\
-    \ u32 mod, n2, r;\n\n  static constexpr u32 get_r() {\n    u32 res = 1, base =\
-    \ mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n  \
-    \  return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
+    struct dynamic_Montgomery_modint {\n  using mint = dynamic_Montgomery_modint;\n\
+    \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
+    \  static u32 mod, n2, r;\n\n  static constexpr u32 get_r() {\n    u32 res = 1,\
+    \ base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n\
+    \    return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
     \  }\n\n  static void set_mod(u32 _mod) {\n    mod = _mod;\n    n2 = -u64(mod)\
     \ % mod;\n    r = get_r();\n  }\n\n  u32 a;\n\n  static u32 reduce(const u64 &b)\
     \ {\n    return (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: modint/dynamic_Montgomery_modint.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: modint/dynamic_Montgomery_modint.cpp

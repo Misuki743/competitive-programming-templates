@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod
@@ -147,7 +147,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -186,8 +186,8 @@ data:
   isVerificationFile: true
   path: test/convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution.test.cpp
 layout: document

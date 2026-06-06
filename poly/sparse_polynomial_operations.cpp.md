@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
@@ -14,11 +14,11 @@ data:
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
-    //#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n//#include<combi/binom.cpp>\n\
+    //#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n//#include<combi/binom.cpp>\n\
     //#include<numtheory/sqrtMod.cpp>\n\nnamespace sparse_polynomial_operations {\n\
     \  template<class Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n \
     \   vector<pair<int, Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n      if\
@@ -69,7 +69,7 @@ data:
     \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
     \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n}\n\nusing namespace\
     \ sparse_polynomial_operations;\n"
-  code: "//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n\
+  code: "//#include<poly/FPS.cpp>\n//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<combi/binom.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\nnamespace sparse_polynomial_operations\
     \ {\n  template<class Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n\
     \    vector<pair<int, Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n     \
@@ -124,8 +124,8 @@ data:
   isVerificationFile: false
   path: poly/sparse_polynomial_operations.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp

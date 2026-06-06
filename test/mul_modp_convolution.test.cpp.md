@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':x:'
@@ -150,7 +150,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -172,8 +172,8 @@ data:
     \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
     \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/convolution_multiplicative.cpp\"\
-    \n//#include \"poly/NTTmint.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\n\
-    \nstruct convolution_multiplicative {\n  const int P, root;\n  vector<int> powR,\
+    \n//#include \"poly/NTT.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\n\n\
+    struct convolution_multiplicative {\n  const int P, root;\n  vector<int> powR,\
     \ logR;\n\n  int primitive_root(int p) {\n    vector<int> pf;\n    {\n      int\
     \ tmp = p - 1;\n      for(int i = 2; i * i <= (p - 1); i++) {\n        if (tmp\
     \ % i != 0) continue;\n        pf.emplace_back(i);\n        while(tmp % i == 0)\
@@ -217,7 +217,7 @@ data:
   isVerificationFile: true
   path: test/mul_modp_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mul_modp_convolution.test.cpp

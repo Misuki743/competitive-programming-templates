@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   - icon: ':heavy_check_mark:'

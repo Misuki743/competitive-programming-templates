@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
   - icon: ':x:'
     path: poly/FPS_sqrt.cpp
     title: poly/FPS_sqrt.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []
@@ -156,7 +156,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -285,7 +285,7 @@ data:
     \ m) {\n\t\tll t = b;\n\t\tfor (m = 0; m < r && t != 1; ++m)\n\t\t\tt = t * t\
     \ % p;\n\t\tif (m == 0) return x;\n\t\tll gs = modpow(g, 1LL << (r - m - 1), p);\n\
     \t\tg = gs * gs % p;\n\t\tx = x * gs % p;\n\t\tb = b * g % p;\n\t}\n}\n#line 1\
-    \ \"poly/FPS_sqrt.cpp\"\n//#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ \"poly/FPS_sqrt.cpp\"\n//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<numtheory/sqrtMod.cpp>\n\ntemplate<class Mint>\nFPS<Mint> FPS_sqrt(FPS<Mint>\
     \ F, int k) {\n  assert(!F.empty());\n  if (F[0] == 0) {\n    for(int i = 1; i\
     \ < ssize(F); i++) {\n      if (F[i] != 0) {\n        if (i & 1) return {}; //no\
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/sqrt_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sqrt_of_formal_power_series.test.cpp

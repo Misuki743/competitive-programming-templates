@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':x:'
@@ -151,7 +151,7 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
-    \ = Montgomery_modint<998'244'353>;\n#line 1 \"combi/binomial.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"combi/binomial.cpp\"\n//#include<modint/Montgomery_modint.cpp>\n\
     \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
     \ size) : _fac(size), _facInv(size) {\n    assert(size <= (int)Mint::get_mod());\n\
     \    _fac[0] = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i -\
@@ -169,7 +169,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -286,17 +286,17 @@ data:
     \ a, int x) { return a >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
     function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"poly/Taylor_shift.cpp\"\
-    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\
-    //#include \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class\
-    \ Mint>\nFPS<Mint> Taylor_shift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n\
-    \  binomial<Mint> bn(n);\n  FPS<Mint> a = f;\n  for(int i = 0; i < n; i++)\n \
-    \   a[i] *= bn.fac(i);\n  FPS<Mint> b(n);\n  Mint pre = 1;\n  for(int i = 0; i\
-    \ < n; i++, pre *= c)\n    b[i] = pre * bn.faci(i);\n  ranges::reverse(b);\n \
-    \ f = a * b;\n  f.erase(f.begin(), f.begin() + n - 1);\n  for(int i = 0; i < n;\
-    \ i++)\n    f[i] *= bn.faci(i);\n  return f;\n}\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, c;\
-    \ cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n    cin >> x;\n  cout << Taylor_shift(a,\
-    \ mint(c)) << '\\n';\n\n  return 0;\n}\n"
+    \n//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n//#include\
+    \ \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint>\
+    \ Taylor_shift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  binomial<Mint> bn(n);\n\
+    \  FPS<Mint> a = f;\n  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint>\
+    \ b(n);\n  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre\
+    \ * bn.faci(i);\n  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin()\
+    \ + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n  return f;\n\
+    }\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, c; cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n\
+    \    cin >> x;\n  cout << Taylor_shift(a, mint(c)) << '\\n';\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
     \n#include \"../combi/binomial.cpp\"\n#include \"../poly/NTT.cpp\"\n#include \"\
@@ -314,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/polynomial_taylor_shift.test.cpp

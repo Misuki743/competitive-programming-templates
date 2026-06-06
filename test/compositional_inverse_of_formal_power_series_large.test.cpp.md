@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':x:'
@@ -157,7 +157,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -274,43 +274,42 @@ data:
     \ a, int x) { return a >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
     function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"poly/power_projection.cpp\"\
-    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\
-    //#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i for all i in [0, n) in\
-    \ O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
-    template<class Mint>\nFPS<Mint> power_projection(int k, int n, FPS<Mint> g, FPS<Mint>\
-    \ f = FPS<Mint>(1, 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f,\
-    \ int x0, int x1) -> FPS<Mint> {\n    int y0 = (ssize(f) + x0 - 1) / x0;\n   \
-    \ FPS<Mint> g(y0 * x1);\n    for(int y = 0; y < y0; y++)\n      for(int x = 0;\
-    \ x < x0 and y * x0 + x < ssize(f); x++)\n        g[y * x1 + x] = f[y * x0 + x];\n\
-    \    return g;\n  };\n\n  FPS<Mint> P(k + 1), Q(2 * (k + 1));\n  for(int i = 0;\
-    \ i < ssize(f) and i <= k; i++)\n    P[i] = f[i];\n  Q[0] = 1;\n  for(int i =\
-    \ 0; i < ssize(g) and i <= k; i++)\n    Q[i + k + 1] = -g[i];\n\n  while(k) {\n\
-    \    int yp = (ssize(Q) + k) / (k + 1) * 2 - 1, x0 = 2 * k + 1;\n    P = remap(P,\
-    \ k + 1, x0), Q = remap(Q, k + 1, x0);\n    int sz = bit_ceil((unsigned)yp * x0);\n\
-    \    P.resize(sz), Q.resize(sz);\n    FPS<Mint> Qneg = Q;\n    for(int y = 0;\
-    \ y < yp; y++)\n      for(int x = 1; x < x0; x += 2)\n        Qneg[y * x0 + x]\
-    \ *= -1;\n    FPS<Mint>::dft(P, false), FPS<Mint>::dft(Q, false), FPS<Mint>::dft(Qneg,\
-    \ false);\n    FPS<Mint> U(sz), V(sz);\n    for(int i = 0; i < sz; i++)\n    \
-    \  U[i] += P[i] * Qneg[i], V[i] = Q[i] * Qneg[i];\n    FPS<Mint>::dft(U, true),\
-    \ FPS<Mint>::dft(V, true);\n    int xp = k / 2 + 1;\n    FPS<Mint> UU(yp * xp);\n\
-    \    for(int y = 0; y < yp; y++)\n      for(int x = k & 1; x / 2 < xp and y *\
-    \ x0 + x < ssize(U); x += 2)\n        UU[y * xp + x / 2] = U[y * x0 + x];\n  \
-    \  FPS<Mint> VV(yp * xp);\n    for(int y = 0; y < yp; y++)\n      for(int x =\
-    \ 0; x / 2 < xp and y * x0 + x < ssize(V); x += 2)\n        VV[y * xp + x / 2]\
-    \ = V[y * x0 + x];\n    P.swap(UU), Q.swap(VV);\n    k /= 2;\n  }\n\n  FPS<Mint>\
-    \ res = P * Q.inv(n);\n  res.resize(n);\n\n  return res;\n}\n#line 1 \"poly/compositional_inverse.cpp\"\
-    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\n\
-    //#include \"poly/FPS.cpp\"\n//#include \"poly/kthTermOfPowers.cpp\"\n\ntemplate<class\
-    \ Mint>\nFPS<Mint> compositional_inverse(FPS<Mint> f, int k) {\n  assert(ssize(f)\
-    \ >= 2 and f[0] == 0 and f[1] != 0);\n  mint c = f[1];\n  mint invc = 1 / c;\n\
-    \  for(mint &x : f)\n    x *= invc;\n  k -= 1;\n  f = kthTermOfPowers(k, k + 1,\
-    \ f);\n  for(int i = 1; i <= k; i++)\n    f[i] *= mint(k) / i;\n  ranges::reverse(f);\n\
-    \  f = f.log(k + 1);\n  mint inv = 1 / mint(-k);\n  for(mint &x : f) x *= inv;\n\
-    \  f = f.exp(k + 1);\n  f.insert(f.begin(), Mint(0));\n  f.pop_back();\n  for(mint\
-    \ buf = 1; mint &x : f)\n    x *= buf, buf *= invc;\n  return f;\n}\n#line 9 \"\
-    test/compositional_inverse_of_formal_power_series_large.test.cpp\"\n\nint main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  fps\
-    \ f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositional_inverse(f,\
+    \n//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n//#include\
+    \ \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i for all i in [0, n) in O(klg^2k)\n\
+    //reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\ntemplate<class\
+    \ Mint>\nFPS<Mint> power_projection(int k, int n, FPS<Mint> g, FPS<Mint> f = FPS<Mint>(1,\
+    \ 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f, int x0, int x1)\
+    \ -> FPS<Mint> {\n    int y0 = (ssize(f) + x0 - 1) / x0;\n    FPS<Mint> g(y0 *\
+    \ x1);\n    for(int y = 0; y < y0; y++)\n      for(int x = 0; x < x0 and y * x0\
+    \ + x < ssize(f); x++)\n        g[y * x1 + x] = f[y * x0 + x];\n    return g;\n\
+    \  };\n\n  FPS<Mint> P(k + 1), Q(2 * (k + 1));\n  for(int i = 0; i < ssize(f)\
+    \ and i <= k; i++)\n    P[i] = f[i];\n  Q[0] = 1;\n  for(int i = 0; i < ssize(g)\
+    \ and i <= k; i++)\n    Q[i + k + 1] = -g[i];\n\n  while(k) {\n    int yp = (ssize(Q)\
+    \ + k) / (k + 1) * 2 - 1, x0 = 2 * k + 1;\n    P = remap(P, k + 1, x0), Q = remap(Q,\
+    \ k + 1, x0);\n    int sz = bit_ceil((unsigned)yp * x0);\n    P.resize(sz), Q.resize(sz);\n\
+    \    FPS<Mint> Qneg = Q;\n    for(int y = 0; y < yp; y++)\n      for(int x = 1;\
+    \ x < x0; x += 2)\n        Qneg[y * x0 + x] *= -1;\n    FPS<Mint>::dft(P, false),\
+    \ FPS<Mint>::dft(Q, false), FPS<Mint>::dft(Qneg, false);\n    FPS<Mint> U(sz),\
+    \ V(sz);\n    for(int i = 0; i < sz; i++)\n      U[i] += P[i] * Qneg[i], V[i]\
+    \ = Q[i] * Qneg[i];\n    FPS<Mint>::dft(U, true), FPS<Mint>::dft(V, true);\n \
+    \   int xp = k / 2 + 1;\n    FPS<Mint> UU(yp * xp);\n    for(int y = 0; y < yp;\
+    \ y++)\n      for(int x = k & 1; x / 2 < xp and y * x0 + x < ssize(U); x += 2)\n\
+    \        UU[y * xp + x / 2] = U[y * x0 + x];\n    FPS<Mint> VV(yp * xp);\n   \
+    \ for(int y = 0; y < yp; y++)\n      for(int x = 0; x / 2 < xp and y * x0 + x\
+    \ < ssize(V); x += 2)\n        VV[y * xp + x / 2] = V[y * x0 + x];\n    P.swap(UU),\
+    \ Q.swap(VV);\n    k /= 2;\n  }\n\n  FPS<Mint> res = P * Q.inv(n);\n  res.resize(n);\n\
+    \n  return res;\n}\n#line 1 \"poly/compositional_inverse.cpp\"\n//#include \"\
+    modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n//#include \"poly/FPS.cpp\"\
+    \n//#include \"poly/kthTermOfPowers.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> compositional_inverse(FPS<Mint>\
+    \ f, int k) {\n  assert(ssize(f) >= 2 and f[0] == 0 and f[1] != 0);\n  mint c\
+    \ = f[1];\n  mint invc = 1 / c;\n  for(mint &x : f)\n    x *= invc;\n  k -= 1;\n\
+    \  f = kthTermOfPowers(k, k + 1, f);\n  for(int i = 1; i <= k; i++)\n    f[i]\
+    \ *= mint(k) / i;\n  ranges::reverse(f);\n  f = f.log(k + 1);\n  mint inv = 1\
+    \ / mint(-k);\n  for(mint &x : f) x *= inv;\n  f = f.exp(k + 1);\n  f.insert(f.begin(),\
+    \ Mint(0));\n  f.pop_back();\n  for(mint buf = 1; mint &x : f)\n    x *= buf,\
+    \ buf *= invc;\n  return f;\n}\n#line 9 \"test/compositional_inverse_of_formal_power_series_large.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
+    \ >> n;\n  fps f(n);\n  for(mint &x : f)\n    cin >> x;\n  cout << compositional_inverse(f,\
     \ n) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series_large\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
@@ -328,7 +327,7 @@ data:
   isVerificationFile: true
   path: test/compositional_inverse_of_formal_power_series_large.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/compositional_inverse_of_formal_power_series_large.test.cpp

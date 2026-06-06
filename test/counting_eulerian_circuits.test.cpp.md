@@ -214,7 +214,7 @@ data:
     \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
     \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
     \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
-    \    return is;\n  }\n};\n#line 1 \"combi/binomial.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \    return is;\n  }\n};\n#line 1 \"combi/binomial.cpp\"\n//#include<modint/Montgomery_modint.cpp>\n\
     \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
     \ size) : _fac(size), _facInv(size) {\n    assert(size <= (int)Mint::get_mod());\n\
     \    _fac[0] = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i -\
@@ -227,7 +227,7 @@ data:
     \ i, i + 1); }\n  Mint excatalan(int n, int m, int k) { //(+1) * n, (-1) * m,\
     \ prefix sum > -k\n    if (k > m) return binom(n + m, m);\n    else if (k > m\
     \ - n) return binom(n + m, m) - binom(n + m, m - k);\n    else return Mint(0);\n\
-    \  }\n};\n#line 1 \"combi/count_spanning_forest.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
+    \  }\n};\n#line 1 \"combi/count_spanning_forest.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\
     \n//#include \"linalg/matrixMint.cpp\"\n\ntemplate<class Mint, bool directed =\
     \ false>\nMint count_spanning_forest(vector<tuple<int, int, Mint>> e, int n, vector<int>\
     \ r = vector(1, 0)) {\n  vector<int> id(n, 1);\n  for(int x : r) id[x] = 0;\n\
@@ -236,7 +236,7 @@ data:
     \ (u != -1 and v != -1) {\n      M[u][v] -= w;\n      if constexpr (!directed)\
     \ M[v][u] -= w;\n    }\n    if constexpr (!directed) if (u != -1) M[u][u] += w;\n\
     \    if (v != -1) M[v][v] += w;\n  }\n  return M.det();\n}\n#line 1 \"combi/count_eulerian_circuit.cpp\"\
-    \n//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\
+    \n//#include \"modint/Montgomery_modint.cpp\"\n//#include \"linalg/matrixMint.cpp\"\
     \n//#include \"combi/countSpanningForest.cpp\"\n//#include \"combi/binom.cpp\"\
     \n\ntemplate<class Mint>\nMint count_eulerian_circuit(vector<array<int, 2>> e,\
     \ int n) {\n  vector<int> deg(n);\n  vector<vector<int>> g(n);\n  for(auto [u,\
@@ -273,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/counting_eulerian_circuits.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/counting_eulerian_circuits.test.cpp

@@ -135,7 +135,7 @@ data:
     \ }\n  friend istream& operator>>(istream& is, mint& b) {\n    int64_t val;\n\
     \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
     \ dynamic_modint<0>::mod = 2;\nusing mint = dynamic_modint<0>;\n#line 1 \"combi/stirling_first_kind_mod_P.cpp\"\
-    \n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class Mint>\nstruct stirling_first_kind_mod_P\
+    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct stirling_first_kind_mod_P\
     \ {\n  const int p;\n  vector<vector<Mint>> _s, _c;\n  stirlingFirstModP() : p(Mint::get_mod()),\n\
     \    _s(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {\n    for(int i = 0; i <\
     \ p; i++) {\n      for(int j = 1; j < i; j++)\n        _s[i][j] = _s[i - 1][j\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/stirling_number_of_first_kind_small_p_large_n.test.cpp

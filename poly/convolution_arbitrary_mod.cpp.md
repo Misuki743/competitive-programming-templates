@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/15581
@@ -17,8 +17,8 @@ data:
     //reference: https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod\
     \ of mods(~= 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convolution_arbitrary_mod(vector<Mint>\
     \ a, vector<Mint> b) {\n  if (a.empty() or b.empty()) return {};\n  using Mint0\
-    \ = MontgomeryModInt<998244353>;\n  using Mint1 = MontgomeryModInt<469762049>;\n\
-    \  using Mint2 = MontgomeryModInt<167772161>;\n  NTT<23, 119, 3, Mint0> ntt0;\n\
+    \ = Montgomery_modint<998244353>;\n  using Mint1 = Montgomery_modint<469762049>;\n\
+    \  using Mint2 = Montgomery_modint<167772161>;\n  NTT<23, 119, 3, Mint0> ntt0;\n\
     \  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3, Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)),\
     \ b0(ssize(b));\n  vector<Mint1> a1(ssize(a)), b1(ssize(b));\n  vector<Mint2>\
     \ a2(ssize(a)), b2(ssize(b));\n  for(int i = 0; i < ssize(a); i++)\n    a0[i]\
@@ -36,8 +36,8 @@ data:
     \ https://judge.yosupo.jp/submission/15581\n//remark: n * mod^2 < prod of mods(~=\
     \ 5e26) should be satisfied\n\ntemplate<class Mint>\nvector<Mint> convolution_arbitrary_mod(vector<Mint>\
     \ a, vector<Mint> b) {\n  if (a.empty() or b.empty()) return {};\n  using Mint0\
-    \ = MontgomeryModInt<998244353>;\n  using Mint1 = MontgomeryModInt<469762049>;\n\
-    \  using Mint2 = MontgomeryModInt<167772161>;\n  NTT<23, 119, 3, Mint0> ntt0;\n\
+    \ = Montgomery_modint<998244353>;\n  using Mint1 = Montgomery_modint<469762049>;\n\
+    \  using Mint2 = Montgomery_modint<167772161>;\n  NTT<23, 119, 3, Mint0> ntt0;\n\
     \  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3, Mint2> ntt2;\n  vector<Mint0> a0(ssize(a)),\
     \ b0(ssize(b));\n  vector<Mint1> a1(ssize(a)), b1(ssize(b));\n  vector<Mint2>\
     \ a2(ssize(a)), b2(ssize(b));\n  for(int i = 0; i < ssize(a); i++)\n    a0[i]\
@@ -55,8 +55,8 @@ data:
   isVerificationFile: false
   path: poly/convolution_arbitrary_mod.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/convolution_1e9+7.test.cpp
 documentation_of: poly/convolution_arbitrary_mod.cpp

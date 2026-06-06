@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_ll.cpp
     title: poly/convolution_ll.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -157,7 +157,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -180,8 +180,8 @@ data:
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
     \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/convolution_ll.cpp\"\
     \n//the result should not exceed long long\nvll convolution_ll(vll a, vll b) {\n\
-    \  assert(ssize(a) + ssize(b) - 1 <= (1 << 23));\n  using Mint0 = MontgomeryModInt<998244353>;\n\
-    \  using Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+    \  assert(ssize(a) + ssize(b) - 1 <= (1 << 23));\n  using Mint0 = Montgomery_modint<998244353>;\n\
+    \  using Mint1 = Montgomery_modint<469762049>;\n  using Mint2 = Montgomery_modint<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  vector<Mint0> a0(size(a)), b0(size(b));\n  vector<Mint1> a1(size(a)),\
     \ b1(size(b));\n  vector<Mint2> a2(size(a)), b2(size(b));\n  for(int i = 0; i\
@@ -195,8 +195,8 @@ data:
     \ = x[i].get();\n    int y1 = (im0 * (y[i] - y0)).get();\n    int y2 = (im0m1\
     \ * (z[i] - y0) - im1 * y1).get();\n    res[i] = y0 + m0 * y1 + m0m1 * y2;\n \
     \ }\n\n  return res;\n}\n\nvll convolution_self_ll(vll a) {\n  assert(2 * ssize(a)\
-    \ - 1 <= (1 << 23));\n  using Mint0 = MontgomeryModInt<998244353>;\n  using Mint1\
-    \ = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+    \ - 1 <= (1 << 23));\n  using Mint0 = Montgomery_modint<998244353>;\n  using Mint1\
+    \ = Montgomery_modint<469762049>;\n  using Mint2 = Montgomery_modint<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  const int sz = bit_ceil((ull)(2 * ssize(a) - 1));\n  vector<Mint0>\
     \ a0(sz);\n  vector<Mint1> a1(sz);\n  vector<Mint2> a2(sz);\n  for(int i = 0;\
@@ -259,8 +259,8 @@ data:
   isVerificationFile: true
   path: test/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/frequency_table_of_tree_distance.test.cpp
 layout: document

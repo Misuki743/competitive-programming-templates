@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"combi/count_eulerian_circuit.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
+  bundledCode: "#line 1 \"combi/count_eulerian_circuit.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\
     \n//#include \"linalg/matrixMint.cpp\"\n//#include \"combi/countSpanningForest.cpp\"\
     \n//#include \"combi/binom.cpp\"\n\ntemplate<class Mint>\nMint count_eulerian_circuit(vector<array<int,\
     \ 2>> e, int n) {\n  vector<int> deg(n);\n  vector<vector<int>> g(n);\n  for(auto\
@@ -26,7 +26,7 @@ data:
     \ e)\n    ep[i++] = {u, v, Mint(1)};\n  \n  Mint c = 1;\n  binomial<Mint> bn(ssize(e));\n\
     \  for(int v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return\
     \ c * count_spanning_forest<Mint, true>(ep, n, r);\n}\n"
-  code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\
+  code: "//#include \"modint/Montgomery_modint.cpp\"\n//#include \"linalg/matrixMint.cpp\"\
     \n//#include \"combi/countSpanningForest.cpp\"\n//#include \"combi/binom.cpp\"\
     \n\ntemplate<class Mint>\nMint count_eulerian_circuit(vector<array<int, 2>> e,\
     \ int n) {\n  vector<int> deg(n);\n  vector<vector<int>> g(n);\n  for(auto [u,\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: combi/count_eulerian_circuit.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/counting_eulerian_circuits.test.cpp

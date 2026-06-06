@@ -12,8 +12,8 @@ data:
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2024/03/16/224034
-  bundledCode: "#line 1 \"poly/power_projection.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
-    \n//#include \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i\
+  bundledCode: "#line 1 \"poly/power_projection.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\
+    \n//#include \"poly/NTT.cpp\"\n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i\
     \ for all i in [0, n) in O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
     template<class Mint>\nFPS<Mint> power_projection(int k, int n, FPS<Mint> g, FPS<Mint>\
     \ f = FPS<Mint>(1, 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f,\
@@ -37,9 +37,9 @@ data:
     \ 0; x / 2 < xp and y * x0 + x < ssize(V); x += 2)\n        VV[y * xp + x / 2]\
     \ = V[y * x0 + x];\n    P.swap(UU), Q.swap(VV);\n    k /= 2;\n  }\n\n  FPS<Mint>\
     \ res = P * Q.inv(n);\n  res.resize(n);\n\n  return res;\n}\n"
-  code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"poly/NTTmint.cpp\"\
-    \n//#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i for all i in [0, n)\
-    \ in O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
+  code: "//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n\
+    //#include \"poly/FPS.cpp\"\n\n//compute [x^k]f(x)g(x)^i for all i in [0, n) in\
+    \ O(klg^2k)\n//reference: https://noshi91.hatenablog.com/entry/2024/03/16/224034\n\
     template<class Mint>\nFPS<Mint> power_projection(int k, int n, FPS<Mint> g, FPS<Mint>\
     \ f = FPS<Mint>(1, 1)) {\n  assert(g[0] == 0);\n  auto remap = [](FPS<Mint> f,\
     \ int x0, int x1) -> FPS<Mint> {\n    int y0 = (ssize(f) + x0 - 1) / x0;\n   \
@@ -66,7 +66,7 @@ data:
   isVerificationFile: false
   path: poly/power_projection.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/compositional_inverse_of_formal_power_series_large.test.cpp

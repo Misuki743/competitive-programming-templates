@@ -11,7 +11,7 @@ data:
   bundledCode: "#line 1 \"combi/path_counting.cpp\"\n//Given initial state f and transition\
     \ g and lowerbound constraint lb,\n//which should be non-decreasing, compute result\
     \ after transite (|lb| - 1) times\n//in O(n(D + |g|)lg(n(D + |g|))lgn + (|f| +\
-    \ |g|)lg(|f| + |g|)) time complexity.\n\n//#include<modint/MontgomeryModInt.cpp>\n\
+    \ |g|)lg(|f| + |g|)) time complexity.\n\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\ntemplate<class Mint>\n\
     FPS<Mint> path_counting(FPS<Mint> f, FPS<Mint> g, vector<int> lb) {\n  auto calc\
     \ = [&](int l, int r, FPS<Mint> f, auto self) -> FPS<Mint> {\n    if (l == r)\
@@ -26,7 +26,7 @@ data:
   code: "//Given initial state f and transition g and lowerbound constraint lb,\n\
     //which should be non-decreasing, compute result after transite (|lb| - 1) times\n\
     //in O(n(D + |g|)lg(n(D + |g|))lgn + (|f| + |g|)lg(|f| + |g|)) time complexity.\n\
-    \n//#include<modint/MontgomeryModInt.cpp>\n//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\
+    \n//#include<modint/Montgomery_modint.cpp>\n//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\
     \ntemplate<class Mint>\nFPS<Mint> path_counting(FPS<Mint> f, FPS<Mint> g, vector<int>\
     \ lb) {\n  auto calc = [&](int l, int r, FPS<Mint> f, auto self) -> FPS<Mint>\
     \ {\n    if (l == r) {\n      dbg(r);\n      dbg(f << lb[r]);\n      return f;\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: combi/path_counting.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: combi/path_counting.cpp

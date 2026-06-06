@@ -14,8 +14,8 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"poly/convolution_multiplicative.cpp\"\n//#include \"poly/NTTmint.cpp\"\
-    \n//#include \"modint/MontgomeryModInt.cpp\"\n\nstruct convolution_multiplicative\
+  bundledCode: "#line 1 \"poly/convolution_multiplicative.cpp\"\n//#include \"poly/NTT.cpp\"\
+    \n//#include \"modint/Montgomery_modint.cpp\"\n\nstruct convolution_multiplicative\
     \ {\n  const int P, root;\n  vector<int> powR, logR;\n\n  int primitive_root(int\
     \ p) {\n    vector<int> pf;\n    {\n      int tmp = p - 1;\n      for(int i =\
     \ 2; i * i <= (p - 1); i++) {\n        if (tmp % i != 0) continue;\n        pf.emplace_back(i);\n\
@@ -41,8 +41,8 @@ data:
     \ b = transform(b);\n    a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3;\
     \ i++)\n      a[i - (P - 1)] += a[i];\n    a.resize(P - 1);\n    a = inverse_transform(a);\n\
     \    a[0] = zero;\n    return a;\n  }\n};\n"
-  code: "//#include \"poly/NTTmint.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
-    \n\nstruct convolution_multiplicative {\n  const int P, root;\n  vector<int> powR,\
+  code: "//#include \"poly/NTT.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\n\
+    \nstruct convolution_multiplicative {\n  const int P, root;\n  vector<int> powR,\
     \ logR;\n\n  int primitive_root(int p) {\n    vector<int> pf;\n    {\n      int\
     \ tmp = p - 1;\n      for(int i = 2; i * i <= (p - 1); i++) {\n        if (tmp\
     \ % i != 0) continue;\n        pf.emplace_back(i);\n        while(tmp % i == 0)\
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: poly/convolution_multiplicative.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mul_modp_convolution.test.cpp

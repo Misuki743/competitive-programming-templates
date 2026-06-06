@@ -10,23 +10,23 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sparse_polynomial_operations.cpp
     title: poly/sparse_polynomial_operations.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
@@ -160,7 +160,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -277,7 +277,7 @@ data:
     \ a, int x) { return a >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
     function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/binomial.cpp\"\
-    \n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class Mint>\nstruct binomial\
+    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct binomial\
     \ {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size)\
     \ {\n    assert(size <= (int)Mint::get_mod());\n    _fac[0] = 1;\n    for(int\
     \ i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n\
@@ -303,7 +303,7 @@ data:
     \t\t\tt = t * t % p;\n\t\tif (m == 0) return x;\n\t\tll gs = modpow(g, 1LL <<\
     \ (r - m - 1), p);\n\t\tg = gs * gs % p;\n\t\tx = x * gs % p;\n\t\tb = b * g %\
     \ p;\n\t}\n}\n#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
-    //#include<poly/NTTmint.cpp>\n//#include<modint/MontgomeryModInt.cpp>\n//#include<combi/binom.cpp>\n\
+    //#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n//#include<combi/binom.cpp>\n\
     //#include<numtheory/sqrtMod.cpp>\n\nnamespace sparse_polynomial_operations {\n\
     \  template<class Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n \
     \   vector<pair<int, Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n      if\
@@ -377,8 +377,8 @@ data:
   isVerificationFile: true
   path: test/inv_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series_sparse.test.cpp
 layout: document

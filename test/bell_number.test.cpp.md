@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: combi/bell_number.cpp
     title: combi/bell_number.cpp
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bell_number
@@ -156,7 +156,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -273,7 +273,7 @@ data:
     \ a, int x) { return a >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
     function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/binomial.cpp\"\
-    \n//#include<modint/MontgomeryModInt.cpp>\n\ntemplate<class Mint>\nstruct binomial\
+    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct binomial\
     \ {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size)\
     \ {\n    assert(size <= (int)Mint::get_mod());\n    _fac[0] = 1;\n    for(int\
     \ i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n\
@@ -286,7 +286,7 @@ data:
     \ excatalan(int n, int m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n   \
     \ if (k > m) return binom(n + m, m);\n    else if (k > m - n) return binom(n +\
     \ m, m) - binom(n + m, m - k);\n    else return Mint(0);\n  }\n};\n#line 1 \"\
-    combi/bell_number.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\n//#include\
+    combi/bell_number.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\n//#include\
     \ \"poly/NTTmint.cpp\"\n//#include \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\
     \n\ntemplate<class Mint>\nFPS<Mint> bell_number(int n) {\n  binomial<Mint> bn(n);\n\
     \  FPS<Mint> f(n);\n  for(int i = 1; i < n; i++) f[i] = bn.faci(i);\n  f = f.exp(n);\n\
@@ -309,8 +309,8 @@ data:
   isVerificationFile: true
   path: test/bell_number.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bell_number.test.cpp
 layout: document

@@ -3,46 +3,46 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers.test.cpp
     title: test/addition_of_big_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':x:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/convolution.test.cpp
     title: test/convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -107,7 +107,7 @@ data:
     title: test/yuki_2613.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/69896
@@ -116,7 +116,7 @@ data:
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
     \            1224736769 = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t\
-    \ c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT\
+    \ c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT\
     \ {\n\n  using u32 = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n\
     \  static constexpr u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint>\
     \ &a, bool inverse) {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0)\
@@ -143,7 +143,7 @@ data:
     \ satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1, R = 3\n//    \
     \                469762049  = 2^26 * 7   + 1, R = 3\n//                    1224736769\
     \ = 2^24 * 73  + 1, R = 3\n\ntemplate<int32_t k = 23, int32_t c = 119, int32_t\
-    \ r = 3, class Mint = MontgomeryModInt<998244353>>\nstruct NTT {\n\n  using u32\
+    \ r = 3, class Mint = Montgomery_modint<998244353>>\nstruct NTT {\n\n  using u32\
     \ = uint32_t;\n  static constexpr u32 mod = (1 << k) * c + 1;\n  static constexpr\
     \ u32 get_mod() { return mod; }\n\n  static void ntt(vector<Mint> &a, bool inverse)\
     \ {\n    static array<Mint, 30> w, w_inv;\n    if (w[0] == 0) {\n      Mint root\
@@ -169,8 +169,8 @@ data:
   isVerificationFile: false
   path: poly/NTT.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/wildcard_pattern_matching.test.cpp
   - test/multipoint_evaluation.test.cpp

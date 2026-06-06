@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/hash_table.cpp
     title: ds/hash_table.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   - icon: ':question:'

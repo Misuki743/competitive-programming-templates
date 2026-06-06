@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/convolution_ll.cpp\"\n//the result should not exceed\
     \ long long\nvll convolution_ll(vll a, vll b) {\n  assert(ssize(a) + ssize(b)\
-    \ - 1 <= (1 << 23));\n  using Mint0 = MontgomeryModInt<998244353>;\n  using Mint1\
-    \ = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+    \ - 1 <= (1 << 23));\n  using Mint0 = Montgomery_modint<998244353>;\n  using Mint1\
+    \ = Montgomery_modint<469762049>;\n  using Mint2 = Montgomery_modint<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  vector<Mint0> a0(size(a)), b0(size(b));\n  vector<Mint1> a1(size(a)),\
     \ b1(size(b));\n  vector<Mint2> a2(size(a)), b2(size(b));\n  for(int i = 0; i\
@@ -28,8 +28,8 @@ data:
     \ = x[i].get();\n    int y1 = (im0 * (y[i] - y0)).get();\n    int y2 = (im0m1\
     \ * (z[i] - y0) - im1 * y1).get();\n    res[i] = y0 + m0 * y1 + m0m1 * y2;\n \
     \ }\n\n  return res;\n}\n\nvll convolution_self_ll(vll a) {\n  assert(2 * ssize(a)\
-    \ - 1 <= (1 << 23));\n  using Mint0 = MontgomeryModInt<998244353>;\n  using Mint1\
-    \ = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+    \ - 1 <= (1 << 23));\n  using Mint0 = Montgomery_modint<998244353>;\n  using Mint1\
+    \ = Montgomery_modint<469762049>;\n  using Mint2 = Montgomery_modint<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  const int sz = bit_ceil((ull)(2 * ssize(a) - 1));\n  vector<Mint0>\
     \ a0(sz);\n  vector<Mint1> a1(sz);\n  vector<Mint2> a2(sz);\n  for(int i = 0;\
@@ -44,8 +44,8 @@ data:
     \    int y2 = (im0m1 * (a2[i] - y0) - im1 * y1).get();\n    res[i] = y0 + m0 *\
     \ y1 + m0m1 * y2;\n  }\n\n  return res;\n}\n\n"
   code: "//the result should not exceed long long\nvll convolution_ll(vll a, vll b)\
-    \ {\n  assert(ssize(a) + ssize(b) - 1 <= (1 << 23));\n  using Mint0 = MontgomeryModInt<998244353>;\n\
-    \  using Mint1 = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+    \ {\n  assert(ssize(a) + ssize(b) - 1 <= (1 << 23));\n  using Mint0 = Montgomery_modint<998244353>;\n\
+    \  using Mint1 = Montgomery_modint<469762049>;\n  using Mint2 = Montgomery_modint<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  vector<Mint0> a0(size(a)), b0(size(b));\n  vector<Mint1> a1(size(a)),\
     \ b1(size(b));\n  vector<Mint2> a2(size(a)), b2(size(b));\n  for(int i = 0; i\
@@ -59,8 +59,8 @@ data:
     \ = x[i].get();\n    int y1 = (im0 * (y[i] - y0)).get();\n    int y2 = (im0m1\
     \ * (z[i] - y0) - im1 * y1).get();\n    res[i] = y0 + m0 * y1 + m0m1 * y2;\n \
     \ }\n\n  return res;\n}\n\nvll convolution_self_ll(vll a) {\n  assert(2 * ssize(a)\
-    \ - 1 <= (1 << 23));\n  using Mint0 = MontgomeryModInt<998244353>;\n  using Mint1\
-    \ = MontgomeryModInt<469762049>;\n  using Mint2 = MontgomeryModInt<167772161>;\n\
+    \ - 1 <= (1 << 23));\n  using Mint0 = Montgomery_modint<998244353>;\n  using Mint1\
+    \ = Montgomery_modint<469762049>;\n  using Mint2 = Montgomery_modint<167772161>;\n\
     \  NTT<23, 119, 3, Mint0> ntt0;\n  NTT<26, 7, 3, Mint1> ntt1;\n  NTT<25, 5, 3,\
     \ Mint2> ntt2;\n  const int sz = bit_ceil((ull)(2 * ssize(a) - 1));\n  vector<Mint0>\
     \ a0(sz);\n  vector<Mint1> a1(sz);\n  vector<Mint2> a2(sz);\n  for(int i = 0;\
@@ -78,8 +78,8 @@ data:
   isVerificationFile: false
   path: poly/convolution_ll.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 01:41:25+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/frequency_table_of_tree_distance.test.cpp
 documentation_of: poly/convolution_ll.cpp

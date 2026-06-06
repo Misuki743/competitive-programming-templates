@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/random.cpp
     title: misc/random.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -200,7 +200,7 @@ data:
   path: test/lca_2.test.cpp
   requiredBy: []
   timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca_2.test.cpp
 layout: document
