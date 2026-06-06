@@ -194,8 +194,8 @@ data:
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
     \  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint = Montgomery_modint<998'244'353>;\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return\
-    \ 0;\n}\n"
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n \
+    \ return 0;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -381,13 +381,13 @@ data:
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
     \  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint = Montgomery_modint<998'244'353>;\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return\
-    \ 0;\n}\n"
+    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n \
+    \ return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-06-07 03:24:28+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
