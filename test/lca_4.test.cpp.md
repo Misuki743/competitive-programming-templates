@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []

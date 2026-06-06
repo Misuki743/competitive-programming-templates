@@ -13,9 +13,6 @@ data:
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
   - icon: ':x:'
-    path: test/static_range_count_distinct.test.cpp
-    title: test/static_range_count_distinct.test.cpp
-  - icon: ':x:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
   _isVerificationFailed: true
@@ -59,7 +56,6 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/rectangle_add_point_get.test.cpp
-  - test/static_range_count_distinct.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/rectangle_sum.test.cpp
   - test/static_range_frequency.test.cpp

@@ -8,11 +8,8 @@ data:
     path: ds/fenwick_tree.cpp
     title: ds/fenwick_tree.cpp
   - icon: ':x:'
-    path: ds_problem/rangeCountDistinct.cpp
-    title: ds_problem/rangeCountDistinct.cpp
-  - icon: ':x:'
-    path: misc/compression.cpp
-    title: misc/compression.cpp
+    path: ds_problem/range_count_distinct.cpp
+    title: ds_problem/range_count_distinct.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -122,53 +119,33 @@ data:
     \ += 1; i < size; i += i & (-i))\n      data[i] += d;\n  }\n\n  T query(int i)\
     \ {\n    T res = T(0);\n    for(i += 1; i > 0; i -= i & (-i))\n      res += data[i];\n\
     \    return res;\n  }\n\n  T query(int l, int r) { //query [l, r)\n    return\
-    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"misc/compression.cpp\"\ntemplate<class\
-    \ T, bool duplicate = false>\nstruct compression {\n  vector<int> ord;\n  vector<T>\
-    \ val;\n\n  compression(vector<T> &init) : val(init) { precompute(); }\n  compression(int\
-    \ size = 0) { val.reserve(size); }\n\n  void precompute() {\n    vector<T> init\
-    \ = val;\n    ord.resize(ssize(val));\n    ranges::sort(val);\n    if constexpr\
-    \ (duplicate) {\n      vector<int> cnt(ssize(init));\n      iota(cnt.begin(),\
-    \ cnt.end(), 0);\n      for(int i = 0; i < ssize(ord); i++)\n        ord[i] =\
-    \ cnt[lower_bound(init[i])]++;\n    } else {\n      val.resize(unique(val.begin(),\
-    \ val.end()) - val.begin());\n      for(int i = 0; i < ssize(ord); i++)\n    \
-    \    ord[i] = lower_bound(init[i]);\n    }\n  }\n\n  int lower_bound(T x) { return\
-    \ ranges::lower_bound(val, x) - val.begin(); }\n  int size() { return ssize(val);\
-    \ }\n  template<ranges::range rng, class proj = identity>\n  void mapping(rng\
-    \ &v, proj p = {}) { for(auto &x : v) p(x) = lower_bound(p(x)); }\n  template<ranges::range\
-    \ rng, class proj = identity>\n  void insert(rng &v, proj p = {}) { for(auto &x\
-    \ : v) val.emplace_back(p(x)); }\n};\n#line 1 \"ds_problem/rangeCountDistinct.cpp\"\
-    \n//#include<ds/fenwickTree.cpp>\n//#include<misc/compression.cpp>\n\ntemplate<class\
-    \ T>\nvector<int> rangeCountDistinct(vector<T> a, vector<array<int, 2>> query)\
-    \ {\n  vector<int> b = [&]() {\n    compression ys(a);\n    return ys.ord;\n \
-    \ }();\n\n  vector<int> qId(ssize(query));\n  iota(qId.begin(), qId.end(), 0);\n\
-    \  ranges::sort(qId, less<int>{}, [&](auto &i) { return query[i][1]; });\n\n \
-    \ fenwickTree<int> ft(ssize(a));\n  vector<int> ans(ssize(query)), pos(ssize(b),\
-    \ -1);\n  for(int ptr = 0; int i : qId) {\n    auto [l, r] = query[i];\n    if\
-    \ (l == r) continue;\n    while(ptr < r) {\n      ft.add(pos[b[ptr]] + 1, 1);\n\
-    \      ft.add(ptr + 1, -1);\n      pos[b[ptr]] = ptr, ptr++;\n    }\n    ans[i]\
-    \ = ft.query(l);\n  }\n\n  return ans;\n}\n#line 7 \"test/static_range_count_distinct.test.cpp\"\
+    \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"ds_problem/range_count_distinct.cpp\"\
+    \n//#include<ds/fenwick_tree.cpp>\n\ntemplate<integral T>\nvi range_count_distinct(vc<T>\
+    \ a, vc<pii> query) {\n  vc<T> b = a;\n  Unique(b);\n  for(T &x : a)\n    x =\
+    \ ranges::lower_bound(b, x) - b.begin();\n\n  dbg(a);\n\n  vi ans(size(query)),\
+    \ pos(size(b), -1);\n  dbg(ssize(pos));\n  fenwick_tree<int> ft(ssize(a));\n \
+    \ for(int j = 0; int i : argSort(query, [](pii &p) { return p.second; })) {\n\
+    \    auto [l, r] = query[i];\n    while(j < r) {\n      if (pos[a[j]] != -1)\n\
+    \        ft.add(pos[a[j]], -1);\n      ft.add(j, 1);\n      pos[a[j]] = j, j++;\n\
+    \    }\n    ans[i] = ft.query(l, r);\n  }\n\n  return ans;\n}\n#line 6 \"test/static_range_count_distinct.test.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n  vector<array<int,\
-    \ 2>> query(q);\n  for(auto &[l, r] : query)\n    cin >> l >> r;\n\n  for(int\
-    \ x : rangeCountDistinct(a, query))\n    cout << x << '\\n';\n\n  return 0;\n\
-    }\n"
+    \ cin >> n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n  vc<pii> lr(q);\n\
+    \  for(auto &[l, r] : lr) cin >> l >> r;\n  for(int x : range_count_distinct(a,\
+    \ lr))\n    cout << x << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_count_distinct\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/fenwick_tree.cpp\"\n#include\
-    \ \"../misc/compression.cpp\"\n#include \"../ds_problem/rangeCountDistinct.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vector<int> a(n);\n  for(int &x : a)\n    cin >> x;\n  vector<array<int,\
-    \ 2>> query(q);\n  for(auto &[l, r] : query)\n    cin >> l >> r;\n\n  for(int\
-    \ x : rangeCountDistinct(a, query))\n    cout << x << '\\n';\n\n  return 0;\n\
-    }\n"
+    \ \"../ds_problem/range_count_distinct.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vi a(n);\n  for(int &x : a)\
+    \ cin >> x;\n  vc<pii> lr(q);\n  for(auto &[l, r] : lr) cin >> l >> r;\n  for(int\
+    \ x : range_count_distinct(a, lr))\n    cout << x << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/fenwick_tree.cpp
-  - misc/compression.cpp
-  - ds_problem/rangeCountDistinct.cpp
+  - ds_problem/range_count_distinct.cpp
   isVerificationFile: true
   path: test/static_range_count_distinct.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-07 01:25:54+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_range_count_distinct.test.cpp

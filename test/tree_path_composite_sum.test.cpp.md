@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []

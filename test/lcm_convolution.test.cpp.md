@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
     title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   _extendedRequiredBy: []

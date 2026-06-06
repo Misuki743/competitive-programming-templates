@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/jump_on_tree.test.cpp
     title: test/jump_on_tree.test.cpp
   - icon: ':x:'

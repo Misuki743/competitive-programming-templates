@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/double_ended_priority_queue.test.cpp
     title: test/double_ended_priority_queue.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/double_ended_PQ.cpp\"\ntemplate<class T>\nstruct double_ended_PQ\
@@ -38,7 +38,7 @@ data:
   path: ds/double_ended_PQ.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/double_ended_priority_queue.test.cpp
 documentation_of: ds/double_ended_PQ.cpp
