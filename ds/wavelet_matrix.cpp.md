@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest3.test.cpp
     title: test/range_kth_smallest3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/rectangle_sum2.test.cpp
     title: test/rectangle_sum2.test.cpp
   - icon: ':x:'

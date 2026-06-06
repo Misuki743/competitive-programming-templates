@@ -7,9 +7,6 @@ data:
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
-    path: test/chromatic_number.test.cpp
-    title: test/chromatic_number.test.cpp
-  - icon: ':x:'
     path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
     title: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   - icon: ':x:'
@@ -75,7 +72,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/binomial_coefficient_prime_mod.test.cpp
-  - test/chromatic_number.test.cpp
   - test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
 documentation_of: modint/dynamic_modint.cpp

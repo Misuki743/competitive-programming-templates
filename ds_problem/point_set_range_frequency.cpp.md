@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/point_set_range_frequency.cpp\"\n//#include<ds/fenwickTree.cpp>\n\
@@ -23,7 +23,7 @@ data:
     \  vector<int> solve() {\n    for(int i = 0; i < n; i++)\n      m.push_back({a[i],\
     \ now, i, false});\n    ranges::sort(q, {}, [&](auto &e) { return pair(e.x, e.t);\
     \ });\n    ranges::sort(m, {}, [&](auto &e) { return pair(e.x, e.t); });\n   \
-    \ vector<int> ans(ssize(q));\n    fenwickTree<int> ft(n);\n    for(int i = 0;\
+    \ vector<int> ans(ssize(q));\n    fenwick_tree<int> ft(n);\n    for(int i = 0;\
     \ auto [x, t, l, r, id] : q) {\n      while(i < ssize(m) and pair(m[i].x, m[i].t)\
     \ <= pair(x, t))\n        ft.add(m[i].i, m[i].add ? 1 : -1), i++;\n      ans[id]\
     \ = ft.query(l, r);\n    }\n    return ans;\n  }\n};\n"
@@ -38,7 +38,7 @@ data:
     \  }\n\n  vector<int> solve() {\n    for(int i = 0; i < n; i++)\n      m.push_back({a[i],\
     \ now, i, false});\n    ranges::sort(q, {}, [&](auto &e) { return pair(e.x, e.t);\
     \ });\n    ranges::sort(m, {}, [&](auto &e) { return pair(e.x, e.t); });\n   \
-    \ vector<int> ans(ssize(q));\n    fenwickTree<int> ft(n);\n    for(int i = 0;\
+    \ vector<int> ans(ssize(q));\n    fenwick_tree<int> ft(n);\n    for(int i = 0;\
     \ auto [x, t, l, r, id] : q) {\n      while(i < ssize(m) and pair(m[i].x, m[i].t)\
     \ <= pair(x, t))\n        ft.add(m[i].i, m[i].add ? 1 : -1), i++;\n      ans[id]\
     \ = ft.query(l, r);\n    }\n    return ans;\n  }\n};\n"
@@ -46,8 +46,8 @@ data:
   isVerificationFile: false
   path: ds_problem/point_set_range_frequency.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 02:34:04+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/point_set_range_frequency.test.cpp
 documentation_of: ds_problem/point_set_range_frequency.cpp

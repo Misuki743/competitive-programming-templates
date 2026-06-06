@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/two_square_sum.test.cpp
     title: test/two_square_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://maspypy.github.io/library/mod/min_of_linear.hpp
@@ -123,7 +123,7 @@ data:
   path: numtheory/two_square_sum.cpp
   requiredBy: []
   timestamp: '2026-04-03 23:26:29+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/two_square_sum.test.cpp
 documentation_of: numtheory/two_square_sum.cpp

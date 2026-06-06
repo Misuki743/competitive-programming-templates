@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_polynomial_operations.cpp
     title: poly/sparse_polynomial_operations.cpp
   _extendedRequiredBy: []

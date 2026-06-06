@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/associative_array.test.cpp
     title: test/associative_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/62393
@@ -37,7 +37,7 @@ data:
   path: ds/hash_table.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/associative_array.test.cpp
   - test/vertex_add_range_contour_sum_on_tree.test.cpp

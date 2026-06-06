@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"setfunc/fast_subset_transform.cpp\"\n//#include<poly/FPS.cpp>\n\
@@ -51,7 +51,7 @@ data:
   path: setfunc/fast_subset_transform.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/subset_convolution.test.cpp
 documentation_of: setfunc/fast_subset_transform.cpp

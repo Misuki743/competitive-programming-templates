@@ -18,7 +18,7 @@ data:
   - icon: ':x:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: true

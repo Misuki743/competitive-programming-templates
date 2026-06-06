@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/two_square_sum.test.cpp
     title: test/two_square_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/kth-competitive-programming/kactl)
@@ -70,7 +70,7 @@ data:
   path: numtheory/factorize_pollard_rho.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/primitive_root.test.cpp
   - test/two_square_sum.test.cpp
