@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/Montgomery_modint.cpp"
 #include "../ds/treap.cpp"
-#include "../actedmonoid/affine_sum.cpp"
+#include "../acted_monoid/affine_sum.cpp"
 
 using AM = affine_sum<mint>;
 using Treap = treap<AM::M, AM::Mid, AM::Mop, AM::T, AM::Tid, AM::Top, AM::act>;

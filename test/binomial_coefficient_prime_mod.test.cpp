@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../modint/dynamic_modint.cpp"
-#include "../combi/binom.cpp"
+#include "../combi/binomial.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

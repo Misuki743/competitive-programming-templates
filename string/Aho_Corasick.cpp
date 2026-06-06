@@ -1,4 +1,4 @@
-struct AhoCorasick {
+struct Aho_Corasick {
   struct node {
     static const int size = 26;
     int nxt[size], p, link = -1, ex = -1, leaf = 0;
@@ -10,7 +10,7 @@ struct AhoCorasick {
   };
 
   vector<node> v;
-  AhoCorasick(int sz) : v(1) {
+  Aho_Corasick(int sz) : v(1) {
     v.reserve(sz);
   }
 

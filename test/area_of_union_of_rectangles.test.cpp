@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../segtree/lazy_segment_tree.cpp"
 #include "../segtree/acted_monoid_segment_tree.cpp"
-#include "../actedmonoid/add_min_count.cpp"
+#include "../acted_monoid/add_min_count.cpp"
 #include "../ds_problem/area_of_union_of_rectangles.cpp"
 
 int main() {

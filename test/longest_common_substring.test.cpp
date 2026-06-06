@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/longest_common_substring"
 
 #include "../default/t.cpp"
-#include "../string/suffixArray.cpp"
+#include "../string/suffix_array.cpp"
 #include "../string/longest_common_substring.cpp"
 
 int main() {
