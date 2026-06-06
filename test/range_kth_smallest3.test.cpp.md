@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.cpp
     title: ds/wavelet_matrix.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -149,24 +149,24 @@ data:
     \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
     \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
     \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 5 \"test/range_kth_smallest3.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  wavelet_matrix<int,\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  wavelet_matrix<int,\
     \ 30> WM(a);\n\n  while(q--) {\n    int l, r, k; cin >> l >> r >> k;\n    cout\
     \ << WM.kth(l, r, k) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
-    #include \"../default/t.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  wavelet_matrix<int, 30>\
-    \ WM(a);\n\n  while(q--) {\n    int l, r, k; cin >> l >> r >> k;\n    cout <<\
-    \ WM.kth(l, r, k) << '\\n';\n  }\n\n  return 0;\n}\n"
+    #include \"../default/t.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\n\nint main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
+    \ q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  wavelet_matrix<int, 30> WM(a);\n\
+    \n  while(q--) {\n    int l, r, k; cin >> l >> r >> k;\n    cout << WM.kth(l,\
+    \ r, k) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/wavelet_matrix.cpp
   isVerificationFile: true
   path: test/range_kth_smallest3.test.cpp
   requiredBy: []
-  timestamp: '2026-04-19 19:02:40+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/range_kth_smallest3.test.cpp
 layout: document

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/enumerate_quotients.test.cpp
     title: test/enumerate_quotients.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/quotient_enumerate.cpp\"\ntemplate<typename F>\n\
@@ -35,7 +35,7 @@ data:
   path: numtheory/quotient_enumerate.cpp
   requiredBy: []
   timestamp: '2026-05-26 04:21:07+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/enumerate_quotients.test.cpp
 documentation_of: numtheory/quotient_enumerate.cpp

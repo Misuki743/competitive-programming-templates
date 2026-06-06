@@ -18,13 +18,13 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../modint/dynamicSimpleMint.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../combi/binom.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamicSimpleMint.cpp\"\
-    \n#include \"../combi/binom.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamic_modint.cpp\"\n\
+    #include \"../combi/binom.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int t, p; cin >> t >> p;\n  mint::set_mod(p);\n  binomial<mint>\
-    \ bn(min(p, 10000000));\n  while(t--) {\n    int n, k; cin >> n >> k;\n    cout\
+    \ bn(min(p, 10'000'000));\n  while(t--) {\n    int n, k; cin >> n >> k;\n    cout\
     \ << bn.binom(n, k) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true

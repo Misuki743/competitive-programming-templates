@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/line_add_get_min.test.cpp
+    title: test/line_add_get_min.test.cpp
+  - icon: ':x:'
+    path: test/segment_add_get_min.test.cpp
+    title: test/segment_add_get_min.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/Lichao_segment_tree.cpp\"\n//note: size should be\
@@ -60,8 +66,10 @@ data:
   path: segtree/Lichao_segment_tree.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/segment_add_get_min.test.cpp
+  - test/line_add_get_min.test.cpp
 documentation_of: segtree/Lichao_segment_tree.cpp
 layout: document
 redirect_from:

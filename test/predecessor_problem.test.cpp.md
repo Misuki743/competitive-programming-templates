@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fast_set.cpp
     title: ds/fast_set.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
@@ -134,14 +134,14 @@ data:
     \ B)) {\n        i64 y = x;\n        for(i64 j = i; j >= 0; j--)\n          y\
     \ = (y - countl_zero(data[j][y / B] << (B - 1 - y % B))) * B + (B - 1);\n    \
     \    return y / B;\n      }\n    }\n    return -1;\n  }\n};\n#line 5 \"test/predecessor_problem.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  string t; cin >> t;\n  fast_set s(t);\n  while(q--) {\n\
-    \    int c, k; cin >> c >> k;\n    if (c == 0) s.insert(k);\n    if (c == 1) s.erase(k);\n\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  string t; cin >> t;\n  fast_set s(t);\n  while(q--) {\n  \
+    \  int c, k; cin >> c >> k;\n    if (c == 0) s.insert(k);\n    if (c == 1) s.erase(k);\n\
     \    if (c == 2) cout << s.contains(k) << '\\n';\n    if (c == 3) {\n      int\
     \ x = s.geq(k);\n      cout << (x == n ? -1 : x) << '\\n';\n    }\n    if (c ==\
     \ 4) cout << s.leq(k) << '\\n';\n  }\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
-    \n#include \"../default/t.cpp\"\n#include \"../ds/fast_set.cpp\"\n\nsigned main()\
+    \n#include \"../default/t.cpp\"\n#include \"../ds/fast_set.cpp\"\n\nint main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
     \ q;\n  string t; cin >> t;\n  fast_set s(t);\n  while(q--) {\n    int c, k; cin\
     \ >> c >> k;\n    if (c == 0) s.insert(k);\n    if (c == 1) s.erase(k);\n    if\
@@ -154,8 +154,8 @@ data:
   isVerificationFile: true
   path: test/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/predecessor_problem.test.cpp
 layout: document

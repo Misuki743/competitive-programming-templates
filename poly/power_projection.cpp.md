@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/compositional_inverse_of_formal_power_series_large.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2024/03/16/224034
@@ -64,8 +67,9 @@ data:
   path: poly/power_projection.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
 documentation_of: poly/power_projection.cpp
 layout: document
 redirect_from:

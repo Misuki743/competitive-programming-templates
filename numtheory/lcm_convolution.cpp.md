@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/lcm_convolution.test.cpp
+    title: test/lcm_convolution.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/lcm_convolution.cpp\"\n//#include \"numtheory/linear_sieve.cpp\"\
@@ -24,8 +27,9 @@ data:
   path: numtheory/lcm_convolution.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/lcm_convolution.test.cpp
 documentation_of: numtheory/lcm_convolution.cpp
 layout: document
 redirect_from:

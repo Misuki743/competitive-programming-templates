@@ -18,13 +18,13 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../segtree/lazySegmentTree.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../actedmonoid/add_min.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_add_range_min\"\n\
-    \n#include \"../default/t.cpp\"\n#include \"../segtree/lazySegmentTree.cpp\"\n\
-    #include \"../segtree/ultraLazySegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_addMin.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a) cin >> x;\n  ultraLazySegmentTree<actedMonoid_addMin<ll>>\
+    \n#include \"../default/t.cpp\"\n#include \"../segtree/lazy_segment_tree.cpp\"\
+    \n#include \"../segtree/acted_monoid_segment_tree.cpp\"\n#include \"../actedmonoid/add_min.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  vector<ll> a(n);\n  for(ll &x : a) cin >> x;\n  acted_monoid_segment_tree<add_min<ll>>\
     \ st(a);\n\n  while(q--) {\n    int op, l, r; cin >> op >> l >> r;\n    if (op\
     \ == 0) {\n      int x; cin >> x;\n      st.modify(l, r, x);\n    } else {\n \
     \     cout << st.query(l, r) << '\\n';\n    }\n  }\n\n  return 0;\n}\n\n"

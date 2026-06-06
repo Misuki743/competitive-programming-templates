@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/Manacher.cpp
     title: string/Manacher.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
@@ -115,11 +115,11 @@ data:
     }\n\nvector<int> enumeratePalindrome(string &s) {\n  string t = \"#\";\n  for(char\
     \ c : s)\n    t += c, t += '#';\n  vector<int> p = Manacher(t);\n  for(int &x\
     \ : p)\n    x -= 1;\n  return vector<int>(p.begin() + 1, p.end() - 1);\n}\n#line\
-    \ 5 \"test/enumerate_palindromes.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ 5 \"test/enumerate_palindromes.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  string s; cin >> s;\n  cout << enumeratePalindrome(s) <<\
     \ '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../string/Manacher.cpp\"\n\nsigned\
+    \n\n#include \"../default/t.cpp\"\n#include \"../string/Manacher.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  string s; cin >>\
     \ s;\n  cout << enumeratePalindrome(s) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
@@ -128,8 +128,8 @@ data:
   isVerificationFile: true
   path: test/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/enumerate_palindromes.test.cpp
 layout: document

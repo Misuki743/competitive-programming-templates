@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -142,7 +142,7 @@ data:
     \ return;\n  {\n    prime_table<N> pt;\n\n    vi primes;\n    for(int i = 0; i\
     \ < N; i++) {\n      assert(pt.is_prime(i) == is_prime[i]);\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
-    \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  check_small();\n\n  is_prime.set();\n  is_prime[0] = is_prime[1]\
     \ = false;\n  for(int i = 2; i < (1 << 22); i++)\n    if (is_prime[i])\n     \
     \ for(int j = 2 * i; j < (1 << 22); j += i)\n        is_prime[j] = false;\n  check_power();\n\
@@ -161,7 +161,7 @@ data:
     \  {\n    prime_table<N> pt;\n\n    vi primes;\n    for(int i = 0; i < N; i++)\
     \ {\n      assert(pt.is_prime(i) == is_prime[i]);\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
-    \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  check_small();\n\n  is_prime.set();\n  is_prime[0] = is_prime[1]\
     \ = false;\n  for(int i = 2; i < (1 << 22); i++)\n    if (is_prime[i])\n     \
     \ for(int j = 2 * i; j < (1 << 22); j += i)\n        is_prime[j] = false;\n  check_power();\n\
@@ -172,8 +172,8 @@ data:
   isVerificationFile: true
   path: test/mytest_prime_table.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_prime_table.test.cpp
 layout: document

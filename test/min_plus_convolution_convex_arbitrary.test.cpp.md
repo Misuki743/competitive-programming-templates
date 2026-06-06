@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/min_plus_convolution.cpp
     title: poly/min_plus_convolution.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary
@@ -117,24 +117,24 @@ data:
     \        best = j;\n    if (l + 1 != r) {\n      self(l, mid, ql, best, self);\n\
     \      self(mid, r, best, qr, self);\n    }\n  };\n  dc(0, ssize(c), 0, ssize(b)\
     \ - 1, dc);\n  return c;\n}\n#line 5 \"test/min_plus_convolution_convex_arbitrary.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<int> a(n), b(m);\n  for(int &x : a) cin >> x;\n\
-    \  for(int &x : b) cin >> x;\n\n  cout << min_plus_convolution(a, b) << '\\n';\n\
-    \n  return 0;\n}\n\n"
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
+    \ cin >> n >> m;\n  vector<int> a(n), b(m);\n  for(int &x : a) cin >> x;\n  for(int\
+    \ &x : b) cin >> x;\n\n  cout << min_plus_convolution(a, b) << '\\n';\n\n  return\
+    \ 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_plus_convolution_convex_arbitrary\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../poly/min_plus_convolution.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<int> a(n), b(m);\n  for(int &x : a) cin >> x;\n\
-    \  for(int &x : b) cin >> x;\n\n  cout << min_plus_convolution(a, b) << '\\n';\n\
-    \n  return 0;\n}\n\n"
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
+    \ cin >> n >> m;\n  vector<int> a(n), b(m);\n  for(int &x : a) cin >> x;\n  for(int\
+    \ &x : b) cin >> x;\n\n  cout << min_plus_convolution(a, b) << '\\n';\n\n  return\
+    \ 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - poly/min_plus_convolution.cpp
   isVerificationFile: true
   path: test/min_plus_convolution_convex_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/min_plus_convolution_convex_arbitrary.test.cpp
 layout: document

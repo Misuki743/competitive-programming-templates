@@ -3,24 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/chromatic_number.test.cpp
+    title: test/chromatic_number.test.cpp
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_factorize_sqrt.test.cpp
     title: test/mytest_factorize_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/two_square_sum.test.cpp
     title: test/two_square_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/kth-competitive-programming/kactl)
@@ -67,10 +70,11 @@ data:
   path: numtheory/factorize_pollard_rho.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/primitive_root.test.cpp
   - test/two_square_sum.test.cpp
+  - test/chromatic_number.test.cpp
   - test/mytest_factorize_sqrt.test.cpp
   - test/factorize.test.cpp
   - test/primality_test.test.cpp

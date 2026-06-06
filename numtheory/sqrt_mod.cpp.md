@@ -2,10 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/inv_of_formal_power_series_sparse.test.cpp
+    title: test/inv_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_formal_power_series_sparse.test.cpp
+    title: test/pow_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series.test.cpp
+    title: test/sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series_sparse.test.cpp
+    title: test/sqrt_of_formal_power_series_sparse.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\nll modpow(ll\
@@ -39,8 +51,12 @@ data:
   path: numtheory/sqrt_mod.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series.test.cpp
 documentation_of: numtheory/sqrt_mod.cpp
 layout: document
 redirect_from:

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/frequency_table_of_tree_distance.test.cpp
+    title: test/frequency_table_of_tree_distance.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/frequency_of_tree_distance.cpp\"\nvll frequency_of_tree_distance(vvi\
@@ -44,8 +47,9 @@ data:
   path: ds_problem/frequency_of_tree_distance.cpp
   requiredBy: []
   timestamp: '2026-03-22 19:35:41+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/frequency_table_of_tree_distance.test.cpp
 documentation_of: ds_problem/frequency_of_tree_distance.cpp
 layout: document
 redirect_from:

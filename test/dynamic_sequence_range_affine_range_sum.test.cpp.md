@@ -18,19 +18,19 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../modint/MontgomeryModInt.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../actedmonoid/affine_sum.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../ds/treap.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\nusing Treap = treap<am::M, am::Mid,\
-    \ am::Mop, am::T, am::Tid, am::Top, am::act>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../ds/treap.cpp\"\n#include \"../actedmonoid/affine_sum.cpp\"\n\n\
+    using AM = affine_sum<mint>;\nusing Treap = treap<AM::M, AM::Mid, AM::Mop, AM::T,\
+    \ AM::Tid, AM::Top, AM::act>;\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<array<mint, 2>> a(n,\
     \ {0, 1});\n  for(auto &[x, _] : a)\n    cin >> x;\n\n  Treap::node* tr = Treap::build(a);\n\
     \n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int i, x; cin\
     \ >> i >> x;\n      Treap::insert(tr, i, {x, 1});\n    } else if (t == 1) {\n\
     \      int i; cin >> i;\n      Treap::erase(tr, i);\n    } else if (t == 2) {\n\
-    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, am::Tid(), true);\n\
+    \      int l, r; cin >> l >> r;\n      Treap::modify(tr, l, r, AM::Tid(), true);\n\
     \    } else if (t == 3) {\n      int l, r, b, c; cin >> l >> r >> b >> c;\n  \
     \    Treap::modify(tr, l, r, {b, c});\n    } else if (t == 4) {\n      int l,\
     \ r; cin >> l >> r;\n      cout << Treap::query(tr, l, r)[0] << '\\n';\n    }\n\

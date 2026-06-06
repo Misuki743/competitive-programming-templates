@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/sharp_p_subset_sum.test.cpp
+    title: test/sharp_p_subset_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/sharp_P_subset_sum.cpp\"\n//#include<modint/MontgomeryModInt>\n\
@@ -30,8 +33,9 @@ data:
   path: misc/sharp_P_subset_sum.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/sharp_p_subset_sum.test.cpp
 documentation_of: misc/sharp_P_subset_sum.cpp
 layout: document
 redirect_from:

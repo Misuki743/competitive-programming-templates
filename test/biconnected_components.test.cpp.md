@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -136,7 +136,7 @@ data:
     \ < size; i++)\n      for(int v : vertexGroup(i))\n        if (isCutVertex(v))\
     \ {\n          g[i + n].emplace_back(v);\n          g[v].emplace_back(i + n);\n\
     \          mp[v] = v;\n        }\n    return make_pair(g, mp);\n  }\n};\n#line\
-    \ 5 \"test/biconnected_components.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ 5 \"test/biconnected_components.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n\
     \  for(auto &[u, v] : e) cin >> u >> v;\n\n  BCC bcc(e, n);\n\n  cout << bcc.size\
     \ << '\\n';\n  for(int g = 0; g < bcc.size; g++) {\n    auto gv = bcc.vertexGroup(g);\n\
@@ -144,9 +144,9 @@ data:
     \ << '\\n';\n  }\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/biconnected_components\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../graph/connectivity/BCC.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
-    \ cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >>\
-    \ u >> v;\n\n  BCC bcc(e, n);\n\n  cout << bcc.size << '\\n';\n  for(int g = 0;\
+    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin\
+    \ >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >> u\
+    \ >> v;\n\n  BCC bcc(e, n);\n\n  cout << bcc.size << '\\n';\n  for(int g = 0;\
     \ g < bcc.size; g++) {\n    auto gv = bcc.vertexGroup(g);\n    cout << ssize(gv);\n\
     \    for(int v : gv)\n      cout << ' ' << v;\n    cout << '\\n';\n  }\n\n  return\
     \ 0;\n}\n\n"
@@ -156,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/biconnected_components.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/biconnected_components.test.cpp

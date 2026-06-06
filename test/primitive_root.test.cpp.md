@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/primitive_root.cpp
     title: numtheory/primitive_root.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primitive_root
@@ -136,12 +136,12 @@ data:
     \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
     \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
     \ = unif(rng)));\n  return root;\n}\n#line 6 \"test/primitive_root.test.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
+    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
     \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << primitiveRoot(x) <<\
     \ '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\
-    #include \"../numtheory/primitive_root.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    #include \"../numtheory/primitive_root.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
     \    cout << primitiveRoot(x) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
@@ -151,8 +151,8 @@ data:
   isVerificationFile: true
   path: test/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/primitive_root.test.cpp
 layout: document

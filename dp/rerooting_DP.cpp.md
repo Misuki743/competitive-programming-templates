@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/tree_path_composite_sum.test.cpp
+    title: test/tree_path_composite_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/rerooting_DP.cpp\"\ntemplate<class V, class E>\nstruct\
@@ -70,8 +73,9 @@ data:
   path: dp/rerooting_DP.cpp
   requiredBy: []
   timestamp: '2026-03-22 17:48:48+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/tree_path_composite_sum.test.cpp
 documentation_of: dp/rerooting_DP.cpp
 layout: document
 redirect_from:

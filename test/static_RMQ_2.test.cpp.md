@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -126,13 +126,12 @@ data:
     \    T ret = min(query(l, l + w), query(r - w, r));\n      l = (l + w) >> lgw,\
     \ r >>= lgw;\n      if (l == r) return ret;\n      int range = bit_width((unsigned)(r\
     \ - l)) - 1;\n      return min({ret, table[range][l], table[range][r - (1 << range)]});\n\
-    \    }\n  }\n};\n#line 5 \"test/static_RMQ_2.test.cpp\"\n\nsigned main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
-    \  vector<int> a(n);\n  for(int &x : a) cin >> x;\n\n  RMQ rmq(a);\n\n  while(q--)\
-    \ {\n    int l, r; cin >> l >> r;\n    cout << rmq.query(l, r) << '\\n';\n  }\n\
-    \n  return 0;\n}\n"
+    \    }\n  }\n};\n#line 5 \"test/static_RMQ_2.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
+    \ &x : a) cin >> x;\n\n  RMQ rmq(a);\n\n  while(q--) {\n    int l, r; cin >> l\
+    \ >> r;\n    cout << rmq.query(l, r) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../ds/RMQ.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ \"../default/t.cpp\"\n#include \"../ds/RMQ.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a) cin >> x;\n\n  RMQ rmq(a);\n\n  while(q--) {\n    int l, r; cin >> l\
     \ >> r;\n    cout << rmq.query(l, r) << '\\n';\n  }\n\n  return 0;\n}\n"
@@ -142,8 +141,8 @@ data:
   isVerificationFile: true
   path: test/static_RMQ_2.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_RMQ_2.test.cpp
 layout: document

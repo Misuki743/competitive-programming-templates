@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/DSU/DSU.cpp
     title: ds/DSU/DSU.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree/Kruskal.cpp
     title: graph/minimum_spanning_tree/Kruskal.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/minimum_spanning_tree
@@ -131,14 +131,14 @@ data:
     \ int, T> &t) { return get<2>(t); });\n  }\n\n  T cost = 0;\n  vi eid;\n  DSU\
     \ dsu(n);\n  for(int i : ord) {\n    auto [u, v, w] = e[i];\n    if (dsu.merge(u,\
     \ v))\n      cost += w, eid.emplace_back(i);\n  }\n\n  return pair(cost, eid);\n\
-    }\n#line 6 \"test/minimum_spanning_tree_Kruskal.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
+    }\n#line 6 \"test/minimum_spanning_tree_Kruskal.test.cpp\"\n\nint main() {\n \
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
     \  vector<tuple<int, int, ll>> e(m);\n  for(auto &[u, v, w] : e)\n    cin >> u\
     \ >> v >> w;\n\n  auto [cost, eid] = Kruskal(n, e);\n  cout << cost << '\\n';\n\
     \  cout << eid << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/DSU/DSU.cpp\"\n#include \"\
-    ../graph/minimum_spanning_tree/Kruskal.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    ../graph/minimum_spanning_tree/Kruskal.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<tuple<int, int, ll>>\
     \ e(m);\n  for(auto &[u, v, w] : e)\n    cin >> u >> v >> w;\n\n  auto [cost,\
     \ eid] = Kruskal(n, e);\n  cout << cost << '\\n';\n  cout << eid << '\\n';\n\n\
@@ -150,8 +150,8 @@ data:
   isVerificationFile: true
   path: test/minimum_spanning_tree_Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/minimum_spanning_tree_Kruskal.test.cpp
 layout: document

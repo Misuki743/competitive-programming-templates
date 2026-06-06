@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor_basis_bitset.cpp
     title: linalg/xor_basis_bitset.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_rank_mod_2
@@ -122,15 +122,15 @@ data:
     \ m);\n    return;\n  }\n  xor_basis<size> b;\n  while(n--) {\n    string s; cin\
     \ >> s;\n    b.insert(bitset<size>(s));\n  }\n  int rank = 0;\n  for(int i = 0;\
     \ i < size; i++)\n    rank += b.B[i] != nullptr;\n  cout << rank << '\\n';\n}\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
-    \ cin >> n >> m;\n  solve(n, m);\n\n  return 0;\n}\n"
+    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin\
+    \ >> n >> m;\n  solve(n, m);\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank_mod_2\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../linalg/xor_basis_bitset.cpp\"\n\n\
     template<int size = 1>\nvoid solve(int n, int m) {\n  if (size < m) {\n    solve<min(2\
     \ * size, 1 << 24)>(n, m);\n    return;\n  }\n  xor_basis<size> b;\n  while(n--)\
     \ {\n    string s; cin >> s;\n    b.insert(bitset<size>(s));\n  }\n  int rank\
     \ = 0;\n  for(int i = 0; i < size; i++)\n    rank += b.B[i] != nullptr;\n  cout\
-    \ << rank << '\\n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \ << rank << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  int n, m; cin >> n >> m;\n  solve(n, m);\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
@@ -138,8 +138,8 @@ data:
   isVerificationFile: true
   path: test/matrix_rank_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/matrix_rank_mod_2.test.cpp
 layout: document

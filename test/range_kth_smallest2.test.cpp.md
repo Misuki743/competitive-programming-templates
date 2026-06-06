@@ -23,7 +23,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../misc/compression.cpp\"\n#include\
     \ \"../segtree/persistentSegmentTree.cpp\"\n\nint id() { return 0; }\nint op(const\
-    \ int &a, const int &b) { return a + b; }\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ int &a, const int &b) { return a + b; }\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n\n  compression<int, true> xs(a);\n  persistentSegmentTree<int,\
     \ id, op> st(2 * n + n * (bit_width((unsigned)n) + 1));\n  vector<int> root(n\

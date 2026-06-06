@@ -22,7 +22,7 @@ data:
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../misc/compression.cpp\"\n#include\
-    \ \"../ds/waveletMatrix.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ \"../ds/waveletMatrix.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n\n  compression<int> xs(a);\n  waveletMatrix<int, 17>\
     \ wv(xs.ord);\n\n  while(q--) {\n    int l, r, k; cin >> l >> r >> k;\n    cout\

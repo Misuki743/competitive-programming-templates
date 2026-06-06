@@ -18,17 +18,17 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../modint/MontgomeryModInt.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../actedmonoid/affine_sum.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_set_range_composite\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/rangeSetSegmentTree.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../segtree/range_set_segment_tree.cpp\"\n#include \"../actedmonoid/affine_sum.cpp\"\
+    \n\nusing am = affine_sum<mint>;\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<am::T> ab(n);\n  for(auto\
-    \ &[a, b] : ab)\n    cin >> a >> b;\n\n  rangeSetSegmentTree<am::T, am::Tid, am::Top>\
-    \ st(ab);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int\
-    \ l, r, c, d; cin >> l >> r >> c >> d;\n      st.set(l, r, am::T{c, d});\n   \
-    \ } else {\n      int l, r, x; cin >> l >> r >> x;\n      cout << am::Top(am::T{0,\
+    \ &[a, b] : ab)\n    cin >> a >> b;\n\n  range_set_segment_tree<am::T, am::Tid,\
+    \ am::Top> st(ab);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n\
+    \      int l, r, c, d; cin >> l >> r >> c >> d;\n      st.set(l, r, am::T{c, d});\n\
+    \    } else {\n      int l, r, x; cin >> l >> r >> x;\n      cout << am::Top(am::T{0,\
     \ x}, st.query(l, r))[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true

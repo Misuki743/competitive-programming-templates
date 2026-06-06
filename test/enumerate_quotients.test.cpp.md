@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/quotient_enumerate.cpp
     title: numtheory/quotient_enumerate.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
@@ -117,16 +117,16 @@ data:
     \ {\n    ll q = (n + i - 1) / i;\n    f(q, (n + q - 1) / q, (n + q - 2) / (q -\
     \ 1));\n  }\n  for(ll q = m; q >= 2; q--)\n    f(q, (n + q - 1) / q, (n + q -\
     \ 2) / (q - 1));\n  f(1, n, n + 1);\n}\n#line 5 \"test/enumerate_quotients.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
-    \ cin >> n;\n  ll x = sqrtl(n);\n  while(x * (x + 1) <= n) x++;\n  cout << n /\
-    \ x + x - 1 << '\\n';\n  vll sol;\n  sol.reserve(n / x + x - 1);\n  quotient_floor_enumerate(n,\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n; cin\
+    \ >> n;\n  ll x = sqrtl(n);\n  while(x * (x + 1) <= n) x++;\n  cout << n / x +\
+    \ x - 1 << '\\n';\n  vll sol;\n  sol.reserve(n / x + x - 1);\n  quotient_floor_enumerate(n,\
     \ [&](ll v, ll, ll) { sol.eb(v); });\n  ranges::reverse(sol);\n  cout << sol <<\
     \ '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     \n#include \"../default/t.cpp\"\n#include \"../numtheory/quotient_enumerate.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n;\
-    \ cin >> n;\n  ll x = sqrtl(n);\n  while(x * (x + 1) <= n) x++;\n  cout << n /\
-    \ x + x - 1 << '\\n';\n  vll sol;\n  sol.reserve(n / x + x - 1);\n  quotient_floor_enumerate(n,\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  ll n; cin\
+    \ >> n;\n  ll x = sqrtl(n);\n  while(x * (x + 1) <= n) x++;\n  cout << n / x +\
+    \ x - 1 << '\\n';\n  vll sol;\n  sol.reserve(n / x + x - 1);\n  quotient_floor_enumerate(n,\
     \ [&](ll v, ll, ll) { sol.eb(v); });\n  ranges::reverse(sol);\n  cout << sol <<\
     \ '\\n';\n\n  return 0;\n}\n"
   dependsOn:
@@ -135,8 +135,8 @@ data:
   isVerificationFile: true
   path: test/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2026-05-26 04:21:07+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/enumerate_quotients.test.cpp
 layout: document

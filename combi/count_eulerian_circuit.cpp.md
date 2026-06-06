@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/counting_eulerian_circuits.test.cpp
+    title: test/counting_eulerian_circuits.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/count_eulerian_circuit.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -22,7 +25,7 @@ data:
     \  vector<tuple<int, int, Mint>> ep(ssize(e));\n  for(int i = 0; auto [u, v] :\
     \ e)\n    ep[i++] = {u, v, Mint(1)};\n  \n  Mint c = 1;\n  binomial<Mint> bn(ssize(e));\n\
     \  for(int v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return\
-    \ c * countSpanningForest<Mint, true>(ep, n, r);\n}\n"
+    \ c * count_spanning_forest<Mint, true>(ep, n, r);\n}\n"
   code: "//#include \"modint/MontgomeryModInt.cpp\"\n//#include \"linalg/matrixMint.cpp\"\
     \n//#include \"combi/countSpanningForest.cpp\"\n//#include \"combi/binom.cpp\"\
     \n\ntemplate<class Mint>\nMint count_eulerian_circuit(vector<array<int, 2>> e,\
@@ -36,15 +39,16 @@ data:
     \    if (deg[v] != 0) return Mint(0);\n    else r.emplace_back(v);\n  }\n\n  vector<tuple<int,\
     \ int, Mint>> ep(ssize(e));\n  for(int i = 0; auto [u, v] : e)\n    ep[i++] =\
     \ {u, v, Mint(1)};\n  \n  Mint c = 1;\n  binomial<Mint> bn(ssize(e));\n  for(int\
-    \ v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return c * countSpanningForest<Mint,\
+    \ v = 0; v < n; v++)\n    c *= bn.fac(max(deg[v] - 1, 0));\n\n  return c * count_spanning_forest<Mint,\
     \ true>(ep, n, r);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: combi/count_eulerian_circuit.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/counting_eulerian_circuits.test.cpp
 documentation_of: combi/count_eulerian_circuit.cpp
 layout: document
 redirect_from:

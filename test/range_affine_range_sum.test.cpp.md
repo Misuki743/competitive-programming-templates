@@ -18,19 +18,18 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../modint/MontgomeryModInt.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../actedmonoid/affine_sum.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../segtree/lazySegmentTree.cpp\"\n#include \"../segtree/ultraLazySegmentTree.cpp\"\
-    \n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\n\nsigned main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
-    \  vector<array<mint, 2>> a(n);\n  for(auto &[x, s] : a) {\n    cin >> x;\n  \
-    \  s = 1;\n  }\n\n  ultraLazySegmentTree<actedMonoid_affineSum<mint>> st(a);\n\
-    \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l, r, b, c;\
-    \ cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n   \
-    \ } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0] <<\
-    \ '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../segtree/lazy_segment_tree.cpp\"\n#include \"../segtree/acted_monoid_segment_tree.cpp\"\
+    \n#include \"../actedmonoid/affine_sum.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<array<mint, 2>> a(n);\n\
+    \  for(auto &[x, s] : a) {\n    cin >> x;\n    s = 1;\n  }\n\n  acted_monoid_segment_tree<affine_sum<mint>>\
+    \ st(a);\n  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      int l,\
+    \ r, b, c; cin >> l >> r >> b >> c;\n      st.modify(l, r, array<mint, 2>{b, c});\n\
+    \    } else {\n      int l, r; cin >> l >> r;\n      cout << st.query(l, r)[0]\
+    \ << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test/range_affine_range_sum.test.cpp

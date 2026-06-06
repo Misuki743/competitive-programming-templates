@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primality_test
@@ -126,14 +126,13 @@ data:
     \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 5 \"test/primality_test.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--)\
-    \ {\n    ull x; cin >> x;\n    cout << (isPrime(x) ? \"Yes\\n\" : \"No\\n\");\n\
-    \  }\n\n  return 0;\n}\n"
+    \treturn l;\n}\n#line 5 \"test/primality_test.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--) {\n    ull x; cin >> x;\n\
+    \    cout << (isPrime(x) ? \"Yes\\n\" : \"No\\n\");\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\n\
-    signed main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
-    \ >> q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << (isPrime(x) ? \"Yes\\\
+    int main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >>\
+    \ q;\n  while(q--) {\n    ull x; cin >> x;\n    cout << (isPrime(x) ? \"Yes\\\
     n\" : \"No\\n\");\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
@@ -141,8 +140,8 @@ data:
   isVerificationFile: true
   path: test/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/primality_test.test.cpp
 layout: document

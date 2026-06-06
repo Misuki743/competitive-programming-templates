@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -114,11 +114,11 @@ data:
     \ != -1)\n        p[last_pop] = j;\n      last_pop = j;\n    }\n    if (last_pop\
     \ != -1)\n      p[last_pop] = i;\n    s.emplace_back(i);\n  }\n\n  p[s[0]] = s[0];\n\
     \  for(int i = 1; i < ssize(s); i++)\n    p[s[i]] = s[i - 1];\n\n  return p;\n\
-    }\n#line 5 \"test/cartesian_tree.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    }\n#line 5 \"test/cartesian_tree.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\
     \  cout << cartesian_tree(a) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../tree/cartesian_tree.cpp\"\n\nsigned main()\
+    \ \"../default/t.cpp\"\n#include \"../tree/cartesian_tree.cpp\"\n\nint main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vi\
     \ a(n);\n  for(int &x : a) cin >> x;\n  cout << cartesian_tree(a) << '\\n';\n\n\
     \  return 0;\n}\n\n"
@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/cartesian_tree.test.cpp

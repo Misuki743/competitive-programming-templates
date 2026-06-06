@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/divisor_table.cpp
     title: numtheory/divisor_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -124,8 +124,8 @@ data:
     \ x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x\
     \ % d == 0)\n        divisor.emplace_back(d);\n    assert(divisor == dt.divisor(x));\n\
     \  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\\
-    n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n \
-    \ test_small();\n  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  test_small();\n\
+    \  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/divisor_table.cpp\"\n\ntemplate<int32_t\
     \ sz = 128>\nvoid test_small() {\n  if (sz == 0) return;\n  test_small<max(sz\
@@ -137,16 +137,16 @@ data:
     \ x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x\
     \ % d == 0)\n        divisor.emplace_back(d);\n    assert(divisor == dt.divisor(x));\n\
     \  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\\
-    n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n \
-    \ test_small();\n  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  test_small();\n\
+    \  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/divisor_table.cpp
   isVerificationFile: true
   path: test/mytest_divisor_table.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_divisor_table.test.cpp
 layout: document

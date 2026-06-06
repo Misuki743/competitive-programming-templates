@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -129,24 +129,24 @@ data:
     \      }\n      j0 = j1;\n    } while(p[j0]);\n    while(j0) {\n      int j1 =\
     \ pre[j0];\n      p[j0] = p[j1], j0 = j1;\n    }\n  }\n  for(int j = 1; j < m;\
     \ j++) if (p[j]) ans[p[j] - 1] = j - 1;\n  return {-v[0], ans};\n}\n#line 5 \"\
-    test/assignment_problem.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    test/assignment_problem.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector a(n, vector<ll>(n));\n  for(auto\
     \ &v : a)\n    for(ll &x : v)\n      cin >> x;\n\n  auto [cost, tob] = hungarian<ll,\
     \ LLONG_MAX>(a);\n  cout << cost << '\\n';\n  cout << tob << '\\n';\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../graph/matching/hungarian.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n\
-    \  vector a(n, vector<ll>(n));\n  for(auto &v : a)\n    for(ll &x : v)\n     \
-    \ cin >> x;\n\n  auto [cost, tob] = hungarian<ll, LLONG_MAX>(a);\n  cout << cost\
-    \ << '\\n';\n  cout << tob << '\\n';\n\n  return 0;\n}\n"
+    \ \"../default/t.cpp\"\n#include \"../graph/matching/hungarian.cpp\"\n\nint main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector\
+    \ a(n, vector<ll>(n));\n  for(auto &v : a)\n    for(ll &x : v)\n      cin >> x;\n\
+    \n  auto [cost, tob] = hungarian<ll, LLONG_MAX>(a);\n  cout << cost << '\\n';\n\
+    \  cout << tob << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - graph/matching/hungarian.cpp
   isVerificationFile: true
   path: test/assignment_problem.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/assignment_problem.test.cpp

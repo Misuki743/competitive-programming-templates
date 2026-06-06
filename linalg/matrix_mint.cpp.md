@@ -2,10 +2,37 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/counting_eulerian_circuits.test.cpp
+    title: test/counting_eulerian_circuits.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/counting_spanning_tree_directed.test.cpp
+    title: test/counting_spanning_tree_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/counting_spanning_tree_undirected.test.cpp
+    title: test/counting_spanning_tree_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/determinant_of_matrix.test.cpp
+    title: test/determinant_of_matrix.test.cpp
+  - icon: ':x:'
+    path: test/inverse_matrix.test.cpp
+    title: test/inverse_matrix.test.cpp
+  - icon: ':x:'
+    path: test/matrix_product.test.cpp
+    title: test/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/matrix_rank.test.cpp
+    title: test/matrix_rank.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_matrix.test.cpp
+    title: test/pow_of_matrix.test.cpp
+  - icon: ':x:'
+    path: test/system_of_linear_equations.test.cpp
+    title: test/system_of_linear_equations.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_mint.cpp\"\ntemplate<class Mint>\nstruct matrix\
@@ -141,8 +168,17 @@ data:
   path: linalg/matrix_mint.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/inverse_matrix.test.cpp
+  - test/counting_spanning_tree_directed.test.cpp
+  - test/pow_of_matrix.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
+  - test/determinant_of_matrix.test.cpp
+  - test/system_of_linear_equations.test.cpp
+  - test/matrix_rank.test.cpp
+  - test/matrix_product.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
 documentation_of: linalg/matrix_mint.cpp
 layout: document
 redirect_from:

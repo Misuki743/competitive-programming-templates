@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix.cpp
     title: ds/wavelet_matrix.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -149,9 +149,9 @@ data:
     \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
     \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
     \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 5 \"test/rectangle_sum2.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vc<tuple<int, int, int>> xyw(n);\n  for(auto &[x, y, w]\
-    \ : xyw) \n    cin >> x >> y >> w;\n\n  vi xs, ys;\n  for(auto [x, y, w] : xyw)\n\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  vc<tuple<int, int, int>> xyw(n);\n  for(auto &[x, y, w] :\
+    \ xyw) \n    cin >> x >> y >> w;\n\n  vi xs, ys;\n  for(auto [x, y, w] : xyw)\n\
     \    xs.eb(x), ys.eb(y);\n  ranges::sort(xs), ranges::sort(ys);\n\n  vi tx(n),\
     \ ty(n);\n  for(auto &[x, y, w] : xyw) {\n    int xi = ranges::lower_bound(xs,\
     \ x) - xs.begin();\n    x = xi + tx[xi]++;\n    y = ranges::lower_bound(ys, y)\
@@ -166,31 +166,30 @@ data:
     \ += ps[I][R - 1] - (L == 0 ? 0 : ps[I][L - 1]);\n    });\n\n    cout << ans <<\
     \ '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\n\nsigned main()\
-    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
-    \ q;\n  vc<tuple<int, int, int>> xyw(n);\n  for(auto &[x, y, w] : xyw) \n    cin\
-    \ >> x >> y >> w;\n\n  vi xs, ys;\n  for(auto [x, y, w] : xyw)\n    xs.eb(x),\
-    \ ys.eb(y);\n  ranges::sort(xs), ranges::sort(ys);\n\n  vi tx(n), ty(n);\n  for(auto\
-    \ &[x, y, w] : xyw) {\n    int xi = ranges::lower_bound(xs, x) - xs.begin();\n\
-    \    x = xi + tx[xi]++;\n    y = ranges::lower_bound(ys, y) - ys.begin();\n  }\n\
-    \n  vi a(n), z(n);\n  for(auto [x, y, w] : xyw)\n    a[x] = y, z[x] = w;\n\n \
-    \ wavelet_matrix<int, 19> WM(a, 1);\n  vc ps(20, vll(n));\n  for(int i = 0; i\
-    \ < 20; i++) {\n    for(int j = 0; j < n; j++)\n      ps[i][j] = z[WM.perms[i][j]];\n\
-    \    pSum(ps[i]);\n  }\n\n  while(q--) {\n    int l, d, r, u; cin >> l >> d >>\
-    \ r >> u;\n    l = ranges::lower_bound(xs, l) - xs.begin();\n    r = ranges::lower_bound(xs,\
-    \ r) - xs.begin();\n    d = ranges::lower_bound(ys, d) - ys.begin();\n    u =\
-    \ ranges::lower_bound(ys, u) - ys.begin();\n\n    ll ans = 0;\n    WM.rect_query(l,\
-    \ r, d, u, [&](int I, int L, int R) {\n      ans += ps[I][R - 1] - (L == 0 ? 0\
-    \ : ps[I][L - 1]);\n    });\n\n    cout << ans << '\\n';\n  }\n\n  return 0;\n\
-    }\n"
+    \ \"../default/t.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\n\nint main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n\
+    \  vc<tuple<int, int, int>> xyw(n);\n  for(auto &[x, y, w] : xyw) \n    cin >>\
+    \ x >> y >> w;\n\n  vi xs, ys;\n  for(auto [x, y, w] : xyw)\n    xs.eb(x), ys.eb(y);\n\
+    \  ranges::sort(xs), ranges::sort(ys);\n\n  vi tx(n), ty(n);\n  for(auto &[x,\
+    \ y, w] : xyw) {\n    int xi = ranges::lower_bound(xs, x) - xs.begin();\n    x\
+    \ = xi + tx[xi]++;\n    y = ranges::lower_bound(ys, y) - ys.begin();\n  }\n\n\
+    \  vi a(n), z(n);\n  for(auto [x, y, w] : xyw)\n    a[x] = y, z[x] = w;\n\n  wavelet_matrix<int,\
+    \ 19> WM(a, 1);\n  vc ps(20, vll(n));\n  for(int i = 0; i < 20; i++) {\n    for(int\
+    \ j = 0; j < n; j++)\n      ps[i][j] = z[WM.perms[i][j]];\n    pSum(ps[i]);\n\
+    \  }\n\n  while(q--) {\n    int l, d, r, u; cin >> l >> d >> r >> u;\n    l =\
+    \ ranges::lower_bound(xs, l) - xs.begin();\n    r = ranges::lower_bound(xs, r)\
+    \ - xs.begin();\n    d = ranges::lower_bound(ys, d) - ys.begin();\n    u = ranges::lower_bound(ys,\
+    \ u) - ys.begin();\n\n    ll ans = 0;\n    WM.rect_query(l, r, d, u, [&](int I,\
+    \ int L, int R) {\n      ans += ps[I][R - 1] - (L == 0 ? 0 : ps[I][L - 1]);\n\
+    \    });\n\n    cout << ans << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - ds/wavelet_matrix.cpp
   isVerificationFile: true
   path: test/rectangle_sum2.test.cpp
   requiredBy: []
-  timestamp: '2026-04-19 19:09:11+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/rectangle_sum2.test.cpp
 layout: document

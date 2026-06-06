@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/flow/Dinic.cpp
     title: graph/flow/Dinic.cpp
   _extendedRequiredBy: []
@@ -129,8 +129,8 @@ data:
     \      while((del = dfs(t, CAP_MAX, dfs)) > 0)\n        flow = (flow >= CAP_MAX\
     \ - del ? CAP_MAX : flow + del);\n    }\n\n    return flow;\n  }\n\n  bool left(int\
     \ idx) { return lev[idx] != INT_MAX; }\n};\n#line 5 \"test/bipartitematching.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l,\
-    \ r, m; cin >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int>\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l, r,\
+    \ m; cin >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int>\
     \ dinic(l + r + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int\
     \ i = l; i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++)\
     \ {\n    int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout\
@@ -138,22 +138,22 @@ data:
     \ &e : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v <<\
     \ ' ' << e.to - l << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n\n\
-    #include \"../default/t.cpp\"\n#include \"../graph/flow/Dinic.cpp\"\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l, r, m; cin\
-    \ >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int> dinic(l\
-    \ + r + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int i\
-    \ = l; i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++) {\n\
-    \    int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout\
-    \ << dinic.runFlow(s, t) << '\\n';\n  for(int v = 0; v < l; v++)\n    for(auto\
-    \ &e : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v <<\
-    \ ' ' << e.to - l << '\\n';\n\n  return 0;\n}\n\n"
+    #include \"../default/t.cpp\"\n#include \"../graph/flow/Dinic.cpp\"\n\nint main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l, r, m; cin >> l\
+    \ >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int> dinic(l + r\
+    \ + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int i = l;\
+    \ i < l + r; i++) dinic.addEdge(i, t, 1);\n  for(int i = 0; i < m; i++) {\n  \
+    \  int u, v; cin >> u >> v;\n    dinic.addEdge(u, v + l, 1);\n  }\n\n  cout <<\
+    \ dinic.runFlow(s, t) << '\\n';\n  for(int v = 0; v < l; v++)\n    for(auto &e\
+    \ : dinic.g[v])\n      if (e.cap == 0 and e.to != s)\n        cout << v << ' '\
+    \ << e.to - l << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - graph/flow/Dinic.cpp
   isVerificationFile: true
   path: test/bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bipartitematching.test.cpp

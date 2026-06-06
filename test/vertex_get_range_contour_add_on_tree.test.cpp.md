@@ -22,8 +22,8 @@ data:
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree\"\
     \n\n#include <bits/extc++.h>\n#include \"../default/t.cpp\"\n#include \"../ds/hashTable.cpp\"\
-    \n#include \"../ds/fenwickTree.cpp\"\n#include \"../tree/tree.cpp\"\n#include\
-    \ \"../tree/centroid_tree.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../ds/fenwick_tree.cpp\"\n#include \"../tree/tree.cpp\"\n#include\
+    \ \"../tree/centroid_tree.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> a(n);\n  for(int\
     \ &x : a)\n    cin >> x;\n  vector<pii> e(n - 1);\n  for(auto &[u, v] : e)\n \
     \   cin >> u >> v;\n  vector<vector<int>> g(n);\n  for(auto [u, v] : e) {\n  \
@@ -41,7 +41,7 @@ data:
     \      ranges::sort(cand[s + d]);\n      for(auto [_, v] : cand[s + d]) {\n  \
     \      toId[(ll)v << 32 | (s + d)] = ssize(init);\n        init.emplace_back(a[v]);\n\
     \      }\n    }\n  }\n\n  adjacent_difference(init.begin(), init.end(), init.begin());\n\
-    \  fenwickTree<ll> ft(init);\n  auto modify = [&](int v, int l, int r, int d)\
+    \  fenwick_tree<ll> ft(init);\n  auto modify = [&](int v, int l, int r, int d)\
     \ {\n    int ql = base[v] + (ranges::lower_bound(cand[v], array<int, 2>{l, -1})\
     \ - cand[v].begin());\n    int qr = base[v] + (ranges::lower_bound(cand[v], array<int,\
     \ 2>{r, -1}) - cand[v].begin());\n    ft.add(ql, d), ft.add(qr, -d);\n  };\n\n\

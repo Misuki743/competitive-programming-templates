@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/compositional_inverse_of_formal_power_series_large.test.cpp
+    title: test/compositional_inverse_of_formal_power_series_large.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/compositional_inverse.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -32,8 +35,9 @@ data:
   path: poly/compositional_inverse.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
 documentation_of: poly/compositional_inverse.cpp
 layout: document
 redirect_from:

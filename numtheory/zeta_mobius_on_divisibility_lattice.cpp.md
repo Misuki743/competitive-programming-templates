@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/gcd_convolution.test.cpp
+    title: test/gcd_convolution.test.cpp
+  - icon: ':x:'
+    path: test/lcm_convolution.test.cpp
+    title: test/lcm_convolution.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\n//#include\
@@ -44,8 +50,10 @@ data:
   path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/gcd_convolution.test.cpp
+  - test/lcm_convolution.test.cpp
 documentation_of: numtheory/zeta_mobius_on_divisibility_lattice.cpp
 layout: document
 redirect_from:

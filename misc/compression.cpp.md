@@ -2,10 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/point_add_rectangle_sum.test.cpp
+    title: test/point_add_rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/rectangle_add_point_get.test.cpp
+    title: test/rectangle_add_point_get.test.cpp
+  - icon: ':x:'
+    path: test/rectangle_sum.test.cpp
+    title: test/rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/static_range_count_distinct.test.cpp
+    title: test/static_range_count_distinct.test.cpp
+  - icon: ':x:'
+    path: test/static_range_frequency.test.cpp
+    title: test/static_range_frequency.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate\
@@ -41,8 +56,13 @@ data:
   path: misc/compression.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/rectangle_add_point_get.test.cpp
+  - test/static_range_count_distinct.test.cpp
+  - test/point_add_rectangle_sum.test.cpp
+  - test/rectangle_sum.test.cpp
+  - test/static_range_frequency.test.cpp
 documentation_of: misc/compression.cpp
 layout: document
 title: misc/compression.cpp

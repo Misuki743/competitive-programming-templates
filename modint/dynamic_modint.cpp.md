@@ -2,18 +2,27 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/chromatic_number.test.cpp
+    title: test/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
+    title: test/stirling_number_of_first_kind_small_p_large_n.test.cpp
+  - icon: ':x:'
+    path: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
+    title: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"modint/dynamic_modint.cpp\"\ntemplate<uint32_t ver>\nstruct\
     \ dynamic_modint {\n  using mint = dynamic_modint;\n  using u32 = uint32_t;\n\
     \  using u64 = uint64_t;\n\n  static u32 mod;\n\n  static constexpr u32 get_mod()\
-    \ { return mod; }\n  static void set_mod(u32 _mod) { mod = _mod; }\n\n  simpleMint()\
-    \ : a(0) {}\n  simpleMint(const int64_t &b) : a((b % mod + mod) % mod) {}\n\n\
-    \  u32 a;\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
+    \ { return mod; }\n  static void set_mod(u32 _mod) { mod = _mod; }\n\n  dynamic_modint()\
+    \ : a(0) {}\n  dynamic_modint(const int64_t &b) : a((b % mod + mod) % mod) {}\n\
+    \n  u32 a;\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
     \ {\n      if (k & 1)\n        res *= base;\n      base *= base, k >>= 1;\n  \
     \  }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
     \ - 2); }\n  u32 get() const { return a; }\n\n  mint& norm() {\n    a = (a >=\
@@ -35,13 +44,13 @@ data:
   code: "template<uint32_t ver>\nstruct dynamic_modint {\n  using mint = dynamic_modint;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static u32 mod;\n\n  static\
     \ constexpr u32 get_mod() { return mod; }\n  static void set_mod(u32 _mod) { mod\
-    \ = _mod; }\n\n  simpleMint() : a(0) {}\n  simpleMint(const int64_t &b) : a((b\
-    \ % mod + mod) % mod) {}\n\n  u32 a;\n\n  mint pow(u64 k) const {\n    mint res(1),\
-    \ base(*this);\n    while(k) {\n      if (k & 1)\n        res *= base;\n     \
-    \ base *= base, k >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse() const\
-    \ { return (*this).pow(mod - 2); }\n  u32 get() const { return a; }\n\n  mint&\
-    \ norm() {\n    a = (a >= mod ? a - mod : a < 0 ? a + mod : a);\n    return *this;\n\
-    \  }\n\n  mint& operator+=(mint b) {\n    a += b.a;\n    return (*this).norm();\n\
+    \ = _mod; }\n\n  dynamic_modint() : a(0) {}\n  dynamic_modint(const int64_t &b)\
+    \ : a((b % mod + mod) % mod) {}\n\n  u32 a;\n\n  mint pow(u64 k) const {\n   \
+    \ mint res(1), base(*this);\n    while(k) {\n      if (k & 1)\n        res *=\
+    \ base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse()\
+    \ const { return (*this).pow(mod - 2); }\n  u32 get() const { return a; }\n\n\
+    \  mint& norm() {\n    a = (a >= mod ? a - mod : a < 0 ? a + mod : a);\n    return\
+    \ *this;\n  }\n\n  mint& operator+=(mint b) {\n    a += b.a;\n    return (*this).norm();\n\
     \  }\n  mint& operator-=(mint b) {\n    if (b.a > a) a = a + mod - b.a;\n    else\
     \ a -= b.a;\n    return (*this).norm();\n  }\n  mint& operator*=(mint b) {\n \
     \   a = (u64(a) * b.a) % mod;\n    return *this;\n  }\n  mint& operator/=(mint\
@@ -59,9 +68,12 @@ data:
   isVerificationFile: false
   path: modint/dynamic_modint.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/chromatic_number.test.cpp
+  - test/stirling_number_of_first_kind_small_p_large_n.test.cpp
+  - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
 documentation_of: modint/dynamic_modint.cpp
 layout: document
 redirect_from:

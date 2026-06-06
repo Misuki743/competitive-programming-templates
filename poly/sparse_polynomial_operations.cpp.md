@@ -2,10 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/inv_of_formal_power_series_sparse.test.cpp
+    title: test/inv_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_formal_power_series_sparse.test.cpp
+    title: test/pow_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series_sparse.test.cpp
+    title: test/sqrt_of_formal_power_series_sparse.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
@@ -116,8 +125,11 @@ data:
   path: poly/sparse_polynomial_operations.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparse_polynomial_operations.cpp
 layout: document
 redirect_from:

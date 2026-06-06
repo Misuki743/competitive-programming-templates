@@ -18,16 +18,16 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../modint/MontgomeryModInt.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../actedmonoid/affine_sum.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../ds/slidingWindowAggregation.cpp\"\n#include \"../actedmonoid/actedMonoid_affineSum.cpp\"\
-    \n\nusing am = actedMonoid_affineSum<mint>;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  SWAG<am::T, am::Tid, am::Top> swag;\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    int t; cin >> t;\n    if (t == 0) {\n      mint a, b; cin\
-    \ >> a >> b;\n      swag.push(am::T{a, b});\n    } else if (t == 1) {\n      swag.pop();\n\
-    \    } else if (t == 2) {\n      mint x; cin >> x;\n      cout << am::Top(am::T{0,\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../ds/SWAG.cpp\"\n#include \"../actedmonoid/affine_sum.cpp\"\n\n\
+    using am = affine_sum<mint>;\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  SWAG<am::T, am::Tid, am::Top> swag;\n\n  int q; cin >> q;\n  while(q--) {\n\
+    \    int t; cin >> t;\n    if (t == 0) {\n      mint a, b; cin >> a >> b;\n  \
+    \    swag.push(am::T{a, b});\n    } else if (t == 1) {\n      swag.pop();\n  \
+    \  } else if (t == 2) {\n      mint x; cin >> x;\n      cout << am::Top(am::T{0,\
     \ x}, swag.query())[1] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true

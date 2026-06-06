@@ -22,8 +22,8 @@ data:
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_common_substring\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../string/suffixArray.cpp\"\n#include\
-    \ \"../string/longestCommonSubstring.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  string s, t; cin >> s >> t;\n  cout << longestCommonSubstring(s,\
+    \ \"../string/longest_common_substring.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  string s, t; cin >> s >> t;\n  cout << longest_common_substring(s,\
     \ t) << '\\n';\n\n  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true

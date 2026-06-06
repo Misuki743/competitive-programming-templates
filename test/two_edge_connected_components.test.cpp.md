@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connectivity/ECC.cpp
     title: graph/connectivity/ECC.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -129,17 +129,17 @@ data:
     \ {\n    vector<vector<int>> g(size);\n    for(auto [u, v] : e) {\n      if ((u\
     \ = vid[u]) != (v = vid[v])) {\n        g[u].emplace_back(v);\n        g[v].emplace_back(u);\n\
     \      }\n    }\n    return g;\n  }\n};\n#line 5 \"test/two_edge_connected_components.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ m; cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin\
-    \ >> u >> v;\n\n  ECC ecc(e, n);\n\n  cout << ecc.size << '\\n';\n  for(int g\
-    \ = 0; g < ecc.size; g++) {\n    auto gv = ecc.vertexGroup(g);\n    cout << ssize(gv);\n\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
+    \ cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >>\
+    \ u >> v;\n\n  ECC ecc(e, n);\n\n  cout << ecc.size << '\\n';\n  for(int g = 0;\
+    \ g < ecc.size; g++) {\n    auto gv = ecc.vertexGroup(g);\n    cout << ssize(gv);\n\
     \    for(int x : gv) cout << ' ' << x;\n    cout << '\\n';\n  }\n\n  return 0;\n\
     }\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../graph/connectivity/ECC.cpp\"\n\
-    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
-    \ cin >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >>\
-    \ u >> v;\n\n  ECC ecc(e, n);\n\n  cout << ecc.size << '\\n';\n  for(int g = 0;\
+    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin\
+    \ >> n >> m;\n  vector<array<int, 2>> e(m);\n  for(auto &[u, v] : e) cin >> u\
+    \ >> v;\n\n  ECC ecc(e, n);\n\n  cout << ecc.size << '\\n';\n  for(int g = 0;\
     \ g < ecc.size; g++) {\n    auto gv = ecc.vertexGroup(g);\n    cout << ssize(gv);\n\
     \    for(int x : gv) cout << ' ' << x;\n    cout << '\\n';\n  }\n\n  return 0;\n\
     }\n\n"
@@ -149,8 +149,8 @@ data:
   isVerificationFile: true
   path: test/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/two_edge_connected_components.test.cpp
 layout: document

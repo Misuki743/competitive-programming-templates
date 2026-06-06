@@ -164,21 +164,21 @@ data:
     \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
     \ }\n      for(int v = 0; v < n; v++)\n        if (ok[v])\n          c.eb(v);\n\
     \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
-    \ }\n};\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n\
-    \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
-    \  static constexpr u32 get_r() {\n    u32 res = 1, base = mod;\n    for(i32 i\
-    \ = 0; i < 31; i++)\n      res *= base, base *= base;\n    return -res;\n  }\n\
-    \n  static constexpr u32 get_mod() {\n    return mod;\n  }\n\n  static constexpr\
-    \ u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr u32 r = get_r();\
-    \ //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64 &b) {\n    return\
-    \ (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const u64\
-    \ &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0) {}\n\
-    \  MontgomeryModInt(const int64_t &b) \n    : a(transform(b % mod + mod)) {}\n\
-    \n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k) {\n \
-    \     if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n    }\n\
-    \    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod - 2);\
-    \ }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >= mod ?\
-    \ res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
+    \ }\n};\n\ntemplate<uint32_t mod>\nstruct Montgomery_modint {\n  using mint =\
+    \ Montgomery_modint;\n  using i32 = int32_t;\n  using u32 = uint32_t;\n  using\
+    \ u64 = uint64_t;\n\n  static constexpr u32 get_r() {\n    u32 res = 1, base =\
+    \ mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n  \
+    \  return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
+    \  }\n\n  static constexpr u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr\
+    \ u32 r = get_r(); //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64\
+    \ &b) {\n    return (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const\
+    \ u64 &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  Montgomery_modint() : a(0)\
+    \ {}\n  Montgomery_modint(const int64_t &b) \n    : a(transform(b % mod + mod))\
+    \ {}\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
+    \ {\n      if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n \
+    \   }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
+    \ - 2); }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >=\
+    \ mod ? res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
     \ += b.a - 2 * mod) < 0) a += 2 * mod;\n    return *this;\n  }\n\n  mint& operator-=(const\
     \ mint &b) {\n    if (i32(a -= b.a) < 0) a += 2 * mod;\n    return *this;\n  }\n\
     \n  mint& operator*=(const mint &b) {\n    a = reduce(u64(a) * b.a);\n    return\
@@ -193,8 +193,9 @@ data:
     \ c /= d; }\n\n  friend ostream& operator<<(ostream& os, const mint& b) {\n  \
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
-    \  }\n};\n//using mint = MontgomeryModInt<998'244'353>;\n\n\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    \  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint = Montgomery_modint<998'244'353>;\n\
+    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return\
+    \ 0;\n}\n"
   code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -350,21 +351,21 @@ data:
     \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
     \ }\n      for(int v = 0; v < n; v++)\n        if (ok[v])\n          c.eb(v);\n\
     \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
-    \ }\n};\n\ntemplate<uint32_t mod>\nstruct MontgomeryModInt {\n  using mint = MontgomeryModInt;\n\
-    \  using i32 = int32_t;\n  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n\
-    \  static constexpr u32 get_r() {\n    u32 res = 1, base = mod;\n    for(i32 i\
-    \ = 0; i < 31; i++)\n      res *= base, base *= base;\n    return -res;\n  }\n\
-    \n  static constexpr u32 get_mod() {\n    return mod;\n  }\n\n  static constexpr\
-    \ u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr u32 r = get_r();\
-    \ //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64 &b) {\n    return\
-    \ (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const u64\
-    \ &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  MontgomeryModInt() : a(0) {}\n\
-    \  MontgomeryModInt(const int64_t &b) \n    : a(transform(b % mod + mod)) {}\n\
-    \n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k) {\n \
-    \     if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n    }\n\
-    \    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod - 2);\
-    \ }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >= mod ?\
-    \ res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
+    \ }\n};\n\ntemplate<uint32_t mod>\nstruct Montgomery_modint {\n  using mint =\
+    \ Montgomery_modint;\n  using i32 = int32_t;\n  using u32 = uint32_t;\n  using\
+    \ u64 = uint64_t;\n\n  static constexpr u32 get_r() {\n    u32 res = 1, base =\
+    \ mod;\n    for(i32 i = 0; i < 31; i++)\n      res *= base, base *= base;\n  \
+    \  return -res;\n  }\n\n  static constexpr u32 get_mod() {\n    return mod;\n\
+    \  }\n\n  static constexpr u32 n2 = -u64(mod) % mod; //2^64 % mod\n  static constexpr\
+    \ u32 r = get_r(); //-P^{-1} % 2^32\n\n  u32 a;\n\n  static u32 reduce(const u64\
+    \ &b) {\n    return (b + u64(u32(b) * r) * mod) >> 32;\n  }\n\n  static u32 transform(const\
+    \ u64 &b) {\n    return reduce(u64(b) * n2);\n  }\n\n  Montgomery_modint() : a(0)\
+    \ {}\n  Montgomery_modint(const int64_t &b) \n    : a(transform(b % mod + mod))\
+    \ {}\n\n  mint pow(u64 k) const {\n    mint res(1), base(*this);\n    while(k)\
+    \ {\n      if (k & 1) \n        res *= base;\n      base *= base, k >>= 1;\n \
+    \   }\n    return res;\n  }\n\n  mint inverse() const { return (*this).pow(mod\
+    \ - 2); }\n\n  u32 get() const {\n    u32 res = reduce(a);\n    return res >=\
+    \ mod ? res - mod : res;\n  }\n\n  mint& operator+=(const mint &b) {\n    if (i32(a\
     \ += b.a - 2 * mod) < 0) a += 2 * mod;\n    return *this;\n  }\n\n  mint& operator-=(const\
     \ mint &b) {\n    if (i32(a -= b.a) < 0) a += 2 * mod;\n    return *this;\n  }\n\
     \n  mint& operator*=(const mint &b) {\n    a = reduce(u64(a) * b.a);\n    return\
@@ -379,13 +380,14 @@ data:
     \ c /= d; }\n\n  friend ostream& operator<<(ostream& os, const mint& b) {\n  \
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
-    \  }\n};\n//using mint = MontgomeryModInt<998'244'353>;\n\n\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n}\n"
+    \  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint = Montgomery_modint<998'244'353>;\n\
+    \nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return\
+    \ 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-04-21 21:29:26+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

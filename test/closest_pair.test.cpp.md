@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/ttt.cpp
     title: default/ttt.cpp
   - icon: ':heavy_check_mark:'
     path: geometry/closest_pair.cpp
     title: geometry/closest_pair.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/point.cpp
     title: geometry/point.cpp
   _extendedRequiredBy: []
@@ -143,15 +143,15 @@ data:
     \ p.y - d.x) S.erase(v[j++]);\n    auto lo = S.lower_bound(p - d), hi = S.upper_bound(p\
     \ + d);\n    for (; lo != hi; ++lo)\n      ret = min(ret, {(*lo - p).dist2(),\
     \ {*lo, p}});\n    S.insert(p);\n  }\n  return ret.second;\n}\n#line 7 \"test/closest_pair.test.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t;\
-    \ cin >> t;\n  while(t--) {\n    int n; cin >> n;\n    vector<P> pt(n);\n    for(auto\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t; cin\
+    \ >> t;\n  while(t--) {\n    int n; cin >> n;\n    vector<P> pt(n);\n    for(auto\
     \ &[x, y] : pt) cin >> x >> y;\n    \n    auto [p, q] = closest(pt);\n    int\
     \ i = ranges::find(pt, p) - pt.begin();\n    int j = 0;\n    while(j == i or q\
     \ != pt[j]) j++;\n    cout << i << ' ' << j << '\\n';\n  }\n\n  return 0;\n}\n\
     \n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/closest_pair\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../default/ttt.cpp\"\n#include \"../geometry/point.cpp\"\
-    \n#include \"../geometry/closest_pair.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../geometry/closest_pair.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--) {\n    int n; cin >> n;\n\
     \    vector<P> pt(n);\n    for(auto &[x, y] : pt) cin >> x >> y;\n    \n    auto\
     \ [p, q] = closest(pt);\n    int i = ranges::find(pt, p) - pt.begin();\n    int\
@@ -165,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/closest_pair.test.cpp

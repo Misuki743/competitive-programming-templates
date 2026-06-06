@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
@@ -130,14 +130,14 @@ data:
     \ }\n\n  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }\n\
     \  //make sure to not copy the array by using &x = prime_array()\n  const vi&\
     \ prime_array() { return prime; }\n};\n#line 5 \"test/enumerate_primes.test.cpp\"\
-    \n\nprime_table<500'000'001> pt;\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n\nprime_table<500'000'001> pt;\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n\
     \  int pi = ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << '\
     \ ' << (pi - 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout\
     \ << prime[i] << ' ';\n  cout << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n\nprime_table<500'000'001>\
-    \ pt;\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
+    \ pt;\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int\
     \ n, a, b; cin >> n >> a >> b;\n  auto &prime = pt.prime_array();\n  int pi =\
     \ ranges::upper_bound(prime, n) - prime.begin();\n  cout << pi << ' ' << (pi -\
     \ 1 - b) / a + 1 << '\\n';\n  for(int i = b; i < pi; i += a)\n    cout << prime[i]\
@@ -148,8 +148,8 @@ data:
   isVerificationFile: true
   path: test/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/enumerate_primes.test.cpp
 layout: document

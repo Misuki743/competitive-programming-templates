@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/eulerian_trail_directed.test.cpp
+    title: test/eulerian_trail_directed.test.cpp
+  - icon: ':x:'
+    path: test/eulerian_trail_undirected.test.cpp
+    title: test/eulerian_trail_undirected.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/misc/eulerian_trail.cpp\"\ntemplate<bool directed\
@@ -54,8 +60,10 @@ data:
   path: graph/misc/eulerian_trail.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/eulerian_trail_undirected.test.cpp
+  - test/eulerian_trail_directed.test.cpp
 documentation_of: graph/misc/eulerian_trail.cpp
 layout: document
 redirect_from:

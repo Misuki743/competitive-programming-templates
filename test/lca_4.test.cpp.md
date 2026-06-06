@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -174,13 +174,13 @@ data:
     \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
     \ }\n      for(int v = 0; v < n; v++)\n        if (ok[v])\n          c.eb(v);\n\
     \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
-    \ }\n};\n#line 5 \"test/lca_4.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ }\n};\n#line 5 \"test/lca_4.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vc<pii> e;\n  e.reserve(n -\
     \ 1);\n  for(int v = 1; v < n; v++) {\n    int p; cin >> p;\n    e.emplace_back(p,\
     \ v);\n  }\n\n  HLD hld(e);\n  while(q--) {\n    int u, v; cin >> u >> v;\n  \
     \  cout << hld.lca(u, v) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
-    \n#include \"../tree/HLD.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../tree/HLD.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vc<pii> e;\n  e.reserve(n -\
     \ 1);\n  for(int v = 1; v < n; v++) {\n    int p; cin >> p;\n    e.emplace_back(p,\
     \ v);\n  }\n\n  HLD hld(e);\n  while(q--) {\n    int u, v; cin >> u >> v;\n  \
@@ -191,8 +191,8 @@ data:
   isVerificationFile: true
   path: test/lca_4.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 17:48:48+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca_4.test.cpp
 layout: document

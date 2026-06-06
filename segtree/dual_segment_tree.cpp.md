@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/range_affine_point_get.test.cpp
+    title: test/range_affine_point_get.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/dual_segment_tree.cpp\"\ntemplate<class M, M(*Mid)(),\
@@ -46,8 +49,9 @@ data:
   path: segtree/dual_segment_tree.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/range_affine_point_get.test.cpp
 documentation_of: segtree/dual_segment_tree.cpp
 layout: document
 redirect_from:

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/Bostan_Mori.cpp\"\ntemplate<NTT Ntt, class Mint>\n\
@@ -37,8 +40,9 @@ data:
   path: poly/Bostan_Mori.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/Bostan_Mori.cpp
 layout: document
 redirect_from:

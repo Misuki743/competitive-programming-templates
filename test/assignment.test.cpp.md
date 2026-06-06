@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -154,18 +154,18 @@ data:
     \ f[t], cost += f[t] * (dis[t] - pot[s] + pot[t]);\n      for(int i = 0; i < n;\
     \ i++)\n        if (dis[i] != COS_MAX)\n          dis[i] += pot[i] - pot[s];\n\
     \      pot.swap(dis);\n    }\n\n    return {flow, cost};\n  }\n};\n#line 5 \"\
-    test/assignment.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector a(n, vector<int>(n));\n  for(auto\
-    \ &v : a)\n    for(int &x : v)\n      cin >> x;\n\n  const int s = 2 * n, t =\
-    \ 2 * n + 1;\n  MCMF<int, ll> mcmf(2 * n + 2);\n  for(int v = 0; v < n; v++) {\n\
-    \    mcmf.addEdge(s, v, 1, 0);\n    mcmf.addEdge(v + n, t, 1, 0);\n  }\n  for(int\
-    \ u = 0; u < n; u++)\n    for(int v = 0; v < n; v++)\n      mcmf.addEdge(u, v\
-    \ + n, 1, a[u][v]);\n\n  mcmf.initPotential(s);\n  cout << mcmf.runFlow(s, t,\
-    \ true).second << '\\n';\n  for(int v = 0; v < n; v++)\n    for(auto e : mcmf.g[v])\n\
-    \      if (e.cap == 0 and e.to != s)\n        cout << e.to - n << \" \\n\"[v +\
-    \ 1 == n];\n\n  return 0;\n}\n\n"
+    test/assignment.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n; cin >> n;\n  vector a(n, vector<int>(n));\n  for(auto &v : a)\n   \
+    \ for(int &x : v)\n      cin >> x;\n\n  const int s = 2 * n, t = 2 * n + 1;\n\
+    \  MCMF<int, ll> mcmf(2 * n + 2);\n  for(int v = 0; v < n; v++) {\n    mcmf.addEdge(s,\
+    \ v, 1, 0);\n    mcmf.addEdge(v + n, t, 1, 0);\n  }\n  for(int u = 0; u < n; u++)\n\
+    \    for(int v = 0; v < n; v++)\n      mcmf.addEdge(u, v + n, 1, a[u][v]);\n\n\
+    \  mcmf.initPotential(s);\n  cout << mcmf.runFlow(s, t, true).second << '\\n';\n\
+    \  for(int v = 0; v < n; v++)\n    for(auto e : mcmf.g[v])\n      if (e.cap ==\
+    \ 0 and e.to != s)\n        cout << e.to - n << \" \\n\"[v + 1 == n];\n\n  return\
+    \ 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/assignment\"\n\n#include\
-    \ \"../default/t.cpp\"\n#include \"../graph/flow/MCMF.cpp\"\n\nsigned main() {\n\
+    \ \"../default/t.cpp\"\n#include \"../graph/flow/MCMF.cpp\"\n\nint main() {\n\
     \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vector\
     \ a(n, vector<int>(n));\n  for(auto &v : a)\n    for(int &x : v)\n      cin >>\
     \ x;\n\n  const int s = 2 * n, t = 2 * n + 1;\n  MCMF<int, ll> mcmf(2 * n + 2);\n\
@@ -181,7 +181,7 @@ data:
   isVerificationFile: true
   path: test/assignment.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/assignment.test.cpp

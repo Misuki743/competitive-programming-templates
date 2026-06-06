@@ -3,18 +3,27 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_2.test.cpp
     title: test/jump_on_tree_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_3.test.cpp
     title: test/jump_on_tree_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_4.test.cpp
     title: test/lca_4.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/tree_path_composite_sum.test.cpp
+    title: test/tree_path_composite_sum.test.cpp
+  - icon: ':x:'
+    path: test/vertex_add_path_sum.test.cpp
+    title: test/vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/vertex_add_subtree_sum.test.cpp
+    title: test/vertex_add_subtree_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/HLD.cpp\"\nstruct HLD {\n  int n, root;\n  vi dep,\
@@ -157,11 +166,14 @@ data:
   path: tree/HLD.cpp
   requiredBy: []
   timestamp: '2026-03-22 17:48:48+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/vertex_add_subtree_sum.test.cpp
   - test/jump_on_tree_2.test.cpp
   - test/lca_4.test.cpp
+  - test/tree_path_composite_sum.test.cpp
   - test/jump_on_tree_3.test.cpp
+  - test/vertex_add_path_sum.test.cpp
 documentation_of: tree/HLD.cpp
 layout: document
 redirect_from:

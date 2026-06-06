@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/maximum_independent_set.test.cpp
+    title: test/maximum_independent_set.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/misc/maximum_independent_set.cpp\"\nvector<int> maximum_independent_set(vector<ull>\
@@ -41,8 +44,9 @@ data:
   path: graph/misc/maximum_independent_set.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/maximum_independent_set.test.cpp
 documentation_of: graph/misc/maximum_independent_set.cpp
 layout: document
 redirect_from:

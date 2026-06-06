@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/ttt.cpp
     title: default/ttt.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/convex_hull.cpp
     title: geometry/convex_hull.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/point.cpp
     title: geometry/point.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
@@ -142,15 +142,15 @@ data:
     \ t = 0;\n  for (int it = 2; it--; s = --t, reverse(all(pts)))\n    for (P p :\
     \ pts) {\n      while (t >= s + 2 && h[t-2].cross(h[t-1], p) <= 0) t--;\n    \
     \  h[t++] = p;\n    }\n  return {h.begin(), h.begin() + t - (t == 2 && h[0] ==\
-    \ h[1])};\n}\n#line 7 \"test/static_convex_hull.test.cpp\"\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--)\
+    \ h[1])};\n}\n#line 7 \"test/static_convex_hull.test.cpp\"\n\nint main() {\n \
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--)\
     \ {\n    int n; cin >> n;\n    vector<P> pt(n);\n    for(auto &[x, y] : pt) cin\
     \ >> x >> y;\n    \n    auto hull = convexHull(pt);\n    cout << ssize(hull) <<\
     \ '\\n';\n    for(auto [x, y] : hull) cout << x << ' ' << y << '\\n';\n  }\n\n\
     \  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../default/ttt.cpp\"\n#include \"../geometry/point.cpp\"\
-    \n#include \"../geometry/convex_hull.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../geometry/convex_hull.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--) {\n    int n; cin >> n;\n\
     \    vector<P> pt(n);\n    for(auto &[x, y] : pt) cin >> x >> y;\n    \n    auto\
     \ hull = convexHull(pt);\n    cout << ssize(hull) << '\\n';\n    for(auto [x,\
@@ -163,8 +163,8 @@ data:
   isVerificationFile: true
   path: test/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_convex_hull.test.cpp
 layout: document

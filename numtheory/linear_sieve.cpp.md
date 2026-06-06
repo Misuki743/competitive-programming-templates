@@ -3,18 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/gcd_convolution.test.cpp
+    title: test/gcd_convolution.test.cpp
+  - icon: ':x:'
+    path: test/lcm_convolution.test.cpp
+    title: test/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_mu_table.test.cpp
     title: test/mytest_mu_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_phi_table.test.cpp
     title: test/mytest_phi_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t C>\nstruct\
@@ -53,8 +59,10 @@ data:
   path: numtheory/linear_sieve.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/gcd_convolution.test.cpp
+  - test/lcm_convolution.test.cpp
   - test/mytest_linear_sieve.test.cpp
   - test/mytest_mu_table.test.cpp
   - test/mytest_phi_table.test.cpp

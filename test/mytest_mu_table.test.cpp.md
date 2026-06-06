@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/mu_table.cpp
     title: numtheory/mu_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -140,7 +140,7 @@ data:
     \ if (sz == 0) return;\n  check_power<max(sz >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n\
     \  auto mu2 = mu_table<int>(ls);\n  for(int i = 0; i < sz; i++)\n    assert(mu[i]\
     \ == mu2[i]);\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x\
-    \ + y << '\\n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \ + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  for(int x = 1; x < (1 << 15); x++) {\n    mu[x] = 1;\n    for(auto [p, f]\
     \ : factorize(x)) {\n      if (f == 1) mu[x] = -mu[x];\n      else mu[x] = 0;\n\
     \    }\n  }\n\n  check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n\
@@ -157,7 +157,7 @@ data:
     \ if (sz == 0) return;\n  check_power<max(sz >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n\
     \  auto mu2 = mu_table<int>(ls);\n  for(int i = 0; i < sz; i++)\n    assert(mu[i]\
     \ == mu2[i]);\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x\
-    \ + y << '\\n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \ + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  for(int x = 1; x < (1 << 15); x++) {\n    mu[x] = 1;\n    for(auto [p, f]\
     \ : factorize(x)) {\n      if (f == 1) mu[x] = -mu[x];\n      else mu[x] = 0;\n\
     \    }\n  }\n\n  check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n\
@@ -169,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/mytest_mu_table.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_mu_table.test.cpp
 layout: document

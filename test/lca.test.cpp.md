@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -139,13 +139,13 @@ data:
     \ = 0; v < n; v++) {\n      if (2 * (n - sz[v]) > n)\n        ok[v] = false;\n\
     \      if (v != root and 2 * sz[v] > n)\n        ok[p[v]] = false;\n    }\n  \
     \  for(int v = 0; v < n; v++)\n      if (ok[v])\n        r[1] = v, swap(r[0],\
-    \ r[1]);\n    return r;\n  }\n};\n#line 5 \"test/lca.test.cpp\"\n\nsigned main()\
+    \ r[1]);\n    return r;\n  }\n};\n#line 5 \"test/lca.test.cpp\"\n\nint main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >> n >>\
     \ q;\n  vector<int> p(n - 1);\n  for(int &x : p) cin >> x;\n  p.insert(p.begin(),\
     \ -1);\n  tree T(std::move(p));\n  while(q--) {\n    int u, v; cin >> u >> v;\n\
     \    cout << T.lca(u, v) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
-    \n#include \"../tree/tree.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \n#include \"../tree/tree.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<int> p(n - 1);\n  for(int\
     \ &x : p) cin >> x;\n  p.insert(p.begin(), -1);\n  tree T(std::move(p));\n  while(q--)\
     \ {\n    int u, v; cin >> u >> v;\n    cout << T.lca(u, v) << '\\n';\n  }\n\n\
@@ -156,8 +156,8 @@ data:
   isVerificationFile: true
   path: test/lca.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca.test.cpp
 layout: document

@@ -18,14 +18,14 @@ data:
     \                ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.14.5/x64/lib/python3.14/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../modint/MontgomeryModInt.cpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../combi/binom.cpp:\
     \ line -1: no such header\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series_sparse\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/MontgomeryModInt.cpp\"\
-    \n#include \"../poly/NTTmint.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"\
-    ../combi/binom.cpp\"\n#include \"../numtheory/sqrt_mod.cpp\"\n#include \"../poly/sparsePolyope.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../poly/NTT.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../combi/binom.cpp\"\
+    \n#include \"../numtheory/sqrt_mod.cpp\"\n#include \"../poly/sparse_polynomial_operations.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, k;\
+    \ cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
     \ cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparseExp(f, n) << '\\n';\n\
     \n  return 0;\n}\n"
   dependsOn: []

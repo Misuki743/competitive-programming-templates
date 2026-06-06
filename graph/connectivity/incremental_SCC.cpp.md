@@ -2,14 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/incremental_scc.test.cpp
+    title: test/incremental_scc.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/connectivity/incremental_SCC.cpp\"\n//#include \"\
-    ds/DSU.cpp\"\n//#include \"graph/SCC.cpp\"\n\nvector<array<int, 3>> incrementalSCC(vector<array<int,\
+    ds/DSU.cpp\"\n//#include \"graph/SCC.cpp\"\n\nvector<array<int, 3>> incremental_SCC(vector<array<int,\
     \ 2>> _e, int n) {\n  vector<array<int, 3>> e(ssize(_e));\n  for(int i = 0; auto\
     \ [u, v] : _e)\n    e[i] = {u, v, i}, i++;\n\n  DSU dsu(n);\n  vector<array<int,\
     \ 3>> ret;\n  vector<int> mp(n, -1);\n  auto calc = [&](int l, int r, vector<array<int,\
@@ -26,11 +29,11 @@ data:
     \ v, mid});\n\n    self(mid, r, er, self);\n  };\n\n  calc(0, ssize(e), e, calc);\n\
     \n  return ret;\n}\n"
   code: "//#include \"ds/DSU.cpp\"\n//#include \"graph/SCC.cpp\"\n\nvector<array<int,\
-    \ 3>> incrementalSCC(vector<array<int, 2>> _e, int n) {\n  vector<array<int, 3>>\
-    \ e(ssize(_e));\n  for(int i = 0; auto [u, v] : _e)\n    e[i] = {u, v, i}, i++;\n\
-    \n  DSU dsu(n);\n  vector<array<int, 3>> ret;\n  vector<int> mp(n, -1);\n  auto\
-    \ calc = [&](int l, int r, vector<array<int, 3>> e, auto &&self) -> void {\n \
-    \   if (l + 1 == r) return;\n\n    int mid = (l + r) / 2;\n\n    vector<array<int,\
+    \ 3>> incremental_SCC(vector<array<int, 2>> _e, int n) {\n  vector<array<int,\
+    \ 3>> e(ssize(_e));\n  for(int i = 0; auto [u, v] : _e)\n    e[i] = {u, v, i},\
+    \ i++;\n\n  DSU dsu(n);\n  vector<array<int, 3>> ret;\n  vector<int> mp(n, -1);\n\
+    \  auto calc = [&](int l, int r, vector<array<int, 3>> e, auto &&self) -> void\
+    \ {\n    if (l + 1 == r) return;\n\n    int mid = (l + r) / 2;\n\n    vector<array<int,\
     \ 3>> el, er;\n    {\n      auto ep = e;\n      int nxt = 0;\n      for(auto &x\
     \ : ep) for(int &v : x | views::take(2)) {\n        v = dsu.query(v);\n      \
     \  if (mp[v] == -1) mp[v] = nxt++;\n        v = mp[v];\n      }\n      for(auto\
@@ -45,9 +48,10 @@ data:
   isVerificationFile: false
   path: graph/connectivity/incremental_SCC.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-06-07 00:57:44+08:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/incremental_scc.test.cpp
 documentation_of: graph/connectivity/incremental_SCC.cpp
 layout: document
 redirect_from:

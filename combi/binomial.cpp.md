@@ -2,10 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/bell_number.test.cpp
+    title: test/bell_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/counting_eulerian_circuits.test.cpp
+    title: test/counting_eulerian_circuits.test.cpp
+  - icon: ':x:'
+    path: test/inv_of_formal_power_series_sparse.test.cpp
+    title: test/inv_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/polynomial_taylor_shift.test.cpp
+    title: test/polynomial_taylor_shift.test.cpp
+  - icon: ':x:'
+    path: test/pow_of_formal_power_series_sparse.test.cpp
+    title: test/pow_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/sqrt_of_formal_power_series_sparse.test.cpp
+    title: test/sqrt_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
+    path: test/stirling_number_of_the_second_kind.test.cpp
+    title: test/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: test/yuki_2544.test.cpp
+    title: test/yuki_2544.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/binomial.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
@@ -40,8 +64,16 @@ data:
   path: combi/binomial.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/bell_number.test.cpp
+  - test/yuki_2544.test.cpp
+  - test/polynomial_taylor_shift.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
 documentation_of: combi/binomial.cpp
 layout: document
 redirect_from:

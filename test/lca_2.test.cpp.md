@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/random.cpp
     title: misc/random.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -176,7 +176,7 @@ data:
     \ p(n);\n    iota(p.begin(), p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n\
     \    return p;\n  }\n  vi rand_comb(int n, int k) {\n    assert(0 <= k and k <=\
     \ n);\n    vi p = rand_perm(n);\n    p.resize(k);\n    ranges::sort(p);\n    return\
-    \ p;\n  }\n};\n\nusing namespace RNG;\n#line 7 \"test/lca_2.test.cpp\"\n\nsigned\
+    \ p;\n  }\n};\n\nusing namespace RNG;\n#line 7 \"test/lca_2.test.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
     \ n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n    x =\
     \ v++;\n    cin >> y;\n  }\n\n  vi p = RNG::rand_perm(n);\n  for(auto &[u, v]\
@@ -185,8 +185,8 @@ data:
     \ p[v])] << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
     \n#include \"../ds/RMQ.cpp\"\n#include \"../tree/LCA.cpp\"\n#include \"../misc/random.cpp\"\
-    \n\nsigned main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n,\
-    \ q; cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
+    \ cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n\
     \    x = v++;\n    cin >> y;\n  }\n\n  vi p = RNG::rand_perm(n);\n  for(auto &[u,\
     \ v] : e)\n    u = p[u], v = p[v];\n  LCA lc(e, p[0]);\n\n  vi inv_p = invPerm(p);\n\
     \n  while(q--) {\n    int u, v; cin >> u >> v;\n    cout << inv_p[lc.lca(p[u],\
@@ -199,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/lca_2.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-07 00:25:21+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca_2.test.cpp
 layout: document
