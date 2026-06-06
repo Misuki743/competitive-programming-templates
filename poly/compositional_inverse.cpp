@@ -1,7 +1,7 @@
 //#include "modint/Montgomery_modint.cpp"
 //#include "poly/NTT.cpp"
 //#include "poly/FPS.cpp"
-//#include "poly/kthTermOfPowers.cpp"
+//#include "poly/power_projection.cpp"
 
 template<class Mint>
 FPS<Mint> compositional_inverse(FPS<Mint> f, int k) {
@@ -11,7 +11,7 @@ FPS<Mint> compositional_inverse(FPS<Mint> f, int k) {
   for(mint &x : f)
     x *= invc;
   k -= 1;
-  f = kthTermOfPowers(k, k + 1, f);
+  f = power_projection(k, k + 1, f);
   for(int i = 1; i <= k; i++)
     f[i] *= mint(k) / i;
   ranges::reverse(f);

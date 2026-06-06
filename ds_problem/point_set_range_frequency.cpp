@@ -37,7 +37,7 @@ struct point_set_range_frequency {
     ranges::sort(q, {}, [&](auto &e) { return pair(e.x, e.t); });
     ranges::sort(m, {}, [&](auto &e) { return pair(e.x, e.t); });
     vector<int> ans(ssize(q));
-    fenwickTree<int> ft(n);
+    fenwick_tree<int> ft(n);
     for(int i = 0; auto [x, t, l, r, id] : q) {
       while(i < ssize(m) and pair(m[i].x, m[i].t) <= pair(x, t))
         ft.add(m[i].i, m[i].add ? 1 : -1), i++;

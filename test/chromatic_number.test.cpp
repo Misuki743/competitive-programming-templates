@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/chromatic_number"
 
 #include "../default/t.cpp"
-#include "modint/dynamic_modint.cpp"
+#include "modint/dynamic_Montgomery_modint.cpp"
 #include "numtheory/factorize_pollard_rho.cpp"
 #include "combi/chromatic_number.cpp"
 

@@ -7,10 +7,7 @@ vi range_count_distinct(vc<T> a, vc<pii> query) {
   for(T &x : a)
     x = ranges::lower_bound(b, x) - b.begin();
 
-  dbg(a);
-
   vi ans(size(query)), pos(size(b), -1);
-  dbg(ssize(pos));
   fenwick_tree<int> ft(ssize(a));
   for(int j = 0; int i : argSort(query, [](pii &p) { return p.second; })) {
     auto [l, r] = query[i];
