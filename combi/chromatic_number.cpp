@@ -1,5 +1,5 @@
 //#include "modint/dynamic_Montgomery_modint.cpp"
-//#include "numtheory/fastFactorize.cpp"
+//#include "numtheory/factorize_pollard_rho.cpp"
 
 template<> uint32_t dynamic_Montgomery_modint<123>::mod = 0;
 template<> uint32_t dynamic_Montgomery_modint<123>::n2 = 0;

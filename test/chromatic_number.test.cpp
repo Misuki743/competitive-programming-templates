@@ -15,7 +15,7 @@ int main() {
     g[u][v] = g[v][u] = true;
   }
 
-  cout << chromatic_number<mint>(g) << '\n';
+  cout << chromatic_number(g) << '\n';
 
   return 0;
 }

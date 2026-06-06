@@ -66,7 +66,7 @@ struct convolution_multiplicative {
   }
 
   template<class Mint>
-  vector<Mint> convolution(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>, vector<Mint>)) {
+  vector<Mint> conv(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>, vector<Mint>)) {
     Mint zero = accumulate(a.begin(), a.end(), Mint(0)) * b[0] + accumulate(b.begin() + 1, b.end(), Mint(0)) * a[0];
     a = transform(a), b = transform(b);
     a = conv(a, b);
