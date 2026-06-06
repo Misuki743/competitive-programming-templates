@@ -1,5 +1,5 @@
 template<int mxBit, bool duplicate = false>
-struct binaryTrie {
+struct binary_trie {
   vector<array<int, 2>> nxt;
   vector<int> cnt;
 
@@ -43,7 +43,7 @@ struct binaryTrie {
       v = nxt[v][x >> bit & 1], cnt[v] -= 1;
   }
 
-  ull queryMin(ull Xor = 0LL) {
+  ull query_min(ull Xor = 0LL) {
     assert(cnt[0] > 0);
     ull res = 0;
     int v = 0;

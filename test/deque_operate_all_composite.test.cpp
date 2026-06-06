@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/deque_operate_all_composite"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../ds/deque_aggregation.cpp"
 
 using M = array<mint, 2>;

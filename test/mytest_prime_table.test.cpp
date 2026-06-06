@@ -51,7 +51,7 @@ void check_power() {
   check_power<max(N >> 1, 1)>();
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   check_small();

@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_path_composite_sum"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../tree/HLD.cpp"
 #include "../dp/rerooting_DP.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;

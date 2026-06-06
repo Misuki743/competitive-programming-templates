@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/maximum_independent_set"
 
 #include "../default/t.cpp"
-#include "../graph/misc/MIS.cpp"
+#include "../graph/misc/maximum_independent_set.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -13,7 +13,7 @@ int main() {
     g[u] |= 1LL << v, g[v] |= 1LL << u;
   }
 
-  auto mis = MIS(g, n);
+  auto mis = maximum_independent_set(g, n);
   cout << ssize(mis) << '\n';
   cout << mis << '\n';
 

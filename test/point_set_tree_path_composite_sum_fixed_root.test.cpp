@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum_fixed_root"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../tree/static_top_tree.cpp"
-#include "../dp/dynamicTreeDP.cpp"
+#include "../dp/dynamic_tree_DP.cpp"
 
 struct M {
   mint a, b, ans, sz;
@@ -16,7 +16,7 @@ M compress(const M &a, const M &b) {
   return M{a.a * b.a, a.a * b.b + a.b, a.ans + b.ans * a.a + a.b * b.sz, a.sz + b.sz};
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -49,7 +49,7 @@ signed main() {
   for(int i = 0; i < n; i++)
     init[i] = get(i);
 
-  dynamic_tree_dp<M, rake, compress> ddp(g, init);
+  dynamic_tree_DP<M, rake, compress> ddp(g, init);
 
   while(q--) {
     int op; cin >> op;

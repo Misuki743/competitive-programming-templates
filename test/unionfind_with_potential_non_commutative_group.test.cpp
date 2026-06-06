@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind_with_potential_non_commutative_group"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../ds/DSU/potential_DSU.cpp"
 
 int main() {

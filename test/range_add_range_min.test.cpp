@@ -1,17 +1,17 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_add_range_min"
 
 #include "../default/t.cpp"
-#include "../segtree/lazySegmentTree.cpp"
-#include "../segtree/ultraLazySegmentTree.cpp"
-#include "../actedmonoid/actedMonoid_addMin.cpp"
+#include "../segtree/lazy_segment_tree.cpp"
+#include "../segtree/acted_monoid_segment_tree.cpp"
+#include "../actedmonoid/add_min.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
   vector<ll> a(n);
   for(ll &x : a) cin >> x;
-  ultraLazySegmentTree<actedMonoid_addMin<ll>> st(a);
+  acted_monoid_segment_tree<add_min<ll>> st(a);
 
   while(q--) {
     int op, l, r; cin >> op >> l >> r;

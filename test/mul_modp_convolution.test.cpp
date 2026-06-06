@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/mul_modp_convolution"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../poly/NTTmint.cpp"
-#include "../poly/mulConvolution.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../poly/NTT.cpp"
+#include "../poly/convolution_multiplicative.cpp"
 
 NTT ntt;
 
@@ -17,8 +17,8 @@ int main() {
   for(mint &x : b)
     cin >> x;
 
-  mulConvolution mu(p);
-  cout << mu.mulConv(a, b, ntt.conv) << '\n';
+  convolution_multiplicative mu(p);
+  cout << mu.conv(a, b, ntt.conv) << '\n';
 
   return 0;
 }

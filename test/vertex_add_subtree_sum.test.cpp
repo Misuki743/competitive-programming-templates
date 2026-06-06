@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../tree/HLD.cpp"
-#include "../ds/fenwickTree.cpp"
+#include "../ds/fenwick_tree.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -17,7 +17,7 @@ int main() {
   }
 
   HLD hld(std::move(e));
-  fenwickTree ft(hld.reorder_init(a));
+  fenwick_tree ft(hld.reorder_init(a));
   while(q--) {
     int op; cin >> op;
     if (op == 0) {

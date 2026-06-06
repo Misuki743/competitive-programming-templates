@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/gcd_convolution"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../numtheory/linear_sieve.cpp"
 #include "../numtheory/zeta_mobius_on_divisibility_lattice.cpp"
 #include "../numtheory/gcd_convolution.cpp"

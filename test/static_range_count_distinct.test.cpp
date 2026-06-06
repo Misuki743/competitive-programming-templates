@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_count_distinct"
 
 #include "../default/t.cpp"
-#include "../ds/fenwickTree.cpp"
+#include "../ds/fenwick_tree.cpp"
 #include "../misc/compression.cpp"
 #include "../ds_problem/rangeCountDistinct.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

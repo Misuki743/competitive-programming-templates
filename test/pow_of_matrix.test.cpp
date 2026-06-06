@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/pow_of_matrix"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../linalg/matrixMint.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../linalg/matrix_mint.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;

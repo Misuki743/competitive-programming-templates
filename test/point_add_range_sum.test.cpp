@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
 #include "../default/t.cpp"
-#include "../ds/fenwickTree.cpp"
+#include "../ds/fenwick_tree.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -11,7 +11,7 @@ signed main() {
   for(ll &x : a)
     cin >> x;
 
-  fenwickTree bit(a);
+  fenwick_tree bit(a);
   while(q--) {
     int t, x, y; cin >> t >> x >> y;
     if (t == 0)

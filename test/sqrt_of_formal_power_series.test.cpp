@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sqrt_of_formal_power_series"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../poly/NTTmint.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../poly/NTT.cpp"
 #include "../poly/FPS.cpp"
 #include "../numtheory/sqrt_mod.cpp"
-#include "../poly/FPSsqrt.cpp"
+#include "../poly/FPS_sqrt.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;
@@ -15,7 +15,7 @@ signed main() {
   for(mint &x : f)
     cin >> x;
 
-  auto g = FPSsqrt(f, n);
+  auto g = FPS_sqrt(f, n);
   if (g.empty())
     cout << -1 << '\n';
   else

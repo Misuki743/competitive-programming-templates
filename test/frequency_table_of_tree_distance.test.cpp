@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/frequency_table_of_tree_distance"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../poly/NTTmint.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../poly/NTT.cpp"
 #include "../poly/convolution_ll.cpp"
 #include "../tree/centroid_tree.cpp"
 #include "../ds_problem/frequency_of_tree_distance.cpp"

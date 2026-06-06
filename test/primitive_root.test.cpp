@@ -4,7 +4,7 @@
 #include "../numtheory/factorize_pollard_rho.cpp"
 #include "../numtheory/primitive_root.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int q; cin >> q;

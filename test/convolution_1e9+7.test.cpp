@@ -5,7 +5,7 @@
 #include "../poly/NTT.cpp"
 #include "../poly/convolution_arbitrary_mod.cpp"
 
-using Mint = MontgomeryModInt<1'000'000'007>;
+using Mint = Montgomery_modint<1'000'000'007>;
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

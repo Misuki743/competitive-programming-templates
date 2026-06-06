@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../segtree/segmentTree.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../segtree/segment_tree.cpp"
 
 using line = array<mint, 2>;
 line unit() { return line{1, 0}; }
@@ -10,7 +10,7 @@ line ope(const line &l, const line &r) {
   return {l[0] * r[0], l[1] * r[0] + r[1]};
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -18,7 +18,7 @@ signed main() {
   for(auto &[c, d] : a)
     cin >> c >> d;
 
-  segmentTree<line, unit, ope> st(a);
+  segment_tree<line, unit, ope> st(a);
   while(q--) {
     int t, x, y, z; cin >> t >> x >> y >> z;
     if (t == 0) {

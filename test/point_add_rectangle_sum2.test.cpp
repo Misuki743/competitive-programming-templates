@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 
 #include "../default/t.cpp"
-#include "../ds/fenwickTree.cpp"
+#include "../ds/fenwick_tree.cpp"
 #include "../ds/wavelet_matrix.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -38,7 +38,7 @@ signed main() {
     a[x] = y, z[x] = (i++ < n ? w : 0);
 
   wavelet_matrix<int, 19> WM(a, 1);
-  vc<fenwickTree<ll>> ft;
+  vc<fenwick_tree<ll>> ft;
   for(auto &p : WM.perms) {
     vll init(size(xyw));
     for(int j = 0; j < size(xyw); j++)

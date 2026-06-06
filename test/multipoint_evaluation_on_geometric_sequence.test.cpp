@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence"
 
 #include "../default/t.cpp"
-#include "modint/MontgomeryModInt.cpp"
-#include "poly/NTTmint.cpp"
+#include "modint/Montgomery_modint.cpp"
+#include "poly/NTT.cpp"
 #include "poly/chirp_Z_transform.cpp"
 
 NTT ntt;
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m, a, r; cin >> n >> m >> a >> r;

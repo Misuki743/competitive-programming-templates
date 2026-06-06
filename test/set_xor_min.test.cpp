@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/set_xor_min"
 
 #include "../default/t.cpp"
-#include "../ds/binaryTrie.cpp"
+#include "../ds/binary_trie.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   binaryTrie<29> tr(500000 * 30);
@@ -16,7 +16,7 @@ signed main() {
     else if (t == 1)
       tr.erase(x);
     else if (t == 2)
-      cout << tr.queryMin(x) << '\n';
+      cout << tr.query_min(x) << '\n';
   }
 
   return 0;

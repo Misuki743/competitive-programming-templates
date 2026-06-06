@@ -1,14 +1,14 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2544"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../combi/binom.cpp"
-#include "../poly/NTTmint.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../combi/binomial.cpp"
+#include "../poly/NTT.cpp"
 
 NTT<23, 119, 3, mint> ntt;
 binomial<mint> bn(1 << 20);
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

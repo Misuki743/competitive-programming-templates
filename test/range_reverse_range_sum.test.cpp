@@ -11,7 +11,7 @@ ll act(const ll &a, const bool&) { return a; }
 
 using Treap = treap<ll, Mid, Mop, bool, Tid, Top, act>;
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

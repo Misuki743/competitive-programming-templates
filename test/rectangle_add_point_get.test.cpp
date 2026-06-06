@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/rectangle_add_point_get"
 
 #include "../default/t.cpp"
-#include "../ds/fenwickTree2D.cpp"
+#include "../ds/fenwick_tree_2D.cpp"
 #include "../misc/compression.cpp"
 #include "../ds_problem/rectangleAddPointGet.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

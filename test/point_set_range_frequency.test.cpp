@@ -1,10 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_frequency"
 
 #include "../default/t.cpp"
-#include "../ds/fenwickTree.cpp"
+#include "../ds/fenwick_tree.cpp"
 #include "../ds_problem/point_set_range_frequency.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../segtree/lazySegmentTree.cpp"
-#include "../segtree/ultraLazySegmentTree.cpp"
-#include "../actedmonoid/actedMonoid_affineSum.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../segtree/lazy_segment_tree.cpp"
+#include "../segtree/acted_monoid_segment_tree.cpp"
+#include "../actedmonoid/affine_sum.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -16,7 +16,7 @@ signed main() {
     s = 1;
   }
 
-  ultraLazySegmentTree<actedMonoid_affineSum<mint>> st(a);
+  acted_monoid_segment_tree<affine_sum<mint>> st(a);
   while(q--) {
     int t; cin >> t;
     if (t == 0) {

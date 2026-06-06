@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/minimum_steiner_tree"
 
 #include "../default/t.cpp"
-#include "../graph/misc/steinerTree.cpp"
+#include "../graph/misc/steiner_tree.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

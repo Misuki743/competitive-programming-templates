@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
 
 #include "../default/t.cpp"
-#include "../ds/doubleEndedPQ.cpp"
+#include "../ds/double_ended_PQ.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -11,7 +11,7 @@ int main() {
   for(int &x : a)
     cin >> x;
 
-  doubleEndedPQ<int> pq;
+  double_ended_PQ<int> pq;
   for(int x : a)
     pq.push(x);
 

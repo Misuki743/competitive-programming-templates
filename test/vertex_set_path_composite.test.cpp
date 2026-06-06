@@ -1,16 +1,16 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../segtree/segmentTree.cpp"
-#include "../actedmonoid/actedMonoid_affineSum.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../segtree/segment_tree.cpp"
+#include "../actedmonoid/affine_sum.cpp"
 #include "../tree/HLD.cpp"
 
-using am = actedMonoid_affineSum<mint>;
+using am = affine_sum<mint>;
 
 am::T R_Top(const am::T &a, const am::T &b) { return am::T{a[0] * b[0], b[1] * a[0] + a[1]}; }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -23,8 +23,8 @@ signed main() {
 
   HLD hld(std::move(e));
   init = hld.reorder_init(std::move(init));
-  segmentTree<am::T, am::Tid, R_Top> st_rev(init);
-  segmentTree<am::T, am::Tid, am::Top> st(init);
+  segment_tree<am::T, am::Tid, R_Top> st_rev(init);
+  segment_tree<am::T, am::Tid, am::Top> st(init);
   while(q--) {
     int op; cin >> op;
     if (op == 0) {

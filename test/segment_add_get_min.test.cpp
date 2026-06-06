@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/segment_add_get_min"
 
 #include "../default/t.cpp"
-#include "../segtree/lichaoSegmentTree.cpp"
+#include "../segtree/Lichao_segment_tree.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -47,7 +47,7 @@ signed main() {
     }
   }
 
-  lichaoSegmentTree<ll> st(bit_ceil(xs.size()), xs);
+  Lichao_segment_tree<ll> st(bit_ceil(xs.size()), xs);
   for(auto &[l, r, a, b] : c)
     st.insertRange(l, r, a, b);
   for(auto &[t, x, y, z, w] : query) {

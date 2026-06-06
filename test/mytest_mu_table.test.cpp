@@ -45,7 +45,7 @@ void a_plus_b() {
   cout << x + y << '\n';
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   for(int x = 1; x < (1 << 15); x++) {

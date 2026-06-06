@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/queue_operate_all_composite"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../ds/slidingWindowAggregation.cpp"
-#include "../actedmonoid/actedMonoid_affineSum.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../ds/SWAG.cpp"
+#include "../actedmonoid/affine_sum.cpp"
 
-using am = actedMonoid_affineSum<mint>;
+using am = affine_sum<mint>;
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   SWAG<am::T, am::Tid, am::Top> swag;

@@ -1,7 +1,7 @@
 //#include "ds/DSU.cpp"
 //#include "graph/SCC.cpp"
 
-vector<array<int, 3>> incrementalSCC(vector<array<int, 2>> _e, int n) {
+vector<array<int, 3>> incremental_SCC(vector<array<int, 2>> _e, int n) {
   vector<array<int, 3>> e(ssize(_e));
   for(int i = 0; auto [u, v] : _e)
     e[i] = {u, v, i}, i++;

@@ -1,12 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../ds/treap.cpp"
-#include "../actedmonoid/actedMonoid_affineSum.cpp"
+#include "../actedmonoid/affine_sum.cpp"
 
-using am = actedMonoid_affineSum<mint>;
-using Treap = treap<am::M, am::Mid, am::Mop, am::T, am::Tid, am::Top, am::act>;
+using AM = affine_sum<mint>;
+using Treap = treap<AM::M, AM::Mid, AM::Mop, AM::T, AM::Tid, AM::Top, AM::act>;
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -28,7 +28,7 @@ int main() {
       Treap::erase(tr, i);
     } else if (t == 2) {
       int l, r; cin >> l >> r;
-      Treap::modify(tr, l, r, am::Tid(), true);
+      Treap::modify(tr, l, r, AM::Tid(), true);
     } else if (t == 3) {
       int l, r, b, c; cin >> l >> r >> b >> c;
       Treap::modify(tr, l, r, {b, c});

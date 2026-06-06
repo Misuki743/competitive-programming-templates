@@ -2,9 +2,9 @@
 
 #include "../default/t.cpp"
 #include "../misc/compression.cpp"
-#include "../ds/waveletMatrix.cpp"
+#include "../ds/wavelet_matrix.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -14,7 +14,7 @@ signed main() {
 
   a.emplace_back(INT_MAX);
   compression<int> xs(a);
-  waveletMatrix<int, 18> wv(xs.ord);
+  wavelet_matrix<int, 18> wv(xs.ord);
 
   while(q--) {
     int l, r, x; cin >> l >> r >> x;
@@ -22,7 +22,7 @@ signed main() {
     if (xs.val[y] != x)
       cout << 0 << '\n';
     else
-      cout << wv.rectQuery(l, r, y, y + 1) << '\n';
+      cout << wv.rect_query(l, r, y, y + 1) << '\n';
   }
 
   return 0;

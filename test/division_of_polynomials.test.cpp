@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../poly/NTTmint.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../poly/NTT.cpp"
 #include "../poly/FPS.cpp"
 
 int main() {

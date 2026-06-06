@@ -3,11 +3,11 @@
 #include <bits/extc++.h>
 #include "../default/t.cpp"
 #include "../ds/hashTable.cpp"
-#include "../ds/fenwickTree.cpp"
+#include "../ds/fenwick_tree.cpp"
 #include "../tree/tree.cpp"
 #include "../tree/centroid_tree.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
@@ -63,7 +63,7 @@ signed main() {
   }
 
   adjacent_difference(init.begin(), init.end(), init.begin());
-  fenwickTree<ll> ft(init);
+  fenwick_tree<ll> ft(init);
   auto modify = [&](int v, int l, int r, int d) {
     int ql = base[v] + (ranges::lower_bound(cand[v], array<int, 2>{l, -1}) - cand[v].begin());
     int qr = base[v] + (ranges::lower_bound(cand[v], array<int, 2>{r, -1}) - cand[v].begin());
