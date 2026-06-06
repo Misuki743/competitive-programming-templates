@@ -1,4 +1,4 @@
-//#include<modint/MontgomeryModInt.cpp>
+//#include<modint/Montgomery_modint.cpp>
 
 template<class Mint>
 struct stirling_first_kind_mod_P {

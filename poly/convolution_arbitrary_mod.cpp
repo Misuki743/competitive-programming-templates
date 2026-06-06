@@ -5,9 +5,9 @@
 template<class Mint>
 vector<Mint> convolution_arbitrary_mod(vector<Mint> a, vector<Mint> b) {
   if (a.empty() or b.empty()) return {};
-  using Mint0 = MontgomeryModInt<998244353>;
-  using Mint1 = MontgomeryModInt<469762049>;
-  using Mint2 = MontgomeryModInt<167772161>;
+  using Mint0 = Montgomery_modint<998244353>;
+  using Mint1 = Montgomery_modint<469762049>;
+  using Mint2 = Montgomery_modint<167772161>;
   NTT<23, 119, 3, Mint0> ntt0;
   NTT<26, 7, 3, Mint1> ntt1;
   NTT<25, 5, 3, Mint2> ntt2;

@@ -1,6 +1,6 @@
 //#include<poly/FPS.cpp>
-//#include<poly/NTTmint.cpp>
-//#include<modint/MontgomeryModInt.cpp>
+//#include<poly/NTT.cpp>
+//#include<modint/Montgomery_modint.cpp>
 //#include<combi/binom.cpp>
 //#include<numtheory/sqrtMod.cpp>
 

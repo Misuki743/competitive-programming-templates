@@ -1,5 +1,5 @@
-//#include "modint/MontgomeryModInt.cpp"
-//#include "poly/NTTmint.cpp"
+//#include "modint/Montgomery_modint.cpp"
+//#include "poly/NTT.cpp"
 //#include "poly/FPS.cpp"
 
 //compute [x^k]f(x)g(x)^i for all i in [0, n) in O(klg^2k)

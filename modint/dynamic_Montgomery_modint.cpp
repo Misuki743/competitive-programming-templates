@@ -3,7 +3,7 @@
 
 template<uint32_t ver>
 struct dynamic_Montgomery_modint {
-  using mint = MontgomeryModInt;
+  using mint = dynamic_Montgomery_modint;
   using i32 = int32_t;
   using u32 = uint32_t;
   using u64 = uint64_t;

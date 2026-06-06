@@ -1,9 +1,9 @@
-//#include "modint/dynamicMontgomeryModInt.cpp"
+//#include "modint/dynamic_Montgomery_modint.cpp"
 //#include "numtheory/fastFactorize.cpp"
 
-template<> uint32_t MontgomeryModInt<123>::mod = 0;
-template<> uint32_t MontgomeryModInt<123>::n2 = 0;
-template<> uint32_t MontgomeryModInt<123>::r = 0;
+template<> uint32_t dynamic_Montgomery_modint<123>::mod = 0;
+template<> uint32_t dynamic_Montgomery_modint<123>::n2 = 0;
+template<> uint32_t dynamic_Montgomery_modint<123>::r = 0;
 int chromatic_number(vector<vector<bool>> g) {
   const int n = ssize(g);
 
@@ -11,7 +11,7 @@ int chromatic_number(vector<vector<bool>> g) {
   uniform_int_distribution<int> unif(1 << 29, 1 << 30);
   int p = 4;
   while(!isPrime(p)) p = unif(rng);
-  using Mint = MontgomeryModInt<123>;
+  using Mint = dynamic_Montgomery_modint<123>;
   Mint::set_mod(p);
 
   vector<Mint> I(1 << n);

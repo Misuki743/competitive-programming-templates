@@ -1,5 +1,5 @@
-//#include<poly/NTTmint.cpp>
-//#include<modint/MontgomeryModInt.cpp>
+//#include<poly/NTT.cpp>
+//#include<modint/Montgomery_modint.cpp>
 //#include<numtheory/sqrtMod.cpp>
 
 template<class Mint>

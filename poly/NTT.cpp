@@ -5,7 +5,7 @@
 //                    469762049  = 2^26 * 7   + 1, R = 3
 //                    1224736769 = 2^24 * 73  + 1, R = 3
 
-template<int32_t k = 23, int32_t c = 119, int32_t r = 3, class Mint = MontgomeryModInt<998244353>>
+template<int32_t k = 23, int32_t c = 119, int32_t r = 3, class Mint = Montgomery_modint<998244353>>
 struct NTT {
 
   using u32 = uint32_t;
