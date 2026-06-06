@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/incremental_scc.test.cpp
-    title: test/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/strongly_connected_components.test.cpp
     title: test/strongly_connected_components.test.cpp
   _isVerificationFailed: false
@@ -55,7 +52,6 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/incremental_scc.test.cpp
   - test/strongly_connected_components.test.cpp
 documentation_of: graph/connectivity/SCC.cpp
 layout: document

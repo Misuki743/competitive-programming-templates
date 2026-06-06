@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/bell_number.test.cpp
-    title: test/bell_number.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/bell_number.cpp\"\n//#include \"modint/MontgomeryModInt.cpp\"\
@@ -27,9 +24,8 @@ data:
   path: combi/bell_number.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/bell_number.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: combi/bell_number.cpp
 layout: document
 redirect_from:

@@ -1,0 +1,83 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"segtree/range_set_segment_tree.cpp\"\ntemplate<class M,\
+    \ M(*id)(), M(*op)(const M&, const M&)>\nstruct range_set_segment_tree {\n  vector<M>\
+    \ data, pre;\n  vector<int> tagId;\n  int size, nxt;\n\n  range_set_segment_tree(int\
+    \ _size) : data(2 * _size, id()), pre(_size), tagId(_size, -1), size(_size), nxt(0)\
+    \ {}\n\n  range_set_segment_tree(vector<M> init) : data(2 * ssize(init), id()),\
+    \ pre(ssize(init)), tagId(ssize(init), -1), size(ssize(init)), nxt(0) {\n    copy(init.begin(),\
+    \ init.end(), data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n \
+    \     data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i,\
+    \ int tId) {\n    data[i] = pre[tId];\n    if (i < size) tagId[i] = tId;\n  }\n\
+    \n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1; s > 0;\
+    \ s--) {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i\
+    \ >> s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
+    \ >> s] = -1;\n      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1)\
+    \ data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i)\
+    \ { return i >> countr_zero(i); }\n\n  void set(int i, M x) {\n    push(i + size);\n\
+    \    data[i + size] = x;\n    pull(i + size);\n  }\n\n  M get(int i) {\n    push(i\
+    \ + size);\n    return data[i + size];\n  }\n\n  void set(int l, int r, M x) {\n\
+    \    if (l >= r or x == id()) return;\n    if (nxt + bit_width((unsigned)size)\
+    \ > size) {\n      for(int i = 1; i < size; i++) {\n        if (tagId[i] != -1)\
+    \ {\n          apply(i << 1, tagId[i] - 1);\n          apply(i << 1 | 1, tagId[i]\
+    \ - 1);\n          tagId[i] = -1;\n        }\n      }\n      nxt = 0;\n    }\n\
+    \    for(int i = 0; i < bit_width((unsigned)size); i++, x = op(x, x))\n      pre[nxt++]\
+    \ = x;\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    int l0 =\
+    \ l, r0 = r;\n    for(int tId = nxt - (int)bit_width((unsigned)size); l < r; l\
+    \ >>= 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1)\
+    \ apply(--r, tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n\
+    \  M query(int l, int r) {\n    if (l >= r) return id();\n    M L = id(), R =\
+    \ id();\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r\
+    \ & 1) R = op(data[--r], R);\n    }\n    return op(L, R);\n  }\n};\n"
+  code: "template<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct range_set_segment_tree\
+    \ {\n  vector<M> data, pre;\n  vector<int> tagId;\n  int size, nxt;\n\n  range_set_segment_tree(int\
+    \ _size) : data(2 * _size, id()), pre(_size), tagId(_size, -1), size(_size), nxt(0)\
+    \ {}\n\n  range_set_segment_tree(vector<M> init) : data(2 * ssize(init), id()),\
+    \ pre(ssize(init)), tagId(ssize(init), -1), size(ssize(init)), nxt(0) {\n    copy(init.begin(),\
+    \ init.end(), data.begin() + size);\n    for(int i = size - 1; i > 0; i--)\n \
+    \     data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void apply(int i,\
+    \ int tId) {\n    data[i] = pre[tId];\n    if (i < size) tagId[i] = tId;\n  }\n\
+    \n  void push(int i) {\n    for(int s = (int)bit_width((unsigned)i) - 1; s > 0;\
+    \ s--) {\n      if (tagId[i >> s] != -1) {\n        apply(i >> (s - 1), tagId[i\
+    \ >> s] - 1);\n        apply(i >> (s - 1) ^ 1, tagId[i >> s] - 1);\n        tagId[i\
+    \ >> s] = -1;\n      }\n    }\n  }\n\n  void pull(int i) {\n    while(i >>= 1)\
+    \ data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  int trunc(unsigned i)\
+    \ { return i >> countr_zero(i); }\n\n  void set(int i, M x) {\n    push(i + size);\n\
+    \    data[i + size] = x;\n    pull(i + size);\n  }\n\n  M get(int i) {\n    push(i\
+    \ + size);\n    return data[i + size];\n  }\n\n  void set(int l, int r, M x) {\n\
+    \    if (l >= r or x == id()) return;\n    if (nxt + bit_width((unsigned)size)\
+    \ > size) {\n      for(int i = 1; i < size; i++) {\n        if (tagId[i] != -1)\
+    \ {\n          apply(i << 1, tagId[i] - 1);\n          apply(i << 1 | 1, tagId[i]\
+    \ - 1);\n          tagId[i] = -1;\n        }\n      }\n      nxt = 0;\n    }\n\
+    \    for(int i = 0; i < bit_width((unsigned)size); i++, x = op(x, x))\n      pre[nxt++]\
+    \ = x;\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    int l0 =\
+    \ l, r0 = r;\n    for(int tId = nxt - (int)bit_width((unsigned)size); l < r; l\
+    \ >>= 1, r >>= 1, tId++) {\n      if (l & 1) apply(l++, tId);\n      if (r & 1)\
+    \ apply(--r, tId);\n    }\n    pull(trunc(l0)), pull(trunc(r0) - 1);\n  }\n\n\
+    \  M query(int l, int r) {\n    if (l >= r) return id();\n    M L = id(), R =\
+    \ id();\n    push(trunc(l += size)), push(trunc(r += size) - 1);\n    for(; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = op(L, data[l++]);\n      if (r\
+    \ & 1) R = op(data[--r], R);\n    }\n    return op(L, R);\n  }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: segtree/range_set_segment_tree.cpp
+  requiredBy: []
+  timestamp: '2026-06-06 23:34:13+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: segtree/range_set_segment_tree.cpp
+layout: document
+redirect_from:
+- /library/segtree/range_set_segment_tree.cpp
+- /library/segtree/range_set_segment_tree.cpp.html
+title: segtree/range_set_segment_tree.cpp
+---

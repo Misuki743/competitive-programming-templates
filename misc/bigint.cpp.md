@@ -2,22 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/addition_of_big_integers.test.cpp
-    title: test/addition_of_big_integers.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/addition_of_big_integers_2.test.cpp
-    title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/multiplication_of_big_intergers.test.cpp
-    title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/multiplication_of_big_intergers_2.test.cpp
-    title: test/multiplication_of_big_intergers_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/bigint.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
@@ -150,12 +138,8 @@ data:
   path: misc/bigint.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/multiplication_of_big_intergers.test.cpp
-  - test/multiplication_of_big_intergers_2.test.cpp
-  - test/addition_of_big_integers.test.cpp
-  - test/addition_of_big_integers_2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: misc/bigint.cpp
 layout: document
 redirect_from:

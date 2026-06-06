@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/frequency_table_of_tree_distance.test.cpp
-    title: test/frequency_table_of_tree_distance.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/convolution_ll.cpp\"\n//the result should not exceed\
@@ -79,9 +76,8 @@ data:
   path: poly/convolution_ll.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/frequency_table_of_tree_distance.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/convolution_ll.cpp
 layout: document
 redirect_from:

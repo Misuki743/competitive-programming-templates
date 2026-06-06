@@ -1,0 +1,152 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"linalg/matrix_mint.cpp\"\ntemplate<class Mint>\nstruct matrix\
+    \ : vector<vector<Mint>> {\n  matrix(int n, int m) : vector<vector<Mint>>(n, vector<Mint>(m,\
+    \ 0)) {}\n  matrix(int n) : vector<vector<Mint>>(n, vector<Mint>(n, 0)) {}\n\n\
+    \  int n() const { return ssize(*this); }\n  int m() const { return n() == 0 ?\
+    \ 0 : ssize((*this)[0]); }\n\n  static matrix I(int n) {\n    auto res = matrix(n,\
+    \ n);\n    for(int i = 0; i < n; i++)\n      res[i][i] = 1;\n    return res;\n\
+    \  }\n\n  matrix& operator+=(const matrix &b) {\n    assert(n() == b.n());\n \
+    \   assert(m() == b.m());\n    for(int i = 0; i < n(); i++)\n      for(int j =\
+    \ 0; j < m(); j++)\n        (*this)[i][j] += b[i][j];\n    return *this;\n  }\n\
+    \n  matrix& operator-=(const matrix &b) {\n    assert(n() == b.n());\n    assert(m()\
+    \ == b.m());\n    for(int i = 0; i < n(); i++)\n      for(int j = 0; j < m();\
+    \ j++)\n        (*this)[i][j] -= b[i][j];\n    return *this;\n  }\n\n  matrix&\
+    \ operator*=(const matrix &b) {\n    assert(m() == b.n());\n    auto res = matrix(n(),\
+    \ b.m());\n    for(int i = 0; i < n(); i++)\n      for(int k = 0; k < m(); k++)\n\
+    \        for(int j = 0; j < b.m(); j++)\n          res[i][j] += (*this)[i][k]\
+    \ * b[k][j];\n    this -> swap(res);\n    return *this;\n  }\n\n  matrix pow(ll\
+    \ k) const {\n    assert(n() == m());\n    auto res = I(n()), base = *this;\n\
+    \    while(k) {\n      if (k & 1) res *= base;\n      base *= base, k >>= 1;\n\
+    \    }\n    return res;\n  }\n\n  tuple<matrix, vector<int>, int> eliminate()\
+    \ {\n    int sgn = 1;\n    matrix M = *this;\n    vector<int> pivot_row;\n   \
+    \ for(int row = 0, col = 0; row < n() and col < m(); col++) {\n      int p_row\
+    \ = -1;\n      for(int i = row; i < n() and p_row == -1; i++)\n        if (M[i][col]\
+    \ != 0) \n          p_row = i;\n      if (p_row == -1) continue;\n      pivot_row.emplace_back(row);\n\
+    \      if (row != p_row) {\n        for(int j = col; j < m(); j++)\n         \
+    \ swap(M[row][j], M[p_row][j]);\n        sgn *= -1;\n      }\n      for(int i\
+    \ = 0; i < n(); i++) {\n        if (i == row or M[i][col] == 0) continue;\n  \
+    \      Mint s = M[i][col] / M[row][col];\n        for(int j = col; j < m(); j++)\n\
+    \          M[i][j] -= M[row][j] * s;\n      }\n      row++;\n    }\n    return\
+    \ {M, pivot_row, sgn};\n  }\n\n  Mint det() {\n    assert(n() == m());\n    auto\
+    \ [M, pr, sgn] = eliminate();\n    if (ssize(pr) != n()) {\n      return Mint(0);\n\
+    \    } else {\n      Mint d = sgn;\n      for(int i = 0; i < n(); i++)\n     \
+    \   d *= M[i][i];\n      return d;\n    }\n  }\n\n  int rank() {\n    return get<1>(eliminate()).size();\n\
+    \  }\n\n  pair<bool, matrix> inv() {\n    assert(n() == m());\n    matrix M(n(),\
+    \ 2 * n());\n    for(int i = 0; i < n(); i++) {\n      for(int j = 0; j < n();\
+    \ j++)\n        M[i][j] = (*this)[i][j];\n      M[i][n() + i] = 1;\n    }\n  \
+    \  matrix tmp = get<0>(M.eliminate());\n    matrix MI(n(), n());\n    for(int\
+    \ i = 0; i < n(); i++) {\n      if (tmp[i][i] == 0) return {false, matrix(0, 0)};\n\
+    \      Mint r = tmp[i][i].inverse();\n      for(int j = 0; j < n(); j++)\n   \
+    \     MI[i][j] = tmp[i][j + n()] * r;\n    }\n    return {true, MI};\n  }\n\n\
+    \  pair<vector<Mint>, matrix> solve_linear(vector<Mint> b) {\n    assert(n() ==\
+    \ ssize(b));\n\n    matrix M(n(), m() + 1);\n    for(int i = 0; i < n(); i++)\
+    \ {\n      for(int j = 0; j < m(); j++)\n        M[i][j] = (*this)[i][j];\n  \
+    \    M[i][m()] = b[i];\n    }\n\n    auto [N, pr, _] = M.eliminate();\n    vector<Mint>\
+    \ x(m());\n    vector<int> where(m(), -1), inv_where(m(), -1);\n    for(int row\
+    \ : pr) {\n      int col = 0;\n      while(N[row][col] == 0) col++;\n      if\
+    \ (col < m())\n        where[col] = row, inv_where[row] = col;\n    }\n\n    for(int\
+    \ i = 0; i < m(); i++)\n      if (where[i] != -1)\n        x[i] = N[where[i]][m()]\
+    \ / N[where[i]][i];\n\n    for(int i = 0; i < n(); i++) {\n      Mint s = -N[i][m()];\n\
+    \      for(int j = 0; j < m(); j++)\n        s += x[j] * N[i][j];\n      if (s\
+    \ != Mint(0))\n        return {vector<Mint>(), matrix(0)};\n    }\n\n    matrix\
+    \ basis(m() - ssize(pr), m());\n    for(int col = 0, last_row = 0, k = 0; col\
+    \ < m(); col++) {\n      if (where[col] != -1) {\n        last_row = where[col];\n\
+    \      } else {\n        basis[k][col] = 1;\n        for(int i = 0; i <= last_row;\
+    \ i++)\n          basis[k][inv_where[i]] = -N[i][col] / N[i][inv_where[i]];\n\
+    \        k++;\n      }\n    }\n\n    return {x, basis};\n  }\n\n  matrix operator-()\
+    \ { return matrix(n(), m()) - (*this); }\n  \n  friend matrix operator+(matrix\
+    \ a, matrix b) { return a += b; }\n  friend matrix operator-(matrix a, matrix\
+    \ b) { return a -= b; }\n  friend matrix operator*(matrix a, matrix b) { return\
+    \ a *= b; }\n  \n  friend ostream& operator<<(ostream& os, const matrix& b) {\n\
+    \    for(int i = 0; i < b.n(); i++) {\n      os << '\\n';\n      for(int j = 0;\
+    \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
+    \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
+    \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
+    \    return is;\n  }\n};\n"
+  code: "template<class Mint>\nstruct matrix : vector<vector<Mint>> {\n  matrix(int\
+    \ n, int m) : vector<vector<Mint>>(n, vector<Mint>(m, 0)) {}\n  matrix(int n)\
+    \ : vector<vector<Mint>>(n, vector<Mint>(n, 0)) {}\n\n  int n() const { return\
+    \ ssize(*this); }\n  int m() const { return n() == 0 ? 0 : ssize((*this)[0]);\
+    \ }\n\n  static matrix I(int n) {\n    auto res = matrix(n, n);\n    for(int i\
+    \ = 0; i < n; i++)\n      res[i][i] = 1;\n    return res;\n  }\n\n  matrix& operator+=(const\
+    \ matrix &b) {\n    assert(n() == b.n());\n    assert(m() == b.m());\n    for(int\
+    \ i = 0; i < n(); i++)\n      for(int j = 0; j < m(); j++)\n        (*this)[i][j]\
+    \ += b[i][j];\n    return *this;\n  }\n\n  matrix& operator-=(const matrix &b)\
+    \ {\n    assert(n() == b.n());\n    assert(m() == b.m());\n    for(int i = 0;\
+    \ i < n(); i++)\n      for(int j = 0; j < m(); j++)\n        (*this)[i][j] -=\
+    \ b[i][j];\n    return *this;\n  }\n\n  matrix& operator*=(const matrix &b) {\n\
+    \    assert(m() == b.n());\n    auto res = matrix(n(), b.m());\n    for(int i\
+    \ = 0; i < n(); i++)\n      for(int k = 0; k < m(); k++)\n        for(int j =\
+    \ 0; j < b.m(); j++)\n          res[i][j] += (*this)[i][k] * b[k][j];\n    this\
+    \ -> swap(res);\n    return *this;\n  }\n\n  matrix pow(ll k) const {\n    assert(n()\
+    \ == m());\n    auto res = I(n()), base = *this;\n    while(k) {\n      if (k\
+    \ & 1) res *= base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\
+    \n  tuple<matrix, vector<int>, int> eliminate() {\n    int sgn = 1;\n    matrix\
+    \ M = *this;\n    vector<int> pivot_row;\n    for(int row = 0, col = 0; row <\
+    \ n() and col < m(); col++) {\n      int p_row = -1;\n      for(int i = row; i\
+    \ < n() and p_row == -1; i++)\n        if (M[i][col] != 0) \n          p_row =\
+    \ i;\n      if (p_row == -1) continue;\n      pivot_row.emplace_back(row);\n \
+    \     if (row != p_row) {\n        for(int j = col; j < m(); j++)\n          swap(M[row][j],\
+    \ M[p_row][j]);\n        sgn *= -1;\n      }\n      for(int i = 0; i < n(); i++)\
+    \ {\n        if (i == row or M[i][col] == 0) continue;\n        Mint s = M[i][col]\
+    \ / M[row][col];\n        for(int j = col; j < m(); j++)\n          M[i][j] -=\
+    \ M[row][j] * s;\n      }\n      row++;\n    }\n    return {M, pivot_row, sgn};\n\
+    \  }\n\n  Mint det() {\n    assert(n() == m());\n    auto [M, pr, sgn] = eliminate();\n\
+    \    if (ssize(pr) != n()) {\n      return Mint(0);\n    } else {\n      Mint\
+    \ d = sgn;\n      for(int i = 0; i < n(); i++)\n        d *= M[i][i];\n      return\
+    \ d;\n    }\n  }\n\n  int rank() {\n    return get<1>(eliminate()).size();\n \
+    \ }\n\n  pair<bool, matrix> inv() {\n    assert(n() == m());\n    matrix M(n(),\
+    \ 2 * n());\n    for(int i = 0; i < n(); i++) {\n      for(int j = 0; j < n();\
+    \ j++)\n        M[i][j] = (*this)[i][j];\n      M[i][n() + i] = 1;\n    }\n  \
+    \  matrix tmp = get<0>(M.eliminate());\n    matrix MI(n(), n());\n    for(int\
+    \ i = 0; i < n(); i++) {\n      if (tmp[i][i] == 0) return {false, matrix(0, 0)};\n\
+    \      Mint r = tmp[i][i].inverse();\n      for(int j = 0; j < n(); j++)\n   \
+    \     MI[i][j] = tmp[i][j + n()] * r;\n    }\n    return {true, MI};\n  }\n\n\
+    \  pair<vector<Mint>, matrix> solve_linear(vector<Mint> b) {\n    assert(n() ==\
+    \ ssize(b));\n\n    matrix M(n(), m() + 1);\n    for(int i = 0; i < n(); i++)\
+    \ {\n      for(int j = 0; j < m(); j++)\n        M[i][j] = (*this)[i][j];\n  \
+    \    M[i][m()] = b[i];\n    }\n\n    auto [N, pr, _] = M.eliminate();\n    vector<Mint>\
+    \ x(m());\n    vector<int> where(m(), -1), inv_where(m(), -1);\n    for(int row\
+    \ : pr) {\n      int col = 0;\n      while(N[row][col] == 0) col++;\n      if\
+    \ (col < m())\n        where[col] = row, inv_where[row] = col;\n    }\n\n    for(int\
+    \ i = 0; i < m(); i++)\n      if (where[i] != -1)\n        x[i] = N[where[i]][m()]\
+    \ / N[where[i]][i];\n\n    for(int i = 0; i < n(); i++) {\n      Mint s = -N[i][m()];\n\
+    \      for(int j = 0; j < m(); j++)\n        s += x[j] * N[i][j];\n      if (s\
+    \ != Mint(0))\n        return {vector<Mint>(), matrix(0)};\n    }\n\n    matrix\
+    \ basis(m() - ssize(pr), m());\n    for(int col = 0, last_row = 0, k = 0; col\
+    \ < m(); col++) {\n      if (where[col] != -1) {\n        last_row = where[col];\n\
+    \      } else {\n        basis[k][col] = 1;\n        for(int i = 0; i <= last_row;\
+    \ i++)\n          basis[k][inv_where[i]] = -N[i][col] / N[i][inv_where[i]];\n\
+    \        k++;\n      }\n    }\n\n    return {x, basis};\n  }\n\n  matrix operator-()\
+    \ { return matrix(n(), m()) - (*this); }\n  \n  friend matrix operator+(matrix\
+    \ a, matrix b) { return a += b; }\n  friend matrix operator-(matrix a, matrix\
+    \ b) { return a -= b; }\n  friend matrix operator*(matrix a, matrix b) { return\
+    \ a *= b; }\n  \n  friend ostream& operator<<(ostream& os, const matrix& b) {\n\
+    \    for(int i = 0; i < b.n(); i++) {\n      os << '\\n';\n      for(int j = 0;\
+    \ j < b.m(); j++)\n        os << b[i][j] << ' ';\n    }\n    return os;\n  }\n\
+    \  friend istream& operator>>(istream& is, matrix& b) {\n    for(int i = 0; i\
+    \ < b.n(); i++)\n      for(int j = 0; j < b.m(); j++)\n        is >> b[i][j];\n\
+    \    return is;\n  }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: linalg/matrix_mint.cpp
+  requiredBy: []
+  timestamp: '2026-06-06 23:34:13+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: linalg/matrix_mint.cpp
+layout: document
+redirect_from:
+- /library/linalg/matrix_mint.cpp
+- /library/linalg/matrix_mint.cpp.html
+title: linalg/matrix_mint.cpp
+---

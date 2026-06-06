@@ -2,31 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/point_add_rectangle_sum.test.cpp
-    title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/range_kth_smallest.test.cpp
-    title: test/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/range_kth_smallest2.test.cpp
-    title: test/range_kth_smallest2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/rectangle_add_point_get.test.cpp
-    title: test/rectangle_add_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/rectangle_sum.test.cpp
-    title: test/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/static_range_count_distinct.test.cpp
-    title: test/static_range_count_distinct.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/static_range_frequency.test.cpp
-    title: test/static_range_frequency.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate\
@@ -62,15 +41,8 @@ data:
   path: misc/compression.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/rectangle_add_point_get.test.cpp
-  - test/static_range_frequency.test.cpp
-  - test/rectangle_sum.test.cpp
-  - test/point_add_rectangle_sum.test.cpp
-  - test/range_kth_smallest2.test.cpp
-  - test/range_kth_smallest.test.cpp
-  - test/static_range_count_distinct.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: misc/compression.cpp
 layout: document
 title: misc/compression.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2654.test.cpp
+    title: test/yuki_2654.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/dynamic_kth.cpp\"\ntemplate<class T>\nstruct dynamic_kth\
@@ -21,7 +24,7 @@ data:
     \ ite2 != D.end())\n      D.erase(ite2), Dsum -= x;\n  }\n  T kth(int k) { slide(k);\
     \ assert(!U.empty()); return *U.begin(); }\n  T min() { return D.empty() ? *U.begin()\
     \ : *D.begin(); }\n  T max() { return U.empty() ? *D.rbegin() : *U.rbegin(); }\n\
-    \  uint64_t size() { return ssize(D) + ssize(U); }\n};\n"
+    \  int64_t size() { return ssize(D) + ssize(U); }\n};\n"
   code: "template<class T>\nstruct dynamic_kth {\n  multiset<T> D, U;\n  T Dsum =\
     \ 0, Usum = 0;\n  void slide(int k) { //make |D| = k\n    while(ssize(D) > k)\
     \ {\n      T x = *D.rbegin();\n      Usum += x, Dsum -= x;\n      U.insert(x);\n\
@@ -34,15 +37,16 @@ data:
     \ Usum -= x;\n    else if (auto ite2 = D.find(x); ite2 != D.end())\n      D.erase(ite2),\
     \ Dsum -= x;\n  }\n  T kth(int k) { slide(k); assert(!U.empty()); return *U.begin();\
     \ }\n  T min() { return D.empty() ? *U.begin() : *D.begin(); }\n  T max() { return\
-    \ U.empty() ? *D.rbegin() : *U.rbegin(); }\n  uint64_t size() { return ssize(D)\
+    \ U.empty() ? *D.rbegin() : *U.rbegin(); }\n  int64_t size() { return ssize(D)\
     \ + ssize(U); }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/dynamic_kth.cpp
   requiredBy: []
-  timestamp: '2026-03-22 18:39:18+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2026-06-06 23:34:13+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yuki_2654.test.cpp
 documentation_of: ds/dynamic_kth.cpp
 layout: document
 redirect_from:

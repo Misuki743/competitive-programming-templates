@@ -1,0 +1,84 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"segtree/segment_tree.cpp\"\ntemplate<class M, M(*id)(),\
+    \ M(*op)(const M&, const M&)>\nstruct segment_tree {\n  int size;\n  vector<M>\
+    \ data;\n\n  segment_tree(int _size) : size(_size), data(2 * size, id()) {}\n\
+    \  segment_tree(vector<M> init) : size(ssize(init)), data(2 * size, id()) {\n\
+    \    ranges::copy(init, data.begin() + size);\n    for(int i = size - 1; i > 0;\
+    \ i--)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  void set(int\
+    \ i, M x) {\n    data[i += size] = x;\n    while(i >>= 1)\n      data[i] = op(data[i\
+    \ << 1], data[i << 1 | 1]);\n  }\n\n  M get(int i) { return data[i + size]; }\n\
+    \n  M query(int l, int r) {\n    M L = id(), R = id();\n    for(l += size, r +=\
+    \ size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = op(L, data[l++]);\n \
+    \     if (r & 1) R = op(data[--r], R);\n    }\n    return op(L, R);\n  }\n\n \
+    \ //return first j in [i, size) s.t. f(op([l, j])) is true,\n  //assume f(id())\
+    \ is false.\n  int first_true(int i, function<bool(const M&)> f) {\n    vector<int>\
+    \ idL, idR;\n    for(int l = i + size, r = size << 1; l < r; l >>= 1, r >>= 1)\
+    \ {\n      if (l & 1) idL.emplace_back(l++);\n      if (r & 1) idR.emplace_back(--r);\n\
+    \    }\n    idL.insert(idL.end(), idR.rbegin(), idR.rend());\n    M pre = id();\n\
+    \    int v = -1;\n    for(int j : idL) {\n      if (f(op(pre, data[j]))) {\n \
+    \       v = j;\n        break;\n      } else {\n        pre = op(pre, data[j]);\n\
+    \      }\n    }\n    if (v == -1) return size;\n    while(v < size) {\n      if\
+    \ (f(op(pre, data[v << 1])))\n        v = v << 1;\n      else\n        pre = op(pre,\
+    \ data[v << 1]), v = v << 1 | 1;\n    }\n    return v - size;\n  }\n\n  int last_true(int\
+    \ i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n    for(int l =\
+    \ size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
+    \      if (r & 1) idR.emplace_back(--r);\n    }\n    idR.insert(idR.end(), idL.rbegin(),\
+    \ idL.rend());\n    M suf = id();\n    int v = -1;\n    for(int j : idR) {\n \
+    \     if (f(op(data[j], suf))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        suf = op(data[j], suf);\n      }\n    }\n    if (v == -1) return\
+    \ -1;\n    while(v < size) {\n      if (f(op(data[v << 1 | 1], suf)))\n      \
+    \  v = v << 1 | 1;\n      else\n        suf = op(data[v << 1 | 1], suf), v = v\
+    \ << 1;\n    }\n    return v - size;\n  }\n};\n"
+  code: "template<class M, M(*id)(), M(*op)(const M&, const M&)>\nstruct segment_tree\
+    \ {\n  int size;\n  vector<M> data;\n\n  segment_tree(int _size) : size(_size),\
+    \ data(2 * size, id()) {}\n  segment_tree(vector<M> init) : size(ssize(init)),\
+    \ data(2 * size, id()) {\n    ranges::copy(init, data.begin() + size);\n    for(int\
+    \ i = size - 1; i > 0; i--)\n      data[i] = op(data[i << 1], data[i << 1 | 1]);\n\
+    \  }\n\n  void set(int i, M x) {\n    data[i += size] = x;\n    while(i >>= 1)\n\
+    \      data[i] = op(data[i << 1], data[i << 1 | 1]);\n  }\n\n  M get(int i) {\
+    \ return data[i + size]; }\n\n  M query(int l, int r) {\n    M L = id(), R = id();\n\
+    \    for(l += size, r += size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L\
+    \ = op(L, data[l++]);\n      if (r & 1) R = op(data[--r], R);\n    }\n    return\
+    \ op(L, R);\n  }\n\n  //return first j in [i, size) s.t. f(op([l, j])) is true,\n\
+    \  //assume f(id()) is false.\n  int first_true(int i, function<bool(const M&)>\
+    \ f) {\n    vector<int> idL, idR;\n    for(int l = i + size, r = size << 1; l\
+    \ < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n      if\
+    \ (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
+    \ idR.rend());\n    M pre = id();\n    int v = -1;\n    for(int j : idL) {\n \
+    \     if (f(op(pre, data[j]))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        pre = op(pre, data[j]);\n      }\n    }\n    if (v == -1) return\
+    \ size;\n    while(v < size) {\n      if (f(op(pre, data[v << 1])))\n        v\
+    \ = v << 1;\n      else\n        pre = op(pre, data[v << 1]), v = v << 1 | 1;\n\
+    \    }\n    return v - size;\n  }\n\n  int last_true(int i, function<bool(const\
+    \ M&)> f) {\n    vector<int> idL, idR;\n    for(int l = size, r = (i + 1) + size;\
+    \ l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n      if\
+    \ (r & 1) idR.emplace_back(--r);\n    }\n    idR.insert(idR.end(), idL.rbegin(),\
+    \ idL.rend());\n    M suf = id();\n    int v = -1;\n    for(int j : idR) {\n \
+    \     if (f(op(data[j], suf))) {\n        v = j;\n        break;\n      } else\
+    \ {\n        suf = op(data[j], suf);\n      }\n    }\n    if (v == -1) return\
+    \ -1;\n    while(v < size) {\n      if (f(op(data[v << 1 | 1], suf)))\n      \
+    \  v = v << 1 | 1;\n      else\n        suf = op(data[v << 1 | 1], suf), v = v\
+    \ << 1;\n    }\n    return v - size;\n  }\n};\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: segtree/segment_tree.cpp
+  requiredBy: []
+  timestamp: '2026-06-06 23:34:13+08:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: segtree/segment_tree.cpp
+layout: document
+redirect_from:
+- /library/segtree/segment_tree.cpp
+- /library/segtree/segment_tree.cpp.html
+title: segtree/segment_tree.cpp
+---

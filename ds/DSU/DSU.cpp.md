@@ -4,9 +4,6 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/incremental_scc.test.cpp
-    title: test/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/minimum_spanning_tree_Kruskal.test.cpp
     title: test/minimum_spanning_tree_Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -55,10 +52,9 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/minimum_spanning_tree_Kruskal.test.cpp
-  - test/incremental_scc.test.cpp
-  - test/unionfind.test.cpp
   - test/minimum_spanning_tree_Prim.test.cpp
+  - test/minimum_spanning_tree_Kruskal.test.cpp
+  - test/unionfind.test.cpp
 documentation_of: ds/DSU/DSU.cpp
 layout: document
 title: ds/DSU/DSU.cpp

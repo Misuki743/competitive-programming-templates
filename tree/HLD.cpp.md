@@ -12,18 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca_4.test.cpp
     title: test/lca_4.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/tree_path_composite_sum.test.cpp
-    title: test/tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_add_path_sum.test.cpp
-    title: test/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_add_subtree_sum.test.cpp
-    title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/vertex_set_path_composite.test.cpp
-    title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -172,12 +160,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/jump_on_tree_2.test.cpp
-  - test/tree_path_composite_sum.test.cpp
   - test/lca_4.test.cpp
-  - test/vertex_set_path_composite.test.cpp
-  - test/vertex_add_subtree_sum.test.cpp
   - test/jump_on_tree_3.test.cpp
-  - test/vertex_add_path_sum.test.cpp
 documentation_of: tree/HLD.cpp
 layout: document
 redirect_from:

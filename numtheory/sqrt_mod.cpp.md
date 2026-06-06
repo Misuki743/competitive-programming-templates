@@ -2,28 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/exp_of_formal_power_series_sparse.test.cpp
-    title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/inv_of_formal_power_series_sparse.test.cpp
-    title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/log_of_formal_power_series_sparse.test.cpp
-    title: test/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/pow_of_formal_power_series_sparse.test.cpp
-    title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/sqrt_of_formal_power_series.test.cpp
-    title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/sqrt_of_formal_power_series_sparse.test.cpp
-    title: test/sqrt_of_formal_power_series_sparse.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\nll modpow(ll\
@@ -57,14 +39,8 @@ data:
   path: numtheory/sqrt_mod.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: numtheory/sqrt_mod.cpp
 layout: document
 redirect_from:

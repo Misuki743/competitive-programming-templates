@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-    title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/chirp_Z_transform.cpp\"\n//evaluate P(x) at x = ar^i,\
@@ -48,9 +45,8 @@ data:
   path: poly/chirp_Z_transform.cpp
   requiredBy: []
   timestamp: '2026-04-03 02:38:47+08:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/multipoint_evaluation_on_geometric_sequence.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/chirp_Z_transform.cpp
 layout: document
 redirect_from:
