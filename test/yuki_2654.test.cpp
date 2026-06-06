@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2654"
 
 #include "../default/t.cpp"
-#include "../ds/dynamicMedian.cpp"
+#include "../ds/dynamic_kth.cpp"
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -17,14 +17,14 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  dynamic_median<int, ll> s;
+  dynamic_kth<ll> s;
   vector<ll> ans(n + 1, LLONG_MAX);
   auto dfs = [&](int v, int p, auto self) -> void {
     s.insert(a[v]);
     if (s.size() > 2 and s.min() != s.max()) {
       int mn = s.min();
       s.erase(mn);
-      int med = s.median();
+      int med = s.kth(s.size() / 2);
       if (med == mn)
         med++;
       ans[v] = min(ans[v], (ssize(s.D) - ssize(s.U)) * med - s.Dsum + s.Usum);
@@ -33,7 +33,7 @@ signed main() {
     if (s.size() > 2 and s.min() != s.max()) {
       int mx = s.max();
       s.erase(mx);
-      int med = s.median();
+      int med = s.kth(s.size() / 2);
       if (med == mx)
         med--;
       ans[v] = min(ans[v], (ssize(s.D) - ssize(s.U)) * med - s.Dsum + s.Usum);

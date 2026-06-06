@@ -31,5 +31,5 @@ struct dynamic_kth {
   T kth(int k) { slide(k); assert(!U.empty()); return *U.begin(); }
   T min() { return D.empty() ? *U.begin() : *D.begin(); }
   T max() { return U.empty() ? *D.rbegin() : *U.rbegin(); }
-  uint64_t size() { return ssize(D) + ssize(U); }
+  int64_t size() { return ssize(D) + ssize(U); }
 };
