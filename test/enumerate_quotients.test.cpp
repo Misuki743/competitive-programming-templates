@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../numtheory/quotient_enumerate.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   ll n; cin >> n;

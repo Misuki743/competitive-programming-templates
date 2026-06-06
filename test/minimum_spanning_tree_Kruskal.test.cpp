@@ -4,7 +4,7 @@
 #include "../ds/DSU/DSU.cpp"
 #include "../graph/minimum_spanning_tree/Kruskal.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;

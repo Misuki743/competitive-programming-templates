@@ -4,7 +4,7 @@
 #include "../modint/MontgomeryModInt.cpp"
 #include "../poly/BerlekampMassey.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;

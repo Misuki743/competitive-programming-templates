@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/zalgorithm"
 
 #include "../default/t.cpp"
-#include "../string/zFunc.cpp"
+#include "../string/z_function.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   string s; cin >> s;
-  cout << zFunc(s) << '\n';
+  cout << z_function(s) << '\n';
 
   return 0;
 }

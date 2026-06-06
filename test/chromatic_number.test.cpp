@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/chromatic_number"
 
 #include "../default/t.cpp"
-#include "modint/dynamicMontgomeryModInt.cpp"
+#include "modint/dynamic_modint.cpp"
 #include "numtheory/factorize_pollard_rho.cpp"
-#include "combi/chromaticNumber.cpp"
+#include "combi/chromatic_number.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;

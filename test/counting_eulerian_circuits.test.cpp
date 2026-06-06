@@ -1,20 +1,20 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_eulerian_circuits"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../linalg/matrixMint.cpp"
-#include "../combi/binom.cpp"
-#include "../combi/countSpanningForest.cpp"
-#include "../combi/countEulerianCircuit.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../linalg/matrix_mint.cpp"
+#include "../combi/binomial.cpp"
+#include "../combi/count_spanning_forest.cpp"
+#include "../combi/count_eulerian_circuit.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;
   vector<array<int, 2>> e(m);
   for(auto &[u, v] : e) cin >> u >> v;
 
-  cout << countEulerianCircuit<mint>(e, n) << '\n';
+  cout << count_eulerian_circuit<mint>(e, n) << '\n';
 
   return 0;
 }

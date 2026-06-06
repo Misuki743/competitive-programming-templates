@@ -8,7 +8,7 @@
 using am = actedMonoid_affineSum<mint>;
 using Treap = treap<am::M, am::Mid, am::Mop, am::T, am::Tid, am::Top, am::act>;
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

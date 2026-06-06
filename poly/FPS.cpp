@@ -1,5 +1,5 @@
-//#include "modint/MontgomeryModInt.cpp"
-//#include "poly/NTTmint.cpp"
+//#include "modint/Montgomery_modint.cpp"
+//#include "poly/NTT.cpp"
 
 //lagrange inversion formula:
 //  let f(x) be composition inverse of g(x) (i.e. f(g(x)) = x) and [x^0]f(x) = [x^0]g(x) = 0, [x^1]f(x) != 0, [x^1]g(x) != 0, then

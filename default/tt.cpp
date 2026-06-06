@@ -483,8 +483,8 @@ struct HLD {
 };
 
 template<uint32_t mod>
-struct MontgomeryModInt {
-  using mint = MontgomeryModInt;
+struct Montgomery_modint {
+  using mint = Montgomery_modint;
   using i32 = int32_t;
   using u32 = uint32_t;
   using u64 = uint64_t;
@@ -513,8 +513,8 @@ struct MontgomeryModInt {
     return reduce(u64(b) * n2);
   }
 
-  MontgomeryModInt() : a(0) {}
-  MontgomeryModInt(const int64_t &b) 
+  Montgomery_modint() : a(0) {}
+  Montgomery_modint(const int64_t &b) 
     : a(transform(b % mod + mod)) {}
 
   mint pow(u64 k) const {
@@ -577,9 +577,9 @@ struct MontgomeryModInt {
     return is;
   }
 };
-//using mint = MontgomeryModInt<998'244'353>;
 
-
+//using mint = Montgomery_modint<1'000'000'007>;
+using mint = Montgomery_modint<998'244'353>;
 
 signed main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

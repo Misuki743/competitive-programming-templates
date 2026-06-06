@@ -4,7 +4,7 @@
 #include "../ds/RMQ.cpp"
 #include "../tree/LCA.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;

@@ -44,5 +44,5 @@ Mint count_eulerian_circuit(vector<array<int, 2>> e, int n) {
   for(int v = 0; v < n; v++)
     c *= bn.fac(max(deg[v] - 1, 0));
 
-  return c * countSpanningForest<Mint, true>(ep, n, r);
+  return c * count_spanning_forest<Mint, true>(ep, n, r);
 }

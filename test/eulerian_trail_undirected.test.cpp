@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../graph/misc/eulerianTrail.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int t; cin >> t;

@@ -1,6 +1,6 @@
-//#include "segtree/lazySegmentTree.cpp"
-//#include "segtree/ultraLazySegmentTree.cpp"
-//#include "actedMonoid/actedMonoid_addMinCnt.cpp"
+//#include "segtree/lazy_segment_tree.cpp"
+//#include "segtree/acted_monoid_segment_tree.cpp"
+//#include "actedMonoid/add_min_count.cpp"
 
 template<class coordinate_type, class answer_type>
 answer_type area_of_union_of_rectangles(vector<array<coordinate_type, 4>> rect) {
@@ -17,8 +17,8 @@ answer_type area_of_union_of_rectangles(vector<array<coordinate_type, 4>> rect) 
   }
   ranges::sort(event, {}, [](auto &x) { return x[0]; });
 
-  using AM = actedMonoid_addMinCnt<coordinate_type>;
-  ultraLazySegmentTree<AM> st([&]() {
+  using AM = add_min_count<coordinate_type>;
+  acted_monoid_segment_tree<AM> st([&]() {
     vector<typename AM::M> init(ssize(ys) - 1);
     for(int i = 0; i + 1 < ssize(ys); i++)
       init[i] = make_pair(0, ys[i + 1] - ys[i]);

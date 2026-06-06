@@ -20,7 +20,7 @@ void solve(int n, int m) {
   cout << rank << '\n';
 }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;

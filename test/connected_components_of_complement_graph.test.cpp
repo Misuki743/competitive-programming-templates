@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/connected_components_of_complement_graph"
 
 #include "../default/t.cpp"
-#include "../graph/misc/complementConnectivity.cpp"
+#include "../graph/misc/complement_connectivity.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;
@@ -14,7 +14,7 @@ signed main() {
     g[v].emplace_back(u);
   }
 
-  auto [ccs, _] = complementConnectivity(g);
+  auto [ccs, _] = complement_connectivity(g);
   cout << ssize(ccs) << '\n';
   for(auto &v : ccs) {
     cout << ssize(v) << ' ';

@@ -2,11 +2,11 @@
 
 #include <ext/pb_ds/assoc_container.hpp>
 #include "../default/t.cpp"
-#include "../ds/hashTable.cpp"
+#include "../ds/hash_table.cpp"
 
 gp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 20});
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int q; cin >> q;

@@ -1,5 +1,5 @@
 template<class U>
-struct actedMonoid_affineSum {
+struct affine_sum {
   using M = array<U, 2>;
   static M Mid() { return M{0, 0}; }
   static M Mop(const M &a, const M &b) { return {a[0] + b[0], a[1] + b[1]}; }

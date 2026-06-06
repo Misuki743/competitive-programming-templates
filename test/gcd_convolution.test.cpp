@@ -6,7 +6,7 @@
 #include "../numtheory/zeta_mobius_on_divisibility_lattice.cpp"
 #include "../numtheory/gcd_convolution.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   linear_sieve<1'000'001> ls;

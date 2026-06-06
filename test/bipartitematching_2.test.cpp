@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/bipartitematching"
 
 #include "../default/t.cpp"
-#include "../graph/matching/hopcroftKarp.cpp"
+#include "../graph/matching/Hopcroft_Karp.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int l, r, m; cin >> l >> r >> m;
@@ -13,7 +13,7 @@ signed main() {
     int a, b; cin >> a >> b;
     g[a].emplace_back(b);
   }
-  cout << hopcroftKarp(g, btoa) << '\n';
+  cout << Hopcroft_Karp(g, btoa) << '\n';
   for(int i = 0; i < r; i++)
     if (btoa[i] != -1)
       cout << btoa[i] << ' ' << i << '\n';

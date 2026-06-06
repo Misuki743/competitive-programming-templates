@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/addition_of_big_integers"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../poly/NTTmint.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../poly/NTT.cpp"
 #include "../misc/bigint.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int t; cin >> t;

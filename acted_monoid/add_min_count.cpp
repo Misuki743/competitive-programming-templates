@@ -1,5 +1,5 @@
 template<class U>
-struct actedMonoid_addMinCnt {
+struct add_min_count {
   using M = pair<U, int>;
   static M Mid() { return make_pair(numeric_limits<U>::max(), 0); }
   static M Mop(const M &a, const M &b) { return a.first == b.first ? make_pair(a.first, a.second + b.second) : min(a, b); }

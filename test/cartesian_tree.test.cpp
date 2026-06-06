@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../tree/cartesian_tree.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;

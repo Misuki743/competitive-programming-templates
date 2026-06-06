@@ -5,7 +5,7 @@
 #include "../poly/NTTmint.cpp"
 #include "../poly/BostanMori.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int d; cin >> d;

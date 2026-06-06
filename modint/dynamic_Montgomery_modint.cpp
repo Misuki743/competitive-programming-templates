@@ -2,7 +2,7 @@
 //note: mod should be an odd prime less than 2^30.
 
 template<uint32_t ver>
-struct MontgomeryModInt {
+struct dynamic_Montgomery_modint {
   using mint = MontgomeryModInt;
   using i32 = int32_t;
   using u32 = uint32_t;
@@ -37,8 +37,8 @@ struct MontgomeryModInt {
     return reduce(u64(b) * n2);
   }
 
-  MontgomeryModInt() : a(0) {}
-  MontgomeryModInt(const int64_t &b) 
+  dynamic_Montgomery_modint() : a(0) {}
+  dynamic_Montgomery_modint(const int64_t &b) 
     : a(transform(b % mod + mod)) {}
 
   mint pow(u64 k) const {
@@ -102,7 +102,7 @@ struct MontgomeryModInt {
   }
 };
 
-using mint = MontgomeryModInt<0>;
+using mint = dynamic_Montgomery_modint<0>;
 template<> uint32_t mint::mod = 0;
 template<> uint32_t mint::n2 = 0;
 template<> uint32_t mint::r = 0;

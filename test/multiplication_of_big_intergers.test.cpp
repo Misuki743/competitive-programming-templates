@@ -5,7 +5,7 @@
 #include "../poly/NTTmint.cpp"
 #include "../misc/bigint.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int t; cin >> t;

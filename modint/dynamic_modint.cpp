@@ -9,8 +9,8 @@ struct dynamic_modint {
   static constexpr u32 get_mod() { return mod; }
   static void set_mod(u32 _mod) { mod = _mod; }
 
-  simpleMint() : a(0) {}
-  simpleMint(const int64_t &b) : a((b % mod + mod) % mod) {}
+  dynamic_modint() : a(0) {}
+  dynamic_modint(const int64_t &b) : a((b % mod + mod) % mod) {}
 
   u32 a;
 

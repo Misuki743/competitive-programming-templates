@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/counting_spanning_tree_undirected"
 
 #include "../default/t.cpp"
-#include "../modint/MontgomeryModInt.cpp"
-#include "../linalg/matrixMint.cpp"
-#include "../combi/countSpanningForest.cpp"
+#include "../modint/Montgomery_modint.cpp"
+#include "../linalg/matrix_mint.cpp"
+#include "../combi/count_spanning_forest.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;
@@ -15,7 +15,7 @@ signed main() {
     w = 1;
   }
 
-  cout << countSpanningForest(e, n) << '\n';
+  cout << count_spanning_forest(e, n) << '\n';
 
   return 0;
 }

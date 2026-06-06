@@ -10,7 +10,7 @@ M op(const M &m, const M &n) {
 }
 M id() { return M{1, 0}; }
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int q; cin >> q;

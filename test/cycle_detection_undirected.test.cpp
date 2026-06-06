@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection_undirected"
 
 #include "../default/t.cpp"
-#include "../graph/misc/cycleDetection.cpp"
+#include "../graph/misc/cycle_detection.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, m; cin >> n >> m;
@@ -11,7 +11,7 @@ signed main() {
   for(auto &[u, v] : e)
     cin >> u >> v;
   
-  auto [vs, es] = cycleDetection(e);
+  auto [vs, es] = cycle_detection(e);
   if (vs.empty()) {
     cout << -1 << '\n';
   } else {

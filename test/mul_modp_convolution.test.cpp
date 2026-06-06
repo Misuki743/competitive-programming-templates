@@ -7,7 +7,7 @@
 
 NTT ntt;
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int p; cin >> p;

@@ -32,8 +32,8 @@ struct Montgomery_modint {
     return reduce(u64(b) * n2);
   }
 
-  MontgomeryModInt() : a(0) {}
-  MontgomeryModInt(const int64_t &b) 
+  Montgomery_modint() : a(0) {}
+  Montgomery_modint(const int64_t &b) 
     : a(transform(b % mod + mod)) {}
 
   mint pow(u64 k) const {
@@ -97,5 +97,5 @@ struct Montgomery_modint {
   }
 };
 
-//using mint = Montgomery_modInt<1'000'000'007>;
-using mint = Montgomery_modInt<998'244'353>;
+//using mint = Montgomery_modint<1'000'000'007>;
+using mint = Montgomery_modint<998'244'353>;

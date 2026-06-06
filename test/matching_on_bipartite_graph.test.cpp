@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../graph/flow/Dinic.cpp"
 
-signed main() {
+int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int l, r, m; cin >> l >> r >> m;

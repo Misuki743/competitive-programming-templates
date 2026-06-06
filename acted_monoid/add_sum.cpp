@@ -1,5 +1,5 @@
 template<class U>
-struct actedMonoid_addSum {
+struct add_sum {
   using M = pair<U, int>;
   static M Mid() { return make_pair(U(0), 0); }
   static M Mop(const M &a, const M &b) { return make_pair(a.first + b.first, a.second + b.second); }
