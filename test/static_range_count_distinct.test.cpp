@@ -2,21 +2,17 @@
 
 #include "../default/t.cpp"
 #include "../ds/fenwick_tree.cpp"
-#include "../misc/compression.cpp"
-#include "../ds_problem/rangeCountDistinct.cpp"
+#include "../ds_problem/range_count_distinct.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<int> a(n);
-  for(int &x : a)
-    cin >> x;
-  vector<array<int, 2>> query(q);
-  for(auto &[l, r] : query)
-    cin >> l >> r;
-
-  for(int x : rangeCountDistinct(a, query))
+  vi a(n);
+  for(int &x : a) cin >> x;
+  vc<pii> lr(q);
+  for(auto &[l, r] : lr) cin >> l >> r;
+  for(int x : range_count_distinct(a, lr))
     cout << x << '\n';
 
   return 0;
