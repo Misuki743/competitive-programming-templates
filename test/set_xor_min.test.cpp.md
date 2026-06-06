@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.cpp
     title: ds/binary_trie.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -109,10 +109,10 @@ data:
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/binary_trie.cpp\"\ntemplate<int\
     \ mxBit, bool duplicate = false>\nstruct binary_trie {\n  vector<array<int, 2>>\
-    \ nxt;\n  vector<int> cnt;\n\n  binaryTrie(int size = 0) : nxt(1, {-1, -1}), cnt(1)\
-    \ {\n    nxt.reserve(size);\n    cnt.reserve(size);\n  }\n\n  int count(ull x)\
-    \ {\n    int v = 0;\n    for(int bit = mxBit; bit >= 0; bit--) {\n      ull to\
-    \ = x >> bit & 1;\n      if (nxt[v][to] == -1) return 0;\n      v = nxt[v][to];\n\
+    \ nxt;\n  vector<int> cnt;\n\n  binary_trie(int size = 0) : nxt(1, {-1, -1}),\
+    \ cnt(1) {\n    nxt.reserve(size);\n    cnt.reserve(size);\n  }\n\n  int count(ull\
+    \ x) {\n    int v = 0;\n    for(int bit = mxBit; bit >= 0; bit--) {\n      ull\
+    \ to = x >> bit & 1;\n      if (nxt[v][to] == -1) return 0;\n      v = nxt[v][to];\n\
     \    }\n    return cnt[v];\n  }\n\n  void insert(ull x) {\n    if constexpr (!duplicate)\
     \ {\n      if (count(x)) return;\n    }\n    int v = 0;\n    cnt[0] += 1;\n  \
     \  for(int bit = mxBit; bit >= 0; bit--) {\n      ull to = x >> bit & 1;\n   \
@@ -126,15 +126,15 @@ data:
     \ != -1 and cnt[nxt[v][to]] >= 1)\n        v = nxt[v][to];\n      else\n     \
     \   res |= 1LL << bit, v = nxt[v][to ^ 1];\n    }\n    return res;\n  }\n};\n\
     #line 5 \"test/set_xor_min.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  binary_trie<29> tr(500000 * 30);\n\n  int q; cin >> q;\n\
+    \ cin.tie(NULL);\n\n  binary_trie<29> tr(500'000 * 30);\n\n  int q; cin >> q;\n\
     \  while(q--) {\n    int t, x; cin >> t >> x;\n    if (t == 0)\n      tr.insert(x);\n\
     \    else if (t == 1)\n      tr.erase(x);\n    else if (t == 2)\n      cout <<\
     \ tr.query_min(x) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/binary_trie.cpp\"\n\nint main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binary_trie<29> tr(500000 *\
-    \ 30);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n \
-    \   if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binary_trie<29> tr(500'000\
+    \ * 30);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n\
+    \    if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
     \    else if (t == 2)\n      cout << tr.query_min(x) << '\\n';\n  }\n\n  return\
     \ 0;\n}\n"
   dependsOn:
@@ -143,8 +143,8 @@ data:
   isVerificationFile: true
   path: test/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 03:13:20+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-07 03:21:31+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/set_xor_min.test.cpp
 layout: document

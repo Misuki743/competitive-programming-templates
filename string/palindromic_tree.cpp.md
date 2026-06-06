@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2606.test.cpp
     title: test/yuki_2606.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromic_tree.cpp\"\ntemplate<unsigned sigma =\
     \ 26, char base = 'a'>\nstruct palindromic_tree {\n  vector<int> len, link;\n\
-    \  vector<ll> freq;\n  vector<array<int, sigma>> go;\n\n  palindromicTree(string\
+    \  vector<ll> freq;\n  vector<array<int, sigma>> go;\n\n  palindromic_tree(string\
     \ s) {\n    array<int, sigma> unit;\n    fill(unit.begin(), unit.end(), -1);\n\
     \    len = link = {-1, 0}, go = {unit, unit}, freq = {0, 0};\n\n    for(int i\
     \ = 0, v = 0; i < ssize(s); i++) {\n      while(len[v] == i or s[i - len[v] -\
@@ -27,7 +27,7 @@ data:
     \  }\n};\n"
   code: "template<unsigned sigma = 26, char base = 'a'>\nstruct palindromic_tree {\n\
     \  vector<int> len, link;\n  vector<ll> freq;\n  vector<array<int, sigma>> go;\n\
-    \n  palindromicTree(string s) {\n    array<int, sigma> unit;\n    fill(unit.begin(),\
+    \n  palindromic_tree(string s) {\n    array<int, sigma> unit;\n    fill(unit.begin(),\
     \ unit.end(), -1);\n    len = link = {-1, 0}, go = {unit, unit}, freq = {0, 0};\n\
     \n    for(int i = 0, v = 0; i < ssize(s); i++) {\n      while(len[v] == i or s[i\
     \ - len[v] - 1] != s[i])\n        v = link[v];\n      if (go[v][s[i] - base] ==\
@@ -42,8 +42,8 @@ data:
   isVerificationFile: false
   path: string/palindromic_tree.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 03:21:31+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki_2606.test.cpp
 documentation_of: string/palindromic_tree.cpp

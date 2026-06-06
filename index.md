@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -112,7 +112,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/SWAG.cpp
       title: ds/SWAG.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/binary_trie.cpp
       title: ds/binary_trie.cpp
     - icon: ':heavy_check_mark:'
@@ -615,7 +615,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_substring.cpp
       title: string/longest_common_substring.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.cpp
       title: string/palindromic_tree.cpp
     - icon: ':warning:'
@@ -1019,7 +1019,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/segment_add_get_min.test.cpp
       title: test/segment_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/set_xor_min.test.cpp
       title: test/set_xor_min.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1136,7 +1136,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki_2544.test.cpp
       title: test/yuki_2544.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp
     - icon: ':heavy_check_mark:'
