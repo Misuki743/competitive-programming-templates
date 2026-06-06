@@ -2,7 +2,7 @@
 
 #include <bits/extc++.h>
 #include "../default/t.cpp"
-#include "../ds/hashTable.cpp"
+#include "../ds/hash_table.cpp"
 #include "../ds/fenwick_tree.cpp"
 #include "../tree/tree.cpp"
 #include "../tree/centroid_tree.cpp"

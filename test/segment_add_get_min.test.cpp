@@ -49,10 +49,10 @@ int main() {
 
   Lichao_segment_tree<ll> st(bit_ceil(xs.size()), xs);
   for(auto &[l, r, a, b] : c)
-    st.insertRange(l, r, a, b);
+    st.insert_range(l, r, a, b);
   for(auto &[t, x, y, z, w] : query) {
     if (t == 0) {
-      st.insertRange(x, y, z, w);
+      st.insert_range(x, y, z, w);
     } else {
       if (ll ans = st.query(x); ans == LLONG_MAX)
         cout << "INFINITY\n";

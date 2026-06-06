@@ -1,5 +1,5 @@
 template<class T, int H>
-struct waveletMatrix {
+struct wavelet_matrix {
   using uint = uint32_t;
   struct bitvec {
     static constexpr uint W = 64;
@@ -20,7 +20,7 @@ struct waveletMatrix {
   };
 
   vector<bitvec> data;
-  waveletMatrix(vector<T> init) : data(H + 1, bitvec(init.size())) {
+  wavelet_matrix(vector<T> init) : data(H + 1, bitvec(init.size())) {
     for(int bit = H; auto &v : data) {
       for(int i = 0; i < ssize(init); i++)
         if (init[i] >> bit & 1)
@@ -64,7 +64,7 @@ struct waveletMatrix {
     return cnt;
   }
 
-  int rectQuery(int l, int r, T d, T u) {
+  int rect_query(int l, int r, T d, T u) {
     return less(l, r, u) - less(l, r, d);
   }
 };

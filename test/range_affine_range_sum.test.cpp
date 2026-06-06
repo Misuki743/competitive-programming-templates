@@ -4,7 +4,7 @@
 #include "../modint/Montgomery_modint.cpp"
 #include "../segtree/lazy_segment_tree.cpp"
 #include "../segtree/acted_monoid_segment_tree.cpp"
-#include "../actedmonoid/affine_sum.cpp"
+#include "../acted_monoid/affine_sum.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

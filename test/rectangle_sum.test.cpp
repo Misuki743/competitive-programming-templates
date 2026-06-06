@@ -2,22 +2,19 @@
 
 #include "../default/t.cpp"
 #include "../ds/fenwick_tree.cpp"
-#include "../misc/compression.cpp"
-#include "../ds_problem/rectangleSum.cpp"
+#include "../ds_problem/rectangle_sum.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n, q; cin >> n >> q;
-  vector<tuple<int, int, ll>> pts(n);
-  for(auto &[x, y, w] : pts)
-    cin >> x >> y >> w;
-  vector<array<int, 4>> query(q);
-  for(auto &[l, d, r, u] : query)
-    cin >> l >> r >> d >> u;
+  vc<tuple<int, int, ll>> pt(n);
+  for(auto &[x, y, w] : pt) cin >> x >> y >> w;
+  vc<array<int, 4>> query(q);
+  for(auto &x : query) for(int &y : x) cin >> y;
 
-  for(ll ans : rectangleSum(pts, query))
-    cout << ans << '\n';
+  for(ll x : rectangle_sum(pt, query))
+    cout << x << '\n';
 
   return 0;
 }

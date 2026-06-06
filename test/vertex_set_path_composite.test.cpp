@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/Montgomery_modint.cpp"
 #include "../segtree/segment_tree.cpp"
-#include "../actedmonoid/affine_sum.cpp"
+#include "../acted_monoid/affine_sum.cpp"
 #include "../tree/HLD.cpp"
 
 using am = affine_sum<mint>;

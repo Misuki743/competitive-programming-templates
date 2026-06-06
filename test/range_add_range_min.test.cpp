@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../segtree/lazy_segment_tree.cpp"
 #include "../segtree/acted_monoid_segment_tree.cpp"
-#include "../actedmonoid/add_min.cpp"
+#include "../acted_monoid/add_min.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

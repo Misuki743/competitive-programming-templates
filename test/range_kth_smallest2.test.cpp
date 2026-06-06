@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../misc/compression.cpp"
-#include "../segtree/persistentSegmentTree.cpp"
+#include "../segtree/persistent_segment_tree.cpp"
 
 int id() { return 0; }
 int op(const int &a, const int &b) { return a + b; }
@@ -16,7 +16,7 @@ int main() {
     cin >> x;
 
   compression<int, true> xs(a);
-  persistentSegmentTree<int, id, op> st(2 * n + n * (bit_width((unsigned)n) + 1));
+  persistent_segment_tree<int, id, op> st(2 * n + n * (bit_width((unsigned)n) + 1));
   vector<int> root(n + 1);
   root[0] = st.build(0, n);
   for(int i = 1; i <= n; i++)

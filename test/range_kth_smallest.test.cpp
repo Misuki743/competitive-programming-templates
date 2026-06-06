@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../misc/compression.cpp"
-#include "../ds/waveletMatrix.cpp"
+#include "../ds/wavelet_matrix_old.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
@@ -13,7 +13,7 @@ int main() {
     cin >> x;
 
   compression<int> xs(a);
-  waveletMatrix<int, 17> wv(xs.ord);
+  wavelet_matrix<int, 17> wv(xs.ord);
 
   while(q--) {
     int l, r, k; cin >> l >> r >> k;

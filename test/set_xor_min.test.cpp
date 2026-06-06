@@ -6,7 +6,7 @@
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
-  binaryTrie<29> tr(500000 * 30);
+  binary_trie<29> tr(500000 * 30);
 
   int q; cin >> q;
   while(q--) {

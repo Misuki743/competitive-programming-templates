@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../misc/compression.cpp"
-#include "../ds/wavelet_matrix.cpp"
+#include "../ds/wavelet_matrix_old.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

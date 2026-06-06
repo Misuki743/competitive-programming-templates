@@ -4,7 +4,7 @@ template<class Mint>
 struct stirling_second_kind_mod_P {
   const int p;
   vector<vector<Mint>> _S, _c;
-  stirlingSecondModP() : p(Mint::get_mod()),
+  stirling_second_kind_mod_P() : p(Mint::get_mod()),
     _S(p, vector<Mint>(p)), _c(p, vector<Mint>(p)) {
     for(int i = 0; i < p; i++) {
       for(int j = 1; j < i; j++)

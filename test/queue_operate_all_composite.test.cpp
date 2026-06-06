@@ -3,7 +3,7 @@
 #include "../default/t.cpp"
 #include "../modint/Montgomery_modint.cpp"
 #include "../ds/SWAG.cpp"
-#include "../actedmonoid/affine_sum.cpp"
+#include "../acted_monoid/affine_sum.cpp"
 
 using am = affine_sum<mint>;
 
