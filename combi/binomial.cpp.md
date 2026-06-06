@@ -13,12 +13,18 @@ data:
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/exp_of_formal_power_series_sparse.test.cpp
+    title: test/exp_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series_sparse.test.cpp
+    title: test/log_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
@@ -74,6 +80,8 @@ data:
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/counting_eulerian_circuits.test.cpp

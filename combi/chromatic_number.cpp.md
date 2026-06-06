@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/chromatic_number.cpp\"\n//#include \"modint/dynamic_Montgomery_modint.cpp\"\
-    \n//#include \"numtheory/fastFactorize.cpp\"\n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod\
+    \n//#include \"numtheory/factorize_pollard_rho.cpp\"\n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod\
     \ = 0;\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::n2 = 0;\ntemplate<>\
     \ uint32_t dynamic_Montgomery_modint<123>::r = 0;\nint chromatic_number(vector<vector<bool>>\
     \ g) {\n  const int n = ssize(g);\n\n  mt19937 rng(clock);\n  uniform_int_distribution<int>\
@@ -26,7 +26,7 @@ data:
     \ = 0;\n    for(unsigned msk = 0; msk < (1 << n); msk++)\n      cnt += I[msk].pow(c)\
     \ * (popcount(msk ^ ((1 << n) - 1)) % 2 == 1 ? -1 : 1);\n    return cnt != 0;\n\
     \  };\n\n  int c = 1;\n  while(!check(c)) c++;\n\n  return c;\n}\n"
-  code: "//#include \"modint/dynamic_Montgomery_modint.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
+  code: "//#include \"modint/dynamic_Montgomery_modint.cpp\"\n//#include \"numtheory/factorize_pollard_rho.cpp\"\
     \n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod = 0;\ntemplate<> uint32_t\
     \ dynamic_Montgomery_modint<123>::n2 = 0;\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::r\
     \ = 0;\nint chromatic_number(vector<vector<bool>> g) {\n  const int n = ssize(g);\n\
@@ -45,7 +45,7 @@ data:
   isVerificationFile: false
   path: combi/chromatic_number.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
+  timestamp: '2026-06-07 02:16:52+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/chromatic_number.test.cpp

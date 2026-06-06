@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/wavelet_matrix.cpp
     title: ds/wavelet_matrix.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: misc/compression.cpp
   _extendedRequiredBy: []

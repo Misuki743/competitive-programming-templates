@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: ds_problem/rectangleSum.cpp
     title: ds_problem/rectangleSum.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: misc/compression.cpp
     title: misc/compression.cpp
   _extendedRequiredBy: []

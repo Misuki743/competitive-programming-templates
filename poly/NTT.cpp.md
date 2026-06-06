@@ -31,6 +31,9 @@ data:
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/exp_of_formal_power_series_sparse.test.cpp
+    title: test/exp_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,7 +48,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series_sparse.test.cpp
+    title: test/log_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,19 +66,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
   - icon: ':x:'
@@ -185,6 +191,7 @@ data:
   - test/frequency_table_of_tree_distance.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/addition_of_big_integers.test.cpp
   - test/exp_of_formal_power_series.test.cpp
@@ -193,6 +200,7 @@ data:
   - test/convolution_1e9+7.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/mul_modp_convolution.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp

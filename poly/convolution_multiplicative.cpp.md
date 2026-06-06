@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/yuki_2613.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/convolution_multiplicative.cpp\"\n//#include \"poly/NTT.cpp\"\
@@ -35,12 +35,12 @@ data:
     \ Mint>\n  vector<Mint> inverse_transform(vector<Mint> &f) {\n    assert(ssize(f)\
     \ == P - 1);\n    vector<Mint> g(P);\n    for(int i = 0; i < P - 1; i++)\n   \
     \   g[powR[i]] = f[i];\n    return g;\n  }\n\n  template<class Mint>\n  vector<Mint>\
-    \ convolution(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>,\
-    \ vector<Mint>)) {\n    Mint zero = accumulate(a.begin(), a.end(), Mint(0)) *\
-    \ b[0] + accumulate(b.begin() + 1, b.end(), Mint(0)) * a[0];\n    a = transform(a),\
-    \ b = transform(b);\n    a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3;\
-    \ i++)\n      a[i - (P - 1)] += a[i];\n    a.resize(P - 1);\n    a = inverse_transform(a);\n\
-    \    a[0] = zero;\n    return a;\n  }\n};\n"
+    \ conv(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>, vector<Mint>))\
+    \ {\n    Mint zero = accumulate(a.begin(), a.end(), Mint(0)) * b[0] + accumulate(b.begin()\
+    \ + 1, b.end(), Mint(0)) * a[0];\n    a = transform(a), b = transform(b);\n  \
+    \  a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3; i++)\n      a[i - (P\
+    \ - 1)] += a[i];\n    a.resize(P - 1);\n    a = inverse_transform(a);\n    a[0]\
+    \ = zero;\n    return a;\n  }\n};\n"
   code: "//#include \"poly/NTT.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\n\
     \nstruct convolution_multiplicative {\n  const int P, root;\n  vector<int> powR,\
     \ logR;\n\n  int primitive_root(int p) {\n    vector<int> pf;\n    {\n      int\
@@ -61,7 +61,7 @@ data:
     \ = f[i];\n    return g;\n  }\n\n  template<class Mint>\n  vector<Mint> inverse_transform(vector<Mint>\
     \ &f) {\n    assert(ssize(f) == P - 1);\n    vector<Mint> g(P);\n    for(int i\
     \ = 0; i < P - 1; i++)\n      g[powR[i]] = f[i];\n    return g;\n  }\n\n  template<class\
-    \ Mint>\n  vector<Mint> convolution(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>,\
+    \ Mint>\n  vector<Mint> conv(vector<Mint> a, vector<Mint> b, vector<Mint>(*conv)(vector<Mint>,\
     \ vector<Mint>)) {\n    Mint zero = accumulate(a.begin(), a.end(), Mint(0)) *\
     \ b[0] + accumulate(b.begin() + 1, b.end(), Mint(0)) * a[0];\n    a = transform(a),\
     \ b = transform(b);\n    a = conv(a, b);\n    for(int i = P - 1; i < 2 * P - 3;\
@@ -71,8 +71,8 @@ data:
   isVerificationFile: false
   path: poly/convolution_multiplicative.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-06-07 02:16:52+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mul_modp_convolution.test.cpp
   - test/yuki_2613.test.cpp

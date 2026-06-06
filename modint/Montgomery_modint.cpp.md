@@ -49,6 +49,9 @@ data:
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/exp_of_formal_power_series_sparse.test.cpp
+    title: test/exp_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -79,12 +82,15 @@ data:
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series_sparse.test.cpp
+    title: test/log_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/matrix_rank.test.cpp
     title: test/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,31 +105,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
   - icon: ':x:'
@@ -267,6 +273,7 @@ data:
   - test/frequency_table_of_tree_distance.test.cpp
   - test/division_of_polynomials.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
   - test/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/tree_path_composite_sum.test.cpp
   - test/addition_of_big_integers.test.cpp
@@ -277,6 +284,7 @@ data:
   - test/convolution_1e9+7.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/determinant_of_matrix.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
   - test/unionfind_with_potential_non_commutative_group.test.cpp

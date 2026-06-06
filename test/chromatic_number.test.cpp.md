@@ -156,7 +156,7 @@ data:
     if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
     \treturn l;\n}\n#line 1 \"combi/chromatic_number.cpp\"\n//#include \"modint/dynamic_Montgomery_modint.cpp\"\
-    \n//#include \"numtheory/fastFactorize.cpp\"\n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod\
+    \n//#include \"numtheory/factorize_pollard_rho.cpp\"\n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod\
     \ = 0;\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::n2 = 0;\ntemplate<>\
     \ uint32_t dynamic_Montgomery_modint<123>::r = 0;\nint chromatic_number(vector<vector<bool>>\
     \ g) {\n  const int n = ssize(g);\n\n  mt19937 rng(clock);\n  uniform_int_distribution<int>\
@@ -173,14 +173,14 @@ data:
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
     \ cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0; i <\
     \ m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n  }\n\
-    \n  cout << chromatic_number<mint>(g) << '\\n';\n\n  return 0;\n}\n\n"
+    \n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"modint/dynamic_modint.cpp\"\n#include\
     \ \"numtheory/factorize_pollard_rho.cpp\"\n#include \"combi/chromatic_number.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m;\
     \ cin >> n >> m;\n  vector g(n, vector<bool>(n, false));\n  for(int i = 0; i <\
     \ m; i++) {\n    int u, v; cin >> u >> v;\n    g[u][v] = g[v][u] = true;\n  }\n\
-    \n  cout << chromatic_number<mint>(g) << '\\n';\n\n  return 0;\n}\n\n"
+    \n  cout << chromatic_number(g) << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/dynamic_modint.cpp
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:57:54+08:00'
+  timestamp: '2026-06-07 02:16:52+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp

@@ -4,9 +4,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/exp_of_formal_power_series_sparse.test.cpp
+    title: test/exp_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/log_of_formal_power_series_sparse.test.cpp
+    title: test/log_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
@@ -128,6 +134,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparse_polynomial_operations.cpp
