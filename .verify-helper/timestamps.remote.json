@@ -51,6 +51,7 @@
 "test/jump_on_tree_3.test.cpp": "2026-06-07 00:25:21 +0800",
 "test/kth_term_of_linearly_recurrent_sequence.test.cpp": "2026-06-07 01:41:25 +0800",
 "test/lca.test.cpp": "2026-06-07 00:25:21 +0800",
+"test/lca_2.test.cpp": "2026-06-09 17:25:25 +0800",
 "test/lca_3.test.cpp": "2026-06-07 00:25:21 +0800",
 "test/lca_4.test.cpp": "2026-06-07 00:25:21 +0800",
 "test/lcm_convolution.test.cpp": "2026-06-07 00:57:44 +0800",
