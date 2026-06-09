@@ -43,7 +43,8 @@ struct doubling {
   requires (!same_as<F, void*>) {
     T prod = id;
     for(; k > 0 and v != -1; k -= k & (-k)) {
-      prod = op(prod, data[countr_zero(k)][v]);
+      if (jp[countr_zero(k)][v] != -1)
+        prod = op(prod, data[countr_zero(k)][v]);
       v = jp[countr_zero(k)][v];
     }
     return pair(v, prod);
