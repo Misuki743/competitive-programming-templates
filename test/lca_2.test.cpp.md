@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: misc/random.cpp
     title: misc/random.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -171,8 +171,8 @@ data:
     \ uniform_int_distribution(l, r - 1)(rng); }\n  vi rand_seq(int n, int l, int\
     \ r) {\n    assert(n >= 0);\n    vi v(n);\n    for(int &x : v) x = rand_int(l,\
     \ r);\n    return v;\n  }\n  vc<pii> rand_label_tree(int n) {\n    assert(n >=\
-    \ 0);\n    if (n <= 1) return vvi();\n    else return prufer_recover(rand_seq(n\
-    \ - 2, 0, n));\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi p(n);\n\
+    \ 0);\n    if (n <= 1) return {};\n    else return prufer_recover(rand_seq(n -\
+    \ 2, 0, n));\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi p(n);\n\
     \    iota(p.begin(), p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n   \
     \ return p;\n  }\n  vi rand_comb(int n, int k) {\n    assert(0 <= k and k <= n);\n\
     \    vi p = rand_perm(n);\n    p.resize(k);\n    ranges::sort(p);\n    return\
@@ -199,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/lca_2.test.cpp
   requiredBy: []
-  timestamp: '2026-06-09 17:13:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-09 17:25:25+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/lca_2.test.cpp
 layout: document
