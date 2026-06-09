@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []

@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_2.test.cpp
     title: test/lca_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -483,9 +483,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2895_2.test.cpp
     title: test/yuki_2895_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -672,7 +672,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-03-22 15:52:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/vertex_add_subtree_sum.test.cpp
   - test/inverse_matrix.test.cpp

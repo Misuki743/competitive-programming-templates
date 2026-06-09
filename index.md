@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -106,7 +106,7 @@ data:
       title: ds/DSU/rollback_DSU.cpp
   - name: ds
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/RMQ.cpp
       title: ds/RMQ.cpp
     - icon: ':heavy_check_mark:'
@@ -402,7 +402,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: misc/compression.cpp
       title: misc/compression.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: misc/random.cpp
       title: misc/random.cpp
     - icon: ':heavy_check_mark:'
@@ -638,7 +638,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/HLD.cpp
       title: tree/HLD.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: tree/LCA.cpp
       title: tree/LCA.cpp
     - icon: ':heavy_check_mark:'
@@ -827,7 +827,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca.test.cpp
       title: test/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lca_2.test.cpp
       title: test/lca_2.test.cpp
     - icon: ':heavy_check_mark:'

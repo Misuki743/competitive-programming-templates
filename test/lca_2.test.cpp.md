@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/random.cpp
     title: misc/random.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -170,12 +170,12 @@ data:
     \ leaf.top());\n    return edges;\n  }\n\n  int rand_int(int l, int r) { return\
     \ uniform_int_distribution(l, r - 1)(rng); }\n  vi rand_seq(int n, int l, int\
     \ r) {\n    assert(n >= 0);\n    vi v(n);\n    for(int &x : v) x = rand_int(l,\
-    \ r);\n    return v;\n  }\n  vvi rand_label_tree(int n) {\n    assert(n >= 0);\n\
-    \    if (n <= 1) return vvi(n);\n    else return adjacency_list<false>(n, prufer_recover(rand_seq(n\
-    \ - 2, 0, n)), 0);\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi\
-    \ p(n);\n    iota(p.begin(), p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n\
-    \    return p;\n  }\n  vi rand_comb(int n, int k) {\n    assert(0 <= k and k <=\
-    \ n);\n    vi p = rand_perm(n);\n    p.resize(k);\n    ranges::sort(p);\n    return\
+    \ r);\n    return v;\n  }\n  vc<pii> rand_label_tree(int n) {\n    assert(n >=\
+    \ 0);\n    if (n <= 1) return vvi();\n    else return prufer_recover(rand_seq(n\
+    \ - 2, 0, n));\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi p(n);\n\
+    \    iota(p.begin(), p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n   \
+    \ return p;\n  }\n  vi rand_comb(int n, int k) {\n    assert(0 <= k and k <= n);\n\
+    \    vi p = rand_perm(n);\n    p.resize(k);\n    ranges::sort(p);\n    return\
     \ p;\n  }\n};\n\nusing namespace RNG;\n#line 7 \"test/lca_2.test.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
     \ n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n    x =\
@@ -199,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/lca_2.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-06-09 17:13:39+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca_2.test.cpp
 layout: document

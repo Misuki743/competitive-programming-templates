@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_2.test.cpp
     title: test/lca_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/random.cpp\"\nnamespace RNG {\n  mt19937_64 rng(clock);\n\
@@ -23,12 +23,12 @@ data:
     \ leaf.top());\n    return edges;\n  }\n\n  int rand_int(int l, int r) { return\
     \ uniform_int_distribution(l, r - 1)(rng); }\n  vi rand_seq(int n, int l, int\
     \ r) {\n    assert(n >= 0);\n    vi v(n);\n    for(int &x : v) x = rand_int(l,\
-    \ r);\n    return v;\n  }\n  vvi rand_label_tree(int n) {\n    assert(n >= 0);\n\
-    \    if (n <= 1) return vvi(n);\n    else return adjacency_list<false>(n, prufer_recover(rand_seq(n\
-    \ - 2, 0, n)), 0);\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi\
-    \ p(n);\n    iota(p.begin(), p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n\
-    \    return p;\n  }\n  vi rand_comb(int n, int k) {\n    assert(0 <= k and k <=\
-    \ n);\n    vi p = rand_perm(n);\n    p.resize(k);\n    ranges::sort(p);\n    return\
+    \ r);\n    return v;\n  }\n  vc<pii> rand_label_tree(int n) {\n    assert(n >=\
+    \ 0);\n    if (n <= 1) return vvi();\n    else return prufer_recover(rand_seq(n\
+    \ - 2, 0, n));\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi p(n);\n\
+    \    iota(p.begin(), p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n   \
+    \ return p;\n  }\n  vi rand_comb(int n, int k) {\n    assert(0 <= k and k <= n);\n\
+    \    vi p = rand_perm(n);\n    p.resize(k);\n    ranges::sort(p);\n    return\
     \ p;\n  }\n};\n\nusing namespace RNG;\n"
   code: "namespace RNG {\n  mt19937_64 rng(clock);\n\n  //empty vector would be assumed\
     \ to be n = 2\n  vector<pii> prufer_recover(vector<int> prufer_code) {\n    const\
@@ -42,19 +42,18 @@ data:
     \    return edges;\n  }\n\n  int rand_int(int l, int r) { return uniform_int_distribution(l,\
     \ r - 1)(rng); }\n  vi rand_seq(int n, int l, int r) {\n    assert(n >= 0);\n\
     \    vi v(n);\n    for(int &x : v) x = rand_int(l, r);\n    return v;\n  }\n \
-    \ vvi rand_label_tree(int n) {\n    assert(n >= 0);\n    if (n <= 1) return vvi(n);\n\
-    \    else return adjacency_list<false>(n, prufer_recover(rand_seq(n - 2, 0, n)),\
-    \ 0);\n  }\n  vi rand_perm(int n) {\n    assert(n >= 0);\n    vi p(n);\n    iota(p.begin(),\
-    \ p.end(), 0);\n    shuffle(p.begin(), p.end(), rng);\n    return p;\n  }\n  vi\
-    \ rand_comb(int n, int k) {\n    assert(0 <= k and k <= n);\n    vi p = rand_perm(n);\n\
-    \    p.resize(k);\n    ranges::sort(p);\n    return p;\n  }\n};\n\nusing namespace\
-    \ RNG;\n"
+    \ vc<pii> rand_label_tree(int n) {\n    assert(n >= 0);\n    if (n <= 1) return\
+    \ vvi();\n    else return prufer_recover(rand_seq(n - 2, 0, n));\n  }\n  vi rand_perm(int\
+    \ n) {\n    assert(n >= 0);\n    vi p(n);\n    iota(p.begin(), p.end(), 0);\n\
+    \    shuffle(p.begin(), p.end(), rng);\n    return p;\n  }\n  vi rand_comb(int\
+    \ n, int k) {\n    assert(0 <= k and k <= n);\n    vi p = rand_perm(n);\n    p.resize(k);\n\
+    \    ranges::sort(p);\n    return p;\n  }\n};\n\nusing namespace RNG;\n"
   dependsOn: []
   isVerificationFile: false
   path: misc/random.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-06-09 17:13:39+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca_2.test.cpp
 documentation_of: misc/random.cpp

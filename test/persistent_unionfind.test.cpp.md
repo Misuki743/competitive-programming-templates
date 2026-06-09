@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -108,17 +108,26 @@ data:
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/DSU/rollback_DSU.cpp\"\
-    \nstruct rollback_DSU {\n  vi sz_par;\n  vc<pii> his;\n  int nxt;\n\n  rollback_DSU(int\
-    \ n) : sz_par(n, -1), his(2 * (n - 1)), nxt(0) {}\n\n  int query(int v) {\n  \
+    \ntemplate<class T = int, typename F = void*>\nstruct rollback_DSU {\n  vi sz_par;\n\
+    \  vc<pii> his;\n  int nxt;\n\n  vc<T> data;\n  vc<T> data_his;\n  F op;\n\n \
+    \ rollback_DSU(int n) requires same_as<F, void*> : sz_par(n, -1), his(2 * (n -\
+    \ 1)), nxt(0) {}\n\n  rollback_DSU(vc<T> init, F f) requires R_invocable<void,\
+    \ F, T&, T&> &&\n    (!R_invocable<void, F, T, T&>) && (!R_invocable<void, F,\
+    \ T&, T>)\n    : sz_par(ssize(init), -1), his(2 * (ssize(init) - 1)), nxt(0),\
+    \ data(init), data_his(ssize(init) - 1), op(f) {}\n\n  int query(int v) {\n  \
     \  int r = v;\n    while(sz_par[r] >= 0) r = sz_par[r];\n    return r;\n  }\n\n\
     \  bool merge(int v1, int v2) {\n    int b1 = query(v1), b2 = query(v2);\n\n \
     \   if (b1 == b2)\n      return false;\n\n    if (-sz_par[b1] > -sz_par[b2])\n\
-    \      swap(b1, b2);\n\n    his[nxt++] = pair(b2, sz_par[b2]);\n    his[nxt++]\
+    \      swap(b1, b2);\n\n    his[nxt] = pair(b2, sz_par[b2]);\n    his[nxt + 1]\
     \ = pair(b1, sz_par[b1]);\n    sz_par[b2] += sz_par[b1];\n    sz_par[b1] = b2;\n\
-    \n    return true;\n  }\n\n  int time() { return nxt; }\n  int size(int v) { return\
-    \ -sz_par[query(v)]; }\n\n  void rollback(int t) {\n    chmin(t, nxt);\n    for(auto\
-    \ [i, x] : views::counted(his.begin() + t, nxt - t)\n                    | views::reverse)\n\
-    \      sz_par[i] = x;\n    nxt = t;\n  }\n};\n#line 5 \"test/persistent_unionfind.test.cpp\"\
+    \    if constexpr (!same_as<F, void*>) {\n      data_his[nxt / 2] = data[b2];\n\
+    \      op(data[b2], data[b1]);\n    }\n    nxt += 2;\n\n    return true;\n  }\n\
+    \n  int time() { return nxt; }\n  int size(int v) { return -sz_par[query(v)];\
+    \ }\n\n  void rollback(int t) {\n    chmin(t, nxt);\n    for(int j = nxt - 1;\
+    \ j >= t; j--) {\n      auto [i, x] = his[j];\n      sz_par[i] = x;\n      if\
+    \ constexpr (!same_as<F, void*>) {\n        if (j % 2 == 0)\n          data[i]\
+    \ = data_his[j / 2];\n      }\n    }\n    nxt = t;\n  }\n  T& get(int v) requires\
+    \ (!same_as<F, void*>) {\n    return data[query(v)];\n  }\n};\n#line 5 \"test/persistent_unionfind.test.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
     \ cin >> n >> q;\n  vector<array<int, 4>> qry(q);\n  for(auto &[t, k, u, v] :\
     \ qry) {\n    cin >> t >> k >> u >> v;\n    k++;\n  }\n\n  vvc<tuple<int, int,\
@@ -149,7 +158,7 @@ data:
   isVerificationFile: true
   path: test/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-06-09 17:13:39+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/persistent_unionfind.test.cpp
