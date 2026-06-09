@@ -30,10 +30,10 @@ namespace RNG {
     for(int &x : v) x = rand_int(l, r);
     return v;
   }
-  vvi rand_label_tree(int n) {
+  vc<pii> rand_label_tree(int n) {
     assert(n >= 0);
-    if (n <= 1) return vvi(n);
-    else return adjacency_list<false>(n, prufer_recover(rand_seq(n - 2, 0, n)), 0);
+    if (n <= 1) return vvi();
+    else return prufer_recover(rand_seq(n - 2, 0, n));
   }
   vi rand_perm(int n) {
     assert(n >= 0);

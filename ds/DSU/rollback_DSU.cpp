@@ -1,9 +1,18 @@
+template<class T = int, typename F = void*>
 struct rollback_DSU {
   vi sz_par;
   vc<pii> his;
   int nxt;
 
-  rollback_DSU(int n) : sz_par(n, -1), his(2 * (n - 1)), nxt(0) {}
+  vc<T> data;
+  vc<T> data_his;
+  F op;
+
+  rollback_DSU(int n) requires same_as<F, void*> : sz_par(n, -1), his(2 * (n - 1)), nxt(0) {}
+
+  rollback_DSU(vc<T> init, F f) requires R_invocable<void, F, T&, T&> &&
+    (!R_invocable<void, F, T, T&>) && (!R_invocable<void, F, T&, T>)
+    : sz_par(ssize(init), -1), his(2 * (ssize(init) - 1)), nxt(0), data(init), data_his(ssize(init) - 1), op(f) {}
 
   int query(int v) {
     int r = v;
@@ -20,10 +29,15 @@ struct rollback_DSU {
     if (-sz_par[b1] > -sz_par[b2])
       swap(b1, b2);
 
-    his[nxt++] = pair(b2, sz_par[b2]);
-    his[nxt++] = pair(b1, sz_par[b1]);
+    his[nxt] = pair(b2, sz_par[b2]);
+    his[nxt + 1] = pair(b1, sz_par[b1]);
     sz_par[b2] += sz_par[b1];
     sz_par[b1] = b2;
+    if constexpr (!same_as<F, void*>) {
+      data_his[nxt / 2] = data[b2];
+      op(data[b2], data[b1]);
+    }
+    nxt += 2;
 
     return true;
   }
@@ -33,9 +47,17 @@ struct rollback_DSU {
 
   void rollback(int t) {
     chmin(t, nxt);
-    for(auto [i, x] : views::counted(his.begin() + t, nxt - t)
-                    | views::reverse)
+    for(int j = nxt - 1; j >= t; j--) {
+      auto [i, x] = his[j];
       sz_par[i] = x;
+      if constexpr (!same_as<F, void*>) {
+        if (j % 2 == 0)
+          data[i] = data_his[j / 2];
+      }
+    }
     nxt = t;
+  }
+  T& get(int v) requires (!same_as<F, void*>) {
+    return data[query(v)];
   }
 };
