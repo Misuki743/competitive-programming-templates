@@ -1,43 +1,76 @@
-template<class T, typename F>
-requires R_invocable<T, F, T&, T&>
+template<class T = int, typename F = void*>
 struct doubling {
-  const int LOG;
-  const T id;
-  F op;
   vvi jp;
-  vvc<T> data;
 
-  doubling(int _LOG, vi to, vc<T> init, T _id, F f) : LOG(_LOG), id(_id), op(f),
-    jp(LOG, vi(size(to), -1)), data(LOG, vc<T>(size(to), id)) {
-    assert(size(init) == size(to));
-    jp[0] = std::move(to), data[0] = std::move(init);
-    for(int i = 1; i < LOG; i++)
-      for(int j = 0; j < ssize(jp[i]); j++)
-        if (int k = jp[i - 1][j]; k != -1 and jp[i - 1][k] != -1)
-          jp[i][j] = jp[i - 1][k], data[i][j] = op(data[i - 1][j], data[i - 1][k]);
+  vvc<T> data;
+  T id;
+  F op;
+
+  doubling(int LOG, vi to) : jp(LOG) {
+    jp[0].swap(to);
+    for(int i = 1; i < LOG; i++) {
+      jp[i] = jp[i - 1];
+      for(int &k : jp[i])
+        if (k != -1)
+          k = jp[i - 1][k];
+    }
   }
 
-  auto jump(int s, ll step) {
-    assert(0ll <= step and step < (1ll << LOG));
-    T prod = id;
-    for(; step > 0; step -= step & (-step)) {
-      if (int to = jp[countr_zero((uint64_t)step)][s]; to != -1) {
-        prod = op(prod, data[countr_zero((uint64_t)step)][s]);
-        s = to;
+  doubling(int LOG, vi to, vc<T> init, T _id, F f)
+  requires R_invocable<T, F, T, T>
+  : jp(LOG), data(LOG), id(_id), op(f) {
+    jp[0].swap(to), data[0].swap(init);
+    for(int i = 1; i < LOG; i++) {
+      jp[i] = jp[i - 1], data[i] = data[i - 1];
+      for(int j = -1; int &k : jp[i]) {
+        j++;
+        if (k != -1) {
+          if (jp[i - 1][k] != -1)
+            data[i][j] = op(data[i][j], data[i - 1][k]);
+          k = jp[i - 1][k];
+        }
       }
     }
-    return pair(s, prod);
+  }
+
+  int jump(int v, uint64_t k) {
+    for(; k > 0 and v != -1; k -= k & (-k))
+      v = jp[countr_zero(k)][v];
+    return v;
+  }
+
+  pair<int, T> jump(int v, uint64_t k)
+  requires (!same_as<F, void*>) {
+    T prod = id;
+    for(; k > 0 and v != -1; k -= k & (-k)) {
+      prod = op(prod, data[countr_zero(k)][v]);
+      v = jp[countr_zero(k)][v];
+    }
+    return pair(v, prod);
   }
 
   template<typename P>
-  requires R_invocable<bool, P, T&>
-  auto jump_while_true(int s, P pred) {
-    ll step = 0;
+  requires R_invocable<bool, P, int>
+  int jump_while_true(int v, P pred) {
+    if (!pred(v)) return v;
+    for(int i = ssize(jp) - 1; i >= 0; i--) {
+      if (jp[i][v] == -1) continue;
+      if (pred(jp[i][v]))
+        v = jp[i][v];
+    }
+    return v;
+  }
+
+  template<typename P>
+  requires R_invocable<bool, P, int, T> && (!same_as<F, void*>)
+  pair<int, T> jump_while_true(int v, P pred) {
     T prod = id;
-    for(int i = LOG - 1; i >= 0; i--)
-      if (jp[i][s] != -1)
-        if (T tmp = op(prod, data[i][s]); pred(tmp))
-          step += 1ll << i, prod = tmp, s = jp[i][s];
-    return tuple(s, step, prod);
+    if (!pred(v, prod)) return pair(v, prod);
+    for(int i = ssize(jp) - 1; i >= 0; i--) {
+      if (jp[i][v] == -1) continue;
+      if (T tmp = op(prod, data[i][v]); pred(jp[i][v], tmp))
+        prod = tmp, v = jp[i][v];
+    }
+    return pair(v, prod);
   }
 };
