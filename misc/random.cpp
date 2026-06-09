@@ -32,7 +32,7 @@ namespace RNG {
   }
   vc<pii> rand_label_tree(int n) {
     assert(n >= 0);
-    if (n <= 1) return vvi();
+    if (n <= 1) return {};
     else return prufer_recover(rand_seq(n - 2, 0, n));
   }
   vi rand_perm(int n) {
