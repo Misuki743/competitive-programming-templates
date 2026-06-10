@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -200,7 +200,7 @@ data:
     - icon: ':warning:'
       path: enumerate/enumerate_cartesian_product.cpp
       title: enumerate/enumerate_cartesian_product.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_highly_composite_numbers.cpp
       title: enumerate/enumerate_highly_composite_numbers.cpp
     - icon: ':heavy_check_mark:'
@@ -466,7 +466,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/phi_table.cpp
       title: numtheory/phi_table.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/prime_table.cpp
       title: numtheory/prime_table.cpp
     - icon: ':heavy_check_mark:'
@@ -908,7 +908,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_divisor_table.test.cpp
       title: test/mytest_divisor_table.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest_enumerate_highly_composite_numbers.test.cpp
       title: test/mytest_enumerate_highly_composite_numbers.test.cpp
     - icon: ':heavy_check_mark:'

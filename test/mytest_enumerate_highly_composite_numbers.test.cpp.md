@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_highly_composite_numbers.cpp
     title: enumerate/enumerate_highly_composite_numbers.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -194,7 +194,7 @@ data:
     \ -1);\n    enumerate_highly_composite_numbers(table[i] + 1, [&](ll n, vc<pii>\
     \ fac) {\n      ll prod = 1;\n      for(auto [_, e] : fac)\n        prod *= e\
     \ + 1;\n      chmax(sol, pll(prod, -n));\n    });\n    assert(sol == pll(table[i\
-    \ + 1], -table[i]));\n  }\n\n  return 0;\n}\n"
+    \ + 1], -table[i]));\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n#include \"../enumerate/enumerate_highly_composite_numbers.cpp\"\
     \n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n\
@@ -251,7 +251,7 @@ data:
     \ -1);\n    enumerate_highly_composite_numbers(table[i] + 1, [&](ll n, vc<pii>\
     \ fac) {\n      ll prod = 1;\n      for(auto [_, e] : fac)\n        prod *= e\
     \ + 1;\n      chmax(sol, pll(prod, -n));\n    });\n    assert(sol == pll(table[i\
-    \ + 1], -table[i]));\n  }\n\n  return 0;\n}\n"
+    \ + 1], -table[i]));\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/prime_table.cpp
@@ -259,8 +259,8 @@ data:
   isVerificationFile: true
   path: test/mytest_enumerate_highly_composite_numbers.test.cpp
   requiredBy: []
-  timestamp: '2026-06-10 20:57:45+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-06-10 21:00:15+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_enumerate_highly_composite_numbers.test.cpp
 layout: document
