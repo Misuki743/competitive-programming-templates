@@ -133,11 +133,11 @@ data:
   timestamp: '2026-06-07 01:41:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparse_polynomial_operations.cpp
 layout: document
 redirect_from:

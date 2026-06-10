@@ -6,12 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/enumerate_primes.test.cpp
     title: test/enumerate_primes.test.cpp
+  - icon: ':x:'
+    path: test/mytest_enumerate_highly_composite_numbers.test.cpp
+    title: test/mytest_enumerate_highly_composite_numbers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t C>\nclass\
@@ -64,10 +67,11 @@ data:
   path: numtheory/prime_table.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest_prime_table.test.cpp
   - test/enumerate_primes.test.cpp
+  - test/mytest_enumerate_highly_composite_numbers.test.cpp
+  - test/mytest_prime_table.test.cpp
 documentation_of: numtheory/prime_table.cpp
 layout: document
 redirect_from:

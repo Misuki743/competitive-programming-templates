@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/mytest_enumerate_highly_composite_numbers.cpp
-    title: test/mytest_enumerate_highly_composite_numbers.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest_enumerate_highly_composite_numbers.test.cpp
+    title: test/mytest_enumerate_highly_composite_numbers.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/enumerate_highly_composite_numbers.cpp\"\ntemplate<typename\
@@ -29,11 +29,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: enumerate/enumerate_highly_composite_numbers.cpp
-  requiredBy:
-  - test/mytest_enumerate_highly_composite_numbers.cpp
+  requiredBy: []
   timestamp: '2026-06-10 20:53:28+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest_enumerate_highly_composite_numbers.test.cpp
 documentation_of: enumerate/enumerate_highly_composite_numbers.cpp
 layout: document
 redirect_from:

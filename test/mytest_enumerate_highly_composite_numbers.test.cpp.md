@@ -1,22 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: enumerate/enumerate_highly_composite_numbers.cpp
     title: enumerate/enumerate_highly_composite_numbers.cpp
+  - icon: ':question:'
+    path: numtheory/prime_table.cpp
+    title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest_enumerate_highly_composite_numbers.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"default/t.cpp\"\
+  bundledCode: "#line 1 \"test/mytest_enumerate_highly_composite_numbers.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"default/t.cpp\"\
     \n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
     \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
@@ -105,14 +110,36 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"enumerate/enumerate_highly_composite_numbers.cpp\"\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/prime_table.cpp\"\
+    \ntemplate<int32_t C>\nclass prime_table {\n  static constexpr int32_t D = (C\
+    \ + 29) / 30 * 30;\n  bitset<D / 2> table = {};\n\n  public:\n\n  vi prime;\n\n\
+    \  prime_table() : prime({2, 3, 5}) {\n    table[3 / 2] = table[5 / 2] = true;\n\
+    \    for(int i = 0; i < D; i += 30) {\n      table[(i + 01) / 2] = table[(i +\
+    \ 07) / 2] =\n      table[(i + 11) / 2] = table[(i + 13) / 2] =\n      table[(i\
+    \ + 17) / 2] = table[(i + 19) / 2] =\n      table[(i + 23) / 2] = table[(i + 29)\
+    \ / 2] = true;\n    }\n    table[1 / 2] = false;\n\n    const int32_t S = sqrtl(D)\
+    \ + 10;\n    for(int i = 7, j = 4; i < S; i += j, j ^= 6) {\n      if (table[i\
+    \ / 2]) {\n        for(int k = ((i + 4) / 6 * 6 + 1) * i; k < D; k += 6 * i)\n\
+    \          table[k / 2] = false;\n        for(int k = (i / 6 * 6 + 5) * i; k <\
+    \ D; k += 6 * i)\n          table[k / 2] = false;\n      }\n    }\n\n    prime.reserve(1.1\
+    \ * D / log(D));\n    for(int i = 0; i < D; i += 30) {\n      if (table[(i + 01)\
+    \ / 2]) prime.emplace_back(i + 01);\n      if (table[(i + 07) / 2]) prime.emplace_back(i\
+    \ + 07);\n      if (table[(i + 11) / 2]) prime.emplace_back(i + 11);\n      if\
+    \ (table[(i + 13) / 2]) prime.emplace_back(i + 13);\n      if (table[(i + 17)\
+    \ / 2]) prime.emplace_back(i + 17);\n      if (table[(i + 19) / 2]) prime.emplace_back(i\
+    \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
+    \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
+    \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
+    \ }\n\n  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }\n\
+    \  //make sure to not copy the array by using &x = prime_array()\n  const vi&\
+    \ prime_array() { return prime; }\n};\n#line 1 \"enumerate/enumerate_highly_composite_numbers.cpp\"\
     \ntemplate<typename F>\nrequires invocable<F, ll, vector<pair<int, int>>>\nvoid\
     \ enumerate_highly_composite_numbers(ll U, F f) {\n  prime_table<64> pt;\n\n \
     \ auto dfs = [&](ll prod, vc<pii> fac, auto &self) -> void {\n    f(prod, fac);\n\
     \n    int p = pt.prime_array()[ssize(fac)];\n    int lim = fac.empty() ? INT_MAX\
     \ : fac.back().second;\n    fac.eb(p, 0);\n    while((__int128)prod * p < U and\
     \ fac.back().second < lim) {\n      fac.back().second += 1, prod *= p;\n     \
-    \ self(prod, fac, self);\n    }\n  };\n  dfs(1, {}, dfs);\n}\n#line 5 \"test/mytest_enumerate_highly_composite_numbers.cpp\"\
+    \ self(prod, fac, self);\n    }\n  };\n  dfs(1, {}, dfs);\n}\n#line 6 \"test/mytest_enumerate_highly_composite_numbers.test.cpp\"\
     \n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n\
     }\n\nvll table = {\n//(n, tau(n))\n1L, 1L, \n2L, 2L, \n4L, 3L, \n6L, 4L, \n12L,\
     \ 6L, \n24L, 8L, \n36L, 9L, \n48L, 10L, \n60L, 12L, \n120L, 16L, \n180L, 18L,\
@@ -169,7 +196,7 @@ data:
     \ + 1;\n      chmax(sol, pll(prod, -n));\n    });\n    assert(sol == pll(table[i\
     \ + 1], -table[i]));\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../default/t.cpp\"\n#include \"../enumerate/enumerate_highly_composite_numbers.cpp\"\
+    ../default/t.cpp\"\n#include \"../numtheory/prime_table.cpp\"\n#include \"../enumerate/enumerate_highly_composite_numbers.cpp\"\
     \n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n\
     }\n\nvll table = {\n//(n, tau(n))\n1L, 1L, \n2L, 2L, \n4L, 3L, \n6L, 4L, \n12L,\
     \ 6L, \n24L, 8L, \n36L, 9L, \n48L, 10L, \n60L, 12L, \n120L, 16L, \n180L, 18L,\
@@ -227,17 +254,18 @@ data:
     \ + 1], -table[i]));\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
+  - numtheory/prime_table.cpp
   - enumerate/enumerate_highly_composite_numbers.cpp
-  isVerificationFile: false
-  path: test/mytest_enumerate_highly_composite_numbers.cpp
+  isVerificationFile: true
+  path: test/mytest_enumerate_highly_composite_numbers.test.cpp
   requiredBy: []
-  timestamp: '2026-06-10 20:53:28+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2026-06-10 20:57:45+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest_enumerate_highly_composite_numbers.cpp
+documentation_of: test/mytest_enumerate_highly_composite_numbers.test.cpp
 layout: document
 redirect_from:
-- /library/test/mytest_enumerate_highly_composite_numbers.cpp
-- /library/test/mytest_enumerate_highly_composite_numbers.cpp.html
-title: test/mytest_enumerate_highly_composite_numbers.cpp
+- /verify/test/mytest_enumerate_highly_composite_numbers.test.cpp
+- /verify/test/mytest_enumerate_highly_composite_numbers.test.cpp.html
+title: test/mytest_enumerate_highly_composite_numbers.test.cpp
 ---

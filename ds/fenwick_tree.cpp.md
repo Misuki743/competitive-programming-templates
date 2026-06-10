@@ -61,15 +61,15 @@ data:
   timestamp: '2026-06-06 23:34:13+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/vertex_add_subtree_sum.test.cpp
+  - test/static_range_count_distinct.test.cpp
+  - test/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/rectangle_sum.test.cpp
   - test/point_add_rectangle_sum2.test.cpp
   - test/point_set_range_frequency.test.cpp
-  - test/static_range_count_distinct.test.cpp
-  - test/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/rectangle_sum.test.cpp
-  - test/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/vertex_add_subtree_sum.test.cpp
-  - test/vertex_add_path_sum.test.cpp
   - test/point_add_range_sum.test.cpp
+  - test/vertex_add_path_sum.test.cpp
+  - test/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: ds/fenwick_tree.cpp
 layout: document
 redirect_from:

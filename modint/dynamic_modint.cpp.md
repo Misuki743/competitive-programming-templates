@@ -71,9 +71,9 @@ data:
   timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
-  - test/stirling_number_of_first_kind_small_p_large_n.test.cpp
   - test/binomial_coefficient_prime_mod.test.cpp
+  - test/stirling_number_of_first_kind_small_p_large_n.test.cpp
+  - test/stirling_number_of_second_kind_small_p_large_n.test.cpp
 documentation_of: modint/dynamic_modint.cpp
 layout: document
 redirect_from:

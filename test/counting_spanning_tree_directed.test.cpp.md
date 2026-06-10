@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/count_spanning_forest.cpp
     title: combi/count_spanning_forest.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
