@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../default/t.cpp"
+#include "../numtheory/prime_table.cpp"
 #include "../enumerate/enumerate_highly_composite_numbers.cpp"
 
 void a_plus_b() {
