@@ -183,5 +183,7 @@ int main() {
     assert(sol == pll(table[i + 1], -table[i]));
   }
 
+  a_plus_b();
+
   return 0;
 }
