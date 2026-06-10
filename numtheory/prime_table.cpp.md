@@ -66,8 +66,8 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/enumerate_primes.test.cpp
   - test/mytest_prime_table.test.cpp
+  - test/enumerate_primes.test.cpp
 documentation_of: numtheory/prime_table.cpp
 layout: document
 redirect_from:

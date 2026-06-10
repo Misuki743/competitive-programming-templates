@@ -200,6 +200,9 @@ data:
     - icon: ':warning:'
       path: enumerate/enumerate_cartesian_product.cpp
       title: enumerate/enumerate_cartesian_product.cpp
+    - icon: ':warning:'
+      path: enumerate/enumerate_highly_composite_numbers.cpp
+      title: enumerate/enumerate_highly_composite_numbers.cpp
     - icon: ':heavy_check_mark:'
       path: enumerate/enumerate_label_tree.cpp
       title: enumerate/enumerate_label_tree.cpp
@@ -633,6 +636,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/z_function.cpp
       title: string/z_function.cpp
+  - name: test
+    pages:
+    - icon: ':warning:'
+      path: test/mytest_enumerate_highly_composite_numbers.cpp
+      title: test/mytest_enumerate_highly_composite_numbers.cpp
   - name: tree
     pages:
     - icon: ':heavy_check_mark:'
