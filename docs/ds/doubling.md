@@ -17,4 +17,4 @@ documentation_of: ../../ds/doubling.cpp
 
 `jump_while_true(v, pred)`: return $u$ where $u$ is the last vertex such that $pred(u)$ is true. if $pred(v)$ is false, return $v$. $pred(-1)$ is defined as false. If the destination after $2^{\text{LOG}} - 1$ jumps is still true, return this vertex.
 
-`jump_while_true(v, pred)` (with monoid attached): prediate also take the accumulated product along the path as argument. And return the accumulated product from $v$ to $u$.
+`jump_while_true(v, pred)` (with monoid attached): predicate also take the accumulated product along the path as argument. And return the accumulated product from $v$ to $u$.
