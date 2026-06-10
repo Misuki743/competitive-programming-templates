@@ -14,7 +14,7 @@ void test_small() {
     for(int d = 1; d <= x; d++)
       if (x % d == 0)
         divisor.emplace_back(d);
-    assert(divisor == dt.divisor(x));
+    assert(ranges::equal(divisor, dt.divisor(x)));
   }
 }
 
@@ -29,7 +29,7 @@ void test_power() {
     for(int d = 1; d <= x; d++)
       if (x % d == 0)
         divisor.emplace_back(d);
-    assert(divisor == dt.divisor(x));
+    assert(ranges::equal(divisor, dt.divisor(x)));
   }
 }
 

@@ -14,7 +14,7 @@ struct divisor_table {
       for(int j = i; j < C; j += i)
         d[--s[j]] = i;
   }
-  vi divisor(int x) {
-    return vi(d.begin() + s[x], d.begin() + s[x + 1]);
+  span<const i32> divisor(int x) {
+    return span(d.begin() + s[x], d.begin() + s[x + 1]);
   }
 };
