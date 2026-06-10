@@ -466,6 +466,9 @@ data:
     path: test/yuki_1868.test.cpp
     title: test/yuki_1868.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yuki_2242.test.cpp
+    title: test/yuki_2242.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
   - icon: ':heavy_check_mark:'
@@ -678,6 +681,7 @@ data:
   - test/inverse_matrix.test.cpp
   - test/longest_common_substring.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
+  - test/yuki_2242.test.cpp
   - test/double_ended_priority_queue.test.cpp
   - test/associative_array.test.cpp
   - test/static_RMQ.test.cpp

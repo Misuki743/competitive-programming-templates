@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_1097.test.cpp
     title: test/yuki_1097.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki_2242.test.cpp
+    title: test/yuki_2242.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -70,6 +73,7 @@ data:
   timestamp: '2026-06-09 22:18:50+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yuki_2242.test.cpp
   - test/yuki_1097.test.cpp
 documentation_of: ds/doubling.cpp
 layout: document
@@ -90,4 +94,4 @@ title: ds/doubling.cpp
 
 `jump_while_true(v, pred)`: return $u$ where $u$ is the last vertex such that $pred(u)$ is true. if $pred(v)$ is false, return $v$. $pred(-1)$ is defined as false. If the destination after $2^{\text{LOG}} - 1$ jumps is still true, return this vertex.
 
-`jump_while_true(v, pred)` (with monoid attached): prediate also take the accumulated product along the path as argument. And return the accumulated product from $v$ to $u$.
+`jump_while_true(v, pred)` (with monoid attached): predicate also take the accumulated product along the path as argument. And return the accumulated product from $v$ to $u$.
