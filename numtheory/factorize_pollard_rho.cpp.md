@@ -74,10 +74,10 @@ data:
   verifiedWith:
   - test/primitive_root.test.cpp
   - test/two_square_sum.test.cpp
+  - test/primality_test.test.cpp
   - test/chromatic_number.test.cpp
   - test/mytest_factorize_sqrt.test.cpp
   - test/factorize.test.cpp
-  - test/primality_test.test.cpp
 documentation_of: numtheory/factorize_pollard_rho.cpp
 layout: document
 redirect_from:

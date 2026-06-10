@@ -113,39 +113,41 @@ data:
     \ < C; i++)\n      for(int j = i; j < C; j += i)\n        s[j]++;\n    for(int\
     \ i = 1; i <= C; i++)\n      s[i] += s[i - 1];\n    d.resize(s[C]);\n    for(int\
     \ i = C - 1; i >= 1; i--)\n      for(int j = i; j < C; j += i)\n        d[--s[j]]\
-    \ = i;\n  }\n  vi divisor(int x) {\n    return vi(d.begin() + s[x], d.begin()\
-    \ + s[x + 1]);\n  }\n};\n#line 5 \"test/mytest_divisor_table.test.cpp\"\n\ntemplate<int32_t\
-    \ sz = 128>\nvoid test_small() {\n  if (sz == 0) return;\n  test_small<max(sz\
-    \ - 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1; x < sz; x++) {\n  \
-    \  vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x % d == 0)\n     \
-    \   divisor.emplace_back(d);\n    assert(divisor == dt.divisor(x));\n  }\n}\n\n\
-    template<int32_t sz = (1 << 12)>\nvoid test_power() {\n  if (sz == 0) return;\n\
-    \  test_power<max(sz >> 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1;\
+    \ = i;\n  }\n  span<const i32> divisor(int x) {\n    return span(d.begin() + s[x],\
+    \ d.begin() + s[x + 1]);\n  }\n};\n#line 5 \"test/mytest_divisor_table.test.cpp\"\
+    \n\ntemplate<int32_t sz = 128>\nvoid test_small() {\n  if (sz == 0) return;\n\
+    \  test_small<max(sz - 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1;\
     \ x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x\
-    \ % d == 0)\n        divisor.emplace_back(d);\n    assert(divisor == dt.divisor(x));\n\
-    \  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\\
-    n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  test_small();\n\
-    \  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    \ % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
+    \ dt.divisor(x)));\n  }\n}\n\ntemplate<int32_t sz = (1 << 12)>\nvoid test_power()\
+    \ {\n  if (sz == 0) return;\n  test_power<max(sz >> 1, 0)>();\n\n  divisor_table<sz>\
+    \ dt;\n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d\
+    \ <= x; d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
+    \ dt.divisor(x)));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n\
+    \  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  test_small();\n  test_power();\n  a_plus_b();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/divisor_table.cpp\"\n\ntemplate<int32_t\
     \ sz = 128>\nvoid test_small() {\n  if (sz == 0) return;\n  test_small<max(sz\
     \ - 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1; x < sz; x++) {\n  \
     \  vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x % d == 0)\n     \
-    \   divisor.emplace_back(d);\n    assert(divisor == dt.divisor(x));\n  }\n}\n\n\
-    template<int32_t sz = (1 << 12)>\nvoid test_power() {\n  if (sz == 0) return;\n\
-    \  test_power<max(sz >> 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1;\
-    \ x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x\
-    \ % d == 0)\n        divisor.emplace_back(d);\n    assert(divisor == dt.divisor(x));\n\
-    \  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\\
-    n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  test_small();\n\
-    \  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    \   divisor.emplace_back(d);\n    assert(ranges::equal(divisor, dt.divisor(x)));\n\
+    \  }\n}\n\ntemplate<int32_t sz = (1 << 12)>\nvoid test_power() {\n  if (sz ==\
+    \ 0) return;\n  test_power<max(sz >> 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int\
+    \ x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n  \
+    \    if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
+    \ dt.divisor(x)));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n\
+    \  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  test_small();\n  test_power();\n  a_plus_b();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/divisor_table.cpp
   isVerificationFile: true
   path: test/mytest_divisor_table.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
+  timestamp: '2026-06-11 02:41:44+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_divisor_table.test.cpp
