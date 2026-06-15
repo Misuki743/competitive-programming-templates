@@ -589,7 +589,7 @@ data:
       title: segtree/segment_tree_2D.cpp
   - name: setfunc
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/FWHT.cpp
       title: setfunc/FWHT.cpp
     - icon: ':warning:'
@@ -719,6 +719,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/bipartitematching_2.test.cpp
       title: test/bipartitematching_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/bitwise_xor_convolution.test.cpp
+      title: test/bitwise_xor_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/cartesian_tree.test.cpp
       title: test/cartesian_tree.test.cpp

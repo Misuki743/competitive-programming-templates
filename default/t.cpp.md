@@ -49,6 +49,9 @@ data:
     path: test/bipartitematching_2.test.cpp
     title: test/bipartitematching_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/bitwise_xor_convolution.test.cpp
+    title: test/bitwise_xor_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/cartesian_tree.test.cpp
     title: test/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -819,6 +822,7 @@ data:
   - test/lcm_convolution.test.cpp
   - test/point_add_rectangle_sum.test.cpp
   - test/matrix_rank.test.cpp
+  - test/bitwise_xor_convolution.test.cpp
   - test/a_plus_b.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/enumerate_palindromes.test.cpp

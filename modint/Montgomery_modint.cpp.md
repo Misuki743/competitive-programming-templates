@@ -16,6 +16,9 @@ data:
     path: test/bernoulli_number.test.cpp
     title: test/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/bitwise_xor_convolution.test.cpp
+    title: test/bitwise_xor_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/compositional_inverse_of_formal_power_series_large.test.cpp
     title: test/compositional_inverse_of_formal_power_series_large.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,6 +318,7 @@ data:
   - test/tree_path_composite_sum.test.cpp
   - test/lcm_convolution.test.cpp
   - test/matrix_rank.test.cpp
+  - test/bitwise_xor_convolution.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/wildcard_pattern_matching.test.cpp
