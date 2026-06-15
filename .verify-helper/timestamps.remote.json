@@ -14,6 +14,7 @@
 "test/binomial_coefficient_prime_mod.test.cpp": "2026-06-07 01:57:54 +0800",
 "test/bipartitematching.test.cpp": "2026-06-07 00:25:21 +0800",
 "test/bipartitematching_2.test.cpp": "2026-06-07 00:25:21 +0800",
+"test/bitwise_xor_convolution.test.cpp": "2026-06-15 20:55:33 +0800",
 "test/cartesian_tree.test.cpp": "2026-06-07 00:25:21 +0800",
 "test/chromatic_number.test.cpp": "2026-06-07 02:34:04 +0800",
 "test/closest_pair.test.cpp": "2026-06-07 00:25:21 +0800",
