@@ -436,6 +436,9 @@ data:
     - icon: ':warning:'
       path: numtheory/dirichlet_convolution.cpp
       title: numtheory/dirichlet_convolution.cpp
+    - icon: ':warning:'
+      path: numtheory/discrete_logarithm.cpp
+      title: numtheory/discrete_logarithm.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/divisor_table.cpp
       title: numtheory/divisor_table.cpp

@@ -108,19 +108,21 @@ data:
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/hash_table.cpp\"\n//source:\
-    \ https://codeforces.com/blog/entry/62393\n//#include<ext/pb_ds/assoc_container.hpp>\n\
-    //#include<ext/pb_ds/tree_policy.hpp>\n\nstruct custom_hash {\n    static uint64_t\
-    \ splitmix64(uint64_t x) {\n        x += 0x9e3779b97f4a7c15;\n        x = (x ^\
-    \ (x >> 30)) * 0xbf58476d1ce4e5b9;\n        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
+    \ https://codeforces.com/blog/entry/62393\n//#ifndef DEBUG\n//#include<ext/pb_ds/assoc_container.hpp>\n\
+    //#include<ext/pb_ds/tree_policy.hpp>\n//#endif\n\nstruct custom_hash {\n    static\
+    \ uint64_t splitmix64(uint64_t x) {\n        x += 0x9e3779b97f4a7c15;\n      \
+    \  x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n        x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n\
     \        return x ^ (x >> 31);\n    }\n\n    size_t operator()(uint64_t x) const\
     \ {\n        static const uint64_t FIXED_RANDOM = chrono::steady_clock::now().time_since_epoch().count();\n\
     \        return splitmix64(x + FIXED_RANDOM);\n    }\n};\n\nusing namespace __gnu_pbds;\n\
-    \n//gp_hash_table<ll, int, custom_hash> m({}, {}, {}, {}, {1 << 16});\n#line 6\
-    \ \"test/associative_array.test.cpp\"\n\ngp_hash_table<ll, ll, custom_hash> m({},\
-    \ {}, {}, {}, {1 << 20});\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int q; cin >> q;\n  while(q--) {\n    int t; cin >> t;\n    ll k; cin >> k;\n\
-    \    if (t == 0) {\n      ll v; cin >> v;\n      m[k] = v;\n    } else {\n   \
-    \   cout << m[k] << '\\n';\n    }\n  }\n\n  return 0;\n}\n"
+    \n//gp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 16});\n\n#ifdef\
+    \ DEBUG\nusing hash_table = unordered_map<ll, ll>;\n#else\nusing hash_table =\
+    \ gp_hash_table<ll, ll, custom_hash>;\n#endif\n#line 6 \"test/associative_array.test.cpp\"\
+    \n\ngp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 20});\n\nint main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin >> q;\n  while(q--)\
+    \ {\n    int t; cin >> t;\n    ll k; cin >> k;\n    if (t == 0) {\n      ll v;\
+    \ cin >> v;\n      m[k] = v;\n    } else {\n      cout << m[k] << '\\n';\n   \
+    \ }\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n\n\
     #include <ext/pb_ds/assoc_container.hpp>\n#include \"../default/t.cpp\"\n#include\
     \ \"../ds/hash_table.cpp\"\n\ngp_hash_table<ll, ll, custom_hash> m({}, {}, {},\
@@ -134,7 +136,7 @@ data:
   isVerificationFile: true
   path: test/associative_array.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-07-11 17:01:14+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/associative_array.test.cpp
