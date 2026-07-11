@@ -2,6 +2,8 @@
 //#include "numtheory/exgcd"
 
 ll discrete_logarithm(ll x, ll y, ll m) {
+  x %= m, y %= m;
+
   if (gcd(x, m) != 1) {
     int C = bit_width((ull)m);
     ll prod = 1;
