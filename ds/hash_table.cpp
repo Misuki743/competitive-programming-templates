@@ -1,6 +1,8 @@
 //source: https://codeforces.com/blog/entry/62393
+//#ifndef DEBUG
 //#include<ext/pb_ds/assoc_container.hpp>
 //#include<ext/pb_ds/tree_policy.hpp>
+//#endif
 
 struct custom_hash {
     static uint64_t splitmix64(uint64_t x) {
@@ -18,9 +20,6 @@ struct custom_hash {
 
 using namespace __gnu_pbds;
 
-<<<<<<< HEAD
-//gp_hash_table<ll, int, custom_hash> m({}, {}, {}, {}, {1 << 16});
-=======
 //gp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 16});
 
 #ifdef DEBUG
@@ -28,4 +27,3 @@ using hash_table = unordered_map<ll, ll>;
 #else
 using hash_table = gp_hash_table<ll, ll, custom_hash>;
 #endif
->>>>>>> parent of d89da7b (Revert "Reapply "a"")
