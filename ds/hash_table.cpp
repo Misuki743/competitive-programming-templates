@@ -23,7 +23,7 @@ using namespace __gnu_pbds;
 //gp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 16});
 
 #ifdef DEBUG
-using hash_table = unordered_map<ll, ll>;
-#else
 using hash_table = gp_hash_table<ll, ll, custom_hash>;
+#else
+using hash_table = unordered_map<ll, ll>;
 #endif
