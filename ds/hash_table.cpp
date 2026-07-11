@@ -18,4 +18,14 @@ struct custom_hash {
 
 using namespace __gnu_pbds;
 
+<<<<<<< HEAD
 //gp_hash_table<ll, int, custom_hash> m({}, {}, {}, {}, {1 << 16});
+=======
+//gp_hash_table<ll, ll, custom_hash> m({}, {}, {}, {}, {1 << 16});
+
+#ifdef DEBUG
+using hash_table = unordered_map<ll, ll>;
+#else
+using hash_table = gp_hash_table<ll, ll, custom_hash>;
+#endif
+>>>>>>> parent of d89da7b (Revert "Reapply "a"")
