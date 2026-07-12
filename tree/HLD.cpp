@@ -188,6 +188,7 @@ struct HLD {
 
   inline int depth(int v) { return dep[v]; }
   inline int size(int v) { return sz[v]; }
+  inline int degree(int v) { return lb[v + 1] - lb[v] + (v != root); }
   bool in_subtree_of(int a, int b) { return tin[b] <= tin[a] and tout[a] <= tout[b]; }
   const span<int> centroid() {
     if (c.empty()) {
