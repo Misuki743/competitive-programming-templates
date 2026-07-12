@@ -167,8 +167,9 @@ data:
     \ lb[v] + 1, max(lb[v + 1] - lb[v] - 1, 0));\n  }\n  inline int heavy_child(int\
     \ v) {\n    return lb[v] == lb[v + 1] ? -1 : child_list[lb[v]];\n  }\n  inline\
     \ int parent(int v) {\n    return p[v];\n  }\n\n  inline int depth(int v) { return\
-    \ dep[v]; }\n  inline int size(int v) { return sz[v]; }\n  bool in_subtree_of(int\
-    \ a, int b) { return tin[b] <= tin[a] and tout[a] <= tout[b]; }\n  const span<int>\
+    \ dep[v]; }\n  inline int size(int v) { return sz[v]; }\n  inline int degree(int\
+    \ v) { return lb[v + 1] - lb[v] + (v != root); }\n  bool in_subtree_of(int a,\
+    \ int b) { return tin[b] <= tin[a] and tout[a] <= tout[b]; }\n  const span<int>\
     \ centroid() {\n    if (c.empty()) {\n      vc<bool> ok(n, true);\n      for(int\
     \ v = 0; v < n; v++) {\n        if (2 * (n - sz[v]) > n)\n          ok[v] = false;\n\
     \        if (v != root and 2 * sz[v] > n)\n          ok[p[v]] = false;\n     \
@@ -191,7 +192,7 @@ data:
   isVerificationFile: true
   path: test/jump_on_tree_3.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
+  timestamp: '2026-07-12 14:48:03+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/jump_on_tree_3.test.cpp
