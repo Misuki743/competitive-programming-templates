@@ -1,9 +1,9 @@
 //#include "numtheory/linear_sieve"
 
 template<class T, int32_t C>
-vector<T> zeta_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {
+vector<T> zeta_transform_on_divisor(vector<T> f) {
   assert(ssize(f) <= C);
-  for(int64_t p : ls.prime) {
+  for(int64_t p : linear_sieve<C>::prime_array()) {
     if (p >= ssize(f)) break;
     for(int i = 1; i * p < ssize(f); i++)
       f[i * p] += f[i];
@@ -12,9 +12,9 @@ vector<T> zeta_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {
 }
 
 template<class T, int32_t C>
-vector<T> mobius_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {
+vector<T> mobius_transform_on_divisor(vector<T> f) {
   assert(ssize(f) <= C);
-  for(int64_t p : ls.prime) {
+  for(int64_t p : linear_sieve<C>::prime_array()) {
     if (p >= ssize(f)) break;
     for(int i = (ssize(f) - 1) / p; i > 0; i--)
       f[i * p] -= f[i];
@@ -23,9 +23,9 @@ vector<T> mobius_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {
 }
 
 template<class T, int32_t C>
-vector<T> zeta_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {
+vector<T> zeta_transform_on_multiple(vector<T> f) {
   assert(ssize(f) <= C);
-  for(int64_t p : ls.prime) {
+  for(int64_t p : linear_sieve<C>::prime_array()) {
     if (p >= ssize(f)) break;
     for(int i = (ssize(f) - 1) / p; i > 0; i--)
       f[i] += f[i * p];
@@ -34,9 +34,9 @@ vector<T> zeta_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {
 }
 
 template<class T, int32_t C>
-vector<T> mobius_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {
+vector<T> mobius_transform_on_multiple(vector<T> f) {
   assert(ssize(f) <= C);
-  for(int64_t p : ls.prime) {
+  for(int64_t p : linear_sieve<C>::prime_array()) {
     if (p >= ssize(f)) break;
     for(int i = 1; i * p < ssize(f); i++)
       f[i] -= f[i * p];

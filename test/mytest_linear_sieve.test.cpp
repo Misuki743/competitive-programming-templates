@@ -46,7 +46,7 @@ void check_small() {
   check_small<max(sz - 1, 0)>();
   auto ls = linear_sieve<sz>();
   for(int i = 0; i < sz; i++)
-    assert(mpf[i] == ls.mpf[i]);
+    assert(mpf[i] == ls.mpf_array()[i]);
   for(int i = 1; i < sz; i++) {
     assert(ls.prime_factorize(i) == prime_factorize(i));
     assert(ls.prime_factor(i) == prime_factor(i));
@@ -60,7 +60,7 @@ void check_power() {
   check_power<max(sz >> 1, 0)>();
   auto ls = linear_sieve<sz>();
   for(int i = 0; i < sz; i++)
-    assert(mpf[i] == ls.mpf[i]);
+    assert(mpf[i] == ls.mpf_array()[i]);
   for(int i = 1; i < sz; i++) {
     assert(ls.prime_factorize(i) == prime_factorize(i));
     assert(ls.prime_factor(i) == prime_factor(i));
