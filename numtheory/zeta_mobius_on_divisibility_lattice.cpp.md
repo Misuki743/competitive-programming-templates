@@ -15,41 +15,41 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\n//#include\
-    \ \"numtheory/linear_sieve\"\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n  \
-    \    f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> mobius_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
-    \ i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n  return\
-    \ f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n\
-    \      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> mobius_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {\n \
-    \ assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f))\
+    \ \"numtheory/linear_sieve\"\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(vector<T>\
+    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
+    \ {\n    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n\
+    \      f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
+    vector<T> mobius_transform_on_divisor(vector<T> f) {\n  assert(ssize(f) <= C);\n\
+    \  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f)) break;\n\
+    \    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n\
+    \  return f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(vector<T>\
+    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
+    \ {\n    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0;\
+    \ i--)\n      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t\
+    \ C>\nvector<T> mobius_transform_on_multiple(vector<T> f) {\n  assert(ssize(f)\
+    \ <= C);\n  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f))\
     \ break;\n    for(int i = 1; i * p < ssize(f); i++)\n      f[i] -= f[i * p];\n\
     \  }\n  return f;\n}\n"
   code: "//#include \"numtheory/linear_sieve\"\n\ntemplate<class T, int32_t C>\nvector<T>\
-    \ zeta_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
+    \ zeta_transform_on_divisor(vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t\
+    \ p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f)) break;\n    for(int\
     \ i = 1; i * p < ssize(f); i++)\n      f[i * p] += f[i];\n  }\n  return f;\n}\n\
-    \ntemplate<class T, int32_t C>\nvector<T> mobius_transform_on_divisor(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n\
-    \      f[i * p] -= f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> zeta_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
-    \ i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i] += f[i * p];\n  }\n  return\
-    \ f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> mobius_transform_on_multiple(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n  \
-    \    f[i] -= f[i * p];\n  }\n  return f;\n}\n"
+    \ntemplate<class T, int32_t C>\nvector<T> mobius_transform_on_divisor(vector<T>\
+    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
+    \ {\n    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0;\
+    \ i--)\n      f[i * p] -= f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t\
+    \ C>\nvector<T> zeta_transform_on_multiple(vector<T> f) {\n  assert(ssize(f) <=\
+    \ C);\n  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f))\
+    \ break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i] += f[i *\
+    \ p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> mobius_transform_on_multiple(vector<T>\
+    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
+    \ {\n    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n\
+    \      f[i] -= f[i * p];\n  }\n  return f;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-07-15 01:16:31+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/gcd_convolution.test.cpp

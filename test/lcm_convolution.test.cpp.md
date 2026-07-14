@@ -173,39 +173,39 @@ data:
     \ sorted); },\n      &prime_array,\n      &mpf_array\n    );\n  }\n};\n\n//auto\
     \ [prime_factorize, prime_factor, divisor, prime_array, mpf_array] = linear_sieve<>::functions();\n\
     #line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\n//#include \"numtheory/linear_sieve\"\
-    \n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n  \
-    \    f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> mobius_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
-    \ i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n  return\
-    \ f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n\
-    \      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> mobius_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {\n \
-    \ assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f))\
+    \n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(vector<T>\
+    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
+    \ {\n    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n\
+    \      f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
+    vector<T> mobius_transform_on_divisor(vector<T> f) {\n  assert(ssize(f) <= C);\n\
+    \  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f)) break;\n\
+    \    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n\
+    \  return f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(vector<T>\
+    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
+    \ {\n    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0;\
+    \ i--)\n      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t\
+    \ C>\nvector<T> mobius_transform_on_multiple(vector<T> f) {\n  assert(ssize(f)\
+    \ <= C);\n  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f))\
     \ break;\n    for(int i = 1; i * p < ssize(f); i++)\n      f[i] -= f[i * p];\n\
     \  }\n  return f;\n}\n#line 1 \"numtheory/lcm_convolution.cpp\"\n//#include \"\
     numtheory/linear_sieve.cpp\"\n//#include \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
-    \n\ntemplate<class T, int32_t C>\nvector<T> lcm_convolution(linear_sieve<C> &ls,\
-    \ vector<T> a, vector<T> b) {\n  assert(ssize(a) == ssize(b));\n  a = zeta_transform_on_divisor(ls,\
-    \ a);\n  b = zeta_transform_on_divisor(ls, b);\n  for(int i = 0; i < ssize(a);\
-    \ i++)\n    a[i] *= b[i];\n  return mobius_transform_on_divisor(ls, a);\n}\n#line\
-    \ 8 \"test/lcm_convolution.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  linear_sieve<1'000'001> ls;\n\n  int n; cin >> n;\n  vector<mint>\
-    \ a(n), b(n);\n  for(mint &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(),\
-    \ mint(0));\n  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution(ls, a,\
-    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+    \n\ntemplate<class T, int32_t C>\nvector<T> lcm_convolution(vector<T> a, vector<T>\
+    \ b) {\n  assert(ssize(a) == ssize(b));\n  a = zeta_transform_on_divisor<T, C>(a);\n\
+    \  b = zeta_transform_on_divisor<T, C>(b);\n  for(int i = 0; i < ssize(a); i++)\n\
+    \    a[i] *= b[i];\n  return mobius_transform_on_divisor<T, C>(a);\n}\n#line 8\
+    \ \"test/lcm_convolution.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n);\n  for(mint\
+    \ &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(), mint(0));\n\
+    \  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution(a, b);\n  c.erase(c.begin());\n\
+    \  cout << c << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\n#include\
     \ \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
     \n#include \"../numtheory/lcm_convolution.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  linear_sieve<1'000'001> ls;\n\n  int n; cin >> n;\n  vector<mint>\
-    \ a(n), b(n);\n  for(mint &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(),\
-    \ mint(0));\n  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution(ls, a,\
-    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n);\n  for(mint\
+    \ &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(), mint(0));\n\
+    \  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution(a, b);\n  c.erase(c.begin());\n\
+    \  cout << c << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/Montgomery_modint.cpp
@@ -215,7 +215,7 @@ data:
   isVerificationFile: true
   path: test/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-07-15 01:05:29+08:00'
+  timestamp: '2026-07-15 01:16:31+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lcm_convolution.test.cpp
