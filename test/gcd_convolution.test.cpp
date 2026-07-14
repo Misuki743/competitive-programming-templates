@@ -15,7 +15,7 @@ int main() {
   for(mint &x : b) cin >> x;
   a.insert(a.begin(), mint(0));
   b.insert(b.begin(), mint(0));
-  auto c = gcd_convolution<1'000'001>(a, b);
+  auto c = gcd_convolution<mint, 1'000'001>(a, b);
   c.erase(c.begin());
   cout << c << '\n';
 
