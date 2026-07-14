@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../numtheory/linear_sieve.cpp"
-#include "../numtheory/mu_table.cpp"
+#include "../numtheory/phi_array.cpp"
 
 vc<pii> factorize(int x) {
   vc<pii> v;
@@ -18,26 +18,24 @@ vc<pii> factorize(int x) {
   return v;
 }
 
-int mu[1 << 15];
+int phi[1 << 10];
 
 template<int32_t sz = 64>
 void check_small() {
   if (sz == 0) return;
   check_small<max(sz - 1, 0)>();
-  auto ls = linear_sieve<sz>();
-  auto mu2 = mu_table<int>(ls);
+  auto phi2 = phi_array<int, sz>();
   for(int i = 0; i < sz; i++)
-    assert(mu[i] == mu2[i]);
+    assert(phi[i] == phi2[i]);
 }
 
-template<int32_t sz = (1 << 15)>
+template<int32_t sz = (1 << 10)>
 void check_power() {
   if (sz == 0) return;
   check_power<max(sz >> 1, 0)>();
-  auto ls = linear_sieve<sz>();
-  auto mu2 = mu_table<int>(ls);
+  auto phi2 = phi_array<int, sz>();
   for(int i = 0; i < sz; i++)
-    assert(mu[i] == mu2[i]);
+    assert(phi[i] == phi2[i]);
 }
 
 void a_plus_b() {
@@ -48,13 +46,10 @@ void a_plus_b() {
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
-  for(int x = 1; x < (1 << 15); x++) {
-    mu[x] = 1;
-    for(auto [p, f] : factorize(x)) {
-      if (f == 1) mu[x] = -mu[x];
-      else mu[x] = 0;
-    }
-  }
+  for(int x = 1; x < (1 << 10); x++)
+    for(int y = 1; y <= x; y++)
+      if (gcd(x, y) == 1)
+        phi[x]++;
 
   check_small();
   check_power();

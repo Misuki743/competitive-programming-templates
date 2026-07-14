@@ -1,8 +1,13 @@
 template<int32_t C>
-struct linear_sieve {
-  array<int, C> mpf = {};
-  vi prime;
-  linear_sieve() {
+class linear_sieve {
+
+  static inline array<int, C> mpf = {};
+  static inline vi prime;
+  static inline bool init = false;
+
+  static void initialize() {
+    if (init) return;
+    init = true;
     if (C > 2)
       iota(mpf.begin() + 2, mpf.end(), 2);
     for(int i = 2; i < C; i++) {
@@ -16,7 +21,10 @@ struct linear_sieve {
     }
   }
 
-  vc<pii> prime_factorize(int x) {
+  public:
+
+  static vc<pii> prime_factorize(int x) {
+    initialize();
     vc<pii> r;
     while(mpf[x]) {
       r.emplace_back(mpf[x], 0);
@@ -26,7 +34,8 @@ struct linear_sieve {
     return r;
   }
 
-  vi prime_factor(int x) {
+  static vi prime_factor(int x) {
+    initialize();
     vi r;
     while(mpf[x]) {
       r.emplace_back(mpf[x]);
@@ -36,7 +45,8 @@ struct linear_sieve {
     return r;
   }
 
-  vi divisor(int x, bool sorted = true) {
+  static vi divisor(int x, bool sorted = true) {
+    initialize();
     vi divisor = {1};
     for(auto [p, f] : prime_factorize(x)) {
       vi nxt;
@@ -50,4 +60,25 @@ struct linear_sieve {
       ranges::sort(divisor);
     return divisor;
   }
+
+  static const vi& prime_array() {
+    initialize();
+    return prime;
+  }
+  static const array<int, C>& mpf_array() {
+    initialize();
+    return mpf;
+  }
+
+  static auto functions() {
+    return tuple(
+      &prime_factorize,
+      &prime_factor,
+      [](int x, bool sorted = true) { return divisor(x, sorted); },
+      &prime_array,
+      &mpf_array
+    );
+  }
 };
+
+//auto [prime_factorize, prime_factor, divisor, prime_array, mpf_array] = linear_sieve<>::functions();

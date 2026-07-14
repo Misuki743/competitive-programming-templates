@@ -1,13 +1,14 @@
 template<int32_t C>
 class prime_table {
   static constexpr int32_t D = (C + 29) / 30 * 30;
-  bitset<D / 2> table = {};
+  static inline bitset<D / 2> table = {};
+  static inline vi prime;
+  static inline bool init = false;
 
-  public:
-
-  vi prime;
-
-  prime_table() : prime({2, 3, 5}) {
+  static void initialize() {
+    if (init) return;
+    init = true;
+    prime = {2, 3, 5};
     table[3 / 2] = table[5 / 2] = true;
     for(int i = 0; i < D; i += 30) {
       table[(i + 01) / 2] = table[(i + 07) / 2] =
@@ -44,7 +45,23 @@ class prime_table {
     prime.resize(n + 1);
   }
 
-  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }
+  public:
+
+  static bool is_prime(int x) { 
+    initialize();
+    return x == 2 or ((x & 1) and table[x / 2]);
+  }
   //make sure to not copy the array by using &x = prime_array()
-  const vi& prime_array() { return prime; }
+  static const vi& prime_array() {
+    initialize();
+    return prime;
+  }
+  static auto functions() {
+    return tuple(
+      &is_prime,
+      &prime_array
+    );
+  }
 };
+
+//auto [is_prime, prime_array] = prime_table<>::functions();

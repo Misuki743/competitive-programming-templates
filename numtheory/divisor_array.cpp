@@ -1,9 +1,16 @@
 template<int32_t C>
-struct divisor_table {
+class divisor_array {
   using i32 = int32_t;
-  array<i32, C + 1> s = {};
-  vector<i32> d;
-  divisor_table() {
+
+  static inline array<i32, C + 1> s = {};
+  static inline vector<i32> d;
+  static inline bool init = false;
+
+  public: 
+
+  static void initialize() {
+    if (init) return;
+    init = true;
     for(int i = 1; i < C; i++)
       for(int j = i; j < C; j += i)
         s[j]++;
@@ -14,7 +21,11 @@ struct divisor_table {
       for(int j = i; j < C; j += i)
         d[--s[j]] = i;
   }
-  span<const i32> divisor(int x) {
+
+  static span<const i32> divisor(int x) {
+    initialize();
     return span(d.begin() + s[x], d.begin() + s[x + 1]);
   }
 };
+
+//auto divisor = &divisor_array<>::divisor;
