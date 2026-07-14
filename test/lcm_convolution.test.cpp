@@ -15,7 +15,7 @@ int main() {
   for(mint &x : b) cin >> x;
   a.insert(a.begin(), mint(0));
   b.insert(b.begin(), mint(0));
-  auto c = lcm_convolution(a, b);
+  auto c = lcm_convolution<1'000'001>(a, b);
   c.erase(c.begin());
   cout << c << '\n';
 
