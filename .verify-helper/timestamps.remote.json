@@ -79,6 +79,7 @@
 "test/mytest_enumerate_highly_composite_numbers.test.cpp": "2026-07-15 01:05:29 +0800",
 "test/mytest_enumerate_twelvefold.test.cpp": "2026-03-22 16:32:23 +0800",
 "test/mytest_factorize_sqrt.test.cpp": "2026-03-22 16:32:23 +0800",
+"test/mytest_linear_sieve.test.cpp": "2026-07-15 01:16:31 +0800",
 "test/mytest_mu_array.test.cpp": "2026-07-15 01:05:29 +0800",
 "test/mytest_phi_array.test.cpp": "2026-07-15 01:05:29 +0800",
 "test/mytest_prime_table.test.cpp": "2026-07-15 01:05:29 +0800",
