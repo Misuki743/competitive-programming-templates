@@ -132,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,7 +171,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca_4.test.cpp
     title: test/lca_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -238,8 +238,8 @@ data:
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest_divisor_table.test.cpp
-    title: test/mytest_divisor_table.test.cpp
+    path: test/mytest_divisor_array.test.cpp
+    title: test/mytest_divisor_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_highly_composite_numbers.test.cpp
     title: test/mytest_enumerate_highly_composite_numbers.test.cpp
@@ -249,15 +249,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_factorize_sqrt.test.cpp
     title: test/mytest_factorize_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest_mu_table.test.cpp
-    title: test/mytest_mu_table.test.cpp
+    path: test/mytest_mu_array.test.cpp
+    title: test/mytest_mu_array.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest_phi_table.test.cpp
-    title: test/mytest_phi_table.test.cpp
+    path: test/mytest_phi_array.test.cpp
+    title: test/mytest_phi_array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
@@ -492,9 +492,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2895_2.test.cpp
     title: test/yuki_2895_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -681,19 +681,22 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-03-22 15:52:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/inv_of_formal_power_series.test.cpp
   - test/bipartitematching.test.cpp
   - test/yuki_2895.test.cpp
+  - test/mytest_divisor_array.test.cpp
   - test/frequency_table_of_tree_distance.test.cpp
   - test/line_add_get_min.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/closest_pair.test.cpp
+  - test/mytest_phi_array.test.cpp
   - test/polynomial_interpolation.test.cpp
   - test/primitive_root.test.cpp
   - test/unionfind.test.cpp
+  - test/mytest_mu_array.test.cpp
   - test/two_square_sum.test.cpp
   - test/exp_of_formal_power_series.test.cpp
   - test/two_sat.test.cpp
@@ -715,7 +718,6 @@ data:
   - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp
   - test/mytest_linear_sieve.test.cpp
-  - test/mytest_mu_table.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/convolution.test.cpp
   - test/range_kth_smallest2.test.cpp
@@ -738,7 +740,6 @@ data:
   - test/yuki_2606.test.cpp
   - test/yuki_1344.test.cpp
   - test/point_set_range_frequency.test.cpp
-  - test/mytest_divisor_table.test.cpp
   - test/lca.test.cpp
   - test/sharp_p_subset_sum.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -793,7 +794,6 @@ data:
   - test/strongly_connected_components.test.cpp
   - test/vertex_get_range_contour_add_on_tree.test.cpp
   - test/min_plus_convolution_convex_convex.test.cpp
-  - test/mytest_phi_table.test.cpp
   - test/vertex_add_subtree_sum.test.cpp
   - test/gcd_convolution.test.cpp
   - test/tree_diameter.test.cpp

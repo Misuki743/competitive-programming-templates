@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -112,46 +112,51 @@ data:
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/prime_table.cpp\"\
     \ntemplate<int32_t C>\nclass prime_table {\n  static constexpr int32_t D = (C\
-    \ + 29) / 30 * 30;\n  bitset<D / 2> table = {};\n\n  public:\n\n  vi prime;\n\n\
-    \  prime_table() : prime({2, 3, 5}) {\n    table[3 / 2] = table[5 / 2] = true;\n\
-    \    for(int i = 0; i < D; i += 30) {\n      table[(i + 01) / 2] = table[(i +\
-    \ 07) / 2] =\n      table[(i + 11) / 2] = table[(i + 13) / 2] =\n      table[(i\
-    \ + 17) / 2] = table[(i + 19) / 2] =\n      table[(i + 23) / 2] = table[(i + 29)\
-    \ / 2] = true;\n    }\n    table[1 / 2] = false;\n\n    const int32_t S = sqrtl(D)\
-    \ + 10;\n    for(int i = 7, j = 4; i < S; i += j, j ^= 6) {\n      if (table[i\
-    \ / 2]) {\n        for(int k = ((i + 4) / 6 * 6 + 1) * i; k < D; k += 6 * i)\n\
-    \          table[k / 2] = false;\n        for(int k = (i / 6 * 6 + 5) * i; k <\
-    \ D; k += 6 * i)\n          table[k / 2] = false;\n      }\n    }\n\n    prime.reserve(1.1\
-    \ * D / log(D));\n    for(int i = 0; i < D; i += 30) {\n      if (table[(i + 01)\
-    \ / 2]) prime.emplace_back(i + 01);\n      if (table[(i + 07) / 2]) prime.emplace_back(i\
-    \ + 07);\n      if (table[(i + 11) / 2]) prime.emplace_back(i + 11);\n      if\
-    \ (table[(i + 13) / 2]) prime.emplace_back(i + 13);\n      if (table[(i + 17)\
-    \ / 2]) prime.emplace_back(i + 17);\n      if (table[(i + 19) / 2]) prime.emplace_back(i\
-    \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
-    \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
-    \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
-    \ }\n\n  bool is_prime(int x) { return x == 2 or ((x & 1) and table[x / 2]); }\n\
-    \  //make sure to not copy the array by using &x = prime_array()\n  const vi&\
-    \ prime_array() { return prime; }\n};\n#line 1 \"enumerate/enumerate_highly_composite_numbers.cpp\"\
-    \ntemplate<typename F>\nrequires invocable<F, ll, vector<pair<int, int>>>\nvoid\
-    \ enumerate_highly_composite_numbers(ll U, F f) {\n  prime_table<64> pt;\n\n \
-    \ auto dfs = [&](ll prod, vc<pii> fac, auto &self) -> void {\n    f(prod, fac);\n\
-    \n    int p = pt.prime_array()[ssize(fac)];\n    int lim = fac.empty() ? INT_MAX\
-    \ : fac.back().second;\n    fac.eb(p, 0);\n    while((__int128)prod * p < U and\
-    \ fac.back().second < lim) {\n      fac.back().second += 1, prod *= p;\n     \
-    \ self(prod, fac, self);\n    }\n  };\n  dfs(1, {}, dfs);\n}\n#line 6 \"test/mytest_enumerate_highly_composite_numbers.test.cpp\"\
-    \n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n\
-    }\n\nvll table = {\n//(n, tau(n))\n1L, 1L, \n2L, 2L, \n4L, 3L, \n6L, 4L, \n12L,\
-    \ 6L, \n24L, 8L, \n36L, 9L, \n48L, 10L, \n60L, 12L, \n120L, 16L, \n180L, 18L,\
-    \ \n240L, 20L, \n360L, 24L, \n720L, 30L, \n840L, 32L, \n1'260L, 36L, \n1'680L,\
-    \ 40L, \n2'520L, 48L, \n5'040L, 60L, \n7'560L, 64L, \n10'080L, 72L, \n15'120L,\
-    \ 80L, \n20'160L, 84L, \n25'200L, 90L, \n27'720L, 96L, \n45'360L, 100L, \n50'400L,\
-    \ 108L, \n55'440L, 120L, \n83'160L, 128L, \n110'880L, 144L, \n166'320L, 160L,\
-    \ \n221'760L, 168L, \n277'200L, 180L, \n332'640L, 192L, \n498'960L, 200L, \n554'400L,\
-    \ 216L, \n665'280L, 224L, \n720'720L, 240L, \n1'081'080L, 256L, \n1'441'440L,\
-    \ 288L, \n2'162'160L, 320L, \n2'882'880L, 336L, \n3'603'600L, 360L, \n4'324'320L,\
-    \ 384L, \n6'486'480L, 400L, \n7'207'200L, 432L, \n8'648'640L, 448L, \n10'810'800L,\
-    \ 480L, \n14'414'400L, 504L, \n17'297'280L, 512L, \n21'621'600L, 576L, \n32'432'400L,\
+    \ + 29) / 30 * 30;\n  static inline bitset<D / 2> table = {};\n  static inline\
+    \ vi prime;\n  static inline bool init = false;\n\n  static void initialize()\
+    \ {\n    if (init) return;\n    init = true;\n    prime = {2, 3, 5};\n    table[3\
+    \ / 2] = table[5 / 2] = true;\n    for(int i = 0; i < D; i += 30) {\n      table[(i\
+    \ + 01) / 2] = table[(i + 07) / 2] =\n      table[(i + 11) / 2] = table[(i + 13)\
+    \ / 2] =\n      table[(i + 17) / 2] = table[(i + 19) / 2] =\n      table[(i +\
+    \ 23) / 2] = table[(i + 29) / 2] = true;\n    }\n    table[1 / 2] = false;\n\n\
+    \    const int32_t S = sqrtl(D) + 10;\n    for(int i = 7, j = 4; i < S; i += j,\
+    \ j ^= 6) {\n      if (table[i / 2]) {\n        for(int k = ((i + 4) / 6 * 6 +\
+    \ 1) * i; k < D; k += 6 * i)\n          table[k / 2] = false;\n        for(int\
+    \ k = (i / 6 * 6 + 5) * i; k < D; k += 6 * i)\n          table[k / 2] = false;\n\
+    \      }\n    }\n\n    prime.reserve(1.1 * D / log(D));\n    for(int i = 0; i\
+    \ < D; i += 30) {\n      if (table[(i + 01) / 2]) prime.emplace_back(i + 01);\n\
+    \      if (table[(i + 07) / 2]) prime.emplace_back(i + 07);\n      if (table[(i\
+    \ + 11) / 2]) prime.emplace_back(i + 11);\n      if (table[(i + 13) / 2]) prime.emplace_back(i\
+    \ + 13);\n      if (table[(i + 17) / 2]) prime.emplace_back(i + 17);\n      if\
+    \ (table[(i + 19) / 2]) prime.emplace_back(i + 19);\n      if (table[(i + 23)\
+    \ / 2]) prime.emplace_back(i + 23);\n      if (table[(i + 29) / 2]) prime.emplace_back(i\
+    \ + 29);\n    }\n\n    int n = ssize(prime) - 1;\n    while(n >= 0 and prime[n]\
+    \ >= C) n--;\n    prime.resize(n + 1);\n  }\n\n  public:\n\n  static bool is_prime(int\
+    \ x) { \n    initialize();\n    return x == 2 or ((x & 1) and table[x / 2]);\n\
+    \  }\n  //make sure to not copy the array by using &x = prime_array()\n  static\
+    \ const vi& prime_array() {\n    initialize();\n    return prime;\n  }\n  static\
+    \ auto functions() {\n    return tuple(\n      &is_prime,\n      &prime_array\n\
+    \    );\n  }\n};\n\n//auto [is_prime, prime_array] = prime_table<>::functions();\n\
+    #line 1 \"enumerate/enumerate_highly_composite_numbers.cpp\"\ntemplate<typename\
+    \ F>\nrequires invocable<F, ll, vector<pair<int, int>>>\nvoid enumerate_highly_composite_numbers(ll\
+    \ U, F f) {\n  prime_table<64> pt;\n\n  auto dfs = [&](ll prod, vc<pii> fac, auto\
+    \ &self) -> void {\n    f(prod, fac);\n\n    int p = pt.prime_array()[ssize(fac)];\n\
+    \    int lim = fac.empty() ? INT_MAX : fac.back().second;\n    fac.eb(p, 0);\n\
+    \    while((__int128)prod * p < U and fac.back().second < lim) {\n      fac.back().second\
+    \ += 1, prod *= p;\n      self(prod, fac, self);\n    }\n  };\n  dfs(1, {}, dfs);\n\
+    }\n#line 6 \"test/mytest_enumerate_highly_composite_numbers.test.cpp\"\n\nvoid\
+    \ a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nvll\
+    \ table = {\n//(n, tau(n))\n1L, 1L, \n2L, 2L, \n4L, 3L, \n6L, 4L, \n12L, 6L, \n\
+    24L, 8L, \n36L, 9L, \n48L, 10L, \n60L, 12L, \n120L, 16L, \n180L, 18L, \n240L,\
+    \ 20L, \n360L, 24L, \n720L, 30L, \n840L, 32L, \n1'260L, 36L, \n1'680L, 40L, \n\
+    2'520L, 48L, \n5'040L, 60L, \n7'560L, 64L, \n10'080L, 72L, \n15'120L, 80L, \n\
+    20'160L, 84L, \n25'200L, 90L, \n27'720L, 96L, \n45'360L, 100L, \n50'400L, 108L,\
+    \ \n55'440L, 120L, \n83'160L, 128L, \n110'880L, 144L, \n166'320L, 160L, \n221'760L,\
+    \ 168L, \n277'200L, 180L, \n332'640L, 192L, \n498'960L, 200L, \n554'400L, 216L,\
+    \ \n665'280L, 224L, \n720'720L, 240L, \n1'081'080L, 256L, \n1'441'440L, 288L,\
+    \ \n2'162'160L, 320L, \n2'882'880L, 336L, \n3'603'600L, 360L, \n4'324'320L, 384L,\
+    \ \n6'486'480L, 400L, \n7'207'200L, 432L, \n8'648'640L, 448L, \n10'810'800L, 480L,\
+    \ \n14'414'400L, 504L, \n17'297'280L, 512L, \n21'621'600L, 576L, \n32'432'400L,\
     \ 600L, \n36'756'720L, 640L, \n43'243'200L, 672L, \n61'261'200L, 720L, \n73'513'440L,\
     \ 768L, \n110'270'160L, 800L, \n122'522'400L, 864L, \n147'026'880L, 896L, \n183'783'600L,\
     \ 960L, \n245'044'800L, 1'008L, \n294'053'760L, 1'024L, \n367'567'200L, 1'152L,\
@@ -259,7 +264,7 @@ data:
   isVerificationFile: true
   path: test/mytest_enumerate_highly_composite_numbers.test.cpp
   requiredBy: []
-  timestamp: '2026-06-10 21:00:15+08:00'
+  timestamp: '2026-07-15 01:05:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_enumerate_highly_composite_numbers.test.cpp

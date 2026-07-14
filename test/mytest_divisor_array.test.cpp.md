@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
-    path: numtheory/divisor_table.cpp
-    title: numtheory/divisor_table.cpp
+    path: numtheory/divisor_array.cpp
+    title: numtheory/divisor_array.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -17,7 +17,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest_divisor_table.test.cpp\"\n#define PROBLEM \"\
+  bundledCode: "#line 1 \"test/mytest_divisor_array.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"default/t.cpp\"\n#include\
     \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
     \ <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include <cinttypes>\n\
@@ -107,53 +107,54 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/divisor_table.cpp\"\
-    \ntemplate<int32_t C>\nstruct divisor_table {\n  using i32 = int32_t;\n  array<i32,\
-    \ C + 1> s = {};\n  vector<i32> d;\n  divisor_table() {\n    for(int i = 1; i\
-    \ < C; i++)\n      for(int j = i; j < C; j += i)\n        s[j]++;\n    for(int\
-    \ i = 1; i <= C; i++)\n      s[i] += s[i - 1];\n    d.resize(s[C]);\n    for(int\
-    \ i = C - 1; i >= 1; i--)\n      for(int j = i; j < C; j += i)\n        d[--s[j]]\
-    \ = i;\n  }\n  span<const i32> divisor(int x) {\n    return span(d.begin() + s[x],\
-    \ d.begin() + s[x + 1]);\n  }\n};\n#line 5 \"test/mytest_divisor_table.test.cpp\"\
-    \n\ntemplate<int32_t sz = 128>\nvoid test_small() {\n  if (sz == 0) return;\n\
-    \  test_small<max(sz - 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1;\
-    \ x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x\
-    \ % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
-    \ dt.divisor(x)));\n  }\n}\n\ntemplate<int32_t sz = (1 << 12)>\nvoid test_power()\
-    \ {\n  if (sz == 0) return;\n  test_power<max(sz >> 1, 0)>();\n\n  divisor_table<sz>\
-    \ dt;\n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d\
-    \ <= x; d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
-    \ dt.divisor(x)));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n\
-    \  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/divisor_array.cpp\"\
+    \ntemplate<int32_t C>\nclass divisor_array {\n  using i32 = int32_t;\n\n  static\
+    \ inline array<i32, C + 1> s = {};\n  static inline vector<i32> d;\n  static inline\
+    \ bool init = false;\n\n  public: \n\n  static void initialize() {\n    if (init)\
+    \ return;\n    init = true;\n    for(int i = 1; i < C; i++)\n      for(int j =\
+    \ i; j < C; j += i)\n        s[j]++;\n    for(int i = 1; i <= C; i++)\n      s[i]\
+    \ += s[i - 1];\n    d.resize(s[C]);\n    for(int i = C - 1; i >= 1; i--)\n   \
+    \   for(int j = i; j < C; j += i)\n        d[--s[j]] = i;\n  }\n\n  static span<const\
+    \ i32> divisor(int x) {\n    initialize();\n    return span(d.begin() + s[x],\
+    \ d.begin() + s[x + 1]);\n  }\n};\n\n//auto divisor = &divisor_array<>::divisor;\n\
+    #line 5 \"test/mytest_divisor_array.test.cpp\"\n\ntemplate<int32_t sz = 128>\n\
+    void test_small() {\n  if (sz == 0) return;\n  test_small<max(sz - 1, 0)>();\n\
+    \n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x;\
+    \ d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
+    \ divisor_array<sz>::divisor(x)));\n  }\n}\n\ntemplate<int32_t sz = (1 << 12)>\n\
+    void test_power() {\n  if (sz == 0) return;\n  test_power<max(sz >> 1, 0)>();\n\
+    \n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x;\
+    \ d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
+    \ divisor_array<sz>::divisor(x)));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin\
+    \ >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  test_small();\n  test_power();\n  a_plus_b();\n\n  return\
     \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../default/t.cpp\"\n#include \"../numtheory/divisor_table.cpp\"\n\ntemplate<int32_t\
+    ../default/t.cpp\"\n#include \"../numtheory/divisor_array.cpp\"\n\ntemplate<int32_t\
     \ sz = 128>\nvoid test_small() {\n  if (sz == 0) return;\n  test_small<max(sz\
-    \ - 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int x = 1; x < sz; x++) {\n  \
-    \  vi divisor;\n    for(int d = 1; d <= x; d++)\n      if (x % d == 0)\n     \
-    \   divisor.emplace_back(d);\n    assert(ranges::equal(divisor, dt.divisor(x)));\n\
-    \  }\n}\n\ntemplate<int32_t sz = (1 << 12)>\nvoid test_power() {\n  if (sz ==\
-    \ 0) return;\n  test_power<max(sz >> 1, 0)>();\n\n  divisor_table<sz> dt;\n  for(int\
-    \ x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x; d++)\n  \
-    \    if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
-    \ dt.divisor(x)));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n\
-    \  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  test_small();\n  test_power();\n  a_plus_b();\n\n  return\
-    \ 0;\n}\n"
+    \ - 1, 0)>();\n\n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int\
+    \ d = 1; d <= x; d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n\
+    \    assert(ranges::equal(divisor, divisor_array<sz>::divisor(x)));\n  }\n}\n\n\
+    template<int32_t sz = (1 << 12)>\nvoid test_power() {\n  if (sz == 0) return;\n\
+    \  test_power<max(sz >> 1, 0)>();\n\n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n\
+    \    for(int d = 1; d <= x; d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n\
+    \    assert(ranges::equal(divisor, divisor_array<sz>::divisor(x)));\n  }\n}\n\n\
+    void a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\n\
+    int main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  test_small();\n\
+    \  test_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/divisor_table.cpp
+  - numtheory/divisor_array.cpp
   isVerificationFile: true
-  path: test/mytest_divisor_table.test.cpp
+  path: test/mytest_divisor_array.test.cpp
   requiredBy: []
-  timestamp: '2026-06-11 02:41:44+08:00'
+  timestamp: '2026-07-15 01:05:29+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest_divisor_table.test.cpp
+documentation_of: test/mytest_divisor_array.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest_divisor_table.test.cpp
-- /verify/test/mytest_divisor_table.test.cpp.html
-title: test/mytest_divisor_table.test.cpp
+- /verify/test/mytest_divisor_array.test.cpp
+- /verify/test/mytest_divisor_array.test.cpp.html
+title: test/mytest_divisor_array.test.cpp
 ---

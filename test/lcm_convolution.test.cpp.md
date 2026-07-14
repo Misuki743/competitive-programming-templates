@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/lcm_convolution.cpp
     title: numtheory/lcm_convolution.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
     title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -149,37 +149,46 @@ data:
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
     \ = Montgomery_modint<998'244'353>;\n#line 1 \"numtheory/linear_sieve.cpp\"\n\
-    template<int32_t C>\nstruct linear_sieve {\n  array<int, C> mpf = {};\n  vi prime;\n\
-    \  linear_sieve() {\n    if (C > 2)\n      iota(mpf.begin() + 2, mpf.end(), 2);\n\
-    \    for(int i = 2; i < C; i++) {\n      if (mpf[i] == i)\n        prime.emplace_back(i);\n\
-    \      for(int64_t p : prime) {\n        if (p > mpf[i] or p * i >= C)\n     \
-    \     break;\n        mpf[p * i] = p;\n      }\n    }\n  }\n\n  vc<pii> prime_factorize(int\
-    \ x) {\n    vc<pii> r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x], 0);\n\
-    \      while(x % r.back().first == 0)\n        x /= r.back().first, r.back().second++;\n\
-    \    }\n    return r;\n  }\n\n  vi prime_factor(int x) {\n    vi r;\n    while(mpf[x])\
-    \ {\n      r.emplace_back(mpf[x]);\n      while(x % r.back() == 0)\n        x\
-    \ /= r.back();\n    }\n    return r;\n  }\n\n  vi divisor(int x, bool sorted =\
-    \ true) {\n    vi divisor = {1};\n    for(auto [p, f] : prime_factorize(x)) {\n\
-    \      vi nxt;\n      nxt.reserve(ssize(divisor) * (f + 1));\n      for(int64_t\
-    \ i = 0, q = 1; i <= f; i++, q *= p)\n        for(int d : divisor)\n         \
-    \ nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n    }\n    if (sorted)\n\
-    \      ranges::sort(divisor);\n    return divisor;\n  }\n};\n#line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
-    \n//#include \"numtheory/linear_sieve\"\n\ntemplate<class T, int32_t C>\nvector<T>\
-    \ zeta_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
-    \ i = 1; i * p < ssize(f); i++)\n      f[i * p] += f[i];\n  }\n  return f;\n}\n\
-    \ntemplate<class T, int32_t C>\nvector<T> mobius_transform_on_divisor(linear_sieve<C>\
-    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
-    \    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n\
-    \      f[i * p] -= f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> zeta_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
-    \ i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i] += f[i * p];\n  }\n  return\
-    \ f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> mobius_transform_on_multiple(linear_sieve<C>\
+    template<int32_t C>\nclass linear_sieve {\n\n  static inline array<int, C> mpf\
+    \ = {};\n  static inline vi prime;\n  static inline bool init = false;\n\n  static\
+    \ void initialize() {\n    if (init) return;\n    init = true;\n    if (C > 2)\n\
+    \      iota(mpf.begin() + 2, mpf.end(), 2);\n    for(int i = 2; i < C; i++) {\n\
+    \      if (mpf[i] == i)\n        prime.emplace_back(i);\n      for(int64_t p :\
+    \ prime) {\n        if (p > mpf[i] or p * i >= C)\n          break;\n        mpf[p\
+    \ * i] = p;\n      }\n    }\n  }\n\n  public:\n\n  static vc<pii> prime_factorize(int\
+    \ x) {\n    initialize();\n    vc<pii> r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x],\
+    \ 0);\n      while(x % r.back().first == 0)\n        x /= r.back().first, r.back().second++;\n\
+    \    }\n    return r;\n  }\n\n  static vi prime_factor(int x) {\n    initialize();\n\
+    \    vi r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x]);\n      while(x\
+    \ % r.back() == 0)\n        x /= r.back();\n    }\n    return r;\n  }\n\n  static\
+    \ vi divisor(int x, bool sorted = true) {\n    initialize();\n    vi divisor =\
+    \ {1};\n    for(auto [p, f] : prime_factorize(x)) {\n      vi nxt;\n      nxt.reserve(ssize(divisor)\
+    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
+    \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
+    \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
+    \ }\n\n  static const vi& prime_array() {\n    initialize();\n    return prime;\n\
+    \  }\n  static const array<int, C>& mpf_array() {\n    initialize();\n    return\
+    \ mpf;\n  }\n\n  static auto functions() {\n    return tuple(\n      &prime_factorize,\n\
+    \      &prime_factor,\n      [](int x, bool sorted = true) { return divisor(x,\
+    \ sorted); },\n      &prime_array,\n      &mpf_array\n    );\n  }\n};\n\n//auto\
+    \ [prime_factorize, prime_factor, divisor, prime_array, mpf_array] = linear_sieve<>::functions();\n\
+    #line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\n//#include \"numtheory/linear_sieve\"\
+    \n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(linear_sieve<C>\
     \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
     \    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n  \
-    \    f[i] -= f[i * p];\n  }\n  return f;\n}\n#line 1 \"numtheory/lcm_convolution.cpp\"\
-    \n//#include \"numtheory/linear_sieve.cpp\"\n//#include \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
+    \    f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
+    vector<T> mobius_transform_on_divisor(linear_sieve<C> &ls, vector<T> f) {\n  assert(ssize(f)\
+    \ <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f)) break;\n    for(int\
+    \ i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n  return\
+    \ f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(linear_sieve<C>\
+    \ &ls, vector<T> f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n\
+    \    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n\
+    \      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
+    vector<T> mobius_transform_on_multiple(linear_sieve<C> &ls, vector<T> f) {\n \
+    \ assert(ssize(f) <= C);\n  for(int64_t p : ls.prime) {\n    if (p >= ssize(f))\
+    \ break;\n    for(int i = 1; i * p < ssize(f); i++)\n      f[i] -= f[i * p];\n\
+    \  }\n  return f;\n}\n#line 1 \"numtheory/lcm_convolution.cpp\"\n//#include \"\
+    numtheory/linear_sieve.cpp\"\n//#include \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
     \n\ntemplate<class T, int32_t C>\nvector<T> lcm_convolution(linear_sieve<C> &ls,\
     \ vector<T> a, vector<T> b) {\n  assert(ssize(a) == ssize(b));\n  a = zeta_transform_on_divisor(ls,\
     \ a);\n  b = zeta_transform_on_divisor(ls, b);\n  for(int i = 0; i < ssize(a);\
@@ -206,8 +215,8 @@ data:
   isVerificationFile: true
   path: test/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-15 01:05:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lcm_convolution.test.cpp
 layout: document

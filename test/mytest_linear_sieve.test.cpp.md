@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -108,42 +108,50 @@ data:
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/linear_sieve.cpp\"\
-    \ntemplate<int32_t C>\nstruct linear_sieve {\n  array<int, C> mpf = {};\n  vi\
-    \ prime;\n  linear_sieve() {\n    if (C > 2)\n      iota(mpf.begin() + 2, mpf.end(),\
-    \ 2);\n    for(int i = 2; i < C; i++) {\n      if (mpf[i] == i)\n        prime.emplace_back(i);\n\
-    \      for(int64_t p : prime) {\n        if (p > mpf[i] or p * i >= C)\n     \
-    \     break;\n        mpf[p * i] = p;\n      }\n    }\n  }\n\n  vc<pii> prime_factorize(int\
-    \ x) {\n    vc<pii> r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x], 0);\n\
-    \      while(x % r.back().first == 0)\n        x /= r.back().first, r.back().second++;\n\
-    \    }\n    return r;\n  }\n\n  vi prime_factor(int x) {\n    vi r;\n    while(mpf[x])\
-    \ {\n      r.emplace_back(mpf[x]);\n      while(x % r.back() == 0)\n        x\
-    \ /= r.back();\n    }\n    return r;\n  }\n\n  vi divisor(int x, bool sorted =\
-    \ true) {\n    vi divisor = {1};\n    for(auto [p, f] : prime_factorize(x)) {\n\
-    \      vi nxt;\n      nxt.reserve(ssize(divisor) * (f + 1));\n      for(int64_t\
-    \ i = 0, q = 1; i <= f; i++, q *= p)\n        for(int d : divisor)\n         \
-    \ nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n    }\n    if (sorted)\n\
-    \      ranges::sort(divisor);\n    return divisor;\n  }\n};\n#line 5 \"test/mytest_linear_sieve.test.cpp\"\
-    \n\nvc<pii> prime_factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d\
-    \ = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x\
-    \ % d == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n \
-    \ return v;\n}\n\nvi prime_factor(int x) {\n  vi v;\n  int x0 = x;\n  for(int\
-    \ d = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      while(x % d == 0)\n   \
-    \     x /= d;\n      v.eb(d);\n    }\n  }\n  return v;\n}\n\nvi divisor(int x)\
-    \ {\n  vi v;\n  for(int d = 1; d <= x; d++)\n    if (x % d == 0)\n      v.eb(d);\n\
-    \  return v;\n}\n\nint mpf[1 << 10];\n\ntemplate<int32_t sz = 64>\nvoid check_small()\
-    \ {\n  if (sz == 0) return;\n  check_small<max(sz - 1, 0)>();\n  auto ls = linear_sieve<sz>();\n\
-    \  for(int i = 0; i < sz; i++)\n    assert(mpf[i] == ls.mpf[i]);\n  for(int i\
-    \ = 1; i < sz; i++) {\n    assert(ls.prime_factorize(i) == prime_factorize(i));\n\
-    \    assert(ls.prime_factor(i) == prime_factor(i));\n    assert(ls.divisor(i)\
-    \ == divisor(i));\n  }\n}\n\ntemplate<int32_t sz = (1 << 10)>\nvoid check_power()\
-    \ {\n  if (sz == 0) return;\n  check_power<max(sz >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n\
-    \  for(int i = 0; i < sz; i++)\n    assert(mpf[i] == ls.mpf[i]);\n  for(int i\
-    \ = 1; i < sz; i++) {\n    assert(ls.prime_factorize(i) == prime_factorize(i));\n\
-    \    assert(ls.prime_factor(i) == prime_factor(i));\n    assert(ls.divisor(i)\
-    \ == divisor(i));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n \
-    \ cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  for(int x = 2; x < (1 << 10); x++)\n    mpf[x] = prime_factor(x)[0];\n\n \
-    \ check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    \ntemplate<int32_t C>\nclass linear_sieve {\n\n  static inline array<int, C> mpf\
+    \ = {};\n  static inline vi prime;\n  static inline bool init = false;\n\n  static\
+    \ void initialize() {\n    if (init) return;\n    init = true;\n    if (C > 2)\n\
+    \      iota(mpf.begin() + 2, mpf.end(), 2);\n    for(int i = 2; i < C; i++) {\n\
+    \      if (mpf[i] == i)\n        prime.emplace_back(i);\n      for(int64_t p :\
+    \ prime) {\n        if (p > mpf[i] or p * i >= C)\n          break;\n        mpf[p\
+    \ * i] = p;\n      }\n    }\n  }\n\n  public:\n\n  static vc<pii> prime_factorize(int\
+    \ x) {\n    initialize();\n    vc<pii> r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x],\
+    \ 0);\n      while(x % r.back().first == 0)\n        x /= r.back().first, r.back().second++;\n\
+    \    }\n    return r;\n  }\n\n  static vi prime_factor(int x) {\n    initialize();\n\
+    \    vi r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x]);\n      while(x\
+    \ % r.back() == 0)\n        x /= r.back();\n    }\n    return r;\n  }\n\n  static\
+    \ vi divisor(int x, bool sorted = true) {\n    initialize();\n    vi divisor =\
+    \ {1};\n    for(auto [p, f] : prime_factorize(x)) {\n      vi nxt;\n      nxt.reserve(ssize(divisor)\
+    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
+    \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
+    \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
+    \ }\n\n  static const vi& prime_array() {\n    initialize();\n    return prime;\n\
+    \  }\n  static const array<int, C>& mpf_array() {\n    initialize();\n    return\
+    \ mpf;\n  }\n\n  static auto functions() {\n    return tuple(\n      &prime_factorize,\n\
+    \      &prime_factor,\n      [](int x, bool sorted = true) { return divisor(x,\
+    \ sorted); },\n      &prime_array,\n      &mpf_array\n    );\n  }\n};\n\n//auto\
+    \ [prime_factorize, prime_factor, divisor, prime_array, mpf_array] = linear_sieve<>::functions();\n\
+    #line 5 \"test/mytest_linear_sieve.test.cpp\"\n\nvc<pii> prime_factorize(int x)\
+    \ {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if (x\
+    \ % d == 0) {\n      int f = 0;\n      while(x % d == 0)\n        x /= d, f++;\n\
+    \      v.emplace_back(d, f);\n    }\n  }\n  return v;\n}\n\nvi prime_factor(int\
+    \ x) {\n  vi v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if (x %\
+    \ d == 0) {\n      while(x % d == 0)\n        x /= d;\n      v.eb(d);\n    }\n\
+    \  }\n  return v;\n}\n\nvi divisor(int x) {\n  vi v;\n  for(int d = 1; d <= x;\
+    \ d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\nint mpf[1 << 10];\n\
+    \ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz == 0) return;\n  check_small<max(sz\
+    \ - 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int i = 0; i < sz; i++)\n\
+    \    assert(mpf[i] == ls.mpf[i]);\n  for(int i = 1; i < sz; i++) {\n    assert(ls.prime_factorize(i)\
+    \ == prime_factorize(i));\n    assert(ls.prime_factor(i) == prime_factor(i));\n\
+    \    assert(ls.divisor(i) == divisor(i));\n  }\n}\n\ntemplate<int32_t sz = (1\
+    \ << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
+    \ >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int i = 0; i < sz; i++)\n\
+    \    assert(mpf[i] == ls.mpf[i]);\n  for(int i = 1; i < sz; i++) {\n    assert(ls.prime_factorize(i)\
+    \ == prime_factorize(i));\n    assert(ls.prime_factor(i) == prime_factor(i));\n\
+    \    assert(ls.divisor(i) == divisor(i));\n  }\n}\n\nvoid a_plus_b() {\n  int\
+    \ x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  for(int x = 2; x < (1 << 10); x++)\n    mpf[x] = prime_factor(x)[0];\n\
+    \n  check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/linear_sieve.cpp\"\n\nvc<pii> prime_factorize(int\
     \ x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if\
@@ -172,8 +180,8 @@ data:
   isVerificationFile: true
   path: test/mytest_linear_sieve.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-15 01:05:29+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_linear_sieve.test.cpp
 layout: document

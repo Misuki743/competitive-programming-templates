@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -413,7 +413,7 @@ data:
       title: misc/sharp_P_subset_sum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/Montgomery_modint.cpp
       title: modint/Montgomery_modint.cpp
     - icon: ':heavy_check_mark:'
@@ -440,8 +440,8 @@ data:
       path: numtheory/discrete_logarithm.cpp
       title: numtheory/discrete_logarithm.cpp
     - icon: ':heavy_check_mark:'
-      path: numtheory/divisor_table.cpp
-      title: numtheory/divisor_table.cpp
+      path: numtheory/divisor_array.cpp
+      title: numtheory/divisor_array.cpp
     - icon: ':warning:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
@@ -451,24 +451,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/factorize_sqrt.cpp
       title: numtheory/factorize_sqrt.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: numtheory/gcd_convolution.cpp
       title: numtheory/gcd_convolution.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: numtheory/lcm_convolution.cpp
       title: numtheory/lcm_convolution.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
     - icon: ':warning:'
       path: numtheory/min_of_mod_of_linear.cpp
       title: numtheory/min_of_mod_of_linear.cpp
     - icon: ':heavy_check_mark:'
-      path: numtheory/mu_table.cpp
-      title: numtheory/mu_table.cpp
+      path: numtheory/mu_array.cpp
+      title: numtheory/mu_array.cpp
     - icon: ':heavy_check_mark:'
-      path: numtheory/phi_table.cpp
-      title: numtheory/phi_table.cpp
+      path: numtheory/phi_array.cpp
+      title: numtheory/phi_array.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/prime_table.cpp
       title: numtheory/prime_table.cpp
@@ -487,7 +487,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/two_square_sum.cpp
       title: numtheory/two_square_sum.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
       title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   - name: poly
@@ -806,7 +806,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/frequency_table_of_tree_distance.test.cpp
       title: test/frequency_table_of_tree_distance.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/gcd_convolution.test.cpp
       title: test/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -845,7 +845,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca_4.test.cpp
       title: test/lca_4.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/lcm_convolution.test.cpp
       title: test/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -912,8 +912,8 @@ data:
       path: test/mytest_auxiliary_tree.test.cpp
       title: test/mytest_auxiliary_tree.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/mytest_divisor_table.test.cpp
-      title: test/mytest_divisor_table.test.cpp
+      path: test/mytest_divisor_array.test.cpp
+      title: test/mytest_divisor_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_enumerate_highly_composite_numbers.test.cpp
       title: test/mytest_enumerate_highly_composite_numbers.test.cpp
@@ -923,15 +923,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_factorize_sqrt.test.cpp
       title: test/mytest_factorize_sqrt.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest_linear_sieve.test.cpp
       title: test/mytest_linear_sieve.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/mytest_mu_table.test.cpp
-      title: test/mytest_mu_table.test.cpp
+      path: test/mytest_mu_array.test.cpp
+      title: test/mytest_mu_array.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/mytest_phi_table.test.cpp
-      title: test/mytest_phi_table.test.cpp
+      path: test/mytest_phi_array.test.cpp
+      title: test/mytest_phi_array.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_prime_table.test.cpp
       title: test/mytest_prime_table.test.cpp
