@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -413,7 +413,7 @@ data:
       title: misc/sharp_P_subset_sum.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/Montgomery_modint.cpp
       title: modint/Montgomery_modint.cpp
     - icon: ':heavy_check_mark:'
@@ -451,13 +451,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/factorize_sqrt.cpp
       title: numtheory/factorize_sqrt.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/gcd_convolution.cpp
       title: numtheory/gcd_convolution.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/lcm_convolution.cpp
       title: numtheory/lcm_convolution.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
     - icon: ':warning:'
@@ -487,7 +487,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/two_square_sum.cpp
       title: numtheory/two_square_sum.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
       title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   - name: poly
@@ -806,7 +806,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/frequency_table_of_tree_distance.test.cpp
       title: test/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/gcd_convolution.test.cpp
       title: test/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
@@ -845,7 +845,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/lca_4.test.cpp
       title: test/lca_4.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/lcm_convolution.test.cpp
       title: test/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'

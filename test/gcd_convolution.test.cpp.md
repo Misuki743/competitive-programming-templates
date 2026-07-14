@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/gcd_convolution.cpp
     title: numtheory/gcd_convolution.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
     title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
@@ -196,16 +196,16 @@ data:
     \ 8 \"test/gcd_convolution.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n);\n  for(mint\
     \ &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(), mint(0));\n\
-    \  b.insert(b.begin(), mint(0));\n  auto c = gcd_convolution<1'000'001>(a, b);\n\
-    \  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+    \  b.insert(b.begin(), mint(0));\n  auto c = gcd_convolution<mint, 1'000'001>(a,\
+    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\n#include\
     \ \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
     \n#include \"../numtheory/gcd_convolution.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n);\n  for(mint\
     \ &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(), mint(0));\n\
-    \  b.insert(b.begin(), mint(0));\n  auto c = gcd_convolution<1'000'001>(a, b);\n\
-    \  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+    \  b.insert(b.begin(), mint(0));\n  auto c = gcd_convolution<mint, 1'000'001>(a,\
+    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/Montgomery_modint.cpp
@@ -215,8 +215,8 @@ data:
   isVerificationFile: true
   path: test/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-07-15 01:20:54+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-15 01:24:01+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/gcd_convolution.test.cpp
 layout: document
