@@ -16,19 +16,19 @@ data:
     combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> stirling_second_kind(int\
     \ n) {\n  FPS<Mint> f(n + 1), g(n + 1);\n  for(int i = 0; i <= n; i++) {\n   \
     \ f[i] = factorial_inv<Mint>(i) * (i % 2 == 1 ? -1 : 1);\n    g[i] = factorial_inv<Mint>(i)\
-    \ * mint(i).pow(n);\n  }\n  auto h = f * g;\n  h.resize(n + 1);\n  return h;\n\
+    \ * Mint(i).pow(n);\n  }\n  auto h = f * g;\n  h.resize(n + 1);\n  return h;\n\
     }\n"
   code: "//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTTmint.cpp\"\
     \n//#include \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class\
     \ Mint>\nFPS<Mint> stirling_second_kind(int n) {\n  FPS<Mint> f(n + 1), g(n +\
     \ 1);\n  for(int i = 0; i <= n; i++) {\n    f[i] = factorial_inv<Mint>(i) * (i\
-    \ % 2 == 1 ? -1 : 1);\n    g[i] = factorial_inv<Mint>(i) * mint(i).pow(n);\n \
+    \ % 2 == 1 ? -1 : 1);\n    g[i] = factorial_inv<Mint>(i) * Mint(i).pow(n);\n \
     \ }\n  auto h = f * g;\n  h.resize(n + 1);\n  return h;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: combi/stirling_second_kind.cpp
   requiredBy: []
-  timestamp: '2026-07-15 10:56:37+08:00'
+  timestamp: '2026-07-15 11:18:40+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/stirling_number_of_the_second_kind.test.cpp

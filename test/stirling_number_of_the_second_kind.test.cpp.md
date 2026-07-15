@@ -301,7 +301,7 @@ data:
     combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint> stirling_second_kind(int\
     \ n) {\n  FPS<Mint> f(n + 1), g(n + 1);\n  for(int i = 0; i <= n; i++) {\n   \
     \ f[i] = factorial_inv<Mint>(i) * (i % 2 == 1 ? -1 : 1);\n    g[i] = factorial_inv<Mint>(i)\
-    \ * mint(i).pow(n);\n  }\n  auto h = f * g;\n  h.resize(n + 1);\n  return h;\n\
+    \ * Mint(i).pow(n);\n  }\n  auto h = f * g;\n  h.resize(n + 1);\n  return h;\n\
     }\n#line 9 \"test/stirling_number_of_the_second_kind.test.cpp\"\n\nint main()\
     \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  cout\
     \ << stirling_second_kind<mint>(n) << '\\n';\n\n  return 0;\n}\n"
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2026-07-15 10:56:37+08:00'
+  timestamp: '2026-07-15 11:18:40+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/stirling_number_of_the_second_kind.test.cpp
