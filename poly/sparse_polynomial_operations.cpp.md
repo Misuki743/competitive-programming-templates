@@ -3,24 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/log_of_formal_power_series_sparse.test.cpp
     title: test/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
@@ -37,7 +37,7 @@ data:
     \ f, int k) {\n    assert(f[0] == 0);\n    FPS<Mint> g(k);\n    g[0] = 1;\n  \
     \  auto fs = sparsify(f);\n    for(auto &[i, val] : fs) val *= i--;\n    for(int\
     \ i = 0; i < k - 1; i++) {\n      for(auto [j, val] : fs)\n        if (j <= i)\n\
-    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= inv<Mint>(i + 1);\n\
+    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= inverse<Mint>(i + 1);\n\
     \    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
     \ f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
     \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
@@ -56,8 +56,8 @@ data:
     \ i++) {\n        for(auto [j, val] : fds)\n          if (j <= i)\n          \
     \  gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n        for(auto [j, val]\
     \ : fs)\n          if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n\
-    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * inv<Mint>(i + 1);\n      }\n\
-    \      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
+    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * inverse<Mint>(i + 1);\n   \
+    \   }\n      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
     \ f, int k) {\n    if (f[0] == 0) {\n      for(int i = 0; i < ssize(f) and i <\
     \ 2 * k; i++) {\n        if (f[i] != 0) {\n          if (i & 1) return FPS<Mint>();\n\
     \          FPS<Mint> g = sparseSqrt<Mint>({f.begin() + i, f.end()}, k - i / 2);\n\
@@ -72,7 +72,7 @@ data:
     \    for(auto [j, val] : fds)\n          if (j <= i)\n            gd[i] += g[i\
     \ - j] * val;\n        gd[i] *= half;\n        for(auto [j, val] : fs)\n     \
     \     if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n        gd[i]\
-    \ *= inv;\n        g[i + 1] = gd[i] * inv<Mint>(i + 1);\n      }\n      return\
+    \ *= inv;\n        g[i + 1] = gd[i] * inverse<Mint>(i + 1);\n      }\n      return\
     \ g;\n    }\n  }\n}\n\nusing namespace sparse_polynomial_operations;\n"
   code: "//#include<poly/FPS.cpp>\n//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<combi/binom.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\nnamespace sparse_polynomial_operations\
@@ -87,7 +87,7 @@ data:
     \ f, int k) {\n    assert(f[0] == 0);\n    FPS<Mint> g(k);\n    g[0] = 1;\n  \
     \  auto fs = sparsify(f);\n    for(auto &[i, val] : fs) val *= i--;\n    for(int\
     \ i = 0; i < k - 1; i++) {\n      for(auto [j, val] : fs)\n        if (j <= i)\n\
-    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= inv<Mint>(i + 1);\n\
+    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= inverse<Mint>(i + 1);\n\
     \    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
     \ f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
     \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
@@ -106,8 +106,8 @@ data:
     \ i++) {\n        for(auto [j, val] : fds)\n          if (j <= i)\n          \
     \  gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n        for(auto [j, val]\
     \ : fs)\n          if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n\
-    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * inv<Mint>(i + 1);\n      }\n\
-    \      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
+    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * inverse<Mint>(i + 1);\n   \
+    \   }\n      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
     \ f, int k) {\n    if (f[0] == 0) {\n      for(int i = 0; i < ssize(f) and i <\
     \ 2 * k; i++) {\n        if (f[i] != 0) {\n          if (i & 1) return FPS<Mint>();\n\
     \          FPS<Mint> g = sparseSqrt<Mint>({f.begin() + i, f.end()}, k - i / 2);\n\
@@ -122,14 +122,14 @@ data:
     \    for(auto [j, val] : fds)\n          if (j <= i)\n            gd[i] += g[i\
     \ - j] * val;\n        gd[i] *= half;\n        for(auto [j, val] : fs)\n     \
     \     if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n        gd[i]\
-    \ *= inv;\n        g[i + 1] = gd[i] * inv<Mint>(i + 1);\n      }\n      return\
+    \ *= inv;\n        g[i + 1] = gd[i] * inverse<Mint>(i + 1);\n      }\n      return\
     \ g;\n    }\n  }\n}\n\nusing namespace sparse_polynomial_operations;\n"
   dependsOn: []
   isVerificationFile: false
   path: poly/sparse_polynomial_operations.cpp
   requiredBy: []
-  timestamp: '2026-07-15 11:07:35+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-07-15 11:12:29+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inv_of_formal_power_series_sparse.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp

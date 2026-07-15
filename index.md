@@ -478,7 +478,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/quotient_enumerate.cpp
       title: numtheory/quotient_enumerate.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/sqrt_mod.cpp
       title: numtheory/sqrt_mod.cpp
     - icon: ':warning:'
@@ -558,7 +558,7 @@ data:
     - icon: ':warning:'
       path: poly/semi_online_convolution.cpp
       title: poly/semi_online_convolution.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/sparse_polynomial_operations.cpp
       title: poly/sparse_polynomial_operations.cpp
   - name: segtree
@@ -794,7 +794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series.test.cpp
       title: test/exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series_sparse.test.cpp
       title: test/exp_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -815,7 +815,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/inv_of_formal_power_series.test.cpp
       title: test/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/inv_of_formal_power_series_sparse.test.cpp
       title: test/inv_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -854,7 +854,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/log_of_formal_power_series.test.cpp
       title: test/log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/log_of_formal_power_series_sparse.test.cpp
       title: test/log_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -971,7 +971,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/pow_of_formal_power_series.test.cpp
       title: test/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/pow_of_formal_power_series_sparse.test.cpp
       title: test/pow_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1046,7 +1046,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sqrt_of_formal_power_series.test.cpp
       title: test/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/sqrt_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
