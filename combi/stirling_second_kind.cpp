@@ -5,11 +5,10 @@
 
 template<class Mint>
 FPS<Mint> stirling_second_kind(int n) {
-  binomial<Mint> bn(n + 1);
   FPS<Mint> f(n + 1), g(n + 1);
   for(int i = 0; i <= n; i++) {
-    f[i] = bn.faci(i) * (i % 2 == 1 ? -1 : 1);
-    g[i] = bn.faci(i) * mint(i).pow(n);
+    f[i] = factorial_inv<Mint>(i) * (i % 2 == 1 ? -1 : 1);
+    g[i] = factorial_inv<Mint>(i) * mint(i).pow(n);
   }
   auto h = f * g;
   h.resize(n + 1);

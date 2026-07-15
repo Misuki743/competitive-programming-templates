@@ -40,9 +40,8 @@ Mint count_eulerian_circuit(vector<array<int, 2>> e, int n) {
     ep[i++] = {u, v, Mint(1)};
   
   Mint c = 1;
-  binomial<Mint> bn(ssize(e));
   for(int v = 0; v < n; v++)
-    c *= bn.fac(max(deg[v] - 1, 0));
+    c *= factorial<Mint>(max(deg[v] - 1, 0));
 
   return c * count_spanning_forest<Mint, true>(ep, n, r);
 }

@@ -9,10 +9,9 @@ signed main() {
 
   int t, p; cin >> t >> p;
   mint::set_mod(p);
-  binomial<mint> bn(min(p, 10'000'000));
   while(t--) {
     int n, k; cin >> n >> k;
-    cout << bn.binom(n, k) << '\n';
+    cout << binomial<mint>(n, k) << '\n';
   }
 
   return 0;
