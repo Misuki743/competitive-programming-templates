@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -135,29 +135,38 @@ data:
     \ }\n  friend istream& operator>>(istream& is, mint& b) {\n    int64_t val;\n\
     \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
     \ dynamic_modint<0>::mod = 2;\nusing mint = dynamic_modint<0>;\n#line 1 \"combi/binomial.cpp\"\
-    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct binomial\
-    \ {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size)\
-    \ {\n    assert(size <= (int)Mint::get_mod());\n    _fac[0] = 1;\n    for(int\
-    \ i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n\
-    \      _facInv.back() = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n\
-    \      _facInv[i] = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return\
-    \ i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i];\
-    \ }\n  Mint inv(int i) { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int\
-    \ n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n\
-    \  Mint catalan(int i) { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint\
-    \ excatalan(int n, int m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n   \
-    \ if (k > m) return binom(n + m, m);\n    else if (k > m - n) return binom(n +\
-    \ m, m) - binom(n + m, m - k);\n    else return Mint(0);\n  }\n};\n#line 6 \"\
-    test/binomial_coefficient_prime_mod.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int t, p; cin >> t >> p;\n  mint::set_mod(p);\n  binomial<mint>\
-    \ bn(min(p, 10'000'000));\n  while(t--) {\n    int n, k; cin >> n >> k;\n    cout\
-    \ << bn.binom(n, k) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nMint factorial(int\
+    \ n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n    if (dat.empty())\
+    \ dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
+    \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
+    Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
+    \    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
+    \ + 1))));\n    dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n    for(int\
+    \ i = ssize(dat) - 2; i >= size0; i--)\n      dat[i] = dat[i + 1] * (i + 1);\n\
+    \  }\n  return dat[n];\n}\n\ntemplate<class Mint>\nMint inverse(int n) {\n  return\
+    \ factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n}\n\ntemplate<class Mint>\n\
+    Mint binomial(int n, int k) {\n  if (0 <= k and k <= n)\n    return factorial<Mint>(n)\
+    \ * factorial_inv<Mint>(k) * factorial_inv<Mint>(n - k);\n  else\n    return Mint(0);\n\
+    }\n\ntemplate<class Mint>\nMint catalan(int n) {\n  return binomial<Mint>(2 *\
+    \ n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\n//number of up-down path with n\
+    \ (+1), m (-1) and never touch y = -k\ntemplate<class Mint>\nMint excatalan(int\
+    \ n, int m, int k) {\n  if (k > m) return binomial<Mint>(n + m, m);\n  else if\
+    \ (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n\
+    \  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
+    \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
+    \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
+    //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
+    \ 6 \"test/binomial_coefficient_prime_mod.test.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int t, p; cin >> t >> p;\n  mint::set_mod(p);\n  while(t--)\
+    \ {\n    int n, k; cin >> n >> k;\n    cout << binomial<mint>(n, k) << '\\n';\n\
+    \  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/dynamic_modint.cpp\"\n\
     #include \"../combi/binomial.cpp\"\n\nsigned main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int t, p; cin >> t >> p;\n  mint::set_mod(p);\n  binomial<mint>\
-    \ bn(min(p, 10'000'000));\n  while(t--) {\n    int n, k; cin >> n >> k;\n    cout\
-    \ << bn.binom(n, k) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ cin.tie(NULL);\n\n  int t, p; cin >> t >> p;\n  mint::set_mod(p);\n  while(t--)\
+    \ {\n    int n, k; cin >> n >> k;\n    cout << binomial<mint>(n, k) << '\\n';\n\
+    \  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/dynamic_modint.cpp
@@ -165,7 +174,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:57:54+08:00'
+  timestamp: '2026-07-15 10:56:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp

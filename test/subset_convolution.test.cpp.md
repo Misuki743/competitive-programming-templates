@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':heavy_check_mark:'

@@ -120,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,13 +291,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -372,7 +372,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,9 +492,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2895_2.test.cpp
     title: test/yuki_2895_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -681,7 +681,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-03-22 15:52:46+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/inv_of_formal_power_series.test.cpp
   - test/bipartitematching.test.cpp

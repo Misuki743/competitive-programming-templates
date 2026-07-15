@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulli_number.cpp
       title: combi/bernoulli_number.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: combi/binomial.cpp
       title: combi/binomial.cpp
     - icon: ':heavy_check_mark:'
@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -413,7 +413,7 @@ data:
       title: misc/sharp_P_subset_sum.cpp
   - name: modint
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: modint/Montgomery_modint.cpp
       title: modint/Montgomery_modint.cpp
     - icon: ':heavy_check_mark:'
@@ -478,7 +478,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/quotient_enumerate.cpp
       title: numtheory/quotient_enumerate.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/sqrt_mod.cpp
       title: numtheory/sqrt_mod.cpp
     - icon: ':warning:'
@@ -504,19 +504,19 @@ data:
     - icon: ':warning:'
       path: poly/FFT_mod.cpp
       title: poly/FFT_mod.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
       path: poly/FPS_sqrt.cpp
       title: poly/FPS_sqrt.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/NTT.cpp
       title: poly/NTT.cpp
     - icon: ':warning:'
       path: poly/NTT_2D.cpp
       title: poly/NTT_2D.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: poly/Taylor_shift.cpp
       title: poly/Taylor_shift.cpp
     - icon: ':heavy_check_mark:'
@@ -558,7 +558,7 @@ data:
     - icon: ':warning:'
       path: poly/semi_online_convolution.cpp
       title: poly/semi_online_convolution.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/sparse_polynomial_operations.cpp
       title: poly/sparse_polynomial_operations.cpp
   - name: segtree
@@ -794,7 +794,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/exp_of_formal_power_series.test.cpp
       title: test/exp_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/exp_of_formal_power_series_sparse.test.cpp
       title: test/exp_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -965,13 +965,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/polynomial_interpolation.test.cpp
       title: test/polynomial_interpolation.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/polynomial_taylor_shift.test.cpp
       title: test/polynomial_taylor_shift.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/pow_of_formal_power_series.test.cpp
       title: test/pow_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/pow_of_formal_power_series_sparse.test.cpp
       title: test/pow_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1046,7 +1046,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/sqrt_of_formal_power_series.test.cpp
       title: test/sqrt_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/sqrt_of_formal_power_series_sparse.test.cpp
     - icon: ':heavy_check_mark:'

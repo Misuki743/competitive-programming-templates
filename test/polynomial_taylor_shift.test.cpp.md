@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/Taylor_shift.cpp
     title: poly/Taylor_shift.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -152,19 +152,28 @@ data:
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
     \ = Montgomery_modint<998'244'353>;\n#line 1 \"combi/binomial.cpp\"\n//#include<modint/Montgomery_modint.cpp>\n\
-    \ntemplate<class Mint>\nstruct binomial {\n  vector<Mint> _fac, _facInv;\n  binomial(int\
-    \ size) : _fac(size), _facInv(size) {\n    assert(size <= (int)Mint::get_mod());\n\
-    \    _fac[0] = 1;\n    for(int i = 1; i < size; i++)\n      _fac[i] = _fac[i -\
-    \ 1] * i;\n    if (size > 0)\n      _facInv.back() = 1 / _fac.back();\n    for(int\
-    \ i = size - 2; i >= 0; i--)\n      _facInv[i] = _facInv[i + 1] * (i + 1);\n \
-    \ }\n\n  Mint fac(int i) { return i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) {\
-    \ return i < 0 ? 0 : _facInv[i]; }\n  Mint inv(int i) { return _facInv[i] * _fac[i\
-    \ - 1]; }\n  Mint binom(int n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r)\
-    \ * faci(n - r); }\n  Mint catalan(int i) { return binom(2 * i, i) - binom(2 *\
-    \ i, i + 1); }\n  Mint excatalan(int n, int m, int k) { //(+1) * n, (-1) * m,\
-    \ prefix sum > -k\n    if (k > m) return binom(n + m, m);\n    else if (k > m\
-    \ - n) return binom(n + m, m) - binom(n + m, m - k);\n    else return Mint(0);\n\
-    \  }\n};\n#line 1 \"poly/NTT.cpp\"\n//reference: https://judge.yosupo.jp/submission/69896\n\
+    \ntemplate<class Mint>\nMint factorial(int n) {\n  static vc<Mint> dat;\n  if\
+    \ (n >= ssize(dat)) {\n    if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n\
+    \    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n + 1))));\n    for(int\
+    \ i = size0; i < ssize(dat); i++)\n      dat[i] = dat[i - 1] * i;\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate<class Mint>\nMint factorial_inv(int n) {\n  static vc<Mint>\
+    \ dat;\n  if (n >= ssize(dat)) {\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n    dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n    for(int i = ssize(dat) - 2; i >= size0; i--)\n      dat[i]\
+    \ = dat[i + 1] * (i + 1);\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
+    Mint inverse(int n) {\n  return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
+    }\n\ntemplate<class Mint>\nMint binomial(int n, int k) {\n  if (0 <= k and k <=\
+    \ n)\n    return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
+    \ - k);\n  else\n    return Mint(0);\n}\n\ntemplate<class Mint>\nMint catalan(int\
+    \ n) {\n  return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\
+    \n//number of up-down path with n (+1), m (-1) and never touch y = -k\ntemplate<class\
+    \ Mint>\nMint excatalan(int n, int m, int k) {\n  if (k > m) return binomial<Mint>(n\
+    \ + m, m);\n  else if (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n\
+    \ + m, m - k);\n  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
+    \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
+    \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
+    //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
+    \ 1 \"poly/NTT.cpp\"\n//reference: https://judge.yosupo.jp/submission/69896\n\
     //remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD\n//remark: a.size()\
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
@@ -288,11 +297,11 @@ data:
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"poly/Taylor_shift.cpp\"\
     \n//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n//#include\
     \ \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint>\
-    \ Taylor_shift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  binomial<Mint> bn(n);\n\
-    \  FPS<Mint> a = f;\n  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint>\
-    \ b(n);\n  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre\
-    \ * bn.faci(i);\n  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin()\
-    \ + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= bn.faci(i);\n  return f;\n\
+    \ Taylor_shift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  FPS<Mint> a = f;\n\
+    \  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint> b(n);\n  Mint\
+    \ pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre * bn.faci(i);\n\
+    \  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin() + n - 1);\n\
+    \  for(int i = 0; i < n; i++)\n    f[i] *= factorial_inv<Mint>(i);\n  return f;\n\
     }\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, c; cin >> n >> c;\n  fps a(n);\n  for(mint &x : a)\n\
     \    cin >> x;\n  cout << Taylor_shift(a, mint(c)) << '\\n';\n\n  return 0;\n\
@@ -314,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-15 10:56:37+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/polynomial_taylor_shift.test.cpp
 layout: document

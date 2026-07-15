@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connectivity/incremental_SCC.cpp
     title: graph/connectivity/incremental_SCC.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   _extendedRequiredBy: []

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sparse_polynomial_operations.cpp
     title: poly/sparse_polynomial_operations.cpp
   _extendedRequiredBy: []
@@ -277,51 +277,60 @@ data:
     \ a, int x) { return a >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
     function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/binomial.cpp\"\
-    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nstruct binomial\
-    \ {\n  vector<Mint> _fac, _facInv;\n  binomial(int size) : _fac(size), _facInv(size)\
-    \ {\n    assert(size <= (int)Mint::get_mod());\n    _fac[0] = 1;\n    for(int\
-    \ i = 1; i < size; i++)\n      _fac[i] = _fac[i - 1] * i;\n    if (size > 0)\n\
-    \      _facInv.back() = 1 / _fac.back();\n    for(int i = size - 2; i >= 0; i--)\n\
-    \      _facInv[i] = _facInv[i + 1] * (i + 1);\n  }\n\n  Mint fac(int i) { return\
-    \ i < 0 ? 0 : _fac[i]; }\n  Mint faci(int i) { return i < 0 ? 0 : _facInv[i];\
-    \ }\n  Mint inv(int i) { return _facInv[i] * _fac[i - 1]; }\n  Mint binom(int\
-    \ n, int r) { return r < 0 or n < r ? 0 : fac(n) * faci(r) * faci(n - r); }\n\
-    \  Mint catalan(int i) { return binom(2 * i, i) - binom(2 * i, i + 1); }\n  Mint\
-    \ excatalan(int n, int m, int k) { //(+1) * n, (-1) * m, prefix sum > -k\n   \
-    \ if (k > m) return binom(n + m, m);\n    else if (k > m - n) return binom(n +\
-    \ m, m) - binom(n + m, m - k);\n    else return Mint(0);\n  }\n};\n#line 1 \"\
-    numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\nll modpow(ll b, ll e, ll p) {\n \
-    \ ll ans = 1;\n  for(; e; b = b * b % p, e /= 2)\n    if (e & 1) ans = ans * b\
-    \ % p;\n  return ans;\n}\n\nll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a += p;\n\
-    \tif (a == 0) return 0;\n\t//assert(modpow(a, (p-1)/2, p) == 1); // else no solution\n\
-    \  if (modpow(a, (p-1)/2, p) != 1) return -1;\n\tif (p % 4 == 3) return modpow(a,\
-    \ (p+1)/4, p);\n\t// a^(n+3)/8 or 2^(n+3)/8 * 2^(n-1)/4 works if p % 8 == 5\n\t\
-    ll s = p - 1, n = 2;\n\tint r = 0, m;\n\twhile (s % 2 == 0)\n\t\t++r, s /= 2;\n\
-    \t/// find a non-square mod p\n\twhile (modpow(n, (p - 1) / 2, p) != p - 1) ++n;\n\
-    \tll x = modpow(a, (s + 1) / 2, p);\n\tll b = modpow(a, s, p), g = modpow(n, s,\
-    \ p);\n\tfor (;; r = m) {\n\t\tll t = b;\n\t\tfor (m = 0; m < r && t != 1; ++m)\n\
-    \t\t\tt = t * t % p;\n\t\tif (m == 0) return x;\n\t\tll gs = modpow(g, 1LL <<\
-    \ (r - m - 1), p);\n\t\tg = gs * gs % p;\n\t\tx = x * gs % p;\n\t\tb = b * g %\
-    \ p;\n\t}\n}\n#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
-    //#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n//#include<combi/binom.cpp>\n\
-    //#include<numtheory/sqrtMod.cpp>\n\nnamespace sparse_polynomial_operations {\n\
-    \  template<class Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n \
-    \   vector<pair<int, Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n      if\
-    \ (f[i] != 0)\n        g.emplace_back(i, f[i]);\n    return g;\n  }\n  template<class\
+    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nMint factorial(int\
+    \ n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n    if (dat.empty())\
+    \ dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
+    \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
+    Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
+    \    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
+    \ + 1))));\n    dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n    for(int\
+    \ i = ssize(dat) - 2; i >= size0; i--)\n      dat[i] = dat[i + 1] * (i + 1);\n\
+    \  }\n  return dat[n];\n}\n\ntemplate<class Mint>\nMint inverse(int n) {\n  return\
+    \ factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n}\n\ntemplate<class Mint>\n\
+    Mint binomial(int n, int k) {\n  if (0 <= k and k <= n)\n    return factorial<Mint>(n)\
+    \ * factorial_inv<Mint>(k) * factorial_inv<Mint>(n - k);\n  else\n    return Mint(0);\n\
+    }\n\ntemplate<class Mint>\nMint catalan(int n) {\n  return binomial<Mint>(2 *\
+    \ n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\n//number of up-down path with n\
+    \ (+1), m (-1) and never touch y = -k\ntemplate<class Mint>\nMint excatalan(int\
+    \ n, int m, int k) {\n  if (k > m) return binomial<Mint>(n + m, m);\n  else if\
+    \ (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n\
+    \  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
+    \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
+    \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
+    //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
+    \ 1 \"numtheory/sqrt_mod.cpp\"\n//source: KACTL\n\nll modpow(ll b, ll e, ll p)\
+    \ {\n  ll ans = 1;\n  for(; e; b = b * b % p, e /= 2)\n    if (e & 1) ans = ans\
+    \ * b % p;\n  return ans;\n}\n\nll sqrt(ll a, ll p) {\n\ta %= p; if (a < 0) a\
+    \ += p;\n\tif (a == 0) return 0;\n\t//assert(modpow(a, (p-1)/2, p) == 1); // else\
+    \ no solution\n  if (modpow(a, (p-1)/2, p) != 1) return -1;\n\tif (p % 4 == 3)\
+    \ return modpow(a, (p+1)/4, p);\n\t// a^(n+3)/8 or 2^(n+3)/8 * 2^(n-1)/4 works\
+    \ if p % 8 == 5\n\tll s = p - 1, n = 2;\n\tint r = 0, m;\n\twhile (s % 2 == 0)\n\
+    \t\t++r, s /= 2;\n\t/// find a non-square mod p\n\twhile (modpow(n, (p - 1) /\
+    \ 2, p) != p - 1) ++n;\n\tll x = modpow(a, (s + 1) / 2, p);\n\tll b = modpow(a,\
+    \ s, p), g = modpow(n, s, p);\n\tfor (;; r = m) {\n\t\tll t = b;\n\t\tfor (m =\
+    \ 0; m < r && t != 1; ++m)\n\t\t\tt = t * t % p;\n\t\tif (m == 0) return x;\n\t\
+    \tll gs = modpow(g, 1LL << (r - m - 1), p);\n\t\tg = gs * gs % p;\n\t\tx = x *\
+    \ gs % p;\n\t\tb = b * g % p;\n\t}\n}\n#line 1 \"poly/sparse_polynomial_operations.cpp\"\
+    \n//#include<poly/FPS.cpp>\n//#include<poly/NTT.cpp>\n//#include<modint/Montgomery_modint.cpp>\n\
+    //#include<combi/binom.cpp>\n//#include<numtheory/sqrtMod.cpp>\n\nnamespace sparse_polynomial_operations\
+    \ {\n  template<class Mint>\n  vector<pair<int, Mint>> sparsify(FPS<Mint> f) {\n\
+    \    vector<pair<int, Mint>> g;\n    for(int i = 0; i < ssize(f); i++)\n     \
+    \ if (f[i] != 0)\n        g.emplace_back(i, f[i]);\n    return g;\n  }\n  template<class\
     \ Mint>\n  FPS<Mint> sparseInv(FPS<Mint> f, int k) {\n    assert(f[0] != 0);\n\
     \    FPS<Mint> g(k);\n    Mint inv = 1 / f[0];\n    g[0] = 1;\n    auto fs = sparsify(f);\n\
     \    for(int i = 0; i < k; i++) {\n      for(auto [j, val] : fs | views::drop(1))\n\
     \        if (j <= i)\n          g[i] -= g[i - j] * val;\n      g[i] *= inv;\n\
     \    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseExp(FPS<Mint>\
-    \ f, int k) {\n    assert(f[0] == 0);\n    binomial<Mint> bn(k);\n    FPS<Mint>\
-    \ g(k);\n    g[0] = 1;\n    auto fs = sparsify(f);\n    for(auto &[i, val] : fs)\
-    \ val *= i--;\n    for(int i = 0; i < k - 1; i++) {\n      for(auto [j, val] :\
-    \ fs)\n        if (j <= i)\n          g[i + 1] += g[i - j] * val;\n      g[i +\
-    \ 1] *= bn.inv(i + 1);\n    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint>\
-    \ sparseLog(FPS<Mint> f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f,\
-    \ k);\n    auto fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int\
-    \ i = 0; i < k - 1; i++)\n      for(auto [j, val] : fs)\n        if (j <= i)\n\
-    \          g[i] += invf[i - j] * val;\n    return g.integral();\n  }\n  template<class\
+    \ f, int k) {\n    assert(f[0] == 0);\n    FPS<Mint> g(k);\n    g[0] = 1;\n  \
+    \  auto fs = sparsify(f);\n    for(auto &[i, val] : fs) val *= i--;\n    for(int\
+    \ i = 0; i < k - 1; i++) {\n      for(auto [j, val] : fs)\n        if (j <= i)\n\
+    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= factorial_inv<Mint>(i\
+    \ + 1);\n    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
+    \ f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
+    \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
+    \ i < k - 1; i++)\n      for(auto [j, val] : fs)\n        if (j <= i)\n      \
+    \    g[i] += invf[i - j] * val;\n    return g.integral();\n  }\n  template<class\
     \ Mint>\n  FPS<Mint> sparsePow(FPS<Mint> f, ll idx, int k) {\n    if (idx == 0)\
     \ {\n      FPS<Mint> g(k);\n      g[0] = 1;\n      return g;\n    } else if (f[0]\
     \ == 0) {\n      for(int i = 0; i < ssize(f) and i * idx < k; i++) {\n       \
@@ -329,35 +338,35 @@ data:
     \ idx, k - i * idx);\n          g.resize(k);\n          for(int j = k - 1; j >=\
     \ i * idx; j--)\n            swap(g[j], g[j - i * idx]);\n          return g;\n\
     \        }\n      }\n      return FPS<Mint>(k);\n    } else {\n      Mint inv\
-    \ = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n      binomial<Mint> bn(k);\n\
-    \      g[0] = f[0].pow(idx);\n      auto fs = sparsify(f);\n      auto fds = fs;\n\
-    \      fds.erase(fds.begin());\n      for(auto &[i, val] : fds) val *= i--;\n\
-    \      for(int i = 0; i < k - 1; i++) {\n        for(auto [j, val] : fds)\n  \
-    \        if (j <= i)\n            gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n\
-    \        for(auto [j, val] : fs)\n          if (0 < j and j <= i)\n          \
-    \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
-    \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n  template<class Mint>\n\
-    \  FPS<Mint> sparseSqrt(FPS<Mint> f, int k) {\n    if (f[0] == 0) {\n      for(int\
-    \ i = 0; i < ssize(f) and i < 2 * k; i++) {\n        if (f[i] != 0) {\n      \
-    \    if (i & 1) return FPS<Mint>();\n          FPS<Mint> g = sparseSqrt<Mint>({f.begin()\
-    \ + i, f.end()}, k - i / 2);\n          if (g.empty()) return g;\n          g.resize(k);\n\
-    \          for(int j = k - 1; j >= i / 2; j--)\n            swap(g[j], g[j - i\
-    \ / 2]);\n          return g;\n        }\n      }\n      return FPS<Mint>(k);\n\
-    \    } else {\n      Mint inv = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n\
-    \      binomial<Mint> bn(k);\n      if (ll x = sqrt(f[0].get(), Mint::get_mod());\
-    \ x == -1)\n        return FPS<Mint>();\n      else\n        g[0] = x;\n     \
-    \ auto fs = sparsify(f);\n      auto fds = fs;\n      fds.erase(fds.begin());\n\
-    \      for(auto &[i, val] : fds) val *= i--;\n      Mint half = Mint(1) / 2;\n\
-    \      for(int i = 0; i < k - 1; i++) {\n        for(auto [j, val] : fds)\n  \
-    \        if (j <= i)\n            gd[i] += g[i - j] * val;\n        gd[i] *= half;\n\
-    \        for(auto [j, val] : fs)\n          if (0 < j and j <= i)\n          \
-    \  gd[i] -= gd[i - j] * val;\n        gd[i] *= inv;\n        g[i + 1] = gd[i]\
-    \ * bn.inv(i + 1);\n      }\n      return g;\n    }\n  }\n}\n\nusing namespace\
-    \ sparse_polynomial_operations;\n#line 10 \"test/log_of_formal_power_series_sparse.test.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, k;\
-    \ cin >> n >> k;\n  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val;\
-    \ cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout << sparseLog(f, n) << '\\n';\n\
-    \n  return 0;\n}\n"
+    \ = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n      g[0] = f[0].pow(idx);\n\
+    \      auto fs = sparsify(f);\n      auto fds = fs;\n      fds.erase(fds.begin());\n\
+    \      for(auto &[i, val] : fds) val *= i--;\n      for(int i = 0; i < k - 1;\
+    \ i++) {\n        for(auto [j, val] : fds)\n          if (j <= i)\n          \
+    \  gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n        for(auto [j, val]\
+    \ : fs)\n          if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n\
+    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * factorial_inv<Mint>(i + 1);\n\
+    \      }\n      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
+    \ f, int k) {\n    if (f[0] == 0) {\n      for(int i = 0; i < ssize(f) and i <\
+    \ 2 * k; i++) {\n        if (f[i] != 0) {\n          if (i & 1) return FPS<Mint>();\n\
+    \          FPS<Mint> g = sparseSqrt<Mint>({f.begin() + i, f.end()}, k - i / 2);\n\
+    \          if (g.empty()) return g;\n          g.resize(k);\n          for(int\
+    \ j = k - 1; j >= i / 2; j--)\n            swap(g[j], g[j - i / 2]);\n       \
+    \   return g;\n        }\n      }\n      return FPS<Mint>(k);\n    } else {\n\
+    \      Mint inv = 1 / f[0];\n      vector<Mint> g(k), gd(k - 1);\n      if (ll\
+    \ x = sqrt(f[0].get(), Mint::get_mod()); x == -1)\n        return FPS<Mint>();\n\
+    \      else\n        g[0] = x;\n      auto fs = sparsify(f);\n      auto fds =\
+    \ fs;\n      fds.erase(fds.begin());\n      for(auto &[i, val] : fds) val *= i--;\n\
+    \      Mint half = Mint(1) / 2;\n      for(int i = 0; i < k - 1; i++) {\n    \
+    \    for(auto [j, val] : fds)\n          if (j <= i)\n            gd[i] += g[i\
+    \ - j] * val;\n        gd[i] *= half;\n        for(auto [j, val] : fs)\n     \
+    \     if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n        gd[i]\
+    \ *= inv;\n        g[i + 1] = gd[i] * factorial_inv<Mint>(i + 1);\n      }\n \
+    \     return g;\n    }\n  }\n}\n\nusing namespace sparse_polynomial_operations;\n\
+    #line 10 \"test/log_of_formal_power_series_sparse.test.cpp\"\n\nint main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, k; cin >> n >> k;\n\
+    \  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val; cin >> j >> val;\n\
+    \    f[j] = val;\n  }\n\n  cout << sparseLog(f, n) << '\\n';\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
     \n#include \"../poly/NTT.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../combi/binomial.cpp\"\
@@ -377,7 +386,7 @@ data:
   isVerificationFile: true
   path: test/log_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 02:16:52+08:00'
+  timestamp: '2026-07-15 10:56:37+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/log_of_formal_power_series_sparse.test.cpp

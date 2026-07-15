@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds_problem/frequency_of_tree_distance.cpp
     title: ds_problem/frequency_of_tree_distance.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':heavy_check_mark:'
