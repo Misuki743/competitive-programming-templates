@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/sparse_polynomial_operations.cpp
     title: poly/sparse_polynomial_operations.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse
@@ -325,8 +325,8 @@ data:
     \ f, int k) {\n    assert(f[0] == 0);\n    FPS<Mint> g(k);\n    g[0] = 1;\n  \
     \  auto fs = sparsify(f);\n    for(auto &[i, val] : fs) val *= i--;\n    for(int\
     \ i = 0; i < k - 1; i++) {\n      for(auto [j, val] : fs)\n        if (j <= i)\n\
-    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= factorial_inv<Mint>(i\
-    \ + 1);\n    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
+    \          g[i + 1] += g[i - j] * val;\n      g[i + 1] *= inv<Mint>(i + 1);\n\
+    \    }\n    return g;\n  }\n  template<class Mint>\n  FPS<Mint> sparseLog(FPS<Mint>\
     \ f, int k) {\n    assert(f[0] == 1);\n    auto invf = sparseInv(f, k);\n    auto\
     \ fs = sparsify(f.derivative());\n    FPS<Mint> g(k - 1);\n    for(int i = 0;\
     \ i < k - 1; i++)\n      for(auto [j, val] : fs)\n        if (j <= i)\n      \
@@ -344,8 +344,8 @@ data:
     \ i++) {\n        for(auto [j, val] : fds)\n          if (j <= i)\n          \
     \  gd[i] += g[i - j] * val;\n        gd[i] *= idx;\n        for(auto [j, val]\
     \ : fs)\n          if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n\
-    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * factorial_inv<Mint>(i + 1);\n\
-    \      }\n      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
+    \        gd[i] *= inv;\n        g[i + 1] = gd[i] * inv<Mint>(i + 1);\n      }\n\
+    \      return g;\n    }\n  }\n  template<class Mint>\n  FPS<Mint> sparseSqrt(FPS<Mint>\
     \ f, int k) {\n    if (f[0] == 0) {\n      for(int i = 0; i < ssize(f) and i <\
     \ 2 * k; i++) {\n        if (f[i] != 0) {\n          if (i & 1) return FPS<Mint>();\n\
     \          FPS<Mint> g = sparseSqrt<Mint>({f.begin() + i, f.end()}, k - i / 2);\n\
@@ -360,13 +360,12 @@ data:
     \    for(auto [j, val] : fds)\n          if (j <= i)\n            gd[i] += g[i\
     \ - j] * val;\n        gd[i] *= half;\n        for(auto [j, val] : fs)\n     \
     \     if (0 < j and j <= i)\n            gd[i] -= gd[i - j] * val;\n        gd[i]\
-    \ *= inv;\n        g[i + 1] = gd[i] * factorial_inv<Mint>(i + 1);\n      }\n \
-    \     return g;\n    }\n  }\n}\n\nusing namespace sparse_polynomial_operations;\n\
-    #line 10 \"test/inv_of_formal_power_series_sparse.test.cpp\"\n\nint main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, k; cin >> n >> k;\n\
-    \  fps f(n);\n  for(int i = 0; i < k; i++) {\n    int j, val; cin >> j >> val;\n\
-    \    f[j] = val;\n  }\n\n  cout << sparseInv(f, n) << '\\n';\n\n  return 0;\n\
-    }\n"
+    \ *= inv;\n        g[i + 1] = gd[i] * inv<Mint>(i + 1);\n      }\n      return\
+    \ g;\n    }\n  }\n}\n\nusing namespace sparse_polynomial_operations;\n#line 10\
+    \ \"test/inv_of_formal_power_series_sparse.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n, k; cin >> n >> k;\n  fps f(n);\n  for(int i = 0;\
+    \ i < k; i++) {\n    int j, val; cin >> j >> val;\n    f[j] = val;\n  }\n\n  cout\
+    \ << sparseInv(f, n) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_formal_power_series_sparse\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
     \n#include \"../poly/NTT.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../combi/binomial.cpp\"\
@@ -386,8 +385,8 @@ data:
   isVerificationFile: true
   path: test/inv_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-07-15 10:56:37+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-07-15 11:07:35+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/inv_of_formal_power_series_sparse.test.cpp
 layout: document
