@@ -39,7 +39,7 @@ namespace sparse_polynomial_operations {
       for(auto [j, val] : fs)
         if (j <= i)
           g[i + 1] += g[i - j] * val;
-      g[i + 1] *= factorial_inv<Mint>(i + 1);
+      g[i + 1] *= inv<Mint>(i + 1);
     }
     return g;
   }
@@ -89,7 +89,7 @@ namespace sparse_polynomial_operations {
           if (0 < j and j <= i)
             gd[i] -= gd[i - j] * val;
         gd[i] *= inv;
-        g[i + 1] = gd[i] * factorial_inv<Mint>(i + 1);
+        g[i + 1] = gd[i] * inv<Mint>(i + 1);
       }
       return g;
     }
@@ -130,7 +130,7 @@ namespace sparse_polynomial_operations {
           if (0 < j and j <= i)
             gd[i] -= gd[i - j] * val;
         gd[i] *= inv;
-        g[i + 1] = gd[i] * factorial_inv<Mint>(i + 1);
+        g[i + 1] = gd[i] * inv<Mint>(i + 1);
       }
       return g;
     }
