@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/chromatic_number.cpp
     title: combi/chromatic_number.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'

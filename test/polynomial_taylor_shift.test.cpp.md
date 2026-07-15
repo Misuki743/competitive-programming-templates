@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/Taylor_shift.cpp
     title: poly/Taylor_shift.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -298,8 +298,8 @@ data:
     \n//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n//#include\
     \ \"poly/FPS.cpp\"\n//#include \"combi/binom.cpp\"\n\ntemplate<class Mint>\nFPS<Mint>\
     \ Taylor_shift(FPS<Mint> f, Mint c) {\n  int n = ssize(f);\n  FPS<Mint> a = f;\n\
-    \  for(int i = 0; i < n; i++)\n    a[i] *= bn.fac(i);\n  FPS<Mint> b(n);\n  Mint\
-    \ pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre * bn.faci(i);\n\
+    \  for(int i = 0; i < n; i++)\n    a[i] *= factorial<Mint>(i);\n  FPS<Mint> b(n);\n\
+    \  Mint pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre * factorial_inv<Mint>(i);\n\
     \  ranges::reverse(b);\n  f = a * b;\n  f.erase(f.begin(), f.begin() + n - 1);\n\
     \  for(int i = 0; i < n; i++)\n    f[i] *= factorial_inv<Mint>(i);\n  return f;\n\
     }\n#line 9 \"test/polynomial_taylor_shift.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
@@ -323,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2026-07-15 10:56:37+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-15 11:16:11+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/polynomial_taylor_shift.test.cpp
 layout: document
