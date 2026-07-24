@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: modint/Montgomery_modint.cpp
+    title: modint/Montgomery_modint.cpp
+  - icon: ':heavy_check_mark:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/phi_array.cpp
     title: numtheory/phi_array.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
     title: numtheory/prefix_sum_of_dirichlet_inverse.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -113,8 +116,40 @@ data:
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
     \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"numtheory/linear_sieve.cpp\"\
-    \ntemplate<int32_t C>\nclass linear_sieve {\n\n  static inline array<int, C> mpf\
+    \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"modint/Montgomery_modint.cpp\"\
+    \n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t mod>\n\
+    struct Montgomery_modint {\n  using mint = Montgomery_modint;\n  using i32 = int32_t;\n\
+    \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
+    \ {\n    u32 res = 1, base = mod;\n    for(i32 i = 0; i < 31; i++)\n      res\
+    \ *= base, base *= base;\n    return -res;\n  }\n\n  static constexpr u32 get_mod()\
+    \ {\n    return mod;\n  }\n\n  static constexpr u32 n2 = -u64(mod) % mod; //2^64\
+    \ % mod\n  static constexpr u32 r = get_r(); //-P^{-1} % 2^32\n\n  u32 a;\n\n\
+    \  static u32 reduce(const u64 &b) {\n    return (b + u64(u32(b) * r) * mod) >>\
+    \ 32;\n  }\n\n  static u32 transform(const u64 &b) {\n    return reduce(u64(b)\
+    \ * n2);\n  }\n\n  Montgomery_modint() : a(0) {}\n  Montgomery_modint(const int64_t\
+    \ &b) \n    : a(transform(b % mod + mod)) {}\n\n  mint pow(u64 k) const {\n  \
+    \  mint res(1), base(*this);\n    while(k) {\n      if (k & 1) \n        res *=\
+    \ base;\n      base *= base, k >>= 1;\n    }\n    return res;\n  }\n\n  mint inverse()\
+    \ const { return (*this).pow(mod - 2); }\n\n  u32 get() const {\n    u32 res =\
+    \ reduce(a);\n    return res >= mod ? res - mod : res;\n  }\n\n  mint& operator+=(const\
+    \ mint &b) {\n    if (i32(a += b.a - 2 * mod) < 0) a += 2 * mod;\n    return *this;\n\
+    \  }\n\n  mint& operator-=(const mint &b) {\n    if (i32(a -= b.a) < 0) a += 2\
+    \ * mod;\n    return *this;\n  }\n\n  mint& operator*=(const mint &b) {\n    a\
+    \ = reduce(u64(a) * b.a);\n    return *this;\n  }\n\n  mint& operator/=(const\
+    \ mint &b) {\n    a = reduce(u64(a) * b.inverse().a);\n    return *this;\n  }\n\
+    \n  mint operator-() { return mint() - mint(*this); }\n  bool operator==(mint\
+    \ b) const {\n    return (a >= mod ? a - mod : a) == (b.a >= mod ? b.a - mod :\
+    \ b.a);\n  }\n  bool operator!=(mint b) const {\n    return (a >= mod ? a - mod\
+    \ : a) != (b.a >= mod ? b.a - mod : b.a);\n  }\n\n  friend mint operator+(mint\
+    \ c, mint d) { return c += d; }\n  friend mint operator-(mint c, mint d) { return\
+    \ c -= d; }\n  friend mint operator*(mint c, mint d) { return c *= d; }\n  friend\
+    \ mint operator/(mint c, mint d) { return c /= d; }\n\n  friend ostream& operator<<(ostream&\
+    \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
+    \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
+    \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"numtheory/linear_sieve.cpp\"\n\
+    template<int32_t C>\nclass linear_sieve {\n\n  static inline array<int, C> mpf\
     \ = {};\n  static inline vi prime;\n  static inline bool init = false;\n\n  static\
     \ void initialize() {\n    if (init) return;\n    init = true;\n    if (C > 2)\n\
     \      iota(mpf.begin() + 2, mpf.end(), 2);\n    for(int i = 2; i < C; i++) {\n\
@@ -157,28 +192,30 @@ data:
     \  F[i] -= F[id(j)] * (G(Q / j) - G(Q / (j + 1)));\n    for(ll j = x2; j > 1;\
     \ j--)\n      F[i] -= F[id(Q / j)] * (G(Q / (Q / j)) - G(Q / (Q / j + 1)));\n\n\
     \    if constexpr (is_integral_v<T>) F[i] /= G(1);\n    else F[i] *= G1_inv;\n\
-    \  }\n\n  return F;\n}\n#line 7 \"test/sum_of_totient_function.test.cpp\"\n\n\
+    \  }\n\n  return F;\n}\n#line 8 \"test/sum_of_totient_function.test.cpp\"\n\n\
     auto F_small = phi_array<mint, 10'000'000>();\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  pSum(F_small);\n\n  ll N; cin >> N;\n  cout << prefix_sum_of_dirichlet_inverse<mint>(N,\
     \ [](ll x) { return mint(x); }, [](ll x) { return x % 2 == 1 ? (x + 1) / 2 * mint(x)\
     \ : x / 2 * mint(x + 1); }, F_small).back() << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../numtheory/linear_sieve.cpp\"\n\
-    #include \"../numtheory/phi_array.cpp\"\n#include \"../numtheory/prefix_sum_of_dirichlet_inverse.cpp\"\
-    \n\nauto F_small = phi_array<mint, 10'000'000>();\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/phi_array.cpp\"\
+    \n#include \"../numtheory/prefix_sum_of_dirichlet_inverse.cpp\"\n\nauto F_small\
+    \ = phi_array<mint, 10'000'000>();\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  pSum(F_small);\n\n  ll N; cin >> N;\n  cout << prefix_sum_of_dirichlet_inverse<mint>(N,\
     \ [](ll x) { return mint(x); }, [](ll x) { return x % 2 == 1 ? (x + 1) / 2 * mint(x)\
     \ : x / 2 * mint(x + 1); }, F_small).back() << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
+  - modint/Montgomery_modint.cpp
   - numtheory/linear_sieve.cpp
   - numtheory/phi_array.cpp
   - numtheory/prefix_sum_of_dirichlet_inverse.cpp
   isVerificationFile: true
   path: test/sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2026-07-24 17:13:45+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-07-24 17:22:30+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sum_of_totient_function.test.cpp
 layout: document

@@ -417,7 +417,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sum_of_totient_function.test.cpp
     title: test/sum_of_totient_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -495,9 +495,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_2895_2.test.cpp
     title: test/yuki_2895_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n\
@@ -684,7 +684,7 @@ data:
   path: default/t.cpp
   requiredBy: []
   timestamp: '2026-03-22 15:52:46+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/determinant_of_matrix.test.cpp
   - test/kth_term_of_linearly_recurrent_sequence.test.cpp

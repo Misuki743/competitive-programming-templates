@@ -166,6 +166,9 @@ data:
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/sum_of_totient_function.test.cpp
+    title: test/sum_of_totient_function.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
@@ -322,6 +325,7 @@ data:
   - test/counting_eulerian_circuits.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/product_of_polynomial_sequence.test.cpp
+  - test/sum_of_totient_function.test.cpp
   - test/inverse_matrix.test.cpp
   - test/range_affine_point_get.test.cpp
   - test/vertex_set_path_composite.test.cpp

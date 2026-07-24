@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_phi_array.test.cpp
     title: test/mytest_phi_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sum_of_totient_function.test.cpp
     title: test/sum_of_totient_function.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t C>\nclass\
@@ -78,7 +78,7 @@ data:
   path: numtheory/linear_sieve.cpp
   requiredBy: []
   timestamp: '2026-07-15 01:05:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_phi_array.test.cpp
   - test/lcm_convolution.test.cpp
