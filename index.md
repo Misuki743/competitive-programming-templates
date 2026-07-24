@@ -67,7 +67,7 @@ data:
       title: combi/stirling_second_kind_mod_P.cpp
   - name: default
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -457,7 +457,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/lcm_convolution.cpp
       title: numtheory/lcm_convolution.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/linear_sieve.cpp
       title: numtheory/linear_sieve.cpp
     - icon: ':warning:'
@@ -466,9 +466,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/mu_array.cpp
       title: numtheory/mu_array.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: numtheory/phi_array.cpp
       title: numtheory/phi_array.cpp
+    - icon: ':x:'
+      path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
+      title: numtheory/prefix_sum_of_dirichlet_inverse.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/prime_table.cpp
       title: numtheory/prime_table.cpp
@@ -1091,6 +1094,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
+    - icon: ':x:'
+      path: test/sum_of_totient_function.test.cpp
+      title: test/sum_of_totient_function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/system_of_linear_equations.test.cpp
       title: test/system_of_linear_equations.test.cpp

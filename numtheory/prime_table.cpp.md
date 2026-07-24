@@ -77,8 +77,8 @@ data:
   timestamp: '2026-07-15 01:05:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest_enumerate_highly_composite_numbers.test.cpp
   - test/mytest_prime_table.test.cpp
+  - test/mytest_enumerate_highly_composite_numbers.test.cpp
   - test/enumerate_primes.test.cpp
 documentation_of: numtheory/prime_table.cpp
 layout: document

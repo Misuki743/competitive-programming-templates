@@ -52,8 +52,8 @@ data:
   timestamp: '2026-07-15 01:16:31+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/gcd_convolution.test.cpp
   - test/lcm_convolution.test.cpp
+  - test/gcd_convolution.test.cpp
 documentation_of: numtheory/zeta_mobius_on_divisibility_lattice.cpp
 layout: document
 redirect_from:

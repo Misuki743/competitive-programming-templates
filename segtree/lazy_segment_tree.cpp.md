@@ -118,8 +118,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
-  - test/range_add_range_min.test.cpp
   - test/range_affine_range_sum.test.cpp
+  - test/range_add_range_min.test.cpp
 documentation_of: segtree/lazy_segment_tree.cpp
 layout: document
 redirect_from:

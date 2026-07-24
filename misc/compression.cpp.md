@@ -59,10 +59,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/static_range_frequency.test.cpp
-  - test/range_kth_smallest2.test.cpp
+  - test/point_add_rectangle_sum.test.cpp
   - test/rectangle_add_point_get.test.cpp
   - test/range_kth_smallest.test.cpp
-  - test/point_add_rectangle_sum.test.cpp
+  - test/range_kth_smallest2.test.cpp
 documentation_of: misc/compression.cpp
 layout: document
 title: misc/compression.cpp

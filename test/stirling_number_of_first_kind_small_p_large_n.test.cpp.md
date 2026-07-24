@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/stirling_first_kind_mod_P.cpp
     title: combi/stirling_first_kind_mod_P.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   _extendedRequiredBy: []
@@ -106,17 +106,17 @@ data:
     \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 4 \"test/a_plus_b.test.cpp\"\n\
     \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int A, B;\n\
-    \  cin >> A >> B;\n\n  cout << A + B << '\\n';\n\n  return 0;\n}\n\n"
+    \  cin >> A >> B;\n\n  cout << A + B << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
     \n  int A, B;\n  cin >> A >> B;\n\n  cout << A + B << '\\n';\n\n  return 0;\n\
-    }\n\n"
+    }\n"
   dependsOn:
   - default/t.cpp
   isVerificationFile: true
   path: test/a_plus_b.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 15:52:46+08:00'
+  timestamp: '2026-07-24 17:13:45+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/a_plus_b.test.cpp

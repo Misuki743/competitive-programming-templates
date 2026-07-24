@@ -60,11 +60,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
-  - test/pow_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
 documentation_of: numtheory/sqrt_mod.cpp
 layout: document
 redirect_from:
