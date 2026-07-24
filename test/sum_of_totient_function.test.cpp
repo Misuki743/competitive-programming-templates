@@ -6,7 +6,7 @@
 #include "../numtheory/phi_array.cpp"
 #include "../numtheory/prefix_sum_of_dirichlet_inverse.cpp"
 
-auto F_small = phi_array<mint, 10'000'000>();
+auto F_small = phi_array<mint, 8'000'000>();
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);

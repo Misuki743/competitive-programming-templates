@@ -6,39 +6,37 @@ vc<T> prefix_sum_of_dirichlet_inverse(ll N, F1 G, F2 H, F3 F_lazy = (void*)0) {
   while(x * (x + 1) <= N) x++;
   ll m = N / x;
 
-  vll qs;
-  qs.reserve(m + x - 1);
-  for(ll i = 1; i < m; i++) qs.eb(i);
-  for(ll i = x; i >= 1; i--) qs.eb(N / i);
-  auto id = [&](ll n) { return n <= m ? n - 1 : ssize(qs) - (N / n); };
+  auto id = [&](ll n) { return n <= m ? n - 1 : (m + x - 1) - (N / n); };
 
   vc<T> F(m + x - 1);
 
   T G1_inv;
   if constexpr (!is_integral_v<T>) G1_inv = G(1).inverse();
 
-  for(ll i = 0; i < ssize(qs); i++) {
-    ll Q = qs[i];
-
+  auto calc = [&](ll Q) {
+    T &Fi = F[id(Q)];
     if constexpr (!same_as<F3, void*>) {
       if (Q < ssize(F_lazy)) {
-        F[i] = F_lazy[Q];
-        continue;
+        Fi = F_lazy[Q];
+        return;
       }
     }
 
-    F[i] = H(Q);
+    Fi = H(Q);
     ll x2 = sqrtl(Q);
     while(x2 * (x2 + 1) <= Q) x2++;
     ll m2 = Q / x2;
     for(ll j = 1; j < m2; j++)
-      F[i] -= F[id(j)] * (G(Q / j) - G(Q / (j + 1)));
+      Fi -= F[id(j)] * (G(Q / j) - G(Q / (j + 1)));
     for(ll j = x2; j > 1; j--)
-      F[i] -= F[id(Q / j)] * (G(Q / (Q / j)) - G(Q / (Q / j + 1)));
+      Fi -= F[id(Q / j)] * (G(Q / (Q / j)) - G(Q / (Q / j + 1)));
 
-    if constexpr (is_integral_v<T>) F[i] /= G(1);
-    else F[i] *= G1_inv;
-  }
+    if constexpr (is_integral_v<T>) Fi /= G(1);
+    else Fi *= G1_inv;
+  };
+
+  for(ll q = 1; q < m; q++) calc(q);
+  for(ll i = x; i >= 1; i--) calc(N / i);
 
   return F;
 }
