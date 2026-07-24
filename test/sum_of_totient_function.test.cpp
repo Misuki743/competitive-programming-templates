@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/sum_of_totient_function"
 
 #include "../default/t.cpp"
+#include "../modint/Montgomery_modint.cpp"
 #include "../numtheory/linear_sieve.cpp"
 #include "../numtheory/phi_array.cpp"
 #include "../numtheory/prefix_sum_of_dirichlet_inverse.cpp"
