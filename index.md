@@ -469,6 +469,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/phi_array.cpp
       title: numtheory/phi_array.cpp
+    - icon: ':warning:'
+      path: numtheory/prefix_sum_of_dirichlet_convolution.cpp
+      title: numtheory/prefix_sum_of_dirichlet_convolution.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
       title: numtheory/prefix_sum_of_dirichlet_inverse.cpp
