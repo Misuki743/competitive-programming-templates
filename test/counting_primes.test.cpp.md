@@ -4,18 +4,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prime_counting.cpp
     title: numtheory/prime_counting.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/counting_primes
     links:
     - https://judge.yosupo.jp/problem/counting_primes
-  bundledCode: "#line 1 \"test/counting_primes.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\
+  bundledCode: "#line 1 \"test/counting_primes.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\
     \n\n#line 1 \"default/t.cpp\"\n#include <algorithm>\n#include <array>\n#include\
     \ <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
     \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
@@ -113,7 +115,7 @@ data:
     \ &y : dp) y--;\n\n  for(ll p = 2; p * p <= N; p++) if (dp[p - 1] > dp[p - 2])\
     \ {\n    ll pi = dp[p - 2];\n    for(ll i = m + x - 2; i >= 0 and qs[i] >= p *\
     \ p; i--)\n      dp[i] += pi - dp[id(qs[i] / p)];\n  }\n\n  return dp.back();\n\
-    }\n#line 5 \"test/counting_primes.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    }\n#line 5 \"test/counting_primes.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  ll N; cin >> N;\n  cout << prime_counting(N) << '\\n';\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/counting_primes\"\n\n#include\
@@ -123,16 +125,16 @@ data:
   dependsOn:
   - default/t.cpp
   - numtheory/prime_counting.cpp
-  isVerificationFile: false
-  path: test/counting_primes.cpp
+  isVerificationFile: true
+  path: test/counting_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-07-26 01:44:55+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2026-07-26 01:52:31+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/counting_primes.cpp
+documentation_of: test/counting_primes.test.cpp
 layout: document
 redirect_from:
-- /library/test/counting_primes.cpp
-- /library/test/counting_primes.cpp.html
-title: test/counting_primes.cpp
+- /verify/test/counting_primes.test.cpp
+- /verify/test/counting_primes.test.cpp.html
+title: test/counting_primes.test.cpp
 ---

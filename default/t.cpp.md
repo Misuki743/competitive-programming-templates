@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/counting_primes.cpp
-    title: test/counting_primes.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Z_algorithm.test.cpp
@@ -78,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/counting_primes.test.cpp
+    title: test/counting_primes.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/counting_spanning_tree_directed.test.cpp
     title: test/counting_spanning_tree_directed.test.cpp
@@ -685,8 +685,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: default/t.cpp
-  requiredBy:
-  - test/counting_primes.cpp
+  requiredBy: []
   timestamp: '2026-03-22 15:52:46+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -805,6 +804,7 @@ data:
   - test/yuki_1344.test.cpp
   - test/Z_algorithm.test.cpp
   - test/eulerian_trail_directed.test.cpp
+  - test/counting_primes.test.cpp
   - test/bipartitematching_2.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/matrix_product.test.cpp

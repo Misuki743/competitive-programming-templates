@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/counting_primes.cpp
-    title: test/counting_primes.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/counting_primes.test.cpp
+    title: test/counting_primes.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prime_counting.cpp\"\nll prime_counting(ll N)\
@@ -30,11 +30,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: numtheory/prime_counting.cpp
-  requiredBy:
-  - test/counting_primes.cpp
+  requiredBy: []
   timestamp: '2026-07-26 01:44:55+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/counting_primes.test.cpp
 documentation_of: numtheory/prime_counting.cpp
 layout: document
 redirect_from:
