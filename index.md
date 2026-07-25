@@ -475,6 +475,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
       title: numtheory/prefix_sum_of_dirichlet_inverse.cpp
+    - icon: ':warning:'
+      path: numtheory/prime_counting.cpp
+      title: numtheory/prime_counting.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/prime_table.cpp
       title: numtheory/prime_table.cpp
@@ -645,6 +648,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/z_function.cpp
       title: string/z_function.cpp
+  - name: test
+    pages:
+    - icon: ':warning:'
+      path: test/counting_primes.cpp
+      title: test/counting_primes.cpp
   - name: tree
     pages:
     - icon: ':heavy_check_mark:'

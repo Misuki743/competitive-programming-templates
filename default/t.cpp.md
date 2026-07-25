@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/counting_primes.cpp
+    title: test/counting_primes.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/Z_algorithm.test.cpp
@@ -682,7 +685,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: default/t.cpp
-  requiredBy: []
+  requiredBy:
+  - test/counting_primes.cpp
   timestamp: '2026-03-22 15:52:46+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
