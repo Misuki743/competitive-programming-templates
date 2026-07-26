@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/sum_of_multiplicative_function.test.cpp
+    title: test/sum_of_multiplicative_function.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -78,6 +81,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_prime_table.test.cpp
+  - test/sum_of_multiplicative_function.test.cpp
   - test/mytest_enumerate_highly_composite_numbers.test.cpp
   - test/enumerate_primes.test.cpp
 documentation_of: numtheory/prime_table.cpp

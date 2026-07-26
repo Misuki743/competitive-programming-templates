@@ -428,6 +428,9 @@ data:
       path: numtheory/AP_sqrt_heuristic.cpp
       title: numtheory/AP_sqrt_heuristic.cpp
     - icon: ':heavy_check_mark:'
+      path: numtheory/Lucy_DP.cpp
+      title: numtheory/Lucy_DP.cpp
+    - icon: ':heavy_check_mark:'
       path: numtheory/Stern_Brocot_tree.cpp
       title: numtheory/Stern_Brocot_tree.cpp
     - icon: ':warning:'
@@ -1103,6 +1106,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/subset_convolution.test.cpp
       title: test/subset_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/sum_of_multiplicative_function.test.cpp
+      title: test/sum_of_multiplicative_function.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/sum_of_totient_function.test.cpp
       title: test/sum_of_totient_function.test.cpp

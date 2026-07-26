@@ -421,6 +421,9 @@ data:
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/sum_of_multiplicative_function.test.cpp
+    title: test/sum_of_multiplicative_function.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sum_of_totient_function.test.cpp
     title: test/sum_of_totient_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -766,6 +769,7 @@ data:
   - test/static_RMQ_2.test.cpp
   - test/range_set_range_composite.test.cpp
   - test/predecessor_problem.test.cpp
+  - test/sum_of_multiplicative_function.test.cpp
   - test/yuki_2613.test.cpp
   - test/rooted_tree_isomorphism_classification.test.cpp
   - test/yuki_1868.test.cpp

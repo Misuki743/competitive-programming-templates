@@ -166,6 +166,9 @@ data:
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/sum_of_multiplicative_function.test.cpp
+    title: test/sum_of_multiplicative_function.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/sum_of_totient_function.test.cpp
     title: test/sum_of_totient_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -297,6 +300,7 @@ data:
   - test/point_set_range_composite.test.cpp
   - test/queue_operate_all_composite.test.cpp
   - test/range_set_range_composite.test.cpp
+  - test/sum_of_multiplicative_function.test.cpp
   - test/yuki_2613.test.cpp
   - test/convolution_1e9+7.test.cpp
   - test/multipoint_evaluation.test.cpp
