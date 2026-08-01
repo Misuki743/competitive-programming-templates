@@ -430,6 +430,9 @@ data:
     path: test/system_of_linear_equations.test.cpp
     title: test/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/tetration_mod.test.cpp
+    title: test/tetration_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/tree_diameter.test.cpp
     title: test/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
@@ -817,6 +820,7 @@ data:
   - test/yuki_2544.test.cpp
   - test/longest_common_substring.test.cpp
   - test/mytest_mu_array.test.cpp
+  - test/tetration_mod.test.cpp
   - test/persistent_unionfind.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/matrix_rank.test.cpp

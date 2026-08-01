@@ -19,6 +19,9 @@ data:
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/tetration_mod.test.cpp
+    title: test/tetration_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/two_square_sum.test.cpp
     title: test/two_square_sum.test.cpp
   _isVerificationFailed: false
@@ -75,6 +78,7 @@ data:
   - test/mytest_factorize_sqrt.test.cpp
   - test/primitive_root.test.cpp
   - test/chromatic_number.test.cpp
+  - test/tetration_mod.test.cpp
   - test/factorize.test.cpp
   - test/two_square_sum.test.cpp
   - test/primality_test.test.cpp

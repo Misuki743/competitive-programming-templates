@@ -445,7 +445,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/divisor_array.cpp
       title: numtheory/divisor_array.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: numtheory/exgcd.cpp
       title: numtheory/exgcd.cpp
     - icon: ':heavy_check_mark:'
@@ -496,6 +496,9 @@ data:
     - icon: ':warning:'
       path: numtheory/sum_of_floor_of_linear.cpp
       title: numtheory/sum_of_floor_of_linear.cpp
+    - icon: ':heavy_check_mark:'
+      path: numtheory/tetration_mod.cpp
+      title: numtheory/tetration_mod.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/two_square_sum.cpp
       title: numtheory/two_square_sum.cpp
@@ -1115,6 +1118,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/system_of_linear_equations.test.cpp
       title: test/system_of_linear_equations.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/tetration_mod.test.cpp
+      title: test/tetration_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/tree_diameter.test.cpp
       title: test/tree_diameter.test.cpp
