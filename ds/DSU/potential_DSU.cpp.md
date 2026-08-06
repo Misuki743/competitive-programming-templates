@@ -49,8 +49,8 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unionfind_with_potential_non_commutative_group.test.cpp
   - test/unionfind_with_potential.test.cpp
+  - test/unionfind_with_potential_non_commutative_group.test.cpp
 documentation_of: ds/DSU/potential_DSU.cpp
 layout: document
 redirect_from:

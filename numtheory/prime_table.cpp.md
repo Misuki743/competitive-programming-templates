@@ -82,8 +82,8 @@ data:
   verifiedWith:
   - test/mytest_prime_table.test.cpp
   - test/sum_of_multiplicative_function.test.cpp
-  - test/mytest_enumerate_highly_composite_numbers.test.cpp
   - test/enumerate_primes.test.cpp
+  - test/mytest_enumerate_highly_composite_numbers.test.cpp
 documentation_of: numtheory/prime_table.cpp
 layout: document
 redirect_from:
