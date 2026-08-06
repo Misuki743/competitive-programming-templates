@@ -228,8 +228,8 @@ vvi adjacency_list(int n, vc<pii> e, int base) {
   return g;
 }
 
-template<class T>
-vc<pii> equal_subarrays(vc<T> &v) {
+template<ranges::random_access_range rng>
+vc<pii> equal_subarrays(rng &&v) {
   vc<pii> lr;
   for(int i = 0, j = 0; i < ssize(v); i = j) {
     while(j < ssize(v) and v[i] == v[j]) j++;
@@ -238,9 +238,9 @@ vc<pii> equal_subarrays(vc<T> &v) {
   return lr;
 }
 
-template<class T, typename F>
+template<ranges::random_access_range rng, class T = ranges::range_value_t<rng>, typename F>
 requires invocable<F, T&>
-vc<pii> equal_subarrays(vc<T> &v, F proj) {
+vc<pii> equal_subarrays(rng &&v, F proj) {
   vc<pii> lr;
   for(int i = 0, j = 0; i < ssize(v); i = j) {
     while(j < ssize(v) and proj(v[i]) == proj(v[j])) j++;
