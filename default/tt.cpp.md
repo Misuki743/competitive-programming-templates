@@ -96,11 +96,19 @@ data:
     \ { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n\
     \  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n\
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
-    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
-    \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\ntemplate<class Mint>\nMint factorial(int\
-    \ n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n    if (dat.empty())\
-    \ dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\null kth_root(ull a, int k) {\n\
+    \  if (a == 0) return 0ull;\n  if (k >= 64) return 1ull;\n  if (k == 1) return\
+    \ a;\n  if (k == 2) {\n    ull b = sqrtl(a);\n    while((__int128)(b + 1) * (b\
+    \ + 1) <= a) b++;\n    while((__int128)b * b > a) b--;\n    return b;\n  }\n \
+    \ if (k == 3) {\n    ull b = cbrtl(a);\n    while((__int128)(b + 1) * (b + 1)\
+    \ * (b + 1) <= a) b++;\n    while((__int128)b * b * b > a) b--;\n    return b;\n\
+    \  }\n  ull b = powl(a, 1.0L / k);\n  auto pw = [](ull a, int k) {\n    __int128\
+    \ b = 1;\n    for(int i = 0; i < k; i++) b *= a;\n    return b;\n  };\n  while(pw(b\
+    \ + 1, k) <= a) b++;\n  while(pw(b, k) > a) b--;\n  return b;\n}\n\ntemplate<class\
+    \ T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T>\
+    \ bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\ntemplate<class Mint>\n\
+    Mint factorial(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n  \
+    \  if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
     \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
     \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
     Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
@@ -305,11 +313,19 @@ data:
     \ { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n\
     \  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n\
     }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
-    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\ntemplate<class T> bool chmin(T\
-    \ &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T> bool chmax(T &a,\
-    \ T b) { return a < b ? a = b, 1 : 0; }\n\ntemplate<class Mint>\nMint factorial(int\
-    \ n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n    if (dat.empty())\
-    \ dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\null kth_root(ull a, int k) {\n\
+    \  if (a == 0) return 0ull;\n  if (k >= 64) return 1ull;\n  if (k == 1) return\
+    \ a;\n  if (k == 2) {\n    ull b = sqrtl(a);\n    while((__int128)(b + 1) * (b\
+    \ + 1) <= a) b++;\n    while((__int128)b * b > a) b--;\n    return b;\n  }\n \
+    \ if (k == 3) {\n    ull b = cbrtl(a);\n    while((__int128)(b + 1) * (b + 1)\
+    \ * (b + 1) <= a) b++;\n    while((__int128)b * b * b > a) b--;\n    return b;\n\
+    \  }\n  ull b = powl(a, 1.0L / k);\n  auto pw = [](ull a, int k) {\n    __int128\
+    \ b = 1;\n    for(int i = 0; i < k; i++) b *= a;\n    return b;\n  };\n  while(pw(b\
+    \ + 1, k) <= a) b++;\n  while(pw(b, k) > a) b--;\n  return b;\n}\n\ntemplate<class\
+    \ T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T>\
+    \ bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\ntemplate<class Mint>\n\
+    Mint factorial(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n  \
+    \  if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
     \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
     \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
     Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
@@ -431,7 +447,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-08-07 02:19:03+08:00'
+  timestamp: '2026-08-07 19:17:22+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
