@@ -267,6 +267,33 @@ T ceilDiv(T a, T b) {
   return a >= 0 ? (a + b - 1) / b : a / b;
 }
 
+ull kth_root(ull a, int k) {
+  if (a == 0) return 0ull;
+  if (k >= 64) return 1ull;
+  if (k == 1) return a;
+  if (k == 2) {
+    ull b = sqrtl(a);
+    while((__int128)(b + 1) * (b + 1) <= a) b++;
+    while((__int128)b * b > a) b--;
+    return b;
+  }
+  if (k == 3) {
+    ull b = cbrtl(a);
+    while((__int128)(b + 1) * (b + 1) * (b + 1) <= a) b++;
+    while((__int128)b * b * b > a) b--;
+    return b;
+  }
+  ull b = powl(a, 1.0L / k);
+  auto pw = [](ull a, int k) {
+    __int128 b = 1;
+    for(int i = 0; i < k; i++) b *= a;
+    return b;
+  };
+  while(pw(b + 1, k) <= a) b++;
+  while(pw(b, k) > a) b--;
+  return b;
+}
+
 template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }
 template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }
 
