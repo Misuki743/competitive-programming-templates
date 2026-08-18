@@ -6,14 +6,14 @@ vim.cmd('set shiftwidth=2')
 vim.cmd('set expandtab')
 vim.cmd('set relativenumber')
 vim.cmd('syntax on')
-vim.cmd('map<C-c> :!clang++ -DDEBUG -Wall -Wextra -Wshadow -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -O2 -fsanitize=address,undefined -g -o %:r -std=c++20 %<CR>')
+vim.cmd('map<C-c> :!clang++ -DDEBUG -Wall -Wextra -Wshadow -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -O2 -fsanitize=address,undefined -g -o %:r -std=c++20 -I./template/default -include ./template/default/bits/stdc++.h %<CR>')
 vim.cmd('map<C-v> :!g++-15 -O2 -o %:r -std=c++20 %<CR>')
 
 vim.cmd([[
 function SetDefaultContext()
   :r ~/Documents/CP/template/default/tt.cpp
   :1,1d
-  :call cursor(650, 2)
+  :call cursor(677, 2)
   :normal zz
 endfunction]])
 vim.cmd('autocmd BufNewFile *.cpp :call SetDefaultContext()')
