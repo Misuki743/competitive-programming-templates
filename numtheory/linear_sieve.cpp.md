@@ -80,12 +80,12 @@ data:
   timestamp: '2026-07-15 01:05:29+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/gcd_convolution.test.cpp
-  - test/sum_of_totient_function.test.cpp
-  - test/mytest_mu_array.test.cpp
-  - test/lcm_convolution.test.cpp
-  - test/mytest_phi_array.test.cpp
   - test/mytest_linear_sieve.test.cpp
+  - test/gcd_convolution.test.cpp
+  - test/lcm_convolution.test.cpp
+  - test/mytest_mu_array.test.cpp
+  - test/mytest_phi_array.test.cpp
+  - test/sum_of_totient_function.test.cpp
 documentation_of: numtheory/linear_sieve.cpp
 layout: document
 redirect_from:

@@ -41,8 +41,8 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/matrix_rank_mod_2.test.cpp
   - test/yuki_2895_2.test.cpp
+  - test/matrix_rank_mod_2.test.cpp
 documentation_of: linalg/xor_basis_bitset.cpp
 layout: document
 redirect_from:
