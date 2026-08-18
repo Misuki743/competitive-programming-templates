@@ -65,6 +65,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/stirling_second_kind_mod_P.cpp
       title: combi/stirling_second_kind_mod_P.cpp
+  - name: default/bits
+    pages:
+    - icon: ':warning:'
+      path: default/bits/stdc++.h
+      title: default/bits/stdc++.h
   - name: default
     pages:
     - icon: ':heavy_check_mark:'
