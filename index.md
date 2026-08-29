@@ -474,6 +474,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/mu_array.cpp
       title: numtheory/mu_array.cpp
+    - icon: ':warning:'
+      path: numtheory/pell_equation.cpp
+      title: numtheory/pell_equation.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/phi_array.cpp
       title: numtheory/phi_array.cpp
@@ -495,6 +498,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/quotient_enumerate.cpp
       title: numtheory/quotient_enumerate.cpp
+    - icon: ':warning:'
+      path: numtheory/quotient_floor.cpp
+      title: numtheory/quotient_floor.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/sqrt_mod.cpp
       title: numtheory/sqrt_mod.cpp

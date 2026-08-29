@@ -8,22 +8,10 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"default/tt.cpp\"\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cctype>\n#include <cfenv>\n#include\
-    \ <cfloat>\n#include <chrono>\n#include <cinttypes>\n#include <climits>\n#include\
-    \ <cmath>\n#include <complex>\n#include <cstdarg>\n#include <cstddef>\n#include\
-    \ <cstdint>\n#include <cstdio>\n#include <cstdlib>\n#include <cstring>\n#include\
-    \ <deque>\n#include <fstream>\n#include <functional>\n#include <initializer_list>\n\
-    #include <iomanip>\n#include <ios>\n#include <iostream>\n#include <istream>\n\
-    #include <iterator>\n#include <limits>\n#include <list>\n#include <map>\n#include\
-    \ <memory>\n#include <new>\n#include <numeric>\n#include <ostream>\n#include <queue>\n\
-    #include <random>\n#include <set>\n#include <sstream>\n#include <stack>\n#include\
-    \ <streambuf>\n#include <string>\n#include <tuple>\n#include <type_traits>\n#include\
-    \ <variant>\n#include <bit>\n#include <compare>\n#include <concepts>\n#include\
-    \ <numbers>\n#include <ranges>\n#include <span>\n\n#define int ll\n#define INT128_MAX\
-    \ (__int128)(((unsigned __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1))\
-    \ - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define pb push_back\n#define\
-    \ eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
+  bundledCode: "#line 1 \"default/tt.cpp\"\n#include<bits/stdc++.h>\n\n#define int\
+    \ ll\n#define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128)\
+    \ * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define\
+    \ pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
     \nusing namespace std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
     \ os, const tuple<args...> tu) {\n  os << get<I>(tu);\n  if constexpr (I + 1 !=\
     \ sizeof...(args)) {\n    os << ' ';\n    print_tuple<I + 1>(os, tu);\n  }\n \
@@ -226,22 +214,11 @@ data:
     auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n\nsigned\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n\
     }\n"
-  code: "#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cctype>\n#include <cfenv>\n#include <cfloat>\n#include <chrono>\n#include\
-    \ <cinttypes>\n#include <climits>\n#include <cmath>\n#include <complex>\n#include\
-    \ <cstdarg>\n#include <cstddef>\n#include <cstdint>\n#include <cstdio>\n#include\
-    \ <cstdlib>\n#include <cstring>\n#include <deque>\n#include <fstream>\n#include\
-    \ <functional>\n#include <initializer_list>\n#include <iomanip>\n#include <ios>\n\
-    #include <iostream>\n#include <istream>\n#include <iterator>\n#include <limits>\n\
-    #include <list>\n#include <map>\n#include <memory>\n#include <new>\n#include <numeric>\n\
-    #include <ostream>\n#include <queue>\n#include <random>\n#include <set>\n#include\
-    \ <sstream>\n#include <stack>\n#include <streambuf>\n#include <string>\n#include\
-    \ <tuple>\n#include <type_traits>\n#include <variant>\n#include <bit>\n#include\
-    \ <compare>\n#include <concepts>\n#include <numbers>\n#include <ranges>\n#include\
-    \ <span>\n\n#define int ll\n#define INT128_MAX (__int128)(((unsigned __int128)\
-    \ 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX\
-    \ - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nusing namespace std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
+  code: "#include<bits/stdc++.h>\n\n#define int ll\n#define INT128_MAX (__int128)(((unsigned\
+    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
+    \ (-INT128_MAX - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define\
+    \ clock chrono::steady_clock::now().time_since_epoch().count()\n\nusing namespace\
+    \ std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
     \ os, const tuple<args...> tu) {\n  os << get<I>(tu);\n  if constexpr (I + 1 !=\
     \ sizeof...(args)) {\n    os << ' ';\n    print_tuple<I + 1>(os, tu);\n  }\n \
     \ return os;\n}\ntemplate<typename... args>\nostream& operator<<(ostream& os,\
@@ -447,7 +424,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-08-07 19:17:22+08:00'
+  timestamp: '2026-08-29 09:56:45+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
