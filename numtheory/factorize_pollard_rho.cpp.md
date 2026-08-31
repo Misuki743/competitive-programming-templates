@@ -31,8 +31,7 @@ data:
     links:
     - https://github.com/kth-competitive-programming/kactl)
   bundledCode: "#line 1 \"numtheory/factorize_pollard_rho.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
-    \null modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a *\
-    \ b);\n\treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull\
+    \null modmul(ull a, ull b, ull M) {\n  return (__int128)a * b % M;\n}\n\null modpow(ull\
     \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
     \ 2)\n\t\tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
     \ n) {\n\tif (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325,\
@@ -50,10 +49,9 @@ data:
     \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
     \treturn l;\n}\n"
   code: "//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\n\
-    ull modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a * b);\n\
-    \treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull b, ull\
-    \ e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /= 2)\n\t\
-    \tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
+    ull modmul(ull a, ull b, ull M) {\n  return (__int128)a * b % M;\n}\n\null modpow(ull\
+    \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
+    \ 2)\n\t\tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
     \ n) {\n\tif (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325,\
     \ 9375, 28178, 450775, 9780504, 1795265022},\n\t    s = __builtin_ctzll(n-1),\
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
@@ -72,7 +70,7 @@ data:
   isVerificationFile: false
   path: numtheory/factorize_pollard_rho.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-08-31 15:15:01+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/tetration_mod.test.cpp

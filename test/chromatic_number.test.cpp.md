@@ -148,8 +148,7 @@ data:
     \  }\n};\n\nusing mint = dynamic_Montgomery_modint<0>;\ntemplate<> uint32_t mint::mod\
     \ = 0;\ntemplate<> uint32_t mint::n2 = 0;\ntemplate<> uint32_t mint::r = 0;\n\
     #line 1 \"numtheory/factorize_pollard_rho.cpp\"\n//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\
-    \null modmul(ull a, ull b, ull M) {\n\tll ret = a * b - M * ull(1.L / M * a *\
-    \ b);\n\treturn ret + M * (ret < 0) - M * (ret >= (ll)M);\n}\n\null modpow(ull\
+    \null modmul(ull a, ull b, ull M) {\n  return (__int128)a * b % M;\n}\n\null modpow(ull\
     \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
     \ 2)\n\t\tif (e & 1) ans = modmul(ans, b, mod);\n\treturn ans;\n}\n\nbool isPrime(ull\
     \ n) {\n\tif (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;\n\tull A[] = {2, 325,\
@@ -199,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 02:34:04+08:00'
+  timestamp: '2026-08-31 15:15:01+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp

@@ -179,6 +179,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/frequency_of_tree_distance.cpp
       title: ds_problem/frequency_of_tree_distance.cpp
+    - icon: ':warning:'
+      path: ds_problem/inversion_count.cpp
+      title: ds_problem/inversion_count.cpp
     - icon: ':heavy_check_mark:'
       path: ds_problem/pointAddRectangleSum.cpp
       title: ds_problem/pointAddRectangleSum.cpp
@@ -194,6 +197,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds_problem/rectangle_sum.cpp
       title: ds_problem/rectangle_sum.cpp
+    - icon: ':warning:'
+      path: ds_problem/rollback_MO.cpp
+      title: ds_problem/rollback_MO.cpp
     - icon: ':warning:'
       path: ds_problem/zero_one_on_tree.cpp
       title: ds_problem/zero_one_on_tree.cpp
