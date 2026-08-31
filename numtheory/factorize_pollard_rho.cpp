@@ -1,8 +1,7 @@
 //source: KACTL(https://github.com/kth-competitive-programming/kactl)
 
 ull modmul(ull a, ull b, ull M) {
-	ll ret = a * b - M * ull(1.L / M * a * b);
-	return ret + M * (ret < 0) - M * (ret >= (ll)M);
+  return (__int128)a * b % M;
 }
 
 ull modpow(ull b, ull e, ull mod) {
