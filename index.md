@@ -508,6 +508,9 @@ data:
       path: numtheory/quotient_floor.cpp
       title: numtheory/quotient_floor.cpp
     - icon: ':heavy_check_mark:'
+      path: numtheory/sieve_of_Eratosthenes.cpp
+      title: numtheory/sieve_of_Eratosthenes.cpp
+    - icon: ':heavy_check_mark:'
       path: numtheory/sqrt_mod.cpp
       title: numtheory/sqrt_mod.cpp
     - icon: ':warning:'
@@ -970,6 +973,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest_prime_table.test.cpp
       title: test/mytest_prime_table.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest_sieve_of_Eratosthenes.test.cpp
+      title: test/mytest_sieve_of_Eratosthenes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest_tree.test.cpp
       title: test/mytest_tree.test.cpp

@@ -265,6 +265,9 @@ data:
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest_sieve_of_Eratosthenes.test.cpp
+    title: test/mytest_sieve_of_Eratosthenes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -710,6 +713,7 @@ data:
   - test/exp_of_formal_power_series.test.cpp
   - test/minimum_spanning_tree_Prim.test.cpp
   - test/addition_of_big_integers_2.test.cpp
+  - test/mytest_sieve_of_Eratosthenes.test.cpp
   - test/cycle_detection_directed.test.cpp
   - test/static_range_frequency.test.cpp
   - test/mytest_tree.test.cpp
