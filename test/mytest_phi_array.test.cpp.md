@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
   - icon: ':x:'

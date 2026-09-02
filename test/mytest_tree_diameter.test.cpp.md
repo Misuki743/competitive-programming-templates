@@ -19,7 +19,7 @@ data:
   - icon: ':x:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   - icon: ':x:'
