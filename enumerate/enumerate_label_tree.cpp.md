@@ -6,15 +6,15 @@ data:
   - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree_diameter.test.cpp
     title: test/mytest_tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/enumerate_label_tree.cpp\"\n//#include \"tree/prufer_recover.cpp\"\
@@ -22,19 +22,21 @@ data:
     \n\ntemplate<typename F>\nrequires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int\
     \ n, F f) {\n  assert(n > 0);\n  if (n == 1) {\n    f(vector<vector<int>>(1));\n\
     \  } else {\n    enumerate_cartesian_power(n, n - 2, [n, f](vector<int> a) {\n\
-    \      f(adjacency_list<false>(n, prufer_recover(a), 0));\n    });\n  }\n}\n"
+    \      vvi g(n);\n      for(auto [u, v] : prufer_recover(a))\n        g[u].eb(v),\
+    \ g[v].eb(u);\n      f(g);\n    });\n  }\n}\n"
   code: "//#include \"tree/prufer_recover.cpp\"\n//#include \"enumerate/enumerate_bit.cpp\"\
     \n//#include \"enumerate/enumerate_twelvefold.cpp\"\n\ntemplate<typename F>\n\
     requires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int n, F\
     \ f) {\n  assert(n > 0);\n  if (n == 1) {\n    f(vector<vector<int>>(1));\n  }\
     \ else {\n    enumerate_cartesian_power(n, n - 2, [n, f](vector<int> a) {\n  \
-    \    f(adjacency_list<false>(n, prufer_recover(a), 0));\n    });\n  }\n}\n"
+    \    vvi g(n);\n      for(auto [u, v] : prufer_recover(a))\n        g[u].eb(v),\
+    \ g[v].eb(u);\n      f(g);\n    });\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/enumerate_label_tree.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-09-02 17:22:39+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_tree.test.cpp
   - test/mytest_auxiliary_tree.test.cpp

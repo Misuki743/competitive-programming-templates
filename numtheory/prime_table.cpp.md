@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/enumerate_primes.test.cpp
     title: test/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_enumerate_highly_composite_numbers.test.cpp
     title: test/mytest_enumerate_highly_composite_numbers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sum_of_multiplicative_function.test.cpp
     title: test/sum_of_multiplicative_function.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t C>\nclass\
@@ -78,7 +78,7 @@ data:
   path: numtheory/prime_table.cpp
   requiredBy: []
   timestamp: '2026-07-15 01:05:29+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_prime_table.test.cpp
   - test/sum_of_multiplicative_function.test.cpp

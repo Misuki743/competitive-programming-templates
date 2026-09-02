@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"acted_monoid/add_min_count.cpp\"\ntemplate<class U>\nstruct\
@@ -29,7 +29,7 @@ data:
   path: acted_monoid/add_min_count.cpp
   requiredBy: []
   timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
 documentation_of: acted_monoid/add_min_count.cpp

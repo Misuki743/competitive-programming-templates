@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_mu_array.test.cpp
     title: test/mytest_mu_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_phi_array.test.cpp
     title: test/mytest_phi_array.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/sum_of_totient_function.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t C>\nclass\
@@ -78,7 +78,7 @@ data:
   path: numtheory/linear_sieve.cpp
   requiredBy: []
   timestamp: '2026-07-15 01:05:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_linear_sieve.test.cpp
   - test/gcd_convolution.test.cpp

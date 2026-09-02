@@ -3,30 +3,30 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_factorize_sqrt.test.cpp
     title: test/mytest_factorize_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tetration_mod.test.cpp
     title: test/tetration_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/two_square_sum.test.cpp
     title: test/two_square_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/kth-competitive-programming/kactl)
@@ -71,7 +71,7 @@ data:
   path: numtheory/factorize_pollard_rho.cpp
   requiredBy: []
   timestamp: '2026-08-31 15:15:01+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/tetration_mod.test.cpp
   - test/mytest_factorize_sqrt.test.cpp

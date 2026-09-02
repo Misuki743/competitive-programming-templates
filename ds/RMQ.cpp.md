@@ -12,12 +12,12 @@ data:
   - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/static_RMQ_2.test.cpp
     title: test/static_RMQ_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/RMQ.cpp\"\ntemplate<class T>\nstruct RMQ {\n  uint64_t\
@@ -63,7 +63,7 @@ data:
   path: ds/RMQ.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca_3.test.cpp
   - test/static_RMQ_2.test.cpp

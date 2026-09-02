@@ -6,18 +6,18 @@ data:
   - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree_diameter.test.cpp
     title: test/mytest_tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
@@ -103,7 +103,7 @@ data:
   path: enumerate/enumerate_twelvefold.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_tree.test.cpp
   - test/mytest_enumerate_twelvefold.test.cpp

@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/treap.cpp\"\nmt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
@@ -99,7 +99,7 @@ data:
   path: ds/treap.cpp
   requiredBy: []
   timestamp: '2026-09-02 17:05:06+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/range_reverse_range_sum.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp

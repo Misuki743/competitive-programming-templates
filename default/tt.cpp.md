@@ -58,7 +58,15 @@ data:
     \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
     \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
     \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
+    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
+    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
+    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
+    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
+    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
+    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
+    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
@@ -77,28 +85,36 @@ data:
     \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
     \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
     \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace\
-    \ Combinatorics {\n  template<class Mint>\n  Mint factorial(int n) {\n    static\
-    \ vc<Mint> dat;\n    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n\
-    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
-    \ - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
-    \ factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n\
-    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n      dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n  \
-    \    for(int i = ssize(dat) - 2; i >= size0; i--)\n        dat[i] = dat[i + 1]\
-    \ * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
-    \ inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
-    \  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if (0 <=\
-    \ k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
-    \ - k);\n    else\n      return Mint(0);\n  }\n\n  template<class Mint>\n  Mint\
-    \ catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n,\
-    \ n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never touch\
-    \ y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k) {\n  \
-    \  if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n) return\
-    \ binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return Mint(0);\n\
-    \  }\n\n  template<class Mint>\n  auto binomial_functions() {\n    return tuple(\n\
-    \      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
+    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
+    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
+    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
+    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
+    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
+    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
+    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
+    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
+    \  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace Combinatorics {\n  template<class\
+    \ Mint>\n  Mint factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat))\
+    \ {\n      if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
     \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
     \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
     \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
@@ -283,7 +299,15 @@ data:
     \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
     \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
     \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
+    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
+    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
+    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
+    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
+    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
+    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
+    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
@@ -302,28 +326,36 @@ data:
     \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
     \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
     \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace\
-    \ Combinatorics {\n  template<class Mint>\n  Mint factorial(int n) {\n    static\
-    \ vc<Mint> dat;\n    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n\
-    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
-    \ - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
-    \ factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n\
-    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n      dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n  \
-    \    for(int i = ssize(dat) - 2; i >= size0; i--)\n        dat[i] = dat[i + 1]\
-    \ * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
-    \ inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
-    \  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if (0 <=\
-    \ k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
-    \ - k);\n    else\n      return Mint(0);\n  }\n\n  template<class Mint>\n  Mint\
-    \ catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n,\
-    \ n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never touch\
-    \ y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k) {\n  \
-    \  if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n) return\
-    \ binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return Mint(0);\n\
-    \  }\n\n  template<class Mint>\n  auto binomial_functions() {\n    return tuple(\n\
-    \      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
+    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
+    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
+    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
+    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
+    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
+    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
+    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
+    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
+    \  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace Combinatorics {\n  template<class\
+    \ Mint>\n  Mint factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat))\
+    \ {\n      if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
     \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
     \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
     \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
@@ -462,7 +494,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:05:06+08:00'
+  timestamp: '2026-09-02 17:22:39+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

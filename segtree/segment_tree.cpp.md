@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/segment_tree.cpp\"\ntemplate<class M, M(*id)(),\
@@ -79,7 +79,7 @@ data:
   path: segtree/segment_tree.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/vertex_set_path_composite.test.cpp
   - test/point_set_range_composite.test.cpp
