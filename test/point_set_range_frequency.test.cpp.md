@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwick_tree.cpp
     title: ds/fenwick_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds_problem/point_set_range_frequency.cpp
     title: ds_problem/point_set_range_frequency.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_frequency
@@ -57,11 +57,11 @@ data:
     \  concept R_invocable = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f),\
     \ std::forward<Args>(args)...) } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range\
     \ R, class T = ranges::range_value_t<R>, typename F>\n  requires R_invocable<T,\
-    \ F, T, T>\n  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T\
+    \ F, T, T>\n  void psum(R &&v, F f) {\n    if (!ranges::empty(v))\n      for(T\
     \ p = *v.begin(); T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n\
     \  template<ranges::forward_range R, class T = ranges::range_value_t<R>>\n  void\
-    \ psum(R &v) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin(); T &x :\
-    \ v | views::drop(1))\n        x = p = p + x;\n  }\n\n  template<ranges::random_access_range\
+    \ psum(R &&v) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin(); T &x\
+    \ : v | views::drop(1))\n        x = p = p + x;\n  }\n\n  template<ranges::random_access_range\
     \ R>\n  void unique(R &v) {\n    ranges::sort(v);\n    v.erase(ranges::unique(v).begin(),\
     \ v.end());\n  }\n\n  template<ranges::random_access_range R>\n  R inv_perm(const\
     \ R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]]\
@@ -154,8 +154,8 @@ data:
   isVerificationFile: true
   path: test/point_set_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 20:44:03+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 22:57:23+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/point_set_range_frequency.test.cpp
 layout: document

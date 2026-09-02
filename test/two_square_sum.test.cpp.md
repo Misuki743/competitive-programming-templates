@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: numtheory/primitive_root.cpp
     title: numtheory/primitive_root.cpp
   - icon: ':x:'
@@ -60,9 +60,9 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \  void psum(R &&v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
     \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
     \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
     \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
@@ -151,11 +151,11 @@ data:
     \ det_l = mod - a, det_r = a;\n  ll x = 0, y = b;\n\n  while (y) {\n    // upd\
     \ r/s\n    ll k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r == 0) {\n\
     \      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k * q;\n \
-    \   while (1) {\n      ll k = max(0ll, ceilDiv(det_l - y, det_r));\n      if (det_l\
-    \ - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n   \
-    \   q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092 y\
-    \ \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n    \
-    \  x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
+    \   while (1) {\n      ll k = max(0ll, ceil_div(det_l - y, det_r));\n      if\
+    \ (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p += k * r;\n\
+    \      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l \u3092\
+    \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
+    \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
     \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
     \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n\n// min_{x in [L, R)} (ax+b mod)\n\
     using i128 = __int128;\npair<i128, ll> min_of_linear(i128 L, i128 R, ll a, ll\
@@ -207,7 +207,7 @@ data:
   isVerificationFile: true
   path: test/two_square_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 20:44:03+08:00'
+  timestamp: '2026-09-02 22:57:23+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/two_square_sum.test.cpp

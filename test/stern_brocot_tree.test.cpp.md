@@ -54,9 +54,9 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \  void psum(R &&v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
     \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
     \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
     \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
@@ -105,9 +105,9 @@ data:
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
     \ algorithm_extend;\n#line 1 \"numtheory/Stern_Brocot_tree.cpp\"\nnamespace Stern_Brocot_tree\
-    \ {\n  using i128 = __int128;\n  template i128 ceil_div(i128 a, i128 b) { return\
-    \ a / b + (a % b > 0); }\n  struct fraction {\n    ll u, d;\n    void reduce()\
-    \ {\n      ll g = gcd(u, d);\n      u /= g, d /= g;\n    }\n  };\n  auto operator<=>(fraction\
+    \ {\n  using i128 = __int128;\n  i128 ceil_div(i128 a, i128 b) { return a / b\
+    \ + (a % b > 0); }\n  struct fraction {\n    ll u, d;\n    void reduce() {\n \
+    \     ll g = gcd(u, d);\n      u /= g, d /= g;\n    }\n  };\n  auto operator<=>(fraction\
     \ a, fraction b) { return (i128)a.u * b.d <=> (i128)a.d * b.u; }\n  bool operator==(fraction\
     \ a, fraction b) { return (i128)a.u * b.d == (i128)a.d * b.u; }\n  ostream& operator<<(ostream\
     \ &os, fraction f) { os << f.u << ' ' << f.d; return os; }\n\n  auto encode_path(fraction\
@@ -178,7 +178,7 @@ data:
   isVerificationFile: true
   path: test/stern_brocot_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:35:40+08:00'
+  timestamp: '2026-09-02 22:57:23+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/stern_brocot_tree.test.cpp

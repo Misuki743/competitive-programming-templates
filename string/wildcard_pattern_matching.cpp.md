@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/wildcard_pattern_matching.cpp\"\n//#include<modint/MontgomeryModInt.cpp>\n\
@@ -49,7 +49,7 @@ data:
   path: string/wildcard_pattern_matching.cpp
   requiredBy: []
   timestamp: '2026-09-02 17:47:14+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/wildcard_pattern_matching.test.cpp
 documentation_of: string/wildcard_pattern_matching.cpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/connected_components_of_complement_graph.test.cpp
     title: test/connected_components_of_complement_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/misc/complement_connectivity.cpp\"\npair<vector<vector<int>>,\
@@ -43,7 +43,7 @@ data:
   path: graph/misc/complement_connectivity.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/connected_components_of_complement_graph.test.cpp
 documentation_of: graph/misc/complement_connectivity.cpp

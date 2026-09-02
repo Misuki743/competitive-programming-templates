@@ -12,9 +12,9 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/Stern_Brocot_tree.cpp\"\nnamespace Stern_Brocot_tree\
-    \ {\n  using i128 = __int128;\n  template i128 ceil_div(i128 a, i128 b) { return\
-    \ a / b + (a % b > 0); }\n  struct fraction {\n    ll u, d;\n    void reduce()\
-    \ {\n      ll g = gcd(u, d);\n      u /= g, d /= g;\n    }\n  };\n  auto operator<=>(fraction\
+    \ {\n  using i128 = __int128;\n  i128 ceil_div(i128 a, i128 b) { return a / b\
+    \ + (a % b > 0); }\n  struct fraction {\n    ll u, d;\n    void reduce() {\n \
+    \     ll g = gcd(u, d);\n      u /= g, d /= g;\n    }\n  };\n  auto operator<=>(fraction\
     \ a, fraction b) { return (i128)a.u * b.d <=> (i128)a.d * b.u; }\n  bool operator==(fraction\
     \ a, fraction b) { return (i128)a.u * b.d == (i128)a.d * b.u; }\n  ostream& operator<<(ostream\
     \ &os, fraction f) { os << f.u << ' ' << f.d; return os; }\n\n  auto encode_path(fraction\
@@ -49,14 +49,14 @@ data:
     \ - (i128)f.u * r.d);\n        l = fraction{r.u * (x - 1) + m.u, r.d * (x - 1)\
     \ + m.d};\n        path.eb('R', x);\n      }\n      m = fraction{l.u + r.u, l.d\
     \ + r.d};\n    }\n    return pair(l, r);\n  }\n};\n\nusing namespace Stern_Brocot_tree;\n"
-  code: "namespace Stern_Brocot_tree {\n  using i128 = __int128;\n  template i128\
-    \ ceil_div(i128 a, i128 b) { return a / b + (a % b > 0); }\n  struct fraction\
-    \ {\n    ll u, d;\n    void reduce() {\n      ll g = gcd(u, d);\n      u /= g,\
-    \ d /= g;\n    }\n  };\n  auto operator<=>(fraction a, fraction b) { return (i128)a.u\
-    \ * b.d <=> (i128)a.d * b.u; }\n  bool operator==(fraction a, fraction b) { return\
-    \ (i128)a.u * b.d == (i128)a.d * b.u; }\n  ostream& operator<<(ostream &os, fraction\
-    \ f) { os << f.u << ' ' << f.d; return os; }\n\n  auto encode_path(fraction f)\
-    \ {\n    f.reduce();\n\n    fraction l{0, 1}, m{1, 1}, r{1, 0};\n    vc<pair<char,\
+  code: "namespace Stern_Brocot_tree {\n  using i128 = __int128;\n  i128 ceil_div(i128\
+    \ a, i128 b) { return a / b + (a % b > 0); }\n  struct fraction {\n    ll u, d;\n\
+    \    void reduce() {\n      ll g = gcd(u, d);\n      u /= g, d /= g;\n    }\n\
+    \  };\n  auto operator<=>(fraction a, fraction b) { return (i128)a.u * b.d <=>\
+    \ (i128)a.d * b.u; }\n  bool operator==(fraction a, fraction b) { return (i128)a.u\
+    \ * b.d == (i128)a.d * b.u; }\n  ostream& operator<<(ostream &os, fraction f)\
+    \ { os << f.u << ' ' << f.d; return os; }\n\n  auto encode_path(fraction f) {\n\
+    \    f.reduce();\n\n    fraction l{0, 1}, m{1, 1}, r{1, 0};\n    vc<pair<char,\
     \ ll>> path;\n    while(f != m) {\n      if (f < m) {\n        ll x = ceil_div((i128)f.d\
     \ * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);\n        r = fraction{l.u\
     \ * (x - 1) + m.u, l.d * (x - 1) + m.d};\n        path.eb('L', x);\n      } else\
@@ -91,7 +91,7 @@ data:
   isVerificationFile: false
   path: numtheory/Stern_Brocot_tree.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:35:40+08:00'
+  timestamp: '2026-09-02 22:57:23+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/stern_brocot_tree.test.cpp

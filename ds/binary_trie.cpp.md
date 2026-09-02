@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/set_xor_min.test.cpp
     title: test/set_xor_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/binary_trie.cpp\"\ntemplate<int mxBit, bool duplicate\
@@ -51,7 +51,7 @@ data:
   path: ds/binary_trie.cpp
   requiredBy: []
   timestamp: '2026-06-07 03:21:31+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/set_xor_min.test.cpp
 documentation_of: ds/binary_trie.cpp
