@@ -13,7 +13,7 @@ vim.cmd([[
 function SetDefaultContext()
   :r ~/Documents/CP/template/default/tt.cpp
   :1,1d
-  :call cursor(677, 2)
+  :call cursor(737, 2)
   :normal zz
 endfunction]])
 vim.cmd('autocmd BufNewFile *.cpp :call SetDefaultContext()')
