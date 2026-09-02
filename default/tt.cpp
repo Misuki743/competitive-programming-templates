@@ -103,19 +103,19 @@ namespace algorithm_extend {
   template<ranges::forward_range R, class T = ranges::range_value_t<R>, typename F>
   requires R_invocable<T, F, T, T>
   void psum(R &&v, F f) {
-    if (!v.empty())
+    if (!ranges::empty(v))
       for(T p = *v.begin(); T &x : v | views::drop(1))
         x = p = f(p, x);
   }
 
   template<ranges::forward_range R, class T = ranges::range_value_t<R>>
   void psum(R &&v) {
-    if (!v.empty())
+    if (!ranges::empty(v))
       for(T p = *v.begin(); T &x : v | views::drop(1))
         x = p = p + x;
   }
 
-  template<ranges::forward_range R>
+  template<ranges::random_access_range R>
   void unique(R &v) {
     ranges::sort(v);
     v.erase(ranges::unique(v).begin(), v.end());
