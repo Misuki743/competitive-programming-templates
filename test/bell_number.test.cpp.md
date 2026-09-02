@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/bell_number.cpp
     title: combi/bell_number.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []

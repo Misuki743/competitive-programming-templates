@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_1097.test.cpp
     title: test/yuki_1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2242.test.cpp
     title: test/yuki_2242.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/doubling.cpp\"\ntemplate<class T = int, typename F =\
@@ -71,7 +71,7 @@ data:
   path: ds/doubling.cpp
   requiredBy: []
   timestamp: '2026-06-09 22:18:50+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki_2242.test.cpp
   - test/yuki_1097.test.cpp

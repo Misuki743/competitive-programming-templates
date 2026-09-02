@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/FPS.cpp
     title: poly/FPS.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':heavy_check_mark:'

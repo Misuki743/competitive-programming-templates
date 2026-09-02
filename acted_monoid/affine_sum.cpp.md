@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_set_range_composite.test.cpp
     title: test/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"acted_monoid/affine_sum.cpp\"\ntemplate<class U>\nstruct\
@@ -41,7 +41,7 @@ data:
   path: acted_monoid/affine_sum.cpp
   requiredBy: []
   timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/vertex_set_path_composite.test.cpp
   - test/range_affine_range_sum.test.cpp

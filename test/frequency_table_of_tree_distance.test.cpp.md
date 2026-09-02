@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution_ll.cpp
     title: poly/convolution_ll.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   _extendedRequiredBy: []

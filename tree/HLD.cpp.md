@@ -15,13 +15,13 @@ data:
   - icon: ':x:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true

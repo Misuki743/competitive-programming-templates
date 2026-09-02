@@ -15,7 +15,7 @@ data:
     - icon: ':warning:'
       path: acted_monoid/add_sum.cpp
       title: acted_monoid/add_sum.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: acted_monoid/affine_sum.cpp
       title: acted_monoid/affine_sum.cpp
     - icon: ':warning:'
@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulli_number.cpp
       title: combi/bernoulli_number.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: combi/binomial.cpp
       title: combi/binomial.cpp
     - icon: ':warning:'
@@ -97,13 +97,13 @@ data:
       title: dp/rerooting_DP.cpp
   - name: ds/DSU
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/DSU/DSU.cpp
       title: ds/DSU/DSU.cpp
     - icon: ':warning:'
       path: ds/DSU/bipartite_DSU.cpp
       title: ds/DSU/bipartite_DSU.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/DSU/potential_DSU.cpp
       title: ds/DSU/potential_DSU.cpp
     - icon: ':warning:'
@@ -129,22 +129,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/double_ended_PQ.cpp
       title: ds/double_ended_PQ.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/doubling.cpp
       title: ds/doubling.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_kth.cpp
       title: ds/dynamic_kth.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fast_set.cpp
       title: ds/fast_set.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwick_tree.cpp
       title: ds/fenwick_tree.cpp
     - icon: ':heavy_check_mark:'
       path: ds/fenwick_tree_2D.cpp
       title: ds/fenwick_tree_2D.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hash_table.cpp
       title: ds/hash_table.cpp
     - icon: ':warning:'
@@ -257,7 +257,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/connectivity/BCC.cpp
       title: graph/connectivity/BCC.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connectivity/ECC.cpp
       title: graph/connectivity/ECC.cpp
     - icon: ':heavy_check_mark:'
@@ -303,7 +303,7 @@ data:
       title: graph/minimum_spanning_tree/Prim.cpp
   - name: graph/misc
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/misc/2sat.cpp
       title: graph/misc/2sat.cpp
     - icon: ':heavy_check_mark:'
@@ -326,7 +326,7 @@ data:
       title: graph/misc/topological_sort.cpp
   - name: graph/shortest_path
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/BFS_01.cpp
       title: graph/shortest_path/BFS_01.cpp
     - icon: ':warning:'
@@ -338,7 +338,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/Dijkstra.cpp
       title: graph/shortest_path/Dijkstra.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/Floyd_Warshall.cpp
       title: graph/shortest_path/Floyd_Warshall.cpp
     - icon: ':heavy_check_mark:'
@@ -399,10 +399,10 @@ data:
     - icon: ':warning:'
       path: linalg/suffix_xor_basis_i64.cpp
       title: linalg/suffix_xor_basis_i64.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor_basis_bitset.cpp
       title: linalg/xor_basis_bitset.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor_basis_i64.cpp
       title: linalg/xor_basis_i64.cpp
   - name: misc
@@ -548,13 +548,13 @@ data:
     - icon: ':warning:'
       path: poly/FFT_mod.cpp
       title: poly/FFT_mod.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/FPS.cpp
       title: poly/FPS.cpp
     - icon: ':heavy_check_mark:'
       path: poly/FPS_sqrt.cpp
       title: poly/FPS_sqrt.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTT.cpp
       title: poly/NTT.cpp
     - icon: ':warning:'
@@ -581,7 +581,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution_ll.cpp
       title: poly/convolution_ll.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_multiplicative.cpp
       title: poly/convolution_multiplicative.cpp
     - icon: ':warning:'
@@ -628,7 +628,7 @@ data:
     - icon: ':warning:'
       path: segtree/segmentTreeLazyDynamic.cpp
       title: segtree/segmentTreeLazyDynamic.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segtree/segment_tree.cpp
       title: segtree/segment_tree.cpp
     - icon: ':warning:'
@@ -665,7 +665,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_substring.cpp
       title: string/longest_common_substring.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.cpp
       title: string/palindromic_tree.cpp
     - icon: ':warning:'
@@ -677,7 +677,7 @@ data:
     - icon: ':warning:'
       path: string/suffix_tree.cpp
       title: string/suffix_tree.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.cpp
       title: string/wildcard_pattern_matching.cpp
     - icon: ':heavy_check_mark:'
@@ -697,7 +697,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/cartesian_tree.cpp
       title: tree/cartesian_tree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/centroid_tree.cpp
       title: tree/centroid_tree.cpp
     - icon: ':heavy_check_mark:'
@@ -706,7 +706,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/static_top_tree.cpp
       title: tree/static_top_tree.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: tree/tree.cpp
       title: tree/tree.cpp
     - icon: ':heavy_check_mark:'
@@ -715,7 +715,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: tree/tree_hash.cpp
       title: tree/tree_hash.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: tree/weighted_tree_diameter.cpp
       title: tree/weighted_tree_diameter.cpp
   verificationCategories:
@@ -1153,76 +1153,76 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/tetration_mod.test.cpp
       title: test/tetration_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/tree_diameter.test.cpp
       title: test/tree_diameter.test.cpp
     - icon: ':x:'
       path: test/tree_path_composite_sum.test.cpp
       title: test/tree_path_composite_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/two_edge_connected_components.test.cpp
       title: test/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/two_sat.test.cpp
       title: test/two_sat.test.cpp
     - icon: ':x:'
       path: test/two_square_sum.test.cpp
       title: test/two_square_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unionfind.test.cpp
       title: test/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unionfind_with_potential.test.cpp
       title: test/unionfind_with_potential.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/unionfind_with_potential_non_commutative_group.test.cpp
       title: test/unionfind_with_potential_non_commutative_group.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_path_sum.test.cpp
       title: test/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_add_subtree_sum.test.cpp
       title: test/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/vertex_get_range_contour_add_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/vertex_set_path_composite.test.cpp
       title: test/vertex_set_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/wildcard_pattern_matching.test.cpp
       title: test/wildcard_pattern_matching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_1097.test.cpp
       title: test/yuki_1097.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_1344.test.cpp
       title: test/yuki_1344.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_1868.test.cpp
       title: test/yuki_1868.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2242.test.cpp
       title: test/yuki_2242.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2544.test.cpp
       title: test/yuki_2544.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2613.test.cpp
       title: test/yuki_2613.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2654.test.cpp
       title: test/yuki_2654.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2895.test.cpp
       title: test/yuki_2895.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2895_2.test.cpp
       title: test/yuki_2895_2.test.cpp
 layout: toppage

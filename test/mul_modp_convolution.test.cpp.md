@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_multiplicative.cpp
     title: poly/convolution_multiplicative.cpp
   _extendedRequiredBy: []

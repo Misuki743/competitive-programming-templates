@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/Bostan_Mori.cpp
     title: poly/Bostan_Mori.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   _extendedRequiredBy: []

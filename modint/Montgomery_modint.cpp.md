@@ -177,22 +177,22 @@ data:
   - icon: ':x:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind_with_potential.test.cpp
     title: test/unionfind_with_potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/unionfind_with_potential_non_commutative_group.test.cpp
     title: test/unionfind_with_potential_non_commutative_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/wildcard_pattern_matching.test.cpp
     title: test/wildcard_pattern_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2544.test.cpp
     title: test/yuki_2544.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki_2613.test.cpp
     title: test/yuki_2613.test.cpp
   _isVerificationFailed: true

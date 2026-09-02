@@ -105,7 +105,8 @@ data:
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
     \ algorithm_extend;\n#line 1 \"numtheory/Stern_Brocot_tree.cpp\"\nnamespace Stern_Brocot_tree\
-    \ {\n  using i128 = __int128;\n  struct fraction {\n    ll u, d;\n    void reduce()\
+    \ {\n  using i128 = __int128;\n  template i128 ceil_div(i128 a, i128 b) { return\
+    \ a / b + (a % b > 0); }\n  struct fraction {\n    ll u, d;\n    void reduce()\
     \ {\n      ll g = gcd(u, d);\n      u /= g, d /= g;\n    }\n  };\n  auto operator<=>(fraction\
     \ a, fraction b) { return (i128)a.u * b.d <=> (i128)a.d * b.u; }\n  bool operator==(fraction\
     \ a, fraction b) { return (i128)a.u * b.d == (i128)a.d * b.u; }\n  ostream& operator<<(ostream\
@@ -177,7 +178,7 @@ data:
   isVerificationFile: true
   path: test/stern_brocot_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 20:44:03+08:00'
+  timestamp: '2026-09-02 22:35:40+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/stern_brocot_tree.test.cpp
