@@ -148,6 +148,33 @@ namespace algorithm_extend {
   }
 
   template<integral T>
+  vc<T> iota_vec(int n, T s = 0, T d = 1) {
+    vc<T> v(n);
+    for(int i = 0; i < n; i++)
+      v[i] = i * d + s;
+    return v;
+  }
+
+  template<ranges::random_access_range R>
+  R compress(R &v) {
+    R val = v;
+    unique(val);
+    for(auto &x : v)
+      x = ranges::lower_bound(val, x) - val.begin();
+    return val;
+  }
+
+  template<ranges::random_access_range R>
+  R compress_stable(R &v) {
+    R val = v;
+    ranges::sort(val);
+    vi pos = iota_vec<int>(ssize(v));
+    for(auto &x : v)
+      x = pos[ranges::lower_bound(val, x) - val.begin()]++;
+    return val;
+  }
+
+  template<integral T>
   void set_bit(T &msk, int bit, bool x) {
     if (x) msk |= T(1) << bit;
     else msk &= ~(T(1) << bit);
@@ -196,6 +223,33 @@ namespace algorithm_extend {
       a *= a, k >>= 1;
     }
     return b;
+  }
+
+  template<ranges::random_access_range R>
+  ll inversion_count(R v) {
+    ll f = 0;
+    auto tmp = v;
+    auto dc = [&](int l, int r, auto &self) -> void {
+      if (l + 1 >= r) return;
+      int mid = (l + r) / 2;
+      self(l, mid, self);
+      self(mid, r, self);
+      {
+        int i = l, j = mid, k = l;
+        while(i < mid and j < r) {
+          if (v[i] <= v[j]) tmp[k++] = v[i++];
+          else tmp[k++] = v[j++], f += mid - i;
+        }
+        while(i < mid) tmp[k++] = v[i++];
+        while(j < r) tmp[k++] = v[j++];
+      }
+      for(int i = l; i < r; i++)
+        v[i] = tmp[i];
+    };
+
+    dc(0, ssize(v), dc);
+
+    return f;
   }
 }
 
