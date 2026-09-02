@@ -1,4 +1,4 @@
-mt19937_64 rng(clock);
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 const int TN = 5'000'000;
 struct Treap {
   static Treap mem[TN], *pmem;

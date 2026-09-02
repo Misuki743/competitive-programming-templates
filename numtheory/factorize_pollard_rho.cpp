@@ -25,7 +25,7 @@ bool isPrime(ull n) {
 }
 
 ull pollard(ull n) {
-  static mt19937_64 rng(clock);
+  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
   uniform_int_distribution<ull> unif(0, n - 1);
   ull c = 1;
 	auto f = [n, &c](ull x) { return modmul(x, x, n) + c % n; };

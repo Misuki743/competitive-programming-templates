@@ -7,7 +7,7 @@ template<> uint32_t dynamic_Montgomery_modint<123>::r = 0;
 int chromatic_number(vector<vector<bool>> g) {
   const int n = ssize(g);
 
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   uniform_int_distribution<int> unif(1 << 29, 1 << 30);
   int p = 4;
   while(!isPrime(p)) p = unif(rng);

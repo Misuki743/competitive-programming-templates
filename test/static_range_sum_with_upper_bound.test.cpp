@@ -11,7 +11,7 @@ int main() {
   for(int &x : a) cin >> x;
 
   vi xs = a;
-  Unique(xs);
+  unique(xs);
   for(int &x : a)
     x = ranges::lower_bound(xs, x) - xs.begin();
 

@@ -3,7 +3,7 @@
 template<integral T>
 vi range_count_distinct(vc<T> a, vc<pii> query) {
   vc<T> b = a;
-  Unique(b);
+  unique(b);
   for(T &x : a)
     x = ranges::lower_bound(b, x) - b.begin();
 

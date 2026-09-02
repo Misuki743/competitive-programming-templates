@@ -10,7 +10,7 @@ ull primitiveRoot(ull p) {
         return false;
     return true;
   };
-  static mt19937_64 rng(clock);
+  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
   uniform_int_distribution<ull> unif(1, p - 1);
   ull root;
   while(!test(root = unif(rng)));

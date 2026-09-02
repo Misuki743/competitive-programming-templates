@@ -6,7 +6,7 @@ struct dynamic_SOS {
   array<ull, 3> g;
   dynamic_SOS(int W, vc<pii> add = {}, vi get = {}) : f(1 << W) {
     ll opt_cost = LLONG_MAX;
-    mt19937_64 rng(clock);
+    mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
     uniform_int_distribution<int> unif(0, 2);
     for(int i = 0; i < 64; i++) {
       array<ull, 3> g_tmp = {};

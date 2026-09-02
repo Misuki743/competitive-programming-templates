@@ -9,7 +9,7 @@ int main() {
   int n, q; cin >> n >> q;
   vector<pii> e(n - 1);
   for(auto &[u, v] : e) cin >> u >> v;
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   tree T(std::move(e), rng() % n);
   while(q--) {
     int s, t, i; cin >> s >> t >> i;

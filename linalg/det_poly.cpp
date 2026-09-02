@@ -4,7 +4,7 @@ auto det_poly(matrix<Mint> M0, matrix<Mint> M1) {
   const int N = ssize(M0);
   assert(N > 0 and ssize(M1) == N and ssize(M0[0]) == N and ssize(M1[0]) == N);
 
-  mt19937_64 rng(clock);
+  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 
   Mint a = rng() % Mint::get_mod();
   for(int i = 0; i < N; i++)

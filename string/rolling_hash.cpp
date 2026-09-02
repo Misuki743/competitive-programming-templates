@@ -3,7 +3,7 @@ struct rolling_hash {
   int sz;
   vector<vector<Mint>> powr;
   rolling_hash(int mxLen) : sz(mxLen + 1), powr(cnt, vector<Mint>(mxLen + 1)) {
-    mt19937 rng(clock);
+    mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
     uniform_int_distribution<int> unif(0, Mint::get_mod() - 1);
     for(int i = 0; i < cnt; i++) {
       powr[i][0] = 1, powr[i][1] = unif(rng);

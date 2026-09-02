@@ -4,7 +4,7 @@ template<integral coord, integral weight>
 vc<weight> rectangle_sum(vc<tuple<coord, coord, weight>> pt, vc<array<coord, 4>> query) {
   vc<coord> ys;
   for(auto &[_, y, __] : pt) ys.eb(y);
-  Unique(ys);
+  unique(ys);
 
   for(auto &[l, d, r, u] : query) {
     d = ranges::lower_bound(ys, d) - ys.begin();

@@ -8,7 +8,7 @@ answer_type area_of_union_of_rectangles(vector<array<coordinate_type, 4>> rect) 
   vector<coordinate_type> xs(2 * size(rect)), ys(2 * size(rect));
   for(int i = 0; auto [a, b, c, d] : rect)
     tie(xs[2 * i], ys[2 * i], xs[2 * i + 1], ys[2 * i + 1]) = make_tuple(a, b, c, d), i++;
-  Unique(xs), Unique(ys);
+  unique(xs), unique(ys);
 
   vector<array<int, 4>> event(2 * size(rect));
   for(int i = 0; i < ssize(rect); i++) {

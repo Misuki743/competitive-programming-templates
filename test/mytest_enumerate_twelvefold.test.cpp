@@ -24,7 +24,7 @@ int main() {
           S.push_back(std::move(a));
         });
         assert(cnt == ssize(S));
-        Unique(S);
+        unique(S);
         assert(cnt == ssize(S));
       }
     }
@@ -42,7 +42,7 @@ int main() {
           assert(p[i] == i);
       });
       assert(cnt == ssize(S));
-      Unique(S);
+      unique(S);
       assert(cnt == ssize(S));
     }
   }
@@ -63,11 +63,11 @@ int main() {
           assert(a.empty() or ranges::min(a) >= 0);
           assert(a.empty() or ranges::max(a) < n);
           S.push_back(a);
-          Unique(a);
+          unique(a);
           assert(ssize(a) == k);
         });
         assert(ssize(S) == C[n][k]);
-        Unique(S);
+        unique(S);
         assert(ssize(S) == C[n][k]);
       }
     }
@@ -90,7 +90,7 @@ int main() {
         S.push_back(std::move(p));
       });
       assert(ssize(S) == bell[n]);
-      Unique(S);
+      unique(S);
       assert(ssize(S) == bell[n]);
     }
   }
@@ -116,7 +116,7 @@ int main() {
           assert(ssize(S) == (sum == 0));
         else
           assert(ssize(S) == C[n - 1 + sum][sum]);
-        Unique(S);
+        unique(S);
         if (n == 0)
           assert(ssize(S) == (sum == 0));
         else
@@ -136,7 +136,7 @@ int main() {
         S.emplace_back(std::move(p));
       });
       assert(ssize(S) == part[n]);
-      Unique(S);
+      unique(S);
       assert(ssize(S) == part[n]);
     }
   }

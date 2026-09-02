@@ -10,7 +10,7 @@ int main() {
   vc<pii> e(n - 1);
   for(auto &[u, v] : e)
     cin >> u >> v;
-  mt19937_64 rng(clock);
+  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
   HLD hld(std::move(e), rng() % n);
   while(q--) {
     int s, t, k; cin >> s >> t >> k;

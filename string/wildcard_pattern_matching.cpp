@@ -4,7 +4,7 @@
 
 template<class Mint, char base = 'a'>
 vector<bool> wildcard_pattern_matching(string s, string t) {
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   uniform_int_distribution<int> unif(1, Mint::get_mod() - 1);
   array<Mint, 26> mp;
   auto getVal = [&](char c) -> Mint { return c == '*' ? Mint(0) : mp[c - base]; };

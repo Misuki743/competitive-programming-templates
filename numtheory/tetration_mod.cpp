@@ -1,6 +1,6 @@
 ll phi(ll n) {
   auto pf = factor(n);
-  Unique(pf);
+  unique(pf);
   for(ll p : pf)
     n -= n / p;
   return n;

@@ -104,7 +104,7 @@ void check(vector<vector<int>> g, int root) {
     assert(crit == crit2);
   };
 
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   const int n = ssize(g);
   if (ssize(g) <= 15) {
     for(int msk = 1; msk < (1 << n); msk++) {
@@ -129,7 +129,7 @@ void check(vector<vector<int>> g, int root) {
 }
 
 auto random_relabel(vector<vector<int>> g) {
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   const int n = ssize(g);
   vector<int> p(n);
   iota(p.begin(), p.end(), 0);
@@ -149,7 +149,7 @@ void a_plus_b() {
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
   for(int n = 1; n <= 6; n++) {
     enumerate_label_tree(n, [&](vector<vector<int>> g) {

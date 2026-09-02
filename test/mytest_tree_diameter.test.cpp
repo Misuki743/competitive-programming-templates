@@ -44,12 +44,12 @@ void check(vector<vector<int>> g) {
   assert(ssize(path) == diameter + 1);
   for(int i = 1; i < ssize(path); i++)
     assert(s.contains(pair(path[i - 1], path[i])));
-  Unique(path);
+  unique(path);
   assert(ssize(path) == diameter + 1);
 }
 
 auto random_relabel(vector<vector<int>> g) {
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
   const int n = ssize(g);
   vector<int> p(n);
   iota(p.begin(), p.end(), 0);
@@ -69,7 +69,7 @@ void a_plus_b() {
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
-  mt19937 rng(clock);
+  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
   for(int n = 1; n <= 7; n++) {
     enumerate_label_tree(n, [&](vector<vector<int>> g) {

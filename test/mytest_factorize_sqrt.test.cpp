@@ -40,7 +40,7 @@ void check_small() {
 }
 
 void check_large() {
-  mt19937_64 rng(clock);
+  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
   for(int64_t l = (1ll << 10); l < (1ll << 53); l <<= 1)
     for(int i = 0; i < 10; i++)
       check(rng() % l + l);
