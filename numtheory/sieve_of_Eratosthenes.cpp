@@ -29,7 +29,7 @@ namespace sieve_of_Eratosthenes {
     for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)] == i) {
       int k = _first_valid(max(i, ceilDiv(_C, i)));
       for(int j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)
-        chmin(_mpf[_id(j)], i);
+        _mpf[_id(j)] = min<int32_t>(_mpf[_id(j)], i);
     }
     _C = n;
   }
@@ -82,10 +82,9 @@ namespace sieve_of_Eratosthenes {
   requires invocable<F, int>
   void primes(int m, F f) {
     if (_prime.back() < m) {
-      if (m >= _C) sieve(m);
-      _prime.reserve(1.1 * _C / log(_C));
+      if (m > _C) sieve(m);
       int s = _next_valid(_prime.back());
-      for(int i = s, d = _next_valid(s) - s; i < _C; i += d, d = 6 - d)
+      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)
         if (_mpf[_id(i)] == i)
           _prime.eb(i);
     }
@@ -94,6 +93,4 @@ namespace sieve_of_Eratosthenes {
       f(p);
     }
   }
-};
-
-//using namespace sieve_of_Eratosthenes;
+}
