@@ -11,7 +11,7 @@ vc<T> rollback_MO(vc<pii> qry, F init, G dec_l, H inc_r) {
   const int B = ceilDiv(n, (int)(kth_root(ssize(qry), 2) + 1));
 
   vc<T> sol(size(qry));
-  auto ord = arg_sort(qry, [B](auto pr) { return pii(pr.first / B, pr.second); });
+  auto ord = arg_sort(qry, [B](const auto &pr) { return pii(pr.first / B, pr.second); });
   for(auto [l, r] : equal_subarrays(ord, [&](int i) { return qry[i].first / B; })) {
     int ql = (qry[ord[l]].first / B + 1) * B;
     int qr = 0;

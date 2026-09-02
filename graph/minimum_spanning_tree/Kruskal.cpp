@@ -7,7 +7,7 @@ auto Kruskal(int n, vector<tuple<int, int, T>> &e) {
     ord.resize(n);
     iota(ord.begin(), ord.end(), 0ll);
   } else {
-    ord = arg_sort(e, [](tuple<int, int, T> &t) { return get<2>(t); });
+    ord = arg_sort(e, [](const tuple<int, int, T> &t) { return get<2>(t); });
   }
 
   T cost = 0;

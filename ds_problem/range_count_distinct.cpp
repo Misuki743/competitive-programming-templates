@@ -9,7 +9,7 @@ vi range_count_distinct(vc<T> a, vc<pii> query) {
 
   vi ans(size(query)), pos(size(b), -1);
   fenwick_tree<int> ft(ssize(a));
-  for(int j = 0; int i : arg_sort(query, [](pii &p) { return p.second; })) {
+  for(int j = 0; int i : arg_sort(query, [](const pii &p) { return p.second; })) {
     auto [l, r] = query[i];
     while(j < r) {
       if (pos[a[j]] != -1)
