@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fast_set.cpp
     title: ds/fast_set.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
@@ -110,14 +110,14 @@ data:
     \ T b) { return a < b ? a = b, 1 : 0; }\n\n#line 1 \"ds/fast_set.cpp\"\nstruct\
     \ fast_set {\n  using u64 = uint64_t;\n  using i64 = int64_t;\n  static constexpr\
     \ u64 B = 64;\n  i64 sz;\n  vector<vector<u64>> data;\n\n  fast_set(u64 _sz) :\
-    \ sz(_sz) {\n    do {\n      data.push_back(vector<u64>(ceilDiv(_sz, B)));\n \
-    \     _sz = ceilDiv(_sz, B);\n    } while(_sz > 1);\n  }\n\n  fast_set(string\
-    \ s) : sz(ssize(s)) {\n    u64 _sz = sz;\n    data.push_back(vector<u64>(ceilDiv(_sz,\
+    \ sz(_sz) {\n    do {\n      data.push_back(vector<u64>(ceil_div(_sz, B)));\n\
+    \      _sz = ceil_div(_sz, B);\n    } while(_sz > 1);\n  }\n\n  fast_set(string\
+    \ s) : sz(ssize(s)) {\n    u64 _sz = sz;\n    data.push_back(vector<u64>(ceil_div(_sz,\
     \ B)));\n    for(i64 i = 0; i < ssize(s); i++)\n      data[0][i / B] |= u64(s[i]\
-    \ - '0') << (i % B);\n    _sz = ceilDiv(_sz, B);\n    while(_sz > 1) {\n     \
-    \ data.push_back(vector<u64>(ceilDiv(_sz, B)));\n      for(u64 i = 0; i < _sz;\
+    \ - '0') << (i % B);\n    _sz = ceil_div(_sz, B);\n    while(_sz > 1) {\n    \
+    \  data.push_back(vector<u64>(ceil_div(_sz, B)));\n      for(u64 i = 0; i < _sz;\
     \ i++)\n        data.back()[i / B] |= u64(!!end(data)[-2][i]) << (i % B);\n  \
-    \    _sz = ceilDiv(_sz, B);\n    }\n  }\n\n  bool contains(i64 x) {\n    return\
+    \    _sz = ceil_div(_sz, B);\n    }\n  }\n\n  bool contains(i64 x) {\n    return\
     \ x < sz and (data[0][x / B] >> (x % B) & 1);\n  }\n\n  void insert(i64 x) {\n\
     \    if (contains(x)) return;\n    assert(x < sz);\n    for(auto &v : data)\n\
     \      v[x / B] |= u64(1) << (x % B), x /= B;\n  }\n\n  void erase(i64 x) {\n\
@@ -154,8 +154,8 @@ data:
   isVerificationFile: true
   path: test/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:57:44+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/predecessor_problem.test.cpp
 layout: document

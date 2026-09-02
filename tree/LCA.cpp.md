@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_2.test.cpp
     title: test/lca_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/LCA.cpp\"\n//#include \"ds/RMQ.cpp\"\n\nstruct LCA\
@@ -30,13 +30,13 @@ data:
     \ 1);\n      for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]],\
     \ nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]]\
     \ + 1;\n      }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi\
-    \ init(2 * n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n   \
-    \   int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
+    \ init(2 * n - 1);\n    {\n      vi dfn_ord = inv_perm(std::move(dfn));\n\n  \
+    \    int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
     \ != p[v]) {\n          pre = p[pre], tout[pre] = nxt;\n          init[nxt++]\
     \ = pre;\n        }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre\
     \ = v;\n      }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre]\
     \ = nxt;\n        init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n\
-    \      for(int x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int\
+    \      for(int x : dep) f[x]++;\n      psum(f);\n\n      vi rank(n);\n      for(int\
     \ v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] =\
     \ v;\n      }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n\
     \  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return\
@@ -56,12 +56,12 @@ data:
     \ {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v]\
     \ + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n    \
     \  vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord =\
-    \ invPerm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int v\
+    \ inv_perm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int v\
     \ : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
     \ = nxt;\n          init[nxt++] = pre;\n        }\n        tin[v] = tout[v] =\
     \ nxt;\n        init[nxt++] = pre = v;\n      }\n\n      while(pre != root) {\n\
     \        pre = p[pre], tout[pre] = nxt;\n        init[nxt++] = pre;\n      }\n\
-    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      pSum(f);\n\
+    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      psum(f);\n\
     \n      vi rank(n);\n      for(int v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n\
     \        mp[rank[v]] = v;\n      }\n      for(int &v : init) v = rank[v];\n  \
     \  }\n\n    return init;\n  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v])\
@@ -73,8 +73,8 @@ data:
   isVerificationFile: false
   path: tree/LCA.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/lca_3.test.cpp
   - test/mytest_auxiliary_tree.test.cpp

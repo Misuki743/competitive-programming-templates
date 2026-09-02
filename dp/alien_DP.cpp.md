@@ -12,23 +12,23 @@ data:
     \ where g(p) := min(max)(f(x) - px) is easy to evaluate.\n//tips: think p as the\
     \ slope of line L(x) = px and g(p) is the signed distance from line L(x) to f(x)\
     \ is less confusing.\ntemplate<class T, T(*g)(T), bool convex>\nT alien_DP(T x,\
-    \ T Pl, T Pr) {\n  while(Pl < Pr) {\n    T mid = floorDiv(Pl + Pr, T(2));\n  \
-    \  if constexpr (convex) {\n      if (g(mid) - g(mid + 1) <= x) Pl = mid + 1;\n\
+    \ T Pl, T Pr) {\n  while(Pl < Pr) {\n    T mid = floor_div(Pl + Pr, T(2));\n \
+    \   if constexpr (convex) {\n      if (g(mid) - g(mid + 1) <= x) Pl = mid + 1;\n\
     \      else Pr = mid;\n    } else {\n      if (g(mid) - g(mid + 1) >= x) Pl =\
     \ mid + 1;\n      else Pr = mid;\n    }\n  }\n  return g(Pl) + Pl * x;\n}\n"
   code: "//evaluate convex(concave) function f(x), where g(p) := min(max)(f(x) - px)\
     \ is easy to evaluate.\n//tips: think p as the slope of line L(x) = px and g(p)\
     \ is the signed distance from line L(x) to f(x) is less confusing.\ntemplate<class\
     \ T, T(*g)(T), bool convex>\nT alien_DP(T x, T Pl, T Pr) {\n  while(Pl < Pr) {\n\
-    \    T mid = floorDiv(Pl + Pr, T(2));\n    if constexpr (convex) {\n      if (g(mid)\
-    \ - g(mid + 1) <= x) Pl = mid + 1;\n      else Pr = mid;\n    } else {\n     \
-    \ if (g(mid) - g(mid + 1) >= x) Pl = mid + 1;\n      else Pr = mid;\n    }\n \
-    \ }\n  return g(Pl) + Pl * x;\n}\n"
+    \    T mid = floor_div(Pl + Pr, T(2));\n    if constexpr (convex) {\n      if\
+    \ (g(mid) - g(mid + 1) <= x) Pl = mid + 1;\n      else Pr = mid;\n    } else {\n\
+    \      if (g(mid) - g(mid + 1) >= x) Pl = mid + 1;\n      else Pr = mid;\n   \
+    \ }\n  }\n  return g(Pl) + Pl * x;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: dp/alien_DP.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-09-02 17:05:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: dp/alien_DP.cpp

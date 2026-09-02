@@ -3,30 +3,30 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_2.test.cpp
     title: test/jump_on_tree_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_3.test.cpp
     title: test/jump_on_tree_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_4.test.cpp
     title: test/lca_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_add_path_sum.test.cpp
     title: test/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_add_subtree_sum.test.cpp
     title: test/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/vertex_set_path_composite.test.cpp
     title: test/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/HLD.cpp\"\nstruct HLD {\n  int n, root;\n  vi dep,\
@@ -43,16 +43,16 @@ data:
     \    while(d[v] == 1) {\n          d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n      \
     \    sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]], sz[v]);\n        \
     \  v = p[v];\n        }\n      }\n      p[root] = root;\n    }\n\n    vi ord(n);\n\
-    \    {\n      vi f(n + 2);\n      for(int x : sz) f[x + 1]++;\n      pSum(f);\n\
+    \    {\n      vi f(n + 2);\n      for(int x : sz) f[x + 1]++;\n      psum(f);\n\
     \      for(int v = 0; v < n; v++)\n        ord[n - 1 - (f[sz[v]]++)] = v;\n  \
     \  }\n\n    {\n      head[root] = root, tout[root] = n;\n\n      vi add(n, 1);\n\
     \      for(int v : ord | views::drop(1)) {\n        dep[v] = dep[p[v]] + 1;\n\
     \        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]] += sz[v];\n      \
     \  tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]] == sz[v])\n      \
     \    mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n          head[v]\
-    \ = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n    lb = vc<int32_t>(n\
+    \ = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n    lb = vc<int32_t>(n\
     \ + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v < n; v++)\n      if\
-    \ (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int v = 0; v < n; v++)\n\
+    \ (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int v = 0; v < n; v++)\n\
     \      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]] = v;\n\
     \    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n     \
     \   child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i = 0;\
@@ -112,15 +112,15 @@ data:
     \     d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n     \
     \     chmax(mx_child_sz[p[v]], sz[v]);\n          v = p[v];\n        }\n     \
     \ }\n      p[root] = root;\n    }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n\
-    \      for(int x : sz) f[x + 1]++;\n      pSum(f);\n      for(int v = 0; v < n;\
+    \      for(int x : sz) f[x + 1]++;\n      psum(f);\n      for(int v = 0; v < n;\
     \ v++)\n        ord[n - 1 - (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root]\
     \ = root, tout[root] = n;\n\n      vi add(n, 1);\n      for(int v : ord | views::drop(1))\
     \ {\n        dep[v] = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n\
     \        add[p[v]] += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
     \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n   \
-    \ lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
+    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
+    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
+    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
     \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
@@ -170,8 +170,8 @@ data:
   isVerificationFile: false
   path: tree/HLD.cpp
   requiredBy: []
-  timestamp: '2026-07-12 14:48:03+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/vertex_set_path_composite.test.cpp
   - test/lca_4.test.cpp

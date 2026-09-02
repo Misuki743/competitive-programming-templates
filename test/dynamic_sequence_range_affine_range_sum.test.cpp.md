@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: acted_monoid/affine_sum.cpp
     title: acted_monoid/affine_sum.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
     path: ds/treap.cpp
     title: ds/treap.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   _extendedRequiredBy: []
@@ -146,7 +146,7 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
-    \ = Montgomery_modint<998'244'353>;\n#line 1 \"ds/treap.cpp\"\nmt19937 rng(clock);\n\
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"ds/treap.cpp\"\nmt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
     \ntemplate<class M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(),\
     \ T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>\nstruct treap {\n\
     \  struct node {\n    int pri, size = 1;\n    bool rev = false;\n    node *l =\
@@ -227,7 +227,7 @@ data:
   isVerificationFile: true
   path: test/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:57:54+08:00'
+  timestamp: '2026-09-02 17:05:06+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/dynamic_sequence_range_affine_range_sum.test.cpp

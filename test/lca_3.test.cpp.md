@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -142,13 +142,13 @@ data:
     \ 1);\n      for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]],\
     \ nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]]\
     \ + 1;\n      }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi\
-    \ init(2 * n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n   \
-    \   int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
+    \ init(2 * n - 1);\n    {\n      vi dfn_ord = inv_perm(std::move(dfn));\n\n  \
+    \    int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
     \ != p[v]) {\n          pre = p[pre], tout[pre] = nxt;\n          init[nxt++]\
     \ = pre;\n        }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre\
     \ = v;\n      }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre]\
     \ = nxt;\n        init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n\
-    \      for(int x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int\
+    \      for(int x : dep) f[x]++;\n      psum(f);\n\n      vi rank(n);\n      for(int\
     \ v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] =\
     \ v;\n      }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n\
     \  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return\
@@ -173,8 +173,8 @@ data:
   isVerificationFile: true
   path: test/lca_3.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca_3.test.cpp
 layout: document

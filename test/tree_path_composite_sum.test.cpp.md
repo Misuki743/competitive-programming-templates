@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/rerooting_DP.cpp
     title: dp/rerooting_DP.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_path_composite_sum
@@ -160,15 +160,15 @@ data:
     \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
     \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
     \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
-    \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
+    \ 1]++;\n      psum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
     \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
     \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
     \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
     \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
     \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n   \
-    \ lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
+    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
+    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
+    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
     \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
@@ -231,7 +231,7 @@ data:
     \   pre.back() = suf.back() = add_e(data[tree.parent(v)], tree.parent_eid(v));\n\
     \      }\n      for(int i = 0; int x : tree.childs(v)) {\n        dp_down[x] =\
     \ data[x];\n        pre[i] = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n\
-    \      }\n      pSum(pre, ee), pSum(suf | views::reverse, ee);\n      V tmp =\
+    \      }\n      psum(pre, ee), psum(suf | views::reverse, ee);\n      V tmp =\
     \ data[v];\n      dp_full[v] = data[v] = (deg ? add_v(suf[0], v) : id(v));\n \
     \     for(int i = -1; int x : tree.childs(v)) {\n        i++;\n        bool leaf\
     \ = 1;\n        E prod;\n        if (i) prod = pre[i - 1], leaf = 0;\n       \
@@ -274,8 +274,8 @@ data:
   isVerificationFile: true
   path: test/tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-07-12 14:48:03+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tree_path_composite_sum.test.cpp
 layout: document

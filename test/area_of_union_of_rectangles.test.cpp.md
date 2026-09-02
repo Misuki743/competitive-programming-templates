@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: acted_monoid/add_min_count.cpp
     title: acted_monoid/add_min_count.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'

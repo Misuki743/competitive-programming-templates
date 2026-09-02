@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki_1097.test.cpp
     title: test/yuki_1097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki_2242.test.cpp
     title: test/yuki_2242.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/doubling.cpp\"\ntemplate<class T = int, typename F =\
@@ -71,7 +71,7 @@ data:
   path: ds/doubling.cpp
   requiredBy: []
   timestamp: '2026-06-09 22:18:50+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki_2242.test.cpp
   - test/yuki_1097.test.cpp

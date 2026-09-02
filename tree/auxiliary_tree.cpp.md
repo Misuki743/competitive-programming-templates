@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/auxiliary_tree.cpp\"\n//#include \"ds/RMQ.cpp\"\n//#include\
@@ -18,7 +18,7 @@ data:
     \ < (1 << P) / P) {\n      ranges::sort(vs, {}, proj);\n    } else {\n      int\
     \ mx = proj(ranges::max(vs, {}, proj));\n      for(int i = 0; mx > 0; i++, mx\
     \ >>= P){\n        array<int, (1 << P) + 1> f = {};\n        for(int v : vs)\n\
-    \          f[(proj(v) >> (i * P) & ((1 << P) - 1)) + 1]++;\n        pSum(f);\n\
+    \          f[(proj(v) >> (i * P) & ((1 << P) - 1)) + 1]++;\n        psum(f);\n\
     \        vi nxt(size(vs));\n        for(int v : vs)\n          nxt[f[proj(v) >>\
     \ (i * P) & ((1 << P) - 1)]++] = v;\n        vs.swap(nxt);\n      }\n    }\n\n\
     \    vi s, old_id;\n    vc<bool> is_critical_node;\n    auto push_new_vertex =\
@@ -41,7 +41,7 @@ data:
     \ {}, proj);\n    } else {\n      int mx = proj(ranges::max(vs, {}, proj));\n\
     \      for(int i = 0; mx > 0; i++, mx >>= P){\n        array<int, (1 << P) + 1>\
     \ f = {};\n        for(int v : vs)\n          f[(proj(v) >> (i * P) & ((1 << P)\
-    \ - 1)) + 1]++;\n        pSum(f);\n        vi nxt(size(vs));\n        for(int\
+    \ - 1)) + 1]++;\n        psum(f);\n        vi nxt(size(vs));\n        for(int\
     \ v : vs)\n          nxt[f[proj(v) >> (i * P) & ((1 << P) - 1)]++] = v;\n    \
     \    vs.swap(nxt);\n      }\n    }\n\n    vi s, old_id;\n    vc<bool> is_critical_node;\n\
     \    auto push_new_vertex = [&](int v, bool critical = true) {\n      s.emplace_back(ssize(old_id));\n\
@@ -60,8 +60,8 @@ data:
   isVerificationFile: false
   path: tree/auxiliary_tree.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_auxiliary_tree.test.cpp
 documentation_of: tree/auxiliary_tree.cpp

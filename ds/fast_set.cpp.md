@@ -3,24 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/fast_set.cpp\"\nstruct fast_set {\n  using u64 = uint64_t;\n\
     \  using i64 = int64_t;\n  static constexpr u64 B = 64;\n  i64 sz;\n  vector<vector<u64>>\
-    \ data;\n\n  fast_set(u64 _sz) : sz(_sz) {\n    do {\n      data.push_back(vector<u64>(ceilDiv(_sz,\
-    \ B)));\n      _sz = ceilDiv(_sz, B);\n    } while(_sz > 1);\n  }\n\n  fast_set(string\
-    \ s) : sz(ssize(s)) {\n    u64 _sz = sz;\n    data.push_back(vector<u64>(ceilDiv(_sz,\
+    \ data;\n\n  fast_set(u64 _sz) : sz(_sz) {\n    do {\n      data.push_back(vector<u64>(ceil_div(_sz,\
+    \ B)));\n      _sz = ceil_div(_sz, B);\n    } while(_sz > 1);\n  }\n\n  fast_set(string\
+    \ s) : sz(ssize(s)) {\n    u64 _sz = sz;\n    data.push_back(vector<u64>(ceil_div(_sz,\
     \ B)));\n    for(i64 i = 0; i < ssize(s); i++)\n      data[0][i / B] |= u64(s[i]\
-    \ - '0') << (i % B);\n    _sz = ceilDiv(_sz, B);\n    while(_sz > 1) {\n     \
-    \ data.push_back(vector<u64>(ceilDiv(_sz, B)));\n      for(u64 i = 0; i < _sz;\
+    \ - '0') << (i % B);\n    _sz = ceil_div(_sz, B);\n    while(_sz > 1) {\n    \
+    \  data.push_back(vector<u64>(ceil_div(_sz, B)));\n      for(u64 i = 0; i < _sz;\
     \ i++)\n        data.back()[i / B] |= u64(!!end(data)[-2][i]) << (i % B);\n  \
-    \    _sz = ceilDiv(_sz, B);\n    }\n  }\n\n  bool contains(i64 x) {\n    return\
+    \    _sz = ceil_div(_sz, B);\n    }\n  }\n\n  bool contains(i64 x) {\n    return\
     \ x < sz and (data[0][x / B] >> (x % B) & 1);\n  }\n\n  void insert(i64 x) {\n\
     \    if (contains(x)) return;\n    assert(x < sz);\n    for(auto &v : data)\n\
     \      v[x / B] |= u64(1) << (x % B), x /= B;\n  }\n\n  void erase(i64 x) {\n\
@@ -39,14 +39,14 @@ data:
     \    return y / B;\n      }\n    }\n    return -1;\n  }\n};\n"
   code: "struct fast_set {\n  using u64 = uint64_t;\n  using i64 = int64_t;\n  static\
     \ constexpr u64 B = 64;\n  i64 sz;\n  vector<vector<u64>> data;\n\n  fast_set(u64\
-    \ _sz) : sz(_sz) {\n    do {\n      data.push_back(vector<u64>(ceilDiv(_sz, B)));\n\
-    \      _sz = ceilDiv(_sz, B);\n    } while(_sz > 1);\n  }\n\n  fast_set(string\
-    \ s) : sz(ssize(s)) {\n    u64 _sz = sz;\n    data.push_back(vector<u64>(ceilDiv(_sz,\
+    \ _sz) : sz(_sz) {\n    do {\n      data.push_back(vector<u64>(ceil_div(_sz, B)));\n\
+    \      _sz = ceil_div(_sz, B);\n    } while(_sz > 1);\n  }\n\n  fast_set(string\
+    \ s) : sz(ssize(s)) {\n    u64 _sz = sz;\n    data.push_back(vector<u64>(ceil_div(_sz,\
     \ B)));\n    for(i64 i = 0; i < ssize(s); i++)\n      data[0][i / B] |= u64(s[i]\
-    \ - '0') << (i % B);\n    _sz = ceilDiv(_sz, B);\n    while(_sz > 1) {\n     \
-    \ data.push_back(vector<u64>(ceilDiv(_sz, B)));\n      for(u64 i = 0; i < _sz;\
+    \ - '0') << (i % B);\n    _sz = ceil_div(_sz, B);\n    while(_sz > 1) {\n    \
+    \  data.push_back(vector<u64>(ceil_div(_sz, B)));\n      for(u64 i = 0; i < _sz;\
     \ i++)\n        data.back()[i / B] |= u64(!!end(data)[-2][i]) << (i % B);\n  \
-    \    _sz = ceilDiv(_sz, B);\n    }\n  }\n\n  bool contains(i64 x) {\n    return\
+    \    _sz = ceil_div(_sz, B);\n    }\n  }\n\n  bool contains(i64 x) {\n    return\
     \ x < sz and (data[0][x / B] >> (x % B) & 1);\n  }\n\n  void insert(i64 x) {\n\
     \    if (contains(x)) return;\n    assert(x < sz);\n    for(auto &v : data)\n\
     \      v[x / B] |= u64(1) << (x % B), x /= B;\n  }\n\n  void erase(i64 x) {\n\
@@ -67,8 +67,8 @@ data:
   isVerificationFile: false
   path: ds/fast_set.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/predecessor_problem.test.cpp
 documentation_of: ds/fast_set.cpp

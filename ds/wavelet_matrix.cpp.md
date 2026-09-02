@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum2.test.cpp
     title: test/point_add_rectangle_sum2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest3.test.cpp
     title: test/range_kth_smallest3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_sum2.test.cpp
     title: test/rectangle_sum2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/static_range_sum_with_upper_bound.test.cpp
     title: test/static_range_sum_with_upper_bound.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/wavelet_matrix.cpp\"\ntemplate<class T, int H>\nstruct\
@@ -59,7 +59,7 @@ data:
     \  };\n\n    dfs(H - 1, T(0), T(1) << H, L, R, D, U, dfs);\n  }\n\n  vvi inv_perms;\n\
     \n  //F(i, j)\n  template<typename F> requires R_invocable<void, F, int, int>\n\
     \  void point_update(int x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms\
-    \ = perms;\n      for(auto &p : inv_perms)\n        p = invPerm(p);\n    }\n\n\
+    \ = perms;\n      for(auto &p : inv_perms)\n        p = inv_perm(p);\n    }\n\n\
     \    for(int i = 0; i <= H; i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n"
   code: "template<class T, int H>\nstruct wavelet_matrix {\n  using u32 = uint32_t;\n\
     \  struct bitvec {\n    static constexpr u32 W = 64;\n    int cnt_0 = 0, sz;\n\
@@ -100,14 +100,14 @@ data:
     \ - 1, T(0), T(1) << H, L, R, D, U, dfs);\n  }\n\n  vvi inv_perms;\n\n  //F(i,\
     \ j)\n  template<typename F> requires R_invocable<void, F, int, int>\n  void point_update(int\
     \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
-    \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
-    \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n"
+    \ &p : inv_perms)\n        p = inv_perm(p);\n    }\n\n    for(int i = 0; i <=\
+    \ H; i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/wavelet_matrix.cpp
   requiredBy: []
-  timestamp: '2026-04-19 19:02:40+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/point_add_rectangle_sum2.test.cpp
   - test/static_range_sum_with_upper_bound.test.cpp

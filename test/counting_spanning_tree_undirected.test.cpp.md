@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: combi/count_spanning_forest.cpp
     title: combi/count_spanning_forest.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mint.cpp
     title: linalg/matrix_mint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_undirected
@@ -213,7 +213,7 @@ data:
     \ \"modint/Montgomery_modint.cpp\"\n//#include \"linalg/matrixMint.cpp\"\n\ntemplate<class\
     \ Mint, bool directed = false>\nMint count_spanning_forest(vector<tuple<int, int,\
     \ Mint>> e, int n, vector<int> r = vector(1, 0)) {\n  vector<int> id(n, 1);\n\
-    \  for(int x : r) id[x] = 0;\n  id[0] -= 1;\n  pSum(id);\n  for(int x : r) id[x]\
+    \  for(int x : r) id[x] = 0;\n  id[0] -= 1;\n  psum(id);\n  for(int x : r) id[x]\
     \ = -1;\n\n  matrix<Mint> M(n - ssize(r));\n  for(auto [u, v, w] : e) {\n    u\
     \ = id[u], v = id[v];\n    if (u != -1 and v != -1) {\n      M[u][v] -= w;\n \
     \     if constexpr (!directed) M[v][u] -= w;\n    }\n    if constexpr (!directed)\
@@ -238,8 +238,8 @@ data:
   isVerificationFile: true
   path: test/counting_spanning_tree_undirected.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/counting_spanning_tree_undirected.test.cpp
 layout: document

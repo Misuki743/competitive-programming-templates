@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: numtheory/phi_array.cpp
     title: numtheory/phi_array.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
     title: numtheory/prefix_sum_of_dirichlet_inverse.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -193,7 +193,7 @@ data:
     \    else Fi *= G1_inv;\n  };\n\n  for(ll q = 1; q < m; q++) calc(q);\n  for(ll\
     \ i = x; i >= 1; i--) calc(N / i);\n\n  return F;\n}\n#line 8 \"test/sum_of_totient_function.test.cpp\"\
     \n\nauto F_small = phi_array<mint, 8'000'000>();\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  pSum(F_small);\n\n  ll N; cin >> N;\n  cout << prefix_sum_of_dirichlet_inverse<mint>(N,\
+    \ cin.tie(NULL);\n\n  psum(F_small);\n\n  ll N; cin >> N;\n  cout << prefix_sum_of_dirichlet_inverse<mint>(N,\
     \ [](ll x) { return mint(x); }, [](ll x) { return x % 2 == 1 ? (x + 1) / 2 * mint(x)\
     \ : x / 2 * mint(x + 1); }, F_small).back() << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_totient_function\"\
@@ -201,7 +201,7 @@ data:
     \n#include \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/phi_array.cpp\"\
     \n#include \"../numtheory/prefix_sum_of_dirichlet_inverse.cpp\"\n\nauto F_small\
     \ = phi_array<mint, 8'000'000>();\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  pSum(F_small);\n\n  ll N; cin >> N;\n  cout << prefix_sum_of_dirichlet_inverse<mint>(N,\
+    \ cin.tie(NULL);\n\n  psum(F_small);\n\n  ll N; cin >> N;\n  cout << prefix_sum_of_dirichlet_inverse<mint>(N,\
     \ [](ll x) { return mint(x); }, [](ll x) { return x % 2 == 1 ? (x + 1) / 2 * mint(x)\
     \ : x / 2 * mint(x + 1); }, F_small).back() << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
@@ -213,8 +213,8 @@ data:
   isVerificationFile: true
   path: test/sum_of_totient_function.test.cpp
   requiredBy: []
-  timestamp: '2026-07-24 22:33:41+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sum_of_totient_function.test.cpp
 layout: document

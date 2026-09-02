@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/tree_path_composite_sum.test.cpp
     title: test/tree_path_composite_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"dp/rerooting_DP.cpp\"\ntemplate<class V, class E>\nstruct\
@@ -29,8 +29,8 @@ data:
     \ {\n        dp_up[v] = data[tree.parent(v)];\n        pre.back() = suf.back()\
     \ = add_e(data[tree.parent(v)], tree.parent_eid(v));\n      }\n      for(int i\
     \ = 0; int x : tree.childs(v)) {\n        dp_down[x] = data[x];\n        pre[i]\
-    \ = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n      }\n      pSum(pre,\
-    \ ee), pSum(suf | views::reverse, ee);\n      V tmp = data[v];\n      dp_full[v]\
+    \ = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n      }\n      psum(pre,\
+    \ ee), psum(suf | views::reverse, ee);\n      V tmp = data[v];\n      dp_full[v]\
     \ = data[v] = (deg ? add_v(suf[0], v) : id(v));\n      for(int i = -1; int x :\
     \ tree.childs(v)) {\n        i++;\n        bool leaf = 1;\n        E prod;\n \
     \       if (i) prod = pre[i - 1], leaf = 0;\n        if (i + 1 < deg) prod = (leaf\
@@ -58,7 +58,7 @@ data:
     \   pre.back() = suf.back() = add_e(data[tree.parent(v)], tree.parent_eid(v));\n\
     \      }\n      for(int i = 0; int x : tree.childs(v)) {\n        dp_down[x] =\
     \ data[x];\n        pre[i] = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;\n\
-    \      }\n      pSum(pre, ee), pSum(suf | views::reverse, ee);\n      V tmp =\
+    \      }\n      psum(pre, ee), psum(suf | views::reverse, ee);\n      V tmp =\
     \ data[v];\n      dp_full[v] = data[v] = (deg ? add_v(suf[0], v) : id(v));\n \
     \     for(int i = -1; int x : tree.childs(v)) {\n        i++;\n        bool leaf\
     \ = 1;\n        E prod;\n        if (i) prod = pre[i - 1], leaf = 0;\n       \
@@ -72,8 +72,8 @@ data:
   isVerificationFile: false
   path: dp/rerooting_DP.cpp
   requiredBy: []
-  timestamp: '2026-03-22 17:48:48+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/tree_path_composite_sum.test.cpp
 documentation_of: dp/rerooting_DP.cpp

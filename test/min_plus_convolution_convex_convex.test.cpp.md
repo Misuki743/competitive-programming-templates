@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/min_plus_convolution_both_convex.cpp
     title: poly/min_plus_convolution_both_convex.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_plus_convolution_convex_convex
@@ -113,7 +113,7 @@ data:
     \ T>\nvc<T> min_plus_convolution(vc<T> a, vc<T> b) {\n  vc<T> c(ssize(a) + ssize(b)\
     \ - 1);\n  adjacent_difference(a.begin(), a.end(), a.begin());\n  adjacent_difference(b.begin(),\
     \ b.end(), b.begin());\n  c[0] = a[0] + b[0];\n  merge(a.begin() + 1, a.end(),\
-    \ b.begin() + 1, b.end(), c.begin() + 1);\n  pSum(c);\n  return c;\n}\n#line 5\
+    \ b.begin() + 1, b.end(), c.begin() + 1);\n  psum(c);\n  return c;\n}\n#line 5\
     \ \"test/min_plus_convolution_convex_convex.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<int> a(n), b(m);\n  for(int\
     \ &x : a) cin >> x;\n  for(int &x : b) cin >> x;\n\n  cout << min_plus_convolution(a,\
@@ -130,8 +130,8 @@ data:
   isVerificationFile: true
   path: test/min_plus_convolution_convex_convex.test.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/min_plus_convolution_convex_convex.test.cpp
 layout: document

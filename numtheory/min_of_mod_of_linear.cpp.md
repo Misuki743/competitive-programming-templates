@@ -25,8 +25,8 @@ data:
     \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
     \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
     \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
-    \ q;\n    while (1) {\n      int k = max(0ll, ceilDiv(det_l - y, det_r));\n  \
-    \    if (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p +=\
+    \ q;\n    while (1) {\n      int k = max(0ll, ceil_div(det_l - y, det_r));\n \
+    \     if (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p +=\
     \ k * r;\n      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l\
     \ \u3092 y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n\
     \      x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
@@ -52,8 +52,8 @@ data:
     \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
     \ // upd r/s\n    int k = det_r / det_l;\n    det_r %= det_l;\n    if (det_r ==\
     \ 0) {\n      --k;\n      det_r = det_l;\n    }\n    r += k * p;\n    s += k *\
-    \ q;\n    while (1) {\n      int k = max(0ll, ceilDiv(det_l - y, det_r));\n  \
-    \    if (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p +=\
+    \ q;\n    while (1) {\n      int k = max(0ll, ceil_div(det_l - y, det_r));\n \
+    \     if (det_l - k * det_r <= 0) break;\n      det_l -= k * det_r;\n      p +=\
     \ k * r;\n      q += k * s;\n      // p/q <= a/mod\n      // (aq - pmod) = det_l\
     \ \u3092 y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n\
     \      x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: numtheory/min_of_mod_of_linear.cpp
   requiredBy: []
-  timestamp: '2026-04-03 17:54:56+08:00'
+  timestamp: '2026-09-02 17:05:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: numtheory/min_of_mod_of_linear.cpp

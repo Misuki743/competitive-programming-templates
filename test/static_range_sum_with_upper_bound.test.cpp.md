@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix.cpp
     title: ds/wavelet_matrix.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum_with_upper_bound
@@ -148,13 +148,13 @@ data:
     \ - 1, T(0), T(1) << H, L, R, D, U, dfs);\n  }\n\n  vvi inv_perms;\n\n  //F(i,\
     \ j)\n  template<typename F> requires R_invocable<void, F, int, int>\n  void point_update(int\
     \ x, F f) {\n    if (inv_perms.empty()) {\n      inv_perms = perms;\n      for(auto\
-    \ &p : inv_perms)\n        p = invPerm(p);\n    }\n\n    for(int i = 0; i <= H;\
-    \ i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 5 \"test/static_range_sum_with_upper_bound.test.cpp\"\
+    \ &p : inv_perms)\n        p = inv_perm(p);\n    }\n\n    for(int i = 0; i <=\
+    \ H; i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 5 \"test/static_range_sum_with_upper_bound.test.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
     \ cin >> n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  vi xs = a;\n  Unique(xs);\n\
     \  for(int &x : a)\n    x = ranges::lower_bound(xs, x) - xs.begin();\n\n  wavelet_matrix<int,\
     \ 19> WM(a, true);\n  vvll ps;\n  for(auto &p : WM.perms) {\n    ps.eb(n);\n \
-    \   for(int i = 0; i < n; i++)\n      ps.back()[i] = xs[a[p[i]]];\n    pSum(ps.back());\n\
+    \   for(int i = 0; i < n; i++)\n      ps.back()[i] = xs[a[p[i]]];\n    psum(ps.back());\n\
     \  }\n\n  while(q--) {\n    int l, r, x; cin >> l >> r >> x;\n    x = ranges::upper_bound(xs,\
     \ x) - xs.begin();\n\n    int cnt = 0;\n    ll sum = 0;\n    WM.rect_query(l,\
     \ r, 0, x, [&](int i, int l, int r) {\n      cnt += r - l;\n      sum += ps[i][r\
@@ -166,7 +166,7 @@ data:
     \ n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  vi xs = a;\n  Unique(xs);\n\
     \  for(int &x : a)\n    x = ranges::lower_bound(xs, x) - xs.begin();\n\n  wavelet_matrix<int,\
     \ 19> WM(a, true);\n  vvll ps;\n  for(auto &p : WM.perms) {\n    ps.eb(n);\n \
-    \   for(int i = 0; i < n; i++)\n      ps.back()[i] = xs[a[p[i]]];\n    pSum(ps.back());\n\
+    \   for(int i = 0; i < n; i++)\n      ps.back()[i] = xs[a[p[i]]];\n    psum(ps.back());\n\
     \  }\n\n  while(q--) {\n    int l, r, x; cin >> l >> r >> x;\n    x = ranges::upper_bound(xs,\
     \ x) - xs.begin();\n\n    int cnt = 0;\n    ll sum = 0;\n    WM.rect_query(l,\
     \ r, 0, x, [&](int i, int l, int r) {\n      cnt += r - l;\n      sum += ps[i][r\
@@ -178,8 +178,8 @@ data:
   isVerificationFile: true
   path: test/static_range_sum_with_upper_bound.test.cpp
   requiredBy: []
-  timestamp: '2026-04-21 21:29:26+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_range_sum_with_upper_bound.test.cpp
 layout: document

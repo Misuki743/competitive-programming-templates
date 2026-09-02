@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwick_tree.cpp
     title: ds/fenwick_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -125,15 +125,15 @@ data:
     \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
     \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
     \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
-    \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
+    \ 1]++;\n      psum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
     \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
     \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
     \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
     \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
     \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n   \
-    \ lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
+    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
+    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
+    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
     \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
@@ -213,8 +213,8 @@ data:
   isVerificationFile: true
   path: test/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-07-12 14:48:03+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/vertex_add_path_sum.test.cpp
 layout: document

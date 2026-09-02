@@ -8,97 +8,80 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"default/tt.cpp\"\n#include<bits/stdc++.h>\n\n#define int\
-    \ ll\n#define INT128_MAX (__int128)(((unsigned __int128) 1 << ((sizeof(__int128)\
-    \ * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN (-INT128_MAX - 1)\n\n#define\
-    \ pb push_back\n#define eb emplace_back\n#define clock chrono::steady_clock::now().time_since_epoch().count()\n\
-    \nusing namespace std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
-    \ os, const tuple<args...> tu) {\n  os << get<I>(tu);\n  if constexpr (I + 1 !=\
-    \ sizeof...(args)) {\n    os << ' ';\n    print_tuple<I + 1>(os, tu);\n  }\n \
-    \ return os;\n}\ntemplate<typename... args>\nostream& operator<<(ostream& os,\
-    \ const tuple<args...> tu) {\n  return print_tuple(os, tu);\n}\ntemplate<class\
-    \ T1, class T2>\nostream& operator<<(ostream& os, const pair<T1, T2> pr) {\n \
-    \ return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(size_t i = 0;\
-    \ T x : arr) {\n    os << x;\n    if (++i != N) os << ' ';\n  }\n  return os;\n\
-    }\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n\
-    \  for(size_t i = 0; T x : vec) {\n    os << x;\n    if (++i != size(vec)) os\
-    \ << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const set<T> &s) {\n  for(size_t i = 0; T x : s) {\n    os << x;\n    if\
-    \ (++i != size(s)) os << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream&\
-    \ operator<<(ostream& os, const multiset<T> &s) {\n  for(size_t i = 0; T x : s)\
-    \ {\n    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n  return os;\n}\n\
-    template<class T1, class T2>\nostream& operator<<(ostream& os, const map<T1, T2>\
-    \ &m) {\n  for(size_t i = 0; pair<T1, T2> x : m) {\n    os << x.first << \" :\
-    \ \" << x.second;\n    if (++i != size(m)) os << \", \";\n  }\n  return os;\n\
-    }\ntemplate<class T>\nostream& operator<<(ostream&os, span<T> &s) {\n  for(size_t\
-    \ i = 0; T &x : s) {\n    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n\
-    \  return os;\n}\n\n#ifdef DEBUG\n#define dbg(...) cerr << '(', _do(#__VA_ARGS__),\
-    \ cerr << \") = \", _do2(__VA_ARGS__)\ntemplate<typename T> void _do(T &&x) {\
-    \ cerr << x; }\ntemplate<typename T, typename ...S> void _do(T &&x, S&&...y) {\
-    \ cerr << x << \", \"; _do(y...); }\ntemplate<typename T> void _do2(T &&x) { cerr\
-    \ << x << endl; }\ntemplate<typename T, typename ...S> void _do2(T &&x, S&&...y)\
-    \ { cerr << x << \", \"; _do2(y...); }\n#else\n#define dbg(...)\n#endif\n\nusing\
+  bundledCode: "#line 1 \"default/tt.cpp\"\n#include<bits/stdc++.h>\nusing namespace\
+    \ std;\n\n#define int ll\n#define pb push_back\n#define eb emplace_back\n\nusing\
     \ ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n//#define double ldb\n\
-    \ntemplate<typename T> using vc = vector<T>;\ntemplate<typename T> using vvc =\
-    \ vc<vc<T>>;\ntemplate<typename T> using vvvc = vc<vvc<T>>;\n\nusing vi = vc<int>;\n\
-    using vll = vc<ll>;\nusing vvi = vvc<int>;\nusing vvll = vvc<ll>;\n\ntemplate<typename\
-    \ T> using min_heap = priority_queue<T, vc<T>, greater<T>>;\ntemplate<typename\
-    \ T> using max_heap = priority_queue<T>;\n\ntemplate<typename R, typename F, typename...\
-    \ Args>\nconcept R_invocable = requires(F&& f, Args&&... args) {\n  { std::invoke(std::forward<F>(f),\
-    \ std::forward<Args>(args)...) } -> std::same_as<R>;\n};\ntemplate<ranges::forward_range\
-    \ rng, class T = ranges::range_value_t<rng>, typename F>\nrequires R_invocable<T,\
-    \ F, T, T>\nvoid pSum(rng &&v, F f) {\n  if (!v.empty())\n    for(T p = *v.begin();\
-    \ T &x : v | views::drop(1))\n      x = p = f(p, x);\n}\ntemplate<ranges::forward_range\
-    \ rng, class T = ranges::range_value_t<rng>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n\
-    \    for(T p = *v.begin(); T &x : v | views::drop(1))\n      x = p = p + x;\n\
-    }\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng &v) {\n  ranges::sort(v);\n\
-    \  v.resize(unique(v.begin(), v.end()) - v.begin());\n}\n\ntemplate<ranges::random_access_range\
-    \ rng>\nrng invPerm(rng p) {\n  rng ret = p;\n  for(int i = 0; i < ssize(p); i++)\n\
-    \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
-    \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
-    \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
-    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
-    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
-    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
-    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
-    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
-    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
-    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
-    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
-    }\n\ntemplate<ranges::random_access_range rng>\nvc<pii> equal_subarrays(rng &&v)\
-    \ {\n  vc<pii> lr;\n  for(int i = 0, j = 0; i < ssize(v); i = j) {\n    while(j\
-    \ < ssize(v) and v[i] == v[j]) j++;\n    lr.eb(i, j);\n  }\n  return lr;\n}\n\n\
-    template<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
-    \ typename F>\nrequires invocable<F, T&>\nvc<pii> equal_subarrays(rng &&v, F proj)\
-    \ {\n  vc<pii> lr;\n  for(int i = 0, j = 0; i < ssize(v); i = j) {\n    while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n    lr.eb(i, j);\n  }\n  return\
-    \ lr;\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &=\
-    \ ~(T(1) << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int\
-    \ bit) { setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int\
-    \ bit) { setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int\
-    \ bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit)\
-    \ { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n\
-    \  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n\
-    }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
-    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\null kth_root(ull a, int k) {\n\
-    \  if (a == 0) return 0ull;\n  if (k >= 64) return 1ull;\n  if (k == 1) return\
-    \ a;\n  if (k == 2) {\n    ull b = sqrtl(a);\n    while((__int128)(b + 1) * (b\
-    \ + 1) <= a) b++;\n    while((__int128)b * b > a) b--;\n    return b;\n  }\n \
-    \ if (k == 3) {\n    ull b = cbrtl(a);\n    while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n    while((__int128)b * b * b > a) b--;\n    return b;\n\
-    \  }\n  ull b = powl(a, 1.0L / k);\n  auto pw = [](ull a, int k) {\n    __int128\
-    \ b = 1;\n    for(int i = 0; i < k; i++) b *= a;\n    return b;\n  };\n  while(pw(b\
-    \ + 1, k) <= a) b++;\n  while(pw(b, k) > a) b--;\n  return b;\n}\n\ntemplate<class\
-    \ T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T>\
-    \ bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nnamespace Combinatorics\
-    \ {\n  template<class Mint>\n  Mint factorial(int n) {\n    static vc<Mint> dat;\n\
-    \    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n      int size0\
-    \ = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n +\
-    \ 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
+    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\ntemplate<typename T>\
+    \ using vc = vector<T>;\ntemplate<typename T> using vvc = vc<vc<T>>;\ntemplate<typename\
+    \ T> using vvvc = vc<vvc<T>>;\n\nusing vi = vc<int>;\nusing vll = vc<ll>;\nusing\
+    \ vvi = vvc<int>;\nusing vvll = vvc<ll>;\n\ntemplate<typename T> using min_heap\
+    \ = priority_queue<T, vc<T>, greater<T>>;\ntemplate<typename T> using max_heap\
+    \ = priority_queue<T>;\n\nnamespace output {\n  ostream& operator<<(ostream& os,\
+    \ __uint128_t x) {\n    if (x == 0) {\n      return os << \"0\";\n    } else {\n\
+    \      string s;\n      while(x)\n        s += '0' + x % 10, x /= 10;\n      ranges::reverse(s);\n\
+    \      return os << s;\n    }\n  }\n\n  ostream& operator<<(ostream& os, __int128_t\
+    \ x) {\n    if (x < 0)\n      return os << \"-\" << -(__uint128_t)x;\n    else\n\
+    \      return os << (__uint128_t)x;\n  }\n\n  template<size_t I = 0, typename...\
+    \ args>\n  ostream& print_tuple(ostream& os, const tuple<args...> tu) {\n    os\
+    \ << get<I>(tu);\n    if constexpr (I + 1 != sizeof...(args)) {\n      os << '\
+    \ ';\n      print_tuple<I + 1>(os, tu);\n    }\n    return os;\n  }\n\n  template<typename...\
+    \ args>\n  ostream& operator<<(ostream& os, const tuple<args...> tu) {\n    return\
+    \ print_tuple(os, tu);\n  }\n\n  template<class T1, class T2>\n  ostream& operator<<(ostream&\
+    \ os, const pair<T1, T2> pr) {\n    return os << pr.first << ' ' << pr.second;\n\
+    \  }\n\n  template<class T>\n  concept printable_range =\n    ranges::input_range<T>\
+    \ &&\n    !same_as<remove_cvref_t<T>, string> &&\n    !same_as<remove_cvref_t<T>,\
+    \ string_view> &&\n    !same_as<ranges::range_value_t<T>, char>;\n\n  template<printable_range\
+    \ R>\n  ostream& operator<<(ostream& os, R&& r) {\n    for(bool first = true;\
+    \ auto &&x : r) {\n      if (!first) os << ' ';\n      first = false;\n      os\
+    \ << x;\n    }\n    return os;\n  }\n\n#ifdef DEBUG\n#define dbg(...) cerr <<\
+    \ '(', _do(#__VA_ARGS__), cerr << \") = \", _do2(__VA_ARGS__)\n  template<typename\
+    \ T> void _do(T &&x) { cerr << x; }\n  template<typename T, typename ...S> void\
+    \ _do(T &&x, S&&...y) { cerr << x << \", \"; _do(y...); }\n  template<typename\
+    \ T> void _do2(T &&x) { cerr << x << endl; }\n  template<typename T, typename\
+    \ ...S> void _do2(T &&x, S&&...y) { cerr << x << \", \"; _do2(y...); }\n#else\n\
+    #define dbg(...)\n#endif\n}\n\nusing namespace output;\n\nnamespace algorithm_extend\
+    \ {\n\n  template<typename R, typename F, typename... Args>\n  concept R_invocable\
+    \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
+    \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
+    \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
+    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
+    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
+    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
+    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
+    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
+    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
+    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
+    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
+    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
+    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
+    \   return lr;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
+    \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
+    \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
+    \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
+    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
+    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
+    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
+    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
+    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
+    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
+    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
+    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
+    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
+    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
+    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
+    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
+    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
+    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
+    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
+    \    }\n    return b;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace\
+    \ Combinatorics {\n  template<class Mint>\n  Mint factorial(int n) {\n    static\
+    \ vc<Mint> dat;\n    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n\
+    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
+    \ + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
     \ - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
     \ factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n\
     \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
@@ -127,7 +110,7 @@ data:
     \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
     \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
     \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
-    \ == i) {\n      int k = _first_valid(max(i, ceilDiv(_C, i)));\n      for(int\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
     \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
     \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
     \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
@@ -165,15 +148,15 @@ data:
     \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
     \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
     \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
-    \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
+    \ 1]++;\n      psum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
     \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
     \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
     \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
     \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
     \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n   \
-    \ lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
+    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
+    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
+    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
     \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
@@ -247,100 +230,83 @@ data:
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
     \  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint = Montgomery_modint<998'244'353>;\n\
-    auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n\
-    }\n"
-  code: "#include<bits/stdc++.h>\n\n#define int ll\n#define INT128_MAX (__int128)(((unsigned\
-    \ __int128) 1 << ((sizeof(__int128) * __CHAR_BIT__) - 1)) - 1)\n#define INT128_MIN\
-    \ (-INT128_MAX - 1)\n\n#define pb push_back\n#define eb emplace_back\n#define\
-    \ clock chrono::steady_clock::now().time_since_epoch().count()\n\nusing namespace\
-    \ std;\n\ntemplate<size_t I = 0, typename... args>\nostream& print_tuple(ostream&\
-    \ os, const tuple<args...> tu) {\n  os << get<I>(tu);\n  if constexpr (I + 1 !=\
-    \ sizeof...(args)) {\n    os << ' ';\n    print_tuple<I + 1>(os, tu);\n  }\n \
-    \ return os;\n}\ntemplate<typename... args>\nostream& operator<<(ostream& os,\
-    \ const tuple<args...> tu) {\n  return print_tuple(os, tu);\n}\ntemplate<class\
-    \ T1, class T2>\nostream& operator<<(ostream& os, const pair<T1, T2> pr) {\n \
-    \ return os << pr.first << ' ' << pr.second;\n}\ntemplate<class T, size_t N>\n\
-    ostream& operator<<(ostream& os, const array<T, N> &arr) {\n  for(size_t i = 0;\
-    \ T x : arr) {\n    os << x;\n    if (++i != N) os << ' ';\n  }\n  return os;\n\
-    }\ntemplate<class T>\nostream& operator<<(ostream& os, const vector<T> &vec) {\n\
-    \  for(size_t i = 0; T x : vec) {\n    os << x;\n    if (++i != size(vec)) os\
-    \ << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream& operator<<(ostream&\
-    \ os, const set<T> &s) {\n  for(size_t i = 0; T x : s) {\n    os << x;\n    if\
-    \ (++i != size(s)) os << ' ';\n  }\n  return os;\n}\ntemplate<class T>\nostream&\
-    \ operator<<(ostream& os, const multiset<T> &s) {\n  for(size_t i = 0; T x : s)\
-    \ {\n    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n  return os;\n}\n\
-    template<class T1, class T2>\nostream& operator<<(ostream& os, const map<T1, T2>\
-    \ &m) {\n  for(size_t i = 0; pair<T1, T2> x : m) {\n    os << x.first << \" :\
-    \ \" << x.second;\n    if (++i != size(m)) os << \", \";\n  }\n  return os;\n\
-    }\ntemplate<class T>\nostream& operator<<(ostream&os, span<T> &s) {\n  for(size_t\
-    \ i = 0; T &x : s) {\n    os << x;\n    if (++i != size(s)) os << ' ';\n  }\n\
-    \  return os;\n}\n\n#ifdef DEBUG\n#define dbg(...) cerr << '(', _do(#__VA_ARGS__),\
-    \ cerr << \") = \", _do2(__VA_ARGS__)\ntemplate<typename T> void _do(T &&x) {\
-    \ cerr << x; }\ntemplate<typename T, typename ...S> void _do(T &&x, S&&...y) {\
-    \ cerr << x << \", \"; _do(y...); }\ntemplate<typename T> void _do2(T &&x) { cerr\
-    \ << x << endl; }\ntemplate<typename T, typename ...S> void _do2(T &&x, S&&...y)\
-    \ { cerr << x << \", \"; _do2(y...); }\n#else\n#define dbg(...)\n#endif\n\nusing\
-    \ ll = long long;\nusing ull = unsigned long long;\nusing ldb = long double;\n\
-    using pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n//#define double ldb\n\
-    \ntemplate<typename T> using vc = vector<T>;\ntemplate<typename T> using vvc =\
-    \ vc<vc<T>>;\ntemplate<typename T> using vvvc = vc<vvc<T>>;\n\nusing vi = vc<int>;\n\
-    using vll = vc<ll>;\nusing vvi = vvc<int>;\nusing vvll = vvc<ll>;\n\ntemplate<typename\
-    \ T> using min_heap = priority_queue<T, vc<T>, greater<T>>;\ntemplate<typename\
-    \ T> using max_heap = priority_queue<T>;\n\ntemplate<typename R, typename F, typename...\
-    \ Args>\nconcept R_invocable = requires(F&& f, Args&&... args) {\n  { std::invoke(std::forward<F>(f),\
-    \ std::forward<Args>(args)...) } -> std::same_as<R>;\n};\ntemplate<ranges::forward_range\
-    \ rng, class T = ranges::range_value_t<rng>, typename F>\nrequires R_invocable<T,\
-    \ F, T, T>\nvoid pSum(rng &&v, F f) {\n  if (!v.empty())\n    for(T p = *v.begin();\
-    \ T &x : v | views::drop(1))\n      x = p = f(p, x);\n}\ntemplate<ranges::forward_range\
-    \ rng, class T = ranges::range_value_t<rng>>\nvoid pSum(rng &&v) {\n  if (!v.empty())\n\
-    \    for(T p = *v.begin(); T &x : v | views::drop(1))\n      x = p = p + x;\n\
-    }\n\ntemplate<ranges::forward_range rng>\nvoid Unique(rng &v) {\n  ranges::sort(v);\n\
-    \  v.resize(unique(v.begin(), v.end()) - v.begin());\n}\n\ntemplate<ranges::random_access_range\
-    \ rng>\nrng invPerm(rng p) {\n  rng ret = p;\n  for(int i = 0; i < ssize(p); i++)\n\
-    \    ret[p[i]] = i;\n  return ret;\n}\n\ntemplate<ranges::random_access_range\
-    \ rng>\nvi argSort(rng p) {\n  vi id(size(p));\n  iota(id.begin(), id.end(), 0);\n\
-    \  ranges::sort(id, {}, [&](int i) { return pair(p[i], i); });\n  return id;\n\
-    }\n\ntemplate<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
-    \ typename F>\nrequires invocable<F, T&>\nvi argSort(rng p, F proj) {\n  vi id(size(p));\n\
-    \  iota(id.begin(), id.end(), 0);\n  ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(p[i]), i); });\n  return id;\n}\n\ntemplate<bool directed>\nvvi read_graph(int\
-    \ n, int m, int base) {\n  vvi g(n);\n  for(int i = 0; i < m; i++) {\n    int\
-    \ u, v; cin >> u >> v;\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
-    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
-    }\n\ntemplate<bool directed>\nvvi adjacency_list(int n, vc<pii> e, int base) {\n\
-    \  vvi g(n);\n  for(auto [u, v] : e) {\n    u -= base, v -= base;\n    g[u].emplace_back(v);\n\
-    \    if constexpr (!directed)\n      g[v].emplace_back(u);\n  }\n  return g;\n\
-    }\n\ntemplate<ranges::random_access_range rng>\nvc<pii> equal_subarrays(rng &&v)\
-    \ {\n  vc<pii> lr;\n  for(int i = 0, j = 0; i < ssize(v); i = j) {\n    while(j\
-    \ < ssize(v) and v[i] == v[j]) j++;\n    lr.eb(i, j);\n  }\n  return lr;\n}\n\n\
-    template<ranges::random_access_range rng, class T = ranges::range_value_t<rng>,\
-    \ typename F>\nrequires invocable<F, T&>\nvc<pii> equal_subarrays(rng &&v, F proj)\
-    \ {\n  vc<pii> lr;\n  for(int i = 0, j = 0; i < ssize(v); i = j) {\n    while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n    lr.eb(i, j);\n  }\n  return\
-    \ lr;\n}\n\ntemplate<class T>\nvoid setBit(T &msk, int bit, bool x) { (msk &=\
-    \ ~(T(1) << bit)) |= T(x) << bit; }\ntemplate<class T> void onBit(T &msk, int\
-    \ bit) { setBit(msk, bit, true); }\ntemplate<class T> void offBit(T &msk, int\
-    \ bit) { setBit(msk, bit, false); }\ntemplate<class T> void flipBit(T &msk, int\
-    \ bit) { msk ^= T(1) << bit; }\ntemplate<class T> bool getBit(T msk, int bit)\
-    \ { return msk >> bit & T(1); }\n\ntemplate<class T>\nT floorDiv(T a, T b) {\n\
-    \  if (b < 0) a *= -1, b *= -1;\n  return a >= 0 ? a / b : (a - b + 1) / b;\n\
-    }\ntemplate<class T>\nT ceilDiv(T a, T b) {\n  if (b < 0) a *= -1, b *= -1;\n\
-    \  return a >= 0 ? (a + b - 1) / b : a / b;\n}\n\null kth_root(ull a, int k) {\n\
-    \  if (a == 0) return 0ull;\n  if (k >= 64) return 1ull;\n  if (k == 1) return\
-    \ a;\n  if (k == 2) {\n    ull b = sqrtl(a);\n    while((__int128)(b + 1) * (b\
-    \ + 1) <= a) b++;\n    while((__int128)b * b > a) b--;\n    return b;\n  }\n \
-    \ if (k == 3) {\n    ull b = cbrtl(a);\n    while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n    while((__int128)b * b * b > a) b--;\n    return b;\n\
-    \  }\n  ull b = powl(a, 1.0L / k);\n  auto pw = [](ull a, int k) {\n    __int128\
-    \ b = 1;\n    for(int i = 0; i < k; i++) b *= a;\n    return b;\n  };\n  while(pw(b\
-    \ + 1, k) <= a) b++;\n  while(pw(b, k) > a) b--;\n  return b;\n}\n\ntemplate<class\
-    \ T> bool chmin(T &a, T b) { return a > b ? a = b, 1 : 0; }\ntemplate<class T>\
-    \ bool chmax(T &a, T b) { return a < b ? a = b, 1 : 0; }\n\nnamespace Combinatorics\
-    \ {\n  template<class Mint>\n  Mint factorial(int n) {\n    static vc<Mint> dat;\n\
-    \    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n      int size0\
-    \ = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n +\
-    \ 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
+    auto [fac, faci, modinv, binom, cat, excat] = binomial_functions<mint>();\n\n\
+    int32_t main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return\
+    \ 0;\n}\n"
+  code: "#include<bits/stdc++.h>\nusing namespace std;\n\n#define int ll\n#define\
+    \ pb push_back\n#define eb emplace_back\n\nusing ll = long long;\nusing ull =\
+    \ unsigned long long;\nusing ldb = long double;\nusing pii = pair<int, int>;\n\
+    using pll = pair<ll, ll>;\n\ntemplate<typename T> using vc = vector<T>;\ntemplate<typename\
+    \ T> using vvc = vc<vc<T>>;\ntemplate<typename T> using vvvc = vc<vvc<T>>;\n\n\
+    using vi = vc<int>;\nusing vll = vc<ll>;\nusing vvi = vvc<int>;\nusing vvll =\
+    \ vvc<ll>;\n\ntemplate<typename T> using min_heap = priority_queue<T, vc<T>, greater<T>>;\n\
+    template<typename T> using max_heap = priority_queue<T>;\n\nnamespace output {\n\
+    \  ostream& operator<<(ostream& os, __uint128_t x) {\n    if (x == 0) {\n    \
+    \  return os << \"0\";\n    } else {\n      string s;\n      while(x)\n      \
+    \  s += '0' + x % 10, x /= 10;\n      ranges::reverse(s);\n      return os <<\
+    \ s;\n    }\n  }\n\n  ostream& operator<<(ostream& os, __int128_t x) {\n    if\
+    \ (x < 0)\n      return os << \"-\" << -(__uint128_t)x;\n    else\n      return\
+    \ os << (__uint128_t)x;\n  }\n\n  template<size_t I = 0, typename... args>\n \
+    \ ostream& print_tuple(ostream& os, const tuple<args...> tu) {\n    os << get<I>(tu);\n\
+    \    if constexpr (I + 1 != sizeof...(args)) {\n      os << ' ';\n      print_tuple<I\
+    \ + 1>(os, tu);\n    }\n    return os;\n  }\n\n  template<typename... args>\n\
+    \  ostream& operator<<(ostream& os, const tuple<args...> tu) {\n    return print_tuple(os,\
+    \ tu);\n  }\n\n  template<class T1, class T2>\n  ostream& operator<<(ostream&\
+    \ os, const pair<T1, T2> pr) {\n    return os << pr.first << ' ' << pr.second;\n\
+    \  }\n\n  template<class T>\n  concept printable_range =\n    ranges::input_range<T>\
+    \ &&\n    !same_as<remove_cvref_t<T>, string> &&\n    !same_as<remove_cvref_t<T>,\
+    \ string_view> &&\n    !same_as<ranges::range_value_t<T>, char>;\n\n  template<printable_range\
+    \ R>\n  ostream& operator<<(ostream& os, R&& r) {\n    for(bool first = true;\
+    \ auto &&x : r) {\n      if (!first) os << ' ';\n      first = false;\n      os\
+    \ << x;\n    }\n    return os;\n  }\n\n#ifdef DEBUG\n#define dbg(...) cerr <<\
+    \ '(', _do(#__VA_ARGS__), cerr << \") = \", _do2(__VA_ARGS__)\n  template<typename\
+    \ T> void _do(T &&x) { cerr << x; }\n  template<typename T, typename ...S> void\
+    \ _do(T &&x, S&&...y) { cerr << x << \", \"; _do(y...); }\n  template<typename\
+    \ T> void _do2(T &&x) { cerr << x << endl; }\n  template<typename T, typename\
+    \ ...S> void _do2(T &&x, S&&...y) { cerr << x << \", \"; _do2(y...); }\n#else\n\
+    #define dbg(...)\n#endif\n}\n\nusing namespace output;\n\nnamespace algorithm_extend\
+    \ {\n\n  template<typename R, typename F, typename... Args>\n  concept R_invocable\
+    \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
+    \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
+    \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
+    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
+    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
+    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
+    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
+    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
+    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
+    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
+    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
+    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
+    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
+    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
+    \   return lr;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
+    \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
+    \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
+    \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
+    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
+    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
+    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
+    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
+    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
+    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
+    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
+    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
+    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
+    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
+    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
+    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
+    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
+    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
+    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
+    \    }\n    return b;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace\
+    \ Combinatorics {\n  template<class Mint>\n  Mint factorial(int n) {\n    static\
+    \ vc<Mint> dat;\n    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n\
+    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
+    \ + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
     \ - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
     \ factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n\
     \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
@@ -369,7 +335,7 @@ data:
     \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
     \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
     \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
-    \ == i) {\n      int k = _first_valid(max(i, ceilDiv(_C, i)));\n      for(int\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
     \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
     \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
     \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
@@ -407,15 +373,15 @@ data:
     \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
     \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
     \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
-    \ 1]++;\n      pSum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
+    \ 1]++;\n      psum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
     \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
     \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
     \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
     \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
     \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = invPerm(tin);\n\n   \
-    \ lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    pSum(lb);\n    for(int\
+    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
+    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
+    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
     \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
     \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
     \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
@@ -489,14 +455,14 @@ data:
     \  return os << b.get();\n  }\n  friend istream& operator>>(istream& is, mint&\
     \ b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return is;\n\
     \  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint = Montgomery_modint<998'244'353>;\n\
-    auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n\nsigned\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return 0;\n\
-    }\n"
+    auto [fac, faci, modinv, binom, cat, excat] = binomial_functions<mint>();\n\n\
+    int32_t main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  \n\n  return\
+    \ 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-09-02 11:01:00+08:00'
+  timestamp: '2026-09-02 17:05:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

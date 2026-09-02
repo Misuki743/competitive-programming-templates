@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/Stern_Brocot_tree.cpp
     title: numtheory/Stern_Brocot_tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
@@ -115,10 +115,10 @@ data:
     \ (i128)a.u * b.d == (i128)a.d * b.u; }\n  ostream& operator<<(ostream &os, fraction\
     \ f) { os << f.u << ' ' << f.d; return os; }\n\n  auto encode_path(fraction f)\
     \ {\n    f.reduce();\n\n    fraction l{0, 1}, m{1, 1}, r{1, 0};\n    vc<pair<char,\
-    \ ll>> path;\n    while(f != m) {\n      if (f < m) {\n        ll x = ceilDiv((i128)f.d\
+    \ ll>> path;\n    while(f != m) {\n      if (f < m) {\n        ll x = ceil_div((i128)f.d\
     \ * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);\n        r = fraction{l.u\
     \ * (x - 1) + m.u, l.d * (x - 1) + m.d};\n        path.eb('L', x);\n      } else\
-    \ {\n        ll x = ceilDiv((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u\
+    \ {\n        ll x = ceil_div((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u\
     \ - (i128)f.u * r.d);\n        l = fraction{r.u * (x - 1) + m.u, r.d * (x - 1)\
     \ + m.d};\n        path.eb('R', x);\n      }\n      m = fraction{l.u + r.u, l.d\
     \ + r.d};\n    }\n    return path;\n  }\n\n  fraction decode_path(vc<pair<char,\
@@ -138,10 +138,10 @@ data:
     \      return decode_path(vector(path.begin(), path.begin() + i + 1));\n     \
     \ }\n      k -= x;\n    }\n    return fraction{-1, 1};\n  }\n\n  auto range(fraction\
     \ f) {\n    f.reduce();\n\n    fraction l{0, 1}, m{1, 1}, r{1, 0};\n    vc<pair<char,\
-    \ ll>> path;\n    while(f != m) {\n      if (f < m) {\n        ll x = ceilDiv((i128)f.d\
+    \ ll>> path;\n    while(f != m) {\n      if (f < m) {\n        ll x = ceil_div((i128)f.d\
     \ * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);\n        r = fraction{l.u\
     \ * (x - 1) + m.u, l.d * (x - 1) + m.d};\n        path.eb('L', x);\n      } else\
-    \ {\n        ll x = ceilDiv((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u\
+    \ {\n        ll x = ceil_div((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u\
     \ - (i128)f.u * r.d);\n        l = fraction{r.u * (x - 1) + m.u, r.d * (x - 1)\
     \ + m.d};\n        path.eb('R', x);\n      }\n      m = fraction{l.u + r.u, l.d\
     \ + r.d};\n    }\n    return pair(l, r);\n  }\n};\n\nusing namespace Stern_Brocot_tree;\n\
@@ -181,8 +181,8 @@ data:
   isVerificationFile: true
   path: test/stern_brocot_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-04-03 02:38:47+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/stern_brocot_tree.test.cpp
 layout: document

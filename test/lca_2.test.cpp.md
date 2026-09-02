@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: misc/random.cpp
     title: misc/random.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -145,21 +145,21 @@ data:
     \ 1);\n      for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]],\
     \ nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]]\
     \ + 1;\n      }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi\
-    \ init(2 * n - 1);\n    {\n      vi dfn_ord = invPerm(std::move(dfn));\n\n   \
-    \   int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
+    \ init(2 * n - 1);\n    {\n      vi dfn_ord = inv_perm(std::move(dfn));\n\n  \
+    \    int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
     \ != p[v]) {\n          pre = p[pre], tout[pre] = nxt;\n          init[nxt++]\
     \ = pre;\n        }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre\
     \ = v;\n      }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre]\
     \ = nxt;\n        init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n\
-    \      for(int x : dep) f[x]++;\n      pSum(f);\n\n      vi rank(n);\n      for(int\
+    \      for(int x : dep) f[x]++;\n      psum(f);\n\n      vi rank(n);\n      for(int\
     \ v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] =\
     \ v;\n      }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n\
     \  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return\
     \ mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return\
     \ dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int\
     \ v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n#line 1\
-    \ \"misc/random.cpp\"\nnamespace RNG {\n  mt19937_64 rng(clock);\n\n  //empty\
-    \ vector would be assumed to be n = 2\n  vector<pii> prufer_recover(vector<int>\
+    \ \"misc/random.cpp\"\nnamespace RNG {\n  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \n  //empty vector would be assumed to be n = 2\n  vector<pii> prufer_recover(vector<int>\
     \ prufer_code) {\n    const int n = ssize(prufer_code) + 2;\n    assert(prufer_code.empty()\
     \ or (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n    vector<int>\
     \ d(n, 1);\n    for(int x : prufer_code) d[x]++;\n    min_heap<int> leaf;\n  \
@@ -180,7 +180,7 @@ data:
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
     \ n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n    x =\
     \ v++;\n    cin >> y;\n  }\n\n  vi p = RNG::rand_perm(n);\n  for(auto &[u, v]\
-    \ : e)\n    u = p[u], v = p[v];\n  LCA lc(e, p[0]);\n\n  vi inv_p = invPerm(p);\n\
+    \ : e)\n    u = p[u], v = p[v];\n  LCA lc(e, p[0]);\n\n  vi inv_p = inv_perm(p);\n\
     \n  while(q--) {\n    int u, v; cin >> u >> v;\n    cout << inv_p[lc.lca(p[u],\
     \ p[v])] << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include \"../default/t.cpp\"\
@@ -188,7 +188,7 @@ data:
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
     \ cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(int v = 1; auto &[x, y] : e) {\n\
     \    x = v++;\n    cin >> y;\n  }\n\n  vi p = RNG::rand_perm(n);\n  for(auto &[u,\
-    \ v] : e)\n    u = p[u], v = p[v];\n  LCA lc(e, p[0]);\n\n  vi inv_p = invPerm(p);\n\
+    \ v] : e)\n    u = p[u], v = p[v];\n  LCA lc(e, p[0]);\n\n  vi inv_p = inv_perm(p);\n\
     \n  while(q--) {\n    int u, v; cin >> u >> v;\n    cout << inv_p[lc.lca(p[u],\
     \ p[v])] << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
@@ -199,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/lca_2.test.cpp
   requiredBy: []
-  timestamp: '2026-06-09 17:25:25+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca_2.test.cpp
 layout: document

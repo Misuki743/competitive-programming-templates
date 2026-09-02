@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/RMQ.cpp
     title: ds/RMQ.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/LCA.cpp
     title: tree/LCA.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/auxiliary_tree.cpp
     title: tree/auxiliary_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -236,12 +236,12 @@ data:
     \ {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v]\
     \ + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n    \
     \  vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord =\
-    \ invPerm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int v\
+    \ inv_perm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int v\
     \ : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
     \ = nxt;\n          init[nxt++] = pre;\n        }\n        tin[v] = tout[v] =\
     \ nxt;\n        init[nxt++] = pre = v;\n      }\n\n      while(pre != root) {\n\
     \        pre = p[pre], tout[pre] = nxt;\n        init[nxt++] = pre;\n      }\n\
-    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      pSum(f);\n\
+    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      psum(f);\n\
     \n      vi rank(n);\n      for(int v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n\
     \        mp[rank[v]] = v;\n      }\n      for(int &v : init) v = rank[v];\n  \
     \  }\n\n    return init;\n  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v])\
@@ -255,7 +255,7 @@ data:
     \ < (1 << P) / P) {\n      ranges::sort(vs, {}, proj);\n    } else {\n      int\
     \ mx = proj(ranges::max(vs, {}, proj));\n      for(int i = 0; mx > 0; i++, mx\
     \ >>= P){\n        array<int, (1 << P) + 1> f = {};\n        for(int v : vs)\n\
-    \          f[(proj(v) >> (i * P) & ((1 << P) - 1)) + 1]++;\n        pSum(f);\n\
+    \          f[(proj(v) >> (i * P) & ((1 << P) - 1)) + 1]++;\n        psum(f);\n\
     \        vi nxt(size(vs));\n        for(int v : vs)\n          nxt[f[proj(v) >>\
     \ (i * P) & ((1 << P) - 1)]++] = v;\n        vs.swap(nxt);\n      }\n    }\n\n\
     \    vi s, old_id;\n    vc<bool> is_critical_node;\n    auto push_new_vertex =\
@@ -410,8 +410,8 @@ data:
   isVerificationFile: true
   path: test/mytest_auxiliary_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 17:05:06+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_auxiliary_tree.test.cpp
 layout: document
