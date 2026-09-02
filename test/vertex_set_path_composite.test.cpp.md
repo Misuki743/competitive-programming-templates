@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: acted_monoid/affine_sum.cpp
     title: acted_monoid/affine_sum.cpp
   - icon: ':question:'

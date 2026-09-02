@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/cycle_detection_directed.test.cpp
     title: test/cycle_detection_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/cycle_detection_undirected.test.cpp
     title: test/cycle_detection_undirected.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/misc/cycle_detection.cpp\"\ntemplate<bool directed\
@@ -49,7 +49,7 @@ data:
   path: graph/misc/cycle_detection.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/cycle_detection_directed.test.cpp
   - test/cycle_detection_undirected.test.cpp
