@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/range_set_range_composite.test.cpp
     title: test/range_set_range_composite.test.cpp
   - icon: ':x:'
@@ -43,11 +43,11 @@ data:
   timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/vertex_set_path_composite.test.cpp
   - test/range_affine_range_sum.test.cpp
   - test/range_set_range_composite.test.cpp
-  - test/vertex_set_path_composite.test.cpp
-  - test/queue_operate_all_composite.test.cpp
   - test/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/queue_operate_all_composite.test.cpp
 documentation_of: acted_monoid/affine_sum.cpp
 layout: document
 redirect_from:

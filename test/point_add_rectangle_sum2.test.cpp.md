@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwick_tree.cpp
     title: ds/fenwick_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.cpp
     title: ds/wavelet_matrix.cpp
   _extendedRequiredBy: []

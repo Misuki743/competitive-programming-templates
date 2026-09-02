@@ -51,25 +51,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series.test.cpp
     title: test/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_first_kind.test.cpp
     title: test/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind.test.cpp
     title: test/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/subset_convolution.test.cpp
     title: test/subset_convolution.test.cpp
   - icon: ':x:'
@@ -278,30 +278,30 @@ data:
   timestamp: '2026-06-07 00:25:21+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/log_of_formal_power_series.test.cpp
-  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/product_of_polynomial_sequence.test.cpp
-  - test/subset_convolution.test.cpp
-  - test/stirling_number_of_the_second_kind.test.cpp
-  - test/exp_of_formal_power_series.test.cpp
-  - test/multipoint_evaluation.test.cpp
-  - test/pow_of_formal_power_series.test.cpp
-  - test/inv_of_formal_power_series.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
-  - test/bell_number.test.cpp
-  - test/compositional_inverse_of_formal_power_series_large.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/division_of_polynomials.test.cpp
-  - test/bernoulli_number.test.cpp
-  - test/stirling_number_of_the_first_kind.test.cpp
-  - test/polynomial_interpolation.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series.test.cpp
-  - test/wildcard_pattern_matching.test.cpp
-  - test/polynomial_taylor_shift.test.cpp
+  - test/exp_of_formal_power_series.test.cpp
+  - test/polynomial_interpolation.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
+  - test/product_of_polynomial_sequence.test.cpp
+  - test/division_of_polynomials.test.cpp
+  - test/wildcard_pattern_matching.test.cpp
+  - test/stirling_number_of_the_second_kind.test.cpp
+  - test/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/compositional_inverse_of_formal_power_series_large.test.cpp
+  - test/inv_of_formal_power_series.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series.test.cpp
+  - test/pow_of_formal_power_series.test.cpp
+  - test/stirling_number_of_the_first_kind.test.cpp
+  - test/multipoint_evaluation.test.cpp
+  - test/bernoulli_number.test.cpp
+  - test/log_of_formal_power_series.test.cpp
   - test/sharp_p_subset_sum.test.cpp
+  - test/polynomial_taylor_shift.test.cpp
+  - test/subset_convolution.test.cpp
+  - test/bell_number.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/log_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/FPS.cpp
 layout: document
 redirect_from:

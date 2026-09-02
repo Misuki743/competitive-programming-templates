@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/enumerate_highly_composite_numbers.cpp
     title: enumerate/enumerate_highly_composite_numbers.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []

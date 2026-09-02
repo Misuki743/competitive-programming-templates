@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_range_frequency.test.cpp
     title: test/static_range_frequency.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/wavelet_matrix_old.cpp\"\ntemplate<class T, int H>\n\
@@ -70,10 +70,10 @@ data:
   path: ds/wavelet_matrix_old.cpp
   requiredBy: []
   timestamp: '2026-06-07 03:13:20+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/range_kth_smallest.test.cpp
   - test/static_range_frequency.test.cpp
+  - test/range_kth_smallest.test.cpp
 documentation_of: ds/wavelet_matrix_old.cpp
 layout: document
 redirect_from:

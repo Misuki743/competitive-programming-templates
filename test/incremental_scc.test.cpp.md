@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/DSU/DSU.cpp
     title: ds/DSU/DSU.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connectivity/SCC.cpp
     title: graph/connectivity/SCC.cpp
   - icon: ':heavy_check_mark:'

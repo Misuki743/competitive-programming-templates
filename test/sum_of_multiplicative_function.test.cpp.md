@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/Lucy_DP.cpp
     title: numtheory/Lucy_DP.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_multiplicative_function
@@ -225,7 +225,7 @@ data:
   path: test/sum_of_multiplicative_function.test.cpp
   requiredBy: []
   timestamp: '2026-09-02 20:44:03+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sum_of_multiplicative_function.test.cpp
 layout: document

@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest_phi_array.test.cpp
     title: test/mytest_phi_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sum_of_totient_function.test.cpp
     title: test/sum_of_totient_function.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/phi_array.cpp\"\ntemplate<class T, int32_t C>\n\
@@ -28,10 +28,10 @@ data:
   path: numtheory/phi_array.cpp
   requiredBy: []
   timestamp: '2026-07-15 01:05:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/sum_of_totient_function.test.cpp
   - test/mytest_phi_array.test.cpp
+  - test/sum_of_totient_function.test.cpp
 documentation_of: numtheory/phi_array.cpp
 layout: document
 redirect_from:

@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: numtheory/gcd_convolution.cpp
     title: numtheory/gcd_convolution.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
   - icon: ':heavy_check_mark:'
