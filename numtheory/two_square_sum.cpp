@@ -34,7 +34,7 @@ pair<vc<ll>, vc<ll>> min_of_linear_segments(ll a, ll b, ll mod) {
     r += k * p;
     s += k * q;
     while (1) {
-      ll k = max(0ll, ceilDiv(det_l - y, det_r));
+      ll k = max(0ll, ceil_div(det_l - y, det_r));
       if (det_l - k * det_r <= 0) break;
       det_l -= k * det_r;
       p += k * r;

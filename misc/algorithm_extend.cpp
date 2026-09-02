@@ -7,14 +7,14 @@ namespace algorithm_extend {
 
   template<ranges::forward_range R, class T = ranges::range_value_t<R>, typename F>
   requires R_invocable<T, F, T, T>
-  void psum(R &v, F f) {
+  void psum(R &&v, F f) {
     if (!ranges::empty(v))
       for(T p = *v.begin(); T &x : v | views::drop(1))
         x = p = f(p, x);
   }
 
   template<ranges::forward_range R, class T = ranges::range_value_t<R>>
-  void psum(R &v) {
+  void psum(R &&v) {
     if (!ranges::empty(v))
       for(T p = *v.begin(); T &x : v | views::drop(1))
         x = p = p + x;
