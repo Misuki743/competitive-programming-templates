@@ -119,10 +119,10 @@ data:
     \   _mpf[_id(i)] = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d)\
     \ if (_mpf[_id(i)] == i) {\n      int k = _first_valid(max(i, ceilDiv(_C, i)));\n\
     \      for(int j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n\
-    \        chmin(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
-    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
-    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
-    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \        _mpf[_id(j)] = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n \
+    \ }\n\n  int mpf(int n) {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return\
+    \ 2;\n    if (n % 3 == 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n\
+    \  }\n\n  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
     \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
     \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
     \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
@@ -137,11 +137,10 @@ data:
     \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
     \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
     \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_prime.back()\
-    \ < m) {\n      if (m >= _C) sieve(m);\n      _prime.reserve(1.1 * _C / log(_C));\n\
-    \      int s = _next_valid(_prime.back());\n      for(int i = s, d = _next_valid(s)\
-    \ - s; i < _C; i += d, d = 6 - d)\n        if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n\
-    \    }\n    for(int p : _prime) {\n      if (p >= m) break;\n      f(p);\n   \
-    \ }\n  }\n};\n\n//using namespace sieve_of_Eratosthenes;\n#line 5 \"test/mytest_sieve_of_Eratosthenes.test.cpp\"\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int p : _prime)\
+    \ {\n      if (p >= m) break;\n      f(p);\n    }\n  }\n}\n#line 5 \"test/mytest_sieve_of_Eratosthenes.test.cpp\"\
     \n\nvc<pii> prime_factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d\
     \ = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x\
     \ % d == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n \
@@ -194,7 +193,7 @@ data:
   isVerificationFile: true
   path: test/mytest_sieve_of_Eratosthenes.test.cpp
   requiredBy: []
-  timestamp: '2026-09-01 18:17:15+08:00'
+  timestamp: '2026-09-02 11:01:00+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_sieve_of_Eratosthenes.test.cpp
