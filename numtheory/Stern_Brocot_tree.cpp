@@ -1,5 +1,6 @@
 namespace Stern_Brocot_tree {
   using i128 = __int128;
+  template i128 ceil_div(i128 a, i128 b) { return a / b + (a % b > 0); }
   struct fraction {
     ll u, d;
     void reduce() {
