@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
   - icon: ':x:'
