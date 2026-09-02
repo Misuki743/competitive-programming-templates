@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/two_square_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/kth-competitive-programming/kactl)
@@ -39,15 +39,15 @@ data:
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
     \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
     \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n"
+    \ n) {\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(0, n - 1);\n  ull c = 1;\n\tauto f = [n,\
+    \ &c](ull x) { return modmul(x, x, n) + c % n; };\n\tull x = 0, y = 0, t = 30,\
+    \ prd = 2, i = 1, q;\n\twhile (t++ % 40 || __gcd(prd, n) == 1) {\n\t\tif (x ==\
+    \ y) c = unif(rng), x = ++i, y = f(x);\n\t\tif ((q = modmul(prd, max(x,y) - min(x,y),\
+    \ n))) prd = q;\n\t\tx = f(x), y = f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\
+    \nvector<ull> factor(ull n) {\n\tif (n == 1) return {};\n\tif (isPrime(n)) return\
+    \ {n};\n\tull x = pollard(n);\n\tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(),\
+    \ r.begin(), r.end());\n\treturn l;\n}\n"
   code: "//source: KACTL(https://github.com/kth-competitive-programming/kactl)\n\n\
     ull modmul(ull a, ull b, ull M) {\n  return (__int128)a * b % M;\n}\n\null modpow(ull\
     \ b, ull e, ull mod) {\n\tull ans = 1;\n\tfor (; e; b = modmul(b, b, mod), e /=\
@@ -57,21 +57,21 @@ data:
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
     \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
     \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n"
+    \ n) {\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(0, n - 1);\n  ull c = 1;\n\tauto f = [n,\
+    \ &c](ull x) { return modmul(x, x, n) + c % n; };\n\tull x = 0, y = 0, t = 30,\
+    \ prd = 2, i = 1, q;\n\twhile (t++ % 40 || __gcd(prd, n) == 1) {\n\t\tif (x ==\
+    \ y) c = unif(rng), x = ++i, y = f(x);\n\t\tif ((q = modmul(prd, max(x,y) - min(x,y),\
+    \ n))) prd = q;\n\t\tx = f(x), y = f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\
+    \nvector<ull> factor(ull n) {\n\tif (n == 1) return {};\n\tif (isPrime(n)) return\
+    \ {n};\n\tull x = pollard(n);\n\tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(),\
+    \ r.begin(), r.end());\n\treturn l;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: numtheory/factorize_pollard_rho.cpp
   requiredBy: []
-  timestamp: '2026-08-31 15:15:01+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-02 17:47:14+08:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/tetration_mod.test.cpp
   - test/mytest_factorize_sqrt.test.cpp

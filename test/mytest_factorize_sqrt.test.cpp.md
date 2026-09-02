@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
   - icon: ':x:'
@@ -131,31 +131,32 @@ data:
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
     \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
     \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 6 \"test/mytest_factorize_sqrt.test.cpp\"\n\nvoid check(int64_t\
-    \ x) {\n  vc<int64_t> pf;\n  for(auto p : factor(x))\n    pf.eb(p);\n  ranges::sort(pf);\n\
-    \  vc<pair<int64_t, int64_t>> pf2;\n  for(int i = 0, j = 0; i < ssize(pf); i =\
-    \ j) {\n    while(j < ssize(pf) and pf[i] == pf[j]) j++;\n    pf2.emplace_back(pf[i],\
-    \ j - i);\n  }\n  pf.resize(unique(pf.begin(), pf.end()) - pf.begin());\n  vc<int64_t>\
-    \ divisor;\n  auto dfs = [&](int i, int64_t prod, auto &self) -> void {\n    if\
-    \ (i == ssize(pf)) {\n      divisor.emplace_back(prod);\n      return;\n    }\n\
-    \    for(int j = 0; j <= pf2[i].second; j++) {\n      if (j) prod *= pf2[i].first;\n\
-    \      self(i + 1, prod, self);\n    }\n  };\n  dfs(0, 1, dfs);\n  ranges::sort(divisor);\n\
-    \  \n  assert(pf2 == prime_factorize_sqrt(x));\n  assert(pf == prime_factor_sqrt(x));\n\
-    \  assert(divisor == divisor_sqrt(x));\n}\n\nvoid check_small() {\n  for(int64_t\
-    \ x = 1; x < (1 << 10); x++)\n    check(x);\n}\n\nvoid check_large() {\n  mt19937_64\
-    \ rng(clock);\n  for(int64_t l = (1ll << 10); l < (1ll << 53); l <<= 1)\n    for(int\
-    \ i = 0; i < 10; i++)\n      check(rng() % l + l);\n}\n\nvoid a_plus_b() {\n \
-    \ int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  check_small();\n  check_large();\n\
-    \  a_plus_b();\n\n  return 0;\n}\n"
+    \ n) {\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(0, n - 1);\n  ull c = 1;\n\tauto f = [n,\
+    \ &c](ull x) { return modmul(x, x, n) + c % n; };\n\tull x = 0, y = 0, t = 30,\
+    \ prd = 2, i = 1, q;\n\twhile (t++ % 40 || __gcd(prd, n) == 1) {\n\t\tif (x ==\
+    \ y) c = unif(rng), x = ++i, y = f(x);\n\t\tif ((q = modmul(prd, max(x,y) - min(x,y),\
+    \ n))) prd = q;\n\t\tx = f(x), y = f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\
+    \nvector<ull> factor(ull n) {\n\tif (n == 1) return {};\n\tif (isPrime(n)) return\
+    \ {n};\n\tull x = pollard(n);\n\tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(),\
+    \ r.begin(), r.end());\n\treturn l;\n}\n#line 6 \"test/mytest_factorize_sqrt.test.cpp\"\
+    \n\nvoid check(int64_t x) {\n  vc<int64_t> pf;\n  for(auto p : factor(x))\n  \
+    \  pf.eb(p);\n  ranges::sort(pf);\n  vc<pair<int64_t, int64_t>> pf2;\n  for(int\
+    \ i = 0, j = 0; i < ssize(pf); i = j) {\n    while(j < ssize(pf) and pf[i] ==\
+    \ pf[j]) j++;\n    pf2.emplace_back(pf[i], j - i);\n  }\n  pf.resize(unique(pf.begin(),\
+    \ pf.end()) - pf.begin());\n  vc<int64_t> divisor;\n  auto dfs = [&](int i, int64_t\
+    \ prod, auto &self) -> void {\n    if (i == ssize(pf)) {\n      divisor.emplace_back(prod);\n\
+    \      return;\n    }\n    for(int j = 0; j <= pf2[i].second; j++) {\n      if\
+    \ (j) prod *= pf2[i].first;\n      self(i + 1, prod, self);\n    }\n  };\n  dfs(0,\
+    \ 1, dfs);\n  ranges::sort(divisor);\n  \n  assert(pf2 == prime_factorize_sqrt(x));\n\
+    \  assert(pf == prime_factor_sqrt(x));\n  assert(divisor == divisor_sqrt(x));\n\
+    }\n\nvoid check_small() {\n  for(int64_t x = 1; x < (1 << 10); x++)\n    check(x);\n\
+    }\n\nvoid check_large() {\n  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  for(int64_t l = (1ll << 10); l < (1ll << 53); l <<= 1)\n    for(int i = 0;\
+    \ i < 10; i++)\n      check(rng() % l + l);\n}\n\nvoid a_plus_b() {\n  int x,\
+    \ y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  check_small();\n  check_large();\n  a_plus_b();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/factorize_sqrt.cpp\"\n#include \"\
     ../numtheory/factorize_pollard_rho.cpp\"\n\nvoid check(int64_t x) {\n  vc<int64_t>\
@@ -170,11 +171,12 @@ data:
     \  \n  assert(pf2 == prime_factorize_sqrt(x));\n  assert(pf == prime_factor_sqrt(x));\n\
     \  assert(divisor == divisor_sqrt(x));\n}\n\nvoid check_small() {\n  for(int64_t\
     \ x = 1; x < (1 << 10); x++)\n    check(x);\n}\n\nvoid check_large() {\n  mt19937_64\
-    \ rng(clock);\n  for(int64_t l = (1ll << 10); l < (1ll << 53); l <<= 1)\n    for(int\
-    \ i = 0; i < 10; i++)\n      check(rng() % l + l);\n}\n\nvoid a_plus_b() {\n \
-    \ int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nsigned main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  check_small();\n  check_large();\n\
-    \  a_plus_b();\n\n  return 0;\n}\n"
+    \ rng(chrono::steady_clock::now().time_since_epoch().count());\n  for(int64_t\
+    \ l = (1ll << 10); l < (1ll << 53); l <<= 1)\n    for(int i = 0; i < 10; i++)\n\
+    \      check(rng() % l + l);\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >>\
+    \ y;\n  cout << x + y << '\\n';\n}\n\nsigned main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  check_small();\n  check_large();\n  a_plus_b();\n\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/factorize_sqrt.cpp
@@ -182,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/mytest_factorize_sqrt.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_factorize_sqrt.test.cpp

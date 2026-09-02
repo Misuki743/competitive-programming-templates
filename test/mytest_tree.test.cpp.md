@@ -19,7 +19,7 @@ data:
   - icon: ':x:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   _extendedRequiredBy: []
@@ -236,28 +236,30 @@ data:
     \ e;\n  for(int u = 0; u < n; u++)\n    for(int v : g[u])\n      if (u < v)\n\
     \        e.emplace_back(u, v);\n\n  tree T(e, root);\n  assert(tie(T.p, T.sz,\
     \ T.dep) == tie(p, sz, dep));\n}\n\nauto random_relabel(vector<vector<int>> g)\
-    \ {\n  mt19937 rng(clock);\n  const int n = ssize(g);\n  vector<int> p(n);\n \
-    \ iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>>\
-    \ g2(n);\n  for(int u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n\
-    \  return pair(g2, p[0]);\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n\
-    \  cout << a + b << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  mt19937 rng(clock);\n\n  for(int n = 1; n <= 7; n++) {\n\
-    \    enumerate_label_tree(n, [&](vector<vector<int>> g) {\n      for(int root\
-    \ = 0; root < n; root++)\n        check(g, root);\n    });\n  }\n\n  for(int n\
-    \ = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n, [&](vector<vector<int>>\
-    \ g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n     \
-    \ check(gp, root);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100; n++)\
-    \ {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n      g[i].emplace_back(i\
-    \ - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n    check(g, n / 2);\n  \
-    \  check(g, n - 1);\n    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n\
-    \  }\n\n  //star\n  for(int n = 2; n <= 100; n++) {\n    for(int root : {0, n\
-    \ / 2, n - 1}) {\n      vector<vector<int>> g(n);\n      for(int i = 0; i < n;\
-    \ i++)\n        if (i != root)\n          g[root].emplace_back(i), g[i].emplace_back(root);\n\
-    \      check(g, root);\n    }\n  }\n\n  //almost path\n  for(int tc = 0; tc <\
-    \ 30; tc++) {\n    int n = 500;\n    vector<vector<int>> g(n);\n    for(int v\
-    \ = 1; v < n; v++) {\n      int x = rng() % min(v, 5);\n      g[v].emplace_back(x),\
-    \ g[x].emplace_back(v);\n    }\n    check(g, 0);\n    auto [gp, root] = random_relabel(g);\n\
-    \    check(gp, root);\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
+    \ {\n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  const int n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n\
+    \  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int\
+    \ u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return\
+    \ pair(g2, p[0]);\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout\
+    \ << a + b << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\n \
+    \ for(int n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>>\
+    \ g) {\n      for(int root = 0; root < n; root++)\n        check(g, root);\n \
+    \   });\n  }\n\n  for(int n = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n,\
+    \ [&](vector<vector<int>> g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n\
+    \      check(gp, root);\n    });\n  }\n\n  //path\n  for(int n = 1; n <= 100;\
+    \ n++) {\n    vector<vector<int>> g(n);\n    for(int i = 1; i < n; i++)\n    \
+    \  g[i].emplace_back(i - 1), g[i - 1].emplace_back(i);\n    check(g, 0);\n   \
+    \ check(g, n / 2);\n    check(g, n - 1);\n    auto [gp, root] = random_relabel(g);\n\
+    \    check(gp, root);\n  }\n\n  //star\n  for(int n = 2; n <= 100; n++) {\n  \
+    \  for(int root : {0, n / 2, n - 1}) {\n      vector<vector<int>> g(n);\n    \
+    \  for(int i = 0; i < n; i++)\n        if (i != root)\n          g[root].emplace_back(i),\
+    \ g[i].emplace_back(root);\n      check(g, root);\n    }\n  }\n\n  //almost path\n\
+    \  for(int tc = 0; tc < 30; tc++) {\n    int n = 500;\n    vector<vector<int>>\
+    \ g(n);\n    for(int v = 1; v < n; v++) {\n      int x = rng() % min(v, 5);\n\
+    \      g[v].emplace_back(x), g[x].emplace_back(v);\n    }\n    check(g, 0);\n\
+    \    auto [gp, root] = random_relabel(g);\n    check(gp, root);\n  }\n\n  a_plus_b();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../tree/prufer_recover.cpp\"\n#include \"../enumerate/enumerate_bit.cpp\"\
     \n#include \"../enumerate/enumerate_twelvefold.cpp\"\n#include \"../enumerate/enumerate_label_tree.cpp\"\
@@ -269,13 +271,14 @@ data:
     \ }\n  };\n  dfs(root, dfs);\n\n  vector<pii> e;\n  for(int u = 0; u < n; u++)\n\
     \    for(int v : g[u])\n      if (u < v)\n        e.emplace_back(u, v);\n\n  tree\
     \ T(e, root);\n  assert(tie(T.p, T.sz, T.dep) == tie(p, sz, dep));\n}\n\nauto\
-    \ random_relabel(vector<vector<int>> g) {\n  mt19937 rng(clock);\n  const int\
-    \ n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(),\
-    \ p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int u = 0; u < n; u++)\n\
-    \    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return pair(g2, p[0]);\n}\n\
-    \nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\
-    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  mt19937 rng(clock);\n\
-    \n  for(int n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>>\
+    \ random_relabel(vector<vector<int>> g) {\n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  const int n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n\
+    \  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int\
+    \ u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return\
+    \ pair(g2, p[0]);\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout\
+    \ << a + b << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\n \
+    \ for(int n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>>\
     \ g) {\n      for(int root = 0; root < n; root++)\n        check(g, root);\n \
     \   });\n  }\n\n  for(int n = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n,\
     \ [&](vector<vector<int>> g) {\n      check(g, 0);\n      auto [gp, root] = random_relabel(g);\n\
@@ -303,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/mytest_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_tree.test.cpp

@@ -156,12 +156,12 @@ data:
     \ k, [&](vector<int> a) {\n          assert(ssize(a) == k);\n          assert(a.empty()\
     \ or ranges::min(a) >= 0);\n          assert(a.empty() or ranges::max(a) < n);\n\
     \          S.push_back(std::move(a));\n        });\n        assert(cnt == ssize(S));\n\
-    \        Unique(S);\n        assert(cnt == ssize(S));\n      }\n    }\n  }\n\n\
+    \        unique(S);\n        assert(cnt == ssize(S));\n      }\n    }\n  }\n\n\
     \  { //permutation\n    int cnt = 1;\n    for(int n = 0; n <= 9; cnt *= ++n) {\n\
     \      vector<vector<int>> S;\n      enumerate_permutation(n, [&](vector<int>\
     \ p) {\n        assert(ssize(p) == n);\n        S.push_back(p);\n        ranges::sort(p);\n\
     \        for(int i = 0; i < n; i++)\n          assert(p[i] == i);\n      });\n\
-    \      assert(cnt == ssize(S));\n      Unique(S);\n      assert(cnt == ssize(S));\n\
+    \      assert(cnt == ssize(S));\n      unique(S);\n      assert(cnt == ssize(S));\n\
     \    }\n  }\n\n  { //combination\n    int C[17][17] = {};\n    for(int i = 0;\
     \ i < 17; i++)\n      C[i][0] = C[i][i] = 1;\n    for(int i = 2; i < 17; i++)\n\
     \      for(int j = 1; j < i; j++)\n        C[i][j] = C[i - 1][j - 1] + C[i - 1][j];\n\
@@ -169,8 +169,8 @@ data:
     \     vector<vector<int>> S;\n        enumerate_combination(n, k, [&](vector<int>\
     \ a) {\n          assert(ssize(a) == k);\n          assert(a.empty() or ranges::min(a)\
     \ >= 0);\n          assert(a.empty() or ranges::max(a) < n);\n          S.push_back(a);\n\
-    \          Unique(a);\n          assert(ssize(a) == k);\n        });\n       \
-    \ assert(ssize(S) == C[n][k]);\n        Unique(S);\n        assert(ssize(S) ==\
+    \          unique(a);\n          assert(ssize(a) == k);\n        });\n       \
+    \ assert(ssize(S) == C[n][k]);\n        unique(S);\n        assert(ssize(S) ==\
     \ C[n][k]);\n      }\n    }\n  }\n\n  { //set partition\n    int bell[12] = {1,\
     \ 1, 2, 5, 15, 52, 203, 877, 4140, 21147, 115975, 678570};\n    for(int n = 0;\
     \ n < 12; n++) {\n      vector<vector<int>> S;\n      enumerate_set_partition(n,\
@@ -178,7 +178,7 @@ data:
     \   for(int x : p) {\n          assert((x | ((1 << n) - 1)) == (1 << n) - 1);\n\
     \          assert(x > 0);\n          assert((msk & x) == 0);\n          msk |=\
     \ x;\n        }\n        assert(msk == (1 << n) - 1);\n        S.push_back(std::move(p));\n\
-    \      });\n      assert(ssize(S) == bell[n]);\n      Unique(S);\n      assert(ssize(S)\
+    \      });\n      assert(ssize(S) == bell[n]);\n      unique(S);\n      assert(ssize(S)\
     \ == bell[n]);\n    }\n  }\n\n  { //f[0] + f[1] + ... + f[n - 1] = sum, f[i] >=\
     \ 0\n    int C[17][17] = {};\n    for(int i = 0; i < 17; i++)\n      C[i][0] =\
     \ C[i][i] = 1;\n    for(int i = 2; i < 17; i++)\n      for(int j = 1; j < i; j++)\n\
@@ -188,7 +188,7 @@ data:
     \ == n);\n          assert(f.empty() or ranges::min(f) >= 0);\n          assert(accumulate(f.begin(),\
     \ f.end(), 0) == sum);\n          S.emplace_back(f);\n        });\n        if\
     \ (n == 0)\n          assert(ssize(S) == (sum == 0));\n        else\n        \
-    \  assert(ssize(S) == C[n - 1 + sum][sum]);\n        Unique(S);\n        if (n\
+    \  assert(ssize(S) == C[n - 1 + sum][sum]);\n        unique(S);\n        if (n\
     \ == 0)\n          assert(ssize(S) == (sum == 0));\n        else\n          assert(ssize(S)\
     \ == C[n - 1 + sum][sum]);\n      }\n    }\n  }\n\n  { //integer partition\n \
     \   int part[50] = {1, 1, 2, 3, 5, 7, 11, 15, 22, 30, 42, 56, 77, 101, 135, 176,\
@@ -199,7 +199,7 @@ data:
     \ [&](vector<int> p) {\n        assert(p.empty() or ranges::min(p) > 0);\n   \
     \     assert(ranges::is_sorted(p | views::reverse));\n        assert(accumulate(p.begin(),\
     \ p.end(), 0) == n);\n        S.emplace_back(std::move(p));\n      });\n     \
-    \ assert(ssize(S) == part[n]);\n      Unique(S);\n      assert(ssize(S) == part[n]);\n\
+    \ assert(ssize(S) == part[n]);\n      unique(S);\n      assert(ssize(S) == part[n]);\n\
     \    }\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../enumerate/enumerate_bit.cpp\"\n#include \"../enumerate/enumerate_twelvefold.cpp\"\
@@ -210,12 +210,12 @@ data:
     \ k, [&](vector<int> a) {\n          assert(ssize(a) == k);\n          assert(a.empty()\
     \ or ranges::min(a) >= 0);\n          assert(a.empty() or ranges::max(a) < n);\n\
     \          S.push_back(std::move(a));\n        });\n        assert(cnt == ssize(S));\n\
-    \        Unique(S);\n        assert(cnt == ssize(S));\n      }\n    }\n  }\n\n\
+    \        unique(S);\n        assert(cnt == ssize(S));\n      }\n    }\n  }\n\n\
     \  { //permutation\n    int cnt = 1;\n    for(int n = 0; n <= 9; cnt *= ++n) {\n\
     \      vector<vector<int>> S;\n      enumerate_permutation(n, [&](vector<int>\
     \ p) {\n        assert(ssize(p) == n);\n        S.push_back(p);\n        ranges::sort(p);\n\
     \        for(int i = 0; i < n; i++)\n          assert(p[i] == i);\n      });\n\
-    \      assert(cnt == ssize(S));\n      Unique(S);\n      assert(cnt == ssize(S));\n\
+    \      assert(cnt == ssize(S));\n      unique(S);\n      assert(cnt == ssize(S));\n\
     \    }\n  }\n\n  { //combination\n    int C[17][17] = {};\n    for(int i = 0;\
     \ i < 17; i++)\n      C[i][0] = C[i][i] = 1;\n    for(int i = 2; i < 17; i++)\n\
     \      for(int j = 1; j < i; j++)\n        C[i][j] = C[i - 1][j - 1] + C[i - 1][j];\n\
@@ -223,8 +223,8 @@ data:
     \     vector<vector<int>> S;\n        enumerate_combination(n, k, [&](vector<int>\
     \ a) {\n          assert(ssize(a) == k);\n          assert(a.empty() or ranges::min(a)\
     \ >= 0);\n          assert(a.empty() or ranges::max(a) < n);\n          S.push_back(a);\n\
-    \          Unique(a);\n          assert(ssize(a) == k);\n        });\n       \
-    \ assert(ssize(S) == C[n][k]);\n        Unique(S);\n        assert(ssize(S) ==\
+    \          unique(a);\n          assert(ssize(a) == k);\n        });\n       \
+    \ assert(ssize(S) == C[n][k]);\n        unique(S);\n        assert(ssize(S) ==\
     \ C[n][k]);\n      }\n    }\n  }\n\n  { //set partition\n    int bell[12] = {1,\
     \ 1, 2, 5, 15, 52, 203, 877, 4140, 21147, 115975, 678570};\n    for(int n = 0;\
     \ n < 12; n++) {\n      vector<vector<int>> S;\n      enumerate_set_partition(n,\
@@ -232,7 +232,7 @@ data:
     \   for(int x : p) {\n          assert((x | ((1 << n) - 1)) == (1 << n) - 1);\n\
     \          assert(x > 0);\n          assert((msk & x) == 0);\n          msk |=\
     \ x;\n        }\n        assert(msk == (1 << n) - 1);\n        S.push_back(std::move(p));\n\
-    \      });\n      assert(ssize(S) == bell[n]);\n      Unique(S);\n      assert(ssize(S)\
+    \      });\n      assert(ssize(S) == bell[n]);\n      unique(S);\n      assert(ssize(S)\
     \ == bell[n]);\n    }\n  }\n\n  { //f[0] + f[1] + ... + f[n - 1] = sum, f[i] >=\
     \ 0\n    int C[17][17] = {};\n    for(int i = 0; i < 17; i++)\n      C[i][0] =\
     \ C[i][i] = 1;\n    for(int i = 2; i < 17; i++)\n      for(int j = 1; j < i; j++)\n\
@@ -242,7 +242,7 @@ data:
     \ == n);\n          assert(f.empty() or ranges::min(f) >= 0);\n          assert(accumulate(f.begin(),\
     \ f.end(), 0) == sum);\n          S.emplace_back(f);\n        });\n        if\
     \ (n == 0)\n          assert(ssize(S) == (sum == 0));\n        else\n        \
-    \  assert(ssize(S) == C[n - 1 + sum][sum]);\n        Unique(S);\n        if (n\
+    \  assert(ssize(S) == C[n - 1 + sum][sum]);\n        unique(S);\n        if (n\
     \ == 0)\n          assert(ssize(S) == (sum == 0));\n        else\n          assert(ssize(S)\
     \ == C[n - 1 + sum][sum]);\n      }\n    }\n  }\n\n  { //integer partition\n \
     \   int part[50] = {1, 1, 2, 3, 5, 7, 11, 15, 22, 30, 42, 56, 77, 101, 135, 176,\
@@ -253,7 +253,7 @@ data:
     \ [&](vector<int> p) {\n        assert(p.empty() or ranges::min(p) > 0);\n   \
     \     assert(ranges::is_sorted(p | views::reverse));\n        assert(accumulate(p.begin(),\
     \ p.end(), 0) == n);\n        S.emplace_back(std::move(p));\n      });\n     \
-    \ assert(ssize(S) == part[n]);\n      Unique(S);\n      assert(ssize(S) == part[n]);\n\
+    \ assert(ssize(S) == part[n]);\n      unique(S);\n      assert(ssize(S) == part[n]);\n\
     \    }\n  }\n\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
@@ -262,7 +262,7 @@ data:
   isVerificationFile: true
   path: test/mytest_enumerate_twelvefold.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_enumerate_twelvefold.test.cpp

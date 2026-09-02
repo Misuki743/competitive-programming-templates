@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/HLD.cpp
     title: tree/HLD.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
@@ -174,23 +174,23 @@ data:
     \    }\n    return c;\n  }\n\n  inline int parent_eid(int v) { return v_to_e[v];\
     \ }\n};\n#line 5 \"test/jump_on_tree_3.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(auto\
-    \ &[u, v] : e)\n    cin >> u >> v;\n  mt19937_64 rng(clock);\n  HLD hld(std::move(e),\
-    \ rng() % n);\n  while(q--) {\n    int s, t, k; cin >> s >> t >> k;\n    cout\
-    \ << hld.kth(s, t, k) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ &[u, v] : e)\n    cin >> u >> v;\n  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  HLD hld(std::move(e), rng() % n);\n  while(q--) {\n    int s, t, k; cin >>\
+    \ s >> t >> k;\n    cout << hld.kth(s, t, k) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../tree/HLD.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vc<pii> e(n - 1);\n  for(auto\
-    \ &[u, v] : e)\n    cin >> u >> v;\n  mt19937_64 rng(clock);\n  HLD hld(std::move(e),\
-    \ rng() % n);\n  while(q--) {\n    int s, t, k; cin >> s >> t >> k;\n    cout\
-    \ << hld.kth(s, t, k) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ &[u, v] : e)\n    cin >> u >> v;\n  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  HLD hld(std::move(e), rng() % n);\n  while(q--) {\n    int s, t, k; cin >>\
+    \ s >> t >> k;\n    cout << hld.kth(s, t, k) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - tree/HLD.cpp
   isVerificationFile: true
   path: test/jump_on_tree_3.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-02 17:47:14+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/jump_on_tree_3.test.cpp
 layout: document

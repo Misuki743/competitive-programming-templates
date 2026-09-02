@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: numtheory/exgcd.cpp
     title: numtheory/exgcd.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
   - icon: ':x:'
@@ -120,31 +120,32 @@ data:
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
     \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
     \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"numtheory/exgcd.cpp\"\n//source: KACTL\n//note: inv\
-    \ calculate modulo inverse of r mod m where gcd(r, m) = 1\n\nll euclid(ll a, ll\
-    \ b, ll &x, ll &y) {\n\tif (!b) return x = 1, y = 0, a;\n\tll d = euclid(b, a\
-    \ % b, y, x);\n\treturn y -= a/b * x, d;\n}\n\nll inv(ll r, ll m) {\n  ll x, y;\n\
-    \  ll gcd = euclid(r, m, x, y);\n  assert(gcd == 1);\n  return (x % m + m) % m;\n\
-    }\n#line 1 \"numtheory/tetration_mod.cpp\"\nll phi(ll n) {\n  auto pf = factor(n);\n\
-    \  Unique(pf);\n  for(ll p : pf)\n    n -= n / p;\n  return n;\n}\n\nll tetration(ll\
-    \ a, ll b, ll m) {\n  static const ll a2[] = {1, 2, 4, 16, 1 << 16};\n\n  if (m\
-    \ == 1) return 0;\n  if (b == 0) return 1;\n  if (b == 1) return a % m;\n  if\
-    \ (b == 2) return modpow(a, a, m);\n  if (a == 0) return ~b & 1;\n  if (a == 1)\
-    \ return 1;\n  if (a == 2 and b < 5) return a2[b] % m;\n\n  if (gcd(a, m) == 1)\
-    \ return modpow(a, tetration(a, b - 1, phi(m)), m);\n\n  ll g = 1, x;\n  while((x\
-    \ = gcd(g * a, m)) != g) g = x;\n\n  return modpow(a, tetration(a, b - 1, phi(m\
-    \ / g)), m / g) * inv(g, m / g) % (m / g) * g;\n}\n#line 7 \"test/tetration_mod.test.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t; cin\
-    \ >> t;\n  while(t--) {\n    ll a, b, m; cin >> a >> b >> m;\n    cout << tetration(a,\
-    \ b, m) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ n) {\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(0, n - 1);\n  ull c = 1;\n\tauto f = [n,\
+    \ &c](ull x) { return modmul(x, x, n) + c % n; };\n\tull x = 0, y = 0, t = 30,\
+    \ prd = 2, i = 1, q;\n\twhile (t++ % 40 || __gcd(prd, n) == 1) {\n\t\tif (x ==\
+    \ y) c = unif(rng), x = ++i, y = f(x);\n\t\tif ((q = modmul(prd, max(x,y) - min(x,y),\
+    \ n))) prd = q;\n\t\tx = f(x), y = f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\
+    \nvector<ull> factor(ull n) {\n\tif (n == 1) return {};\n\tif (isPrime(n)) return\
+    \ {n};\n\tull x = pollard(n);\n\tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(),\
+    \ r.begin(), r.end());\n\treturn l;\n}\n#line 1 \"numtheory/exgcd.cpp\"\n//source:\
+    \ KACTL\n//note: inv calculate modulo inverse of r mod m where gcd(r, m) = 1\n\
+    \nll euclid(ll a, ll b, ll &x, ll &y) {\n\tif (!b) return x = 1, y = 0, a;\n\t\
+    ll d = euclid(b, a % b, y, x);\n\treturn y -= a/b * x, d;\n}\n\nll inv(ll r, ll\
+    \ m) {\n  ll x, y;\n  ll gcd = euclid(r, m, x, y);\n  assert(gcd == 1);\n  return\
+    \ (x % m + m) % m;\n}\n#line 1 \"numtheory/tetration_mod.cpp\"\nll phi(ll n) {\n\
+    \  auto pf = factor(n);\n  unique(pf);\n  for(ll p : pf)\n    n -= n / p;\n  return\
+    \ n;\n}\n\nll tetration(ll a, ll b, ll m) {\n  static const ll a2[] = {1, 2, 4,\
+    \ 16, 1 << 16};\n\n  if (m == 1) return 0;\n  if (b == 0) return 1;\n  if (b ==\
+    \ 1) return a % m;\n  if (b == 2) return modpow(a, a, m);\n  if (a == 0) return\
+    \ ~b & 1;\n  if (a == 1) return 1;\n  if (a == 2 and b < 5) return a2[b] % m;\n\
+    \n  if (gcd(a, m) == 1) return modpow(a, tetration(a, b - 1, phi(m)), m);\n\n\
+    \  ll g = 1, x;\n  while((x = gcd(g * a, m)) != g) g = x;\n\n  return modpow(a,\
+    \ tetration(a, b - 1, phi(m / g)), m / g) * inv(g, m / g) % (m / g) * g;\n}\n\
+    #line 7 \"test/tetration_mod.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--) {\n    ll a, b, m; cin >>\
+    \ a >> b >> m;\n    cout << tetration(a, b, m) << '\\n';\n  }\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../numtheory/factorize_pollard_rho.cpp\"\n\
     #include \"../numtheory/exgcd.cpp\"\n#include \"../numtheory/tetration_mod.cpp\"\
@@ -159,7 +160,7 @@ data:
   isVerificationFile: true
   path: test/tetration_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/tetration_mod.test.cpp

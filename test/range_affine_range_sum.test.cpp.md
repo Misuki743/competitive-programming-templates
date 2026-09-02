@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/acted_monoid_segment_tree.cpp
     title: segtree/acted_monoid_segment_tree.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/lazy_segment_tree.cpp
     title: segtree/lazy_segment_tree.cpp
   _extendedRequiredBy: []

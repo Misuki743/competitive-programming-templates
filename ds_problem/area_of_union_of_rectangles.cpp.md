@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/area_of_union_of_rectangles.cpp\"\n//#include\
@@ -18,7 +18,7 @@ data:
     \ 4>> rect) {\n  if (rect.empty()) return answer_type(0);\n  vector<coordinate_type>\
     \ xs(2 * size(rect)), ys(2 * size(rect));\n  for(int i = 0; auto [a, b, c, d]\
     \ : rect)\n    tie(xs[2 * i], ys[2 * i], xs[2 * i + 1], ys[2 * i + 1]) = make_tuple(a,\
-    \ b, c, d), i++;\n  Unique(xs), Unique(ys);\n\n  vector<array<int, 4>> event(2\
+    \ b, c, d), i++;\n  unique(xs), unique(ys);\n\n  vector<array<int, 4>> event(2\
     \ * size(rect));\n  for(int i = 0; i < ssize(rect); i++) {\n    event[2 * i] =\
     \ {rect[i][0], rect[i][1], rect[i][3], 1};\n    event[2 * i + 1] = {rect[i][2],\
     \ rect[i][1], rect[i][3], -1};\n  }\n  ranges::sort(event, {}, [](auto &x) { return\
@@ -39,7 +39,7 @@ data:
     \ 4>> rect) {\n  if (rect.empty()) return answer_type(0);\n  vector<coordinate_type>\
     \ xs(2 * size(rect)), ys(2 * size(rect));\n  for(int i = 0; auto [a, b, c, d]\
     \ : rect)\n    tie(xs[2 * i], ys[2 * i], xs[2 * i + 1], ys[2 * i + 1]) = make_tuple(a,\
-    \ b, c, d), i++;\n  Unique(xs), Unique(ys);\n\n  vector<array<int, 4>> event(2\
+    \ b, c, d), i++;\n  unique(xs), unique(ys);\n\n  vector<array<int, 4>> event(2\
     \ * size(rect));\n  for(int i = 0; i < ssize(rect); i++) {\n    event[2 * i] =\
     \ {rect[i][0], rect[i][1], rect[i][3], 1};\n    event[2 * i + 1] = {rect[i][2],\
     \ rect[i][1], rect[i][3], -1};\n  }\n  ranges::sort(event, {}, [](auto &x) { return\
@@ -58,8 +58,8 @@ data:
   isVerificationFile: false
   path: ds_problem/area_of_union_of_rectangles.cpp
   requiredBy: []
-  timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-09-02 17:47:14+08:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
 documentation_of: ds_problem/area_of_union_of_rectangles.cpp

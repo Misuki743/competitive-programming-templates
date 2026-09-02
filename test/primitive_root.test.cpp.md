@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
   - icon: ':x:'
@@ -117,19 +117,20 @@ data:
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
     \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
     \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\n//#include \"numtheory/fastFactorize.cpp\"\
-    \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
-    \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
-    \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
-    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
+    \ n) {\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(0, n - 1);\n  ull c = 1;\n\tauto f = [n,\
+    \ &c](ull x) { return modmul(x, x, n) + c % n; };\n\tull x = 0, y = 0, t = 30,\
+    \ prd = 2, i = 1, q;\n\twhile (t++ % 40 || __gcd(prd, n) == 1) {\n\t\tif (x ==\
+    \ y) c = unif(rng), x = ++i, y = f(x);\n\t\tif ((q = modmul(prd, max(x,y) - min(x,y),\
+    \ n))) prd = q;\n\t\tx = f(x), y = f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\
+    \nvector<ull> factor(ull n) {\n\tif (n == 1) return {};\n\tif (isPrime(n)) return\
+    \ {n};\n\tull x = pollard(n);\n\tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(),\
+    \ r.begin(), r.end());\n\treturn l;\n}\n#line 1 \"numtheory/primitive_root.cpp\"\
+    \n//#include \"numtheory/fastFactorize.cpp\"\n\null primitiveRoot(ull p) {\n \
+    \ auto fac = factor(p - 1);\n  ranges::sort(fac);\n  fac.resize(unique(fac.begin(),\
+    \ fac.end()) - fac.begin());\n  auto test = [p, fac](ull x) {\n    for(ull d :\
+    \ fac)\n      if (modpow(x, (p - 1) / d, p) == 1)\n        return false;\n   \
+    \ return true;\n  };\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
     \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
     \ = unif(rng)));\n  return root;\n}\n#line 6 \"test/primitive_root.test.cpp\"\n\
     \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int q; cin\
@@ -147,7 +148,7 @@ data:
   isVerificationFile: true
   path: test/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/primitive_root.test.cpp

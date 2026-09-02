@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: combi/chromatic_number.cpp
     title: combi/chromatic_number.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: modint/dynamic_Montgomery_modint.cpp
     title: modint/dynamic_Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
@@ -153,19 +153,20 @@ data:
     \ d = n >> s;\n\tfor (ull a : A) {   // ^ count trailing zeroes\n\t\tull p = modpow(a%n,\
     \ d, n), i = s;\n\t\twhile (p != 1 && p != n - 1 && a % n && i--)\n\t\t\tp = modmul(p,\
     \ p, n);\n\t\tif (p != n-1 && i != s) return 0;\n\t}\n\treturn 1;\n}\n\null pollard(ull\
-    \ n) {\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull> unif(0,\
-    \ n - 1);\n  ull c = 1;\n\tauto f = [n, &c](ull x) { return modmul(x, x, n) +\
-    \ c % n; };\n\tull x = 0, y = 0, t = 30, prd = 2, i = 1, q;\n\twhile (t++ % 40\
-    \ || __gcd(prd, n) == 1) {\n\t\tif (x == y) c = unif(rng), x = ++i, y = f(x);\n\
-    \t\tif ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;\n\t\tx = f(x), y =\
-    \ f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\nvector<ull> factor(ull n) {\n\t\
-    if (n == 1) return {};\n\tif (isPrime(n)) return {n};\n\tull x = pollard(n);\n\
-    \tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(), r.begin(), r.end());\n\
-    \treturn l;\n}\n#line 1 \"combi/chromatic_number.cpp\"\n//#include \"modint/dynamic_Montgomery_modint.cpp\"\
-    \n//#include \"numtheory/factorize_pollard_rho.cpp\"\n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod\
-    \ = 0;\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::n2 = 0;\ntemplate<>\
-    \ uint32_t dynamic_Montgomery_modint<123>::r = 0;\nint chromatic_number(vector<vector<bool>>\
-    \ g) {\n  const int n = ssize(g);\n\n  mt19937 rng(clock);\n  uniform_int_distribution<int>\
+    \ n) {\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(0, n - 1);\n  ull c = 1;\n\tauto f = [n,\
+    \ &c](ull x) { return modmul(x, x, n) + c % n; };\n\tull x = 0, y = 0, t = 30,\
+    \ prd = 2, i = 1, q;\n\twhile (t++ % 40 || __gcd(prd, n) == 1) {\n\t\tif (x ==\
+    \ y) c = unif(rng), x = ++i, y = f(x);\n\t\tif ((q = modmul(prd, max(x,y) - min(x,y),\
+    \ n))) prd = q;\n\t\tx = f(x), y = f(f(y));\n\t}\n\treturn __gcd(prd, n);\n}\n\
+    \nvector<ull> factor(ull n) {\n\tif (n == 1) return {};\n\tif (isPrime(n)) return\
+    \ {n};\n\tull x = pollard(n);\n\tauto l = factor(x), r = factor(n / x);\n\tl.insert(l.end(),\
+    \ r.begin(), r.end());\n\treturn l;\n}\n#line 1 \"combi/chromatic_number.cpp\"\
+    \n//#include \"modint/dynamic_Montgomery_modint.cpp\"\n//#include \"numtheory/factorize_pollard_rho.cpp\"\
+    \n\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::mod = 0;\ntemplate<> uint32_t\
+    \ dynamic_Montgomery_modint<123>::n2 = 0;\ntemplate<> uint32_t dynamic_Montgomery_modint<123>::r\
+    \ = 0;\nint chromatic_number(vector<vector<bool>> g) {\n  const int n = ssize(g);\n\
+    \n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n  uniform_int_distribution<int>\
     \ unif(1 << 29, 1 << 30);\n  int p = 4;\n  while(!isPrime(p)) p = unif(rng);\n\
     \  using Mint = dynamic_Montgomery_modint<123>;\n  Mint::set_mod(p);\n\n  vector<Mint>\
     \ I(1 << n);\n  I[0] = 1;\n  for(unsigned msk = 1; msk < (1 << n); msk++) {\n\
@@ -195,8 +196,8 @@ data:
   isVerificationFile: true
   path: test/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-02 17:47:14+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/chromatic_number.test.cpp
 layout: document

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/area_of_union_of_rectangles.test.cpp
     title: test/area_of_union_of_rectangles.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"segtree/lazy_segment_tree.cpp\"\ntemplate<class M, M(*Mid)(),\
@@ -115,7 +115,7 @@ data:
   path: segtree/lazy_segment_tree.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/range_add_range_min.test.cpp
   - test/range_affine_range_sum.test.cpp

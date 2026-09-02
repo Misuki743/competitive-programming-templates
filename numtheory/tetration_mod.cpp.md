@@ -12,7 +12,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/tetration_mod.cpp\"\nll phi(ll n) {\n  auto pf\
-    \ = factor(n);\n  Unique(pf);\n  for(ll p : pf)\n    n -= n / p;\n  return n;\n\
+    \ = factor(n);\n  unique(pf);\n  for(ll p : pf)\n    n -= n / p;\n  return n;\n\
     }\n\nll tetration(ll a, ll b, ll m) {\n  static const ll a2[] = {1, 2, 4, 16,\
     \ 1 << 16};\n\n  if (m == 1) return 0;\n  if (b == 0) return 1;\n  if (b == 1)\
     \ return a % m;\n  if (b == 2) return modpow(a, a, m);\n  if (a == 0) return ~b\
@@ -20,7 +20,7 @@ data:
     \  if (gcd(a, m) == 1) return modpow(a, tetration(a, b - 1, phi(m)), m);\n\n \
     \ ll g = 1, x;\n  while((x = gcd(g * a, m)) != g) g = x;\n\n  return modpow(a,\
     \ tetration(a, b - 1, phi(m / g)), m / g) * inv(g, m / g) % (m / g) * g;\n}\n"
-  code: "ll phi(ll n) {\n  auto pf = factor(n);\n  Unique(pf);\n  for(ll p : pf)\n\
+  code: "ll phi(ll n) {\n  auto pf = factor(n);\n  unique(pf);\n  for(ll p : pf)\n\
     \    n -= n / p;\n  return n;\n}\n\nll tetration(ll a, ll b, ll m) {\n  static\
     \ const ll a2[] = {1, 2, 4, 16, 1 << 16};\n\n  if (m == 1) return 0;\n  if (b\
     \ == 0) return 1;\n  if (b == 1) return a % m;\n  if (b == 2) return modpow(a,\
@@ -33,7 +33,7 @@ data:
   isVerificationFile: false
   path: numtheory/tetration_mod.cpp
   requiredBy: []
-  timestamp: '2026-08-02 01:31:25+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/tetration_mod.test.cpp

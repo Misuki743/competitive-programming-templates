@@ -148,7 +148,7 @@ data:
     \ &p : inv_perms)\n        p = inv_perm(p);\n    }\n\n    for(int i = 0; i <=\
     \ H; i++)\n      f(i, inv_perms[i][x]);\n  }\n};\n#line 5 \"test/static_range_sum_with_upper_bound.test.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q;\
-    \ cin >> n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  vi xs = a;\n  Unique(xs);\n\
+    \ cin >> n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  vi xs = a;\n  unique(xs);\n\
     \  for(int &x : a)\n    x = ranges::lower_bound(xs, x) - xs.begin();\n\n  wavelet_matrix<int,\
     \ 19> WM(a, true);\n  vvll ps;\n  for(auto &p : WM.perms) {\n    ps.eb(n);\n \
     \   for(int i = 0; i < n; i++)\n      ps.back()[i] = xs[a[p[i]]];\n    psum(ps.back());\n\
@@ -160,7 +160,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum_with_upper_bound\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../ds/wavelet_matrix.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
-    \ n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  vi xs = a;\n  Unique(xs);\n\
+    \ n >> q;\n  vi a(n);\n  for(int &x : a) cin >> x;\n\n  vi xs = a;\n  unique(xs);\n\
     \  for(int &x : a)\n    x = ranges::lower_bound(xs, x) - xs.begin();\n\n  wavelet_matrix<int,\
     \ 19> WM(a, true);\n  vvll ps;\n  for(auto &p : WM.perms) {\n    ps.eb(n);\n \
     \   for(int i = 0; i < n; i++)\n      ps.back()[i] = xs[a[p[i]]];\n    psum(ps.back());\n\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/static_range_sum_with_upper_bound.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_range_sum_with_upper_bound.test.cpp

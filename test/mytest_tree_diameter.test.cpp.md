@@ -19,7 +19,7 @@ data:
   - icon: ':x:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   - icon: ':x:'
@@ -247,13 +247,14 @@ data:
     \    s.emplace(u, v), s.emplace(v, u);\n\n  auto [diameter_2, path] = tree_diameter(e);\n\
     \n  assert(diameter == diameter_2);\n  assert(ssize(path) == diameter + 1);\n\
     \  for(int i = 1; i < ssize(path); i++)\n    assert(s.contains(pair(path[i - 1],\
-    \ path[i])));\n  Unique(path);\n  assert(ssize(path) == diameter + 1);\n}\n\n\
-    auto random_relabel(vector<vector<int>> g) {\n  mt19937 rng(clock);\n  const int\
-    \ n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(),\
-    \ p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int u = 0; u < n; u++)\n\
-    \    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return g2;\n}\n\nvoid a_plus_b()\
-    \ {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nint main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  mt19937 rng(clock);\n\n  for(int\
+    \ path[i])));\n  unique(path);\n  assert(ssize(path) == diameter + 1);\n}\n\n\
+    auto random_relabel(vector<vector<int>> g) {\n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  const int n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n\
+    \  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int\
+    \ u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return\
+    \ g2;\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b <<\
+    \ '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n\
+    \  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\n  for(int\
     \ n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>> g)\
     \ {\n      check(g);\n    });\n  }\n\n  for(int n = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n,\
     \ [&](vector<vector<int>> g) {\n      check(g);\n      check(random_relabel(g));\n\
@@ -283,13 +284,14 @@ data:
     \    s.emplace(u, v), s.emplace(v, u);\n\n  auto [diameter_2, path] = tree_diameter(e);\n\
     \n  assert(diameter == diameter_2);\n  assert(ssize(path) == diameter + 1);\n\
     \  for(int i = 1; i < ssize(path); i++)\n    assert(s.contains(pair(path[i - 1],\
-    \ path[i])));\n  Unique(path);\n  assert(ssize(path) == diameter + 1);\n}\n\n\
-    auto random_relabel(vector<vector<int>> g) {\n  mt19937 rng(clock);\n  const int\
-    \ n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n  shuffle(p.begin(),\
-    \ p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int u = 0; u < n; u++)\n\
-    \    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return g2;\n}\n\nvoid a_plus_b()\
-    \ {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nint main() {\n\
-    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  mt19937 rng(clock);\n\n  for(int\
+    \ path[i])));\n  unique(path);\n  assert(ssize(path) == diameter + 1);\n}\n\n\
+    auto random_relabel(vector<vector<int>> g) {\n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  const int n = ssize(g);\n  vector<int> p(n);\n  iota(p.begin(), p.end(), 0);\n\
+    \  shuffle(p.begin(), p.end(), rng);\n  vector<vector<int>> g2(n);\n  for(int\
+    \ u = 0; u < n; u++)\n    for(int v : g[u])\n      g2[p[u]].eb(p[v]);\n  return\
+    \ g2;\n}\n\nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b <<\
+    \ '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n\
+    \  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\n  for(int\
     \ n = 1; n <= 7; n++) {\n    enumerate_label_tree(n, [&](vector<vector<int>> g)\
     \ {\n      check(g);\n    });\n  }\n\n  for(int n = 1; n <= 15; n++) {\n    enumerate_unlabel_rooted_tree(n,\
     \ [&](vector<vector<int>> g) {\n      check(g);\n      check(random_relabel(g));\n\
@@ -316,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/mytest_tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_tree_diameter.test.cpp

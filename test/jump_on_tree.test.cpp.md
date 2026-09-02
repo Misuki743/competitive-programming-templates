@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: tree/tree.cpp
     title: tree/tree.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
@@ -139,23 +139,23 @@ data:
     \ r[1]);\n    return r;\n  }\n};\n#line 5 \"test/jump_on_tree.test.cpp\"\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, q; cin >>\
     \ n >> q;\n  vector<pii> e(n - 1);\n  for(auto &[u, v] : e) cin >> u >> v;\n \
-    \ mt19937 rng(clock);\n  tree T(std::move(e), rng() % n);\n  while(q--) {\n  \
-    \  int s, t, i; cin >> s >> t >> i;\n    cout << T.kth(s, t, i) << '\\n';\n  }\n\
-    \n  return 0;\n}\n"
+    \ mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n  tree\
+    \ T(std::move(e), rng() % n);\n  while(q--) {\n    int s, t, i; cin >> s >> t\
+    \ >> i;\n    cout << T.kth(s, t, i) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../tree/tree.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, q; cin >> n >> q;\n  vector<pii> e(n - 1);\n  for(auto\
-    \ &[u, v] : e) cin >> u >> v;\n  mt19937 rng(clock);\n  tree T(std::move(e), rng()\
-    \ % n);\n  while(q--) {\n    int s, t, i; cin >> s >> t >> i;\n    cout << T.kth(s,\
-    \ t, i) << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ &[u, v] : e) cin >> u >> v;\n  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  tree T(std::move(e), rng() % n);\n  while(q--) {\n    int s, t, i; cin >> s\
+    \ >> t >> i;\n    cout << T.kth(s, t, i) << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - tree/tree.cpp
   isVerificationFile: true
   path: test/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-02 17:47:14+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/jump_on_tree.test.cpp
 layout: document

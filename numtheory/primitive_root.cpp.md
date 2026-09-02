@@ -18,21 +18,21 @@ data:
     \n\null primitiveRoot(ull p) {\n  auto fac = factor(p - 1);\n  ranges::sort(fac);\n\
     \  fac.resize(unique(fac.begin(), fac.end()) - fac.begin());\n  auto test = [p,\
     \ fac](ull x) {\n    for(ull d : fac)\n      if (modpow(x, (p - 1) / d, p) ==\
-    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(clock);\n\
+    \ 1)\n        return false;\n    return true;\n  };\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
     \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
     \ = unif(rng)));\n  return root;\n}\n"
   code: "//#include \"numtheory/fastFactorize.cpp\"\n\null primitiveRoot(ull p) {\n\
     \  auto fac = factor(p - 1);\n  ranges::sort(fac);\n  fac.resize(unique(fac.begin(),\
     \ fac.end()) - fac.begin());\n  auto test = [p, fac](ull x) {\n    for(ull d :\
     \ fac)\n      if (modpow(x, (p - 1) / d, p) == 1)\n        return false;\n   \
-    \ return true;\n  };\n  static mt19937_64 rng(clock);\n  uniform_int_distribution<ull>\
-    \ unif(1, p - 1);\n  ull root;\n  while(!test(root = unif(rng)));\n  return root;\n\
-    }\n"
+    \ return true;\n  };\n  static mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \  uniform_int_distribution<ull> unif(1, p - 1);\n  ull root;\n  while(!test(root\
+    \ = unif(rng)));\n  return root;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: numtheory/primitive_root.cpp
   requiredBy: []
-  timestamp: '2026-03-22 16:32:23+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/primitive_root.test.cpp

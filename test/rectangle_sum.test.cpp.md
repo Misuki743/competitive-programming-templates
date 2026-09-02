@@ -119,7 +119,7 @@ data:
     \ query(r - 1) - query(l - 1);\n  }\n};\n#line 1 \"ds_problem/rectangle_sum.cpp\"\
     \n//#include<ds/fenwick_tree.cpp>\n\ntemplate<integral coord, integral weight>\n\
     vc<weight> rectangle_sum(vc<tuple<coord, coord, weight>> pt, vc<array<coord, 4>>\
-    \ query) {\n  vc<coord> ys;\n  for(auto &[_, y, __] : pt) ys.eb(y);\n  Unique(ys);\n\
+    \ query) {\n  vc<coord> ys;\n  for(auto &[_, y, __] : pt) ys.eb(y);\n  unique(ys);\n\
     \n  for(auto &[l, d, r, u] : query) {\n    d = ranges::lower_bound(ys, d) - ys.begin();\n\
     \    u = ranges::lower_bound(ys, u) - ys.begin();\n  }\n\n  for(auto &[x, y, w]\
     \ : pt)\n    y = ranges::lower_bound(ys, y) - ys.begin();\n  ranges::sort(pt,\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: true
   path: test/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/rectangle_sum.test.cpp

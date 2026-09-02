@@ -13,14 +13,14 @@ data:
     links: []
   bundledCode: "#line 1 \"ds_problem/range_count_distinct.cpp\"\n//#include<ds/fenwick_tree.cpp>\n\
     \ntemplate<integral T>\nvi range_count_distinct(vc<T> a, vc<pii> query) {\n  vc<T>\
-    \ b = a;\n  Unique(b);\n  for(T &x : a)\n    x = ranges::lower_bound(b, x) - b.begin();\n\
+    \ b = a;\n  unique(b);\n  for(T &x : a)\n    x = ranges::lower_bound(b, x) - b.begin();\n\
     \n  vi ans(size(query)), pos(size(b), -1);\n  fenwick_tree<int> ft(ssize(a));\n\
     \  for(int j = 0; int i : arg_sort(query, [](pii &p) { return p.second; })) {\n\
     \    auto [l, r] = query[i];\n    while(j < r) {\n      if (pos[a[j]] != -1)\n\
     \        ft.add(pos[a[j]], -1);\n      ft.add(j, 1);\n      pos[a[j]] = j, j++;\n\
     \    }\n    ans[i] = ft.query(l, r);\n  }\n\n  return ans;\n}\n"
   code: "//#include<ds/fenwick_tree.cpp>\n\ntemplate<integral T>\nvi range_count_distinct(vc<T>\
-    \ a, vc<pii> query) {\n  vc<T> b = a;\n  Unique(b);\n  for(T &x : a)\n    x =\
+    \ a, vc<pii> query) {\n  vc<T> b = a;\n  unique(b);\n  for(T &x : a)\n    x =\
     \ ranges::lower_bound(b, x) - b.begin();\n\n  vi ans(size(query)), pos(size(b),\
     \ -1);\n  fenwick_tree<int> ft(ssize(a));\n  for(int j = 0; int i : arg_sort(query,\
     \ [](pii &p) { return p.second; })) {\n    auto [l, r] = query[i];\n    while(j\
@@ -31,7 +31,7 @@ data:
   isVerificationFile: false
   path: ds_problem/range_count_distinct.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:05:06+08:00'
+  timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/static_range_count_distinct.test.cpp
