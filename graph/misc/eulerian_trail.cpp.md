@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/eulerian_trail_directed.test.cpp
     title: test/eulerian_trail_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/eulerian_trail_undirected.test.cpp
     title: test/eulerian_trail_undirected.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/misc/eulerian_trail.cpp\"\ntemplate<bool directed\
@@ -60,7 +60,7 @@ data:
   path: graph/misc/eulerian_trail.cpp
   requiredBy: []
   timestamp: '2026-06-06 23:34:13+08:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/eulerian_trail_directed.test.cpp
   - test/eulerian_trail_undirected.test.cpp

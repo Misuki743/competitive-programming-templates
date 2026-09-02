@@ -4,32 +4,32 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/enumerate_bit.cpp
     title: enumerate/enumerate_bit.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/enumerate_label_tree.cpp
     title: enumerate/enumerate_label_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/enumerate_twelvefold.cpp
     title: enumerate/enumerate_twelvefold.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/enumerate_unlabel_rooted_tree.cpp
     title: enumerate/enumerate_unlabel_rooted_tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/prufer_recover.cpp
     title: tree/prufer_recover.cpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: tree/tree.cpp
     title: tree/tree.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: tree/tree_diameter.cpp
     title: tree/tree_diameter.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -72,106 +72,106 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"tree/prufer_recover.cpp\"\
-    \n//empty vector would be assumed to be n = 2\nvc<pii> prufer_recover(vi prufer_code)\
-    \ {\n  const int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or\
-    \ (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n  vi d(n,\
-    \ 1);\n  for(int x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n  for(int v\
-    \ = 0; v < n; v++)\n    if (d[v] == 1)\n      leaf.emplace(v);\n  vc<pii> edges;\n\
-    \  for(int x : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v,\
-    \ x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top();\
-    \ leaf.pop();\n  edges.emplace_back(v, leaf.top());\n  return edges;\n}\n#line\
-    \ 1 \"enumerate/enumerate_bit.cpp\"\n\ntemplate<typename F, typename INT>\nrequires\
-    \ invocable<F, INT>\nvoid enumerate_subset(INT msk, F f) {\n  for(INT x = msk;\
-    \ x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n}\n#line 1 \"enumerate/enumerate_twelvefold.cpp\"\
-    \n//#include \"enumerate/bit.cpp\"\n\n//n^k\ntemplate<typename F>\nrequires invocable<F,\
-    \ vector<int>>\nvoid enumerate_cartesian_power(int n, int k, F f) {\n  assert(min(n,\
-    \ k) >= 0);\n  vector<int> p(k);\n  auto dfs = [&](int i, auto &self) -> void\
-    \ {\n    if (i == k) {\n      f(p);\n    } else {\n      for(int x = 0; x < n;\
-    \ x++) {\n        p[i] = x;\n        self(i + 1, self);\n      }\n    }\n  };\n\
-    \  dfs(0, dfs);\n}\n\n//factorial:\n//[1, 2, 6, 24, 120,\n// 720, 5040, 40320,\
-    \ 362880, 3628800,\n// 39916800, 479001600, 6227020800, 87178291200, 1307674368000]\n\
-    template<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_permutation(int\
-    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p(n);\n  iota(p.begin(), p.end(),\
-    \ 0);\n  do { f(p); } while(next_permutation(p.begin(), p.end()));\n}\n\n//binom(n,\
-    \ k)\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_combination(int\
-    \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p;\n  auto dfs =\
-    \ [&](auto &self) -> void {\n    if (ssize(p) == k) {\n      f(p);\n    } else\
-    \ {\n      for(int x = (p.empty() ? 0 : p.back() + 1); x + k - ssize(p) <= n;\
-    \ x++) {\n        p.emplace_back(x);\n        self(self);\n        p.pop_back();\n\
-    \      }\n    }\n  };\n  dfs(dfs);\n}\n\n//Bell's number:\n//[1, 2, 5, 15, 52,\n\
-    // 203, 877, 4140, 21147, 115975,\n// 678570, 4213597, 27644437, 190899322, 1382958545]\n\
-    template<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_set_partition(int\
-    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n\
-    \  auto dfs = [&](auto &self) -> void {\n    if (msk == 0) {\n      f(p);\n  \
-    \  } else {\n      int x = msk & (-msk);\n      msk ^= x;\n      enumerate_subset(msk,\
-    \ [&](int sub) {\n        p.emplace_back(sub | x);\n        msk ^= sub;\n    \
-    \    self(self);\n        msk ^= sub;\n        p.pop_back();\n      });\n    \
-    \  msk ^= x;\n    }\n  };\n  dfs(dfs);\n}\n\n//f[0] + f[1] + ... + f[n - 1] =\
-    \ sum, f[i] >= 0\n//binom(sum + (n - 1), sum)\ntemplate<typename F>\nrequires\
-    \ invocable<F, vector<int>>\nvoid enumerate_multisubset(int n, int sum, F f) {\n\
-    \  assert(min(n, sum) >= 0);\n  vector<int> p(n);\n  auto dfs = [&](int i, auto\
-    \ &self) -> void {\n    if (i == n) {\n      if (sum == 0) f(p);\n    } else {\n\
-    \      for(int x = sum; x >= 0; x--) {\n        p[i] = x, sum -= x;\n        self(i\
-    \ + 1, self);\n        sum += x;\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\n\
-    //partition number:\n//n = 10: 42\n//n = 20: 627\n//n = 30: 5604\n//n = 40: 37338\n\
-    //n = 50: 204226\n//n = 60: 966467\n//n = 70: 4087968\n//n = 80: 15796476\n//n\
-    \ = 90: 56634173\n//n = 100: 190569292\ntemplate<typename F>\nrequires invocable<F,\
-    \ vector<int>>\nvoid enumerate_integer_partition(int n, F f) {\n  assert(n >=\
-    \ 0);\n  vector<int> p;\n  auto dfs = [&](int s, auto &self) -> void {\n    if\
-    \ (s == 0) {\n      f(p);\n    } else {\n      for(int x = (p.empty() ? s : min(p.back(),\
-    \ s)); x > 0; x--) {\n        p.emplace_back(x);\n        self(s - x, self);\n\
-    \        p.pop_back();\n      }\n    }\n  };\n  dfs(n, dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n#line 1 \"tree/prufer_recover.cpp\"\n//empty vector would\
+    \ be assumed to be n = 2\nvc<pii> prufer_recover(vi prufer_code) {\n  const int\
+    \ n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or (ranges::min(prufer_code)\
+    \ >= 0 and ranges::max(prufer_code) < n));\n  vi d(n, 1);\n  for(int x : prufer_code)\
+    \ d[x]++;\n  min_heap<int> leaf;\n  for(int v = 0; v < n; v++)\n    if (d[v] ==\
+    \ 1)\n      leaf.emplace(v);\n  vc<pii> edges;\n  for(int x : prufer_code) {\n\
+    \    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v, x);\n    if (--d[x]\
+    \ == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top(); leaf.pop();\n  edges.emplace_back(v,\
+    \ leaf.top());\n  return edges;\n}\n#line 1 \"enumerate/enumerate_bit.cpp\"\n\n\
+    template<typename F, typename INT>\nrequires invocable<F, INT>\nvoid enumerate_subset(INT\
+    \ msk, F f) {\n  for(INT x = msk; x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n\
+    }\n#line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
+    \n\n//n^k\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_cartesian_power(int\
+    \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p(k);\n  auto dfs\
+    \ = [&](int i, auto &self) -> void {\n    if (i == k) {\n      f(p);\n    } else\
+    \ {\n      for(int x = 0; x < n; x++) {\n        p[i] = x;\n        self(i + 1,\
+    \ self);\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\n//factorial:\n//[1, 2, 6,\
+    \ 24, 120,\n// 720, 5040, 40320, 362880, 3628800,\n// 39916800, 479001600, 6227020800,\
+    \ 87178291200, 1307674368000]\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
+    void enumerate_permutation(int n, F f) {\n  assert(n >= 0);\n  vector<int> p(n);\n\
+    \  iota(p.begin(), p.end(), 0);\n  do { f(p); } while(next_permutation(p.begin(),\
+    \ p.end()));\n}\n\n//binom(n, k)\ntemplate<typename F>\nrequires invocable<F,\
+    \ vector<int>>\nvoid enumerate_combination(int n, int k, F f) {\n  assert(min(n,\
+    \ k) >= 0);\n  vector<int> p;\n  auto dfs = [&](auto &self) -> void {\n    if\
+    \ (ssize(p) == k) {\n      f(p);\n    } else {\n      for(int x = (p.empty() ?\
+    \ 0 : p.back() + 1); x + k - ssize(p) <= n; x++) {\n        p.emplace_back(x);\n\
+    \        self(self);\n        p.pop_back();\n      }\n    }\n  };\n  dfs(dfs);\n\
+    }\n\n//Bell's number:\n//[1, 2, 5, 15, 52,\n// 203, 877, 4140, 21147, 115975,\n\
+    // 678570, 4213597, 27644437, 190899322, 1382958545]\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<int>>\nvoid enumerate_set_partition(int n, F f) {\n  assert(n\
+    \ >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n  auto dfs = [&](auto &self)\
+    \ -> void {\n    if (msk == 0) {\n      f(p);\n    } else {\n      int x = msk\
+    \ & (-msk);\n      msk ^= x;\n      enumerate_subset(msk, [&](int sub) {\n   \
+    \     p.emplace_back(sub | x);\n        msk ^= sub;\n        self(self);\n   \
+    \     msk ^= sub;\n        p.pop_back();\n      });\n      msk ^= x;\n    }\n\
+    \  };\n  dfs(dfs);\n}\n\n//f[0] + f[1] + ... + f[n - 1] = sum, f[i] >= 0\n//binom(sum\
+    \ + (n - 1), sum)\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
+    void enumerate_multisubset(int n, int sum, F f) {\n  assert(min(n, sum) >= 0);\n\
+    \  vector<int> p(n);\n  auto dfs = [&](int i, auto &self) -> void {\n    if (i\
+    \ == n) {\n      if (sum == 0) f(p);\n    } else {\n      for(int x = sum; x >=\
+    \ 0; x--) {\n        p[i] = x, sum -= x;\n        self(i + 1, self);\n       \
+    \ sum += x;\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\n//partition number:\n\
+    //n = 10: 42\n//n = 20: 627\n//n = 30: 5604\n//n = 40: 37338\n//n = 50: 204226\n\
+    //n = 60: 966467\n//n = 70: 4087968\n//n = 80: 15796476\n//n = 90: 56634173\n\
+    //n = 100: 190569292\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
+    void enumerate_integer_partition(int n, F f) {\n  assert(n >= 0);\n  vector<int>\
+    \ p;\n  auto dfs = [&](int s, auto &self) -> void {\n    if (s == 0) {\n     \
+    \ f(p);\n    } else {\n      for(int x = (p.empty() ? s : min(p.back(), s)); x\
+    \ > 0; x--) {\n        p.emplace_back(x);\n        self(s - x, self);\n      \
+    \  p.pop_back();\n      }\n    }\n  };\n  dfs(n, dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\
     \n//#include \"tree/prufer_recover.cpp\"\n//#include \"enumerate/enumerate_bit.cpp\"\
     \n//#include \"enumerate/enumerate_twelvefold.cpp\"\n\ntemplate<typename F>\n\
     requires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int n, F\
@@ -318,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/mytest_tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:47:14+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 20:44:03+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_tree_diameter.test.cpp
 layout: document

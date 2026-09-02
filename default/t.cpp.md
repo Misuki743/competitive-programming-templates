@@ -111,106 +111,106 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/enumerate_primes.test.cpp
     title: test/enumerate_primes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/enumerate_quotients.test.cpp
     title: test/enumerate_quotients.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/eulerian_trail_directed.test.cpp
     title: test/eulerian_trail_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/eulerian_trail_undirected.test.cpp
     title: test/eulerian_trail_undirected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/find_linear_recurrence.test.cpp
     title: test/find_linear_recurrence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/incremental_scc.test.cpp
     title: test/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree.test.cpp
     title: test/jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_2.test.cpp
     title: test/jump_on_tree_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_3.test.cpp
     title: test/jump_on_tree_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_2.test.cpp
     title: test/lca_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_3.test.cpp
     title: test/lca_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_4.test.cpp
     title: test/lca_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lcm_convolution.test.cpp
     title: test/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/line_add_get_min.test.cpp
     title: test/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/log_of_formal_power_series.test.cpp
     title: test/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/log_of_formal_power_series_sparse.test.cpp
     title: test/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/longest_common_substring.test.cpp
     title: test/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/longest_increasing_subsequence.test.cpp
     title: test/longest_increasing_subsequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matching_on_bipartite_graph.test.cpp
     title: test/matching_on_bipartite_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_product.test.cpp
     title: test/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_rank.test.cpp
     title: test/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/matrix_rank_mod_2.test.cpp
     title: test/matrix_rank_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/maximum_independent_set.test.cpp
     title: test/maximum_independent_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/min_plus_convolution_convex_arbitrary.test.cpp
     title: test/min_plus_convolution_convex_arbitrary.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/min_plus_convolution_convex_convex.test.cpp
     title: test/min_plus_convolution_convex_convex.test.cpp
   - icon: ':x:'
@@ -219,160 +219,160 @@ data:
   - icon: ':x:'
     path: test/minimum_spanning_tree_Prim.test.cpp
     title: test/minimum_spanning_tree_Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/minimum_steiner_tree.test.cpp
     title: test/minimum_steiner_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mul_modp_convolution.test.cpp
     title: test/mul_modp_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multiplication_of_big_intergers.test.cpp
     title: test/multiplication_of_big_intergers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multiplication_of_big_intergers_2.test.cpp
     title: test/multiplication_of_big_intergers_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multipoint_evaluation.test.cpp
     title: test/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_auxiliary_tree.test.cpp
     title: test/mytest_auxiliary_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_divisor_array.test.cpp
     title: test/mytest_divisor_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_enumerate_highly_composite_numbers.test.cpp
     title: test/mytest_enumerate_highly_composite_numbers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_enumerate_twelvefold.test.cpp
     title: test/mytest_enumerate_twelvefold.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_factorize_sqrt.test.cpp
     title: test/mytest_factorize_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_mu_array.test.cpp
     title: test/mytest_mu_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_phi_array.test.cpp
     title: test/mytest_phi_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_prime_table.test.cpp
     title: test/mytest_prime_table.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_sieve_of_Eratosthenes.test.cpp
     title: test/mytest_sieve_of_Eratosthenes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree.test.cpp
     title: test/mytest_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_tree_diameter.test.cpp
     title: test/mytest_tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/persistent_unionfind.test.cpp
     title: test/persistent_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_range_sum.test.cpp
     title: test/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum2.test.cpp
     title: test/point_add_rectangle_sum2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_range_composite.test.cpp
     title: test/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_range_frequency.test.cpp
     title: test/point_set_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/polynomial_taylor_shift.test.cpp
     title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/pow_of_matrix.test.cpp
     title: test/pow_of_matrix.test.cpp
   - icon: ':x:'
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/queue_operate_all_composite.test.cpp
     title: test/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_add_range_min.test.cpp
     title: test/range_add_range_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_affine_point_get.test.cpp
     title: test/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_affine_range_sum.test.cpp
     title: test/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest2.test.cpp
     title: test/range_kth_smallest2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest3.test.cpp
     title: test/range_kth_smallest3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_reverse_range_sum.test.cpp
     title: test/range_reverse_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_set_range_composite.test.cpp
     title: test/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_sum.test.cpp
     title: test/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_sum2.test.cpp
     title: test/rectangle_sum2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rooted_tree_isomorphism_classification.test.cpp
     title: test/rooted_tree_isomorphism_classification.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/segment_add_get_min.test.cpp
     title: test/segment_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/set_xor_min.test.cpp
     title: test/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/sharp_p_subset_sum.test.cpp
     title: test/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/shortest_path_dense.test.cpp
     title: test/shortest_path_dense.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/shortest_path_sparse.test.cpp
     title: test/shortest_path_sparse.test.cpp
   - icon: ':x:'
@@ -548,57 +548,57 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n"
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n"
   code: "#include<bits/stdc++.h>\nusing namespace std;\n\n#define pb push_back\n#define\
     \ eb emplace_back\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
@@ -634,62 +634,62 @@ data:
     \  concept R_invocable = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f),\
     \ std::forward<Args>(args)...) } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range\
     \ R, class T = ranges::range_value_t<R>, typename F>\n  requires R_invocable<T,\
-    \ F, T, T>\n  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin();\
-    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
-    \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
-    \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
-    \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
-    \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
-    \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n"
+    \ F, T, T>\n  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T\
+    \ p = *v.begin(); T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n\
+    \  template<ranges::forward_range R, class T = ranges::range_value_t<R>>\n  void\
+    \ psum(R &v) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin(); T &x :\
+    \ v | views::drop(1))\n        x = p = p + x;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  void unique(R &v) {\n    ranges::sort(v);\n    v.erase(ranges::unique(v).begin(),\
+    \ v.end());\n  }\n\n  template<ranges::random_access_range R>\n  R inv_perm(const\
+    \ R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]]\
+    \ = i;\n    return ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n,\
+    \ T s = 0, T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n     \
+    \ v[i] = i * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range\
+    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id\
+    \ = iota_vec<int>(ssize(v));\n    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]),\
+    \ i); });\n    return id;\n  }\n\n  template<ranges::random_access_range R, class\
+    \ F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii>\
+    \ lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v)\
+    \ and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress(R &v) {\n    R\
+    \ val = v;\n    unique(val);\n    for(auto &x : v)\n      x = ranges::lower_bound(val,\
+    \ x) - val.begin();\n    return val;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress_stable(R &v) {\n    R val = v;\n    ranges::sort(val);\n  \
+    \  vi pos = iota_vec<int>(ssize(v));\n    for(auto &x : v)\n      x = pos[ranges::lower_bound(val,\
+    \ x) - val.begin()]++;\n    return val;\n  }\n\n  template<integral T>\n  void\
+    \ set_bit(T &msk, int bit, bool x) {\n    if (x) msk |= T(1) << bit;\n    else\
+    \ msk &= ~(T(1) << bit);\n  }\n  template<integral T> void flip_bit(T &msk, int\
+    \ bit) { msk ^= T(1) << bit; }\n  template<integral T> bool get_bit(T msk, int\
+    \ bit) { return msk >> bit & T(1); }\n\n  template<integral T> T floor_div(T a,\
+    \ T b) { return a / b - (a % b < 0); }\n  template<integral T> T  ceil_div(T a,\
+    \ T b) { return a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n   \
+    \ if (a == 0) return 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return\
+    \ a;\n    if (k == 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1)\
+    \ * (b + 1) <= a) b++;\n      while((__int128)b * b > a) b--;\n      return b;\n\
+    \    }\n    if (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b +\
+    \ 1) * (b + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n\
+    \      return b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull\
+    \ a, int k) {\n      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n\
+    \      return b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k)\
+    \ > a) b--;\n    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) {\
+    \ return a > b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) {\
+    \ return a < b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull\
+    \ k) {\n    T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a,\
+    \ k >>= 1;\n    }\n    return b;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  ll inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto\
+    \ dc = [&](int l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n\
+    \      int mid = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n\
+    \      {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r)\
+    \ {\n          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] =\
+    \ v[j++], f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n\
+    \        while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r;\
+    \ i++)\n        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return\
+    \ f;\n  }\n}\n\nusing namespace algorithm_extend;\n"
   dependsOn: []
   isVerificationFile: false
   path: default/t.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 20:44:03+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/vertex_set_path_composite.test.cpp

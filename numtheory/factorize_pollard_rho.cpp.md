@@ -6,16 +6,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest_factorize_sqrt.test.cpp
     title: test/mytest_factorize_sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
   - icon: ':x:'

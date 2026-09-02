@@ -54,91 +54,90 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"graph/flow/MCMF.cpp\"\n\
-    template<class capT, class cosT>\nstruct MCMF {\n  struct edge {\n    int to,\
-    \ rev;\n    capT cap;\n    cosT cos;\n    edge(int _to, capT _cap, cosT _cos,\
-    \ int _rev) :\n        to(_to), rev(_rev), cap(_cap), cos(_cos) {}\n  };\n\n \
-    \ int n;\n  const capT CAP_MAX = numeric_limits<capT>::max();\n  const cosT COS_MAX\
-    \ = numeric_limits<cosT>::max();\n  vector<vector<edge>> g;\n  vector<int> par,\
-    \ idx;\n  vector<capT> f;\n  vector<cosT> pot, dis;\n\n  MCMF(int _n) : n(_n),\
-    \ g(n), par(n),\n    idx(n), f(n), pot(n), dis(n) {}\n\n  void addEdge(int from,\
-    \ int to, capT cap, cosT cos) {\n    g[from].emplace_back(to, cap, cos, ssize(g[to]));\n\
-    \    g[to].emplace_back(from, 0, -cos, ssize(g[from]) - 1);\n  }\n\n  void initPotential(int\
-    \ s) {\n    fill(dis.begin(), dis.end(), COS_MAX);\n    dis[s] = 0;\n    for(int\
-    \ i = 1; i < n; i++) {\n      for(int v = 0; v < n; v++) {\n        if (dis[v]\
-    \ == COS_MAX) continue;\n        for(edge e : g[v])\n          if (e.cap != 0\
-    \ and dis[v] + e.cos < dis[e.to])\n            dis[e.to] = dis[v] + e.cos;\n \
-    \     }\n    }\n    pot.swap(dis);\n  }\n\n  void initPotentialDAG(int s) {\n\
-    \    fill(dis.begin(), dis.end(), COS_MAX);\n    dis[s] = 0;\n    vector<int>\
-    \ topo = [&]() {\n      vector<int> topo;\n      vector<bool> vis(n, false);\n\
-    \      auto dfs = [&](int v, auto &&self) -> void {\n        vis[v] = true;\n\
-    \        for(edge e : g[v])\n          if (e.cap != 0 and !vis[e.to])\n      \
-    \      self(e.to, self);\n        topo.emplace_back(v);\n      };\n      for(int\
-    \ v = 0; v < n; v++)\n        if (!vis[v])\n          dfs(v, dfs);\n      return\
-    \ topo;\n    }();\n    for(int v : topo | views::reverse)\n      if (dis[v] !=\
-    \ COS_MAX)\n        for(edge e : g[v])\n          if (e.cap != 0)\n          \
-    \  chmin(dis[e.to], dis[v] + e.cos);\n    pot.swap(dis);\n  }\n\n  pair<capT,\
-    \ cosT> runFlow(int s, int t, bool dense = false) {\n    cosT cost = 0;\n    capT\
-    \ flow = 0;\n    while(true) {\n      fill(dis.begin(), dis.end(), COS_MAX);\n\
-    \      dis[s] = 0, f[s] = CAP_MAX;\n      if (dense) {\n        vector<bool> vis(n,\
-    \ false);\n        for(int i = 0; i < n; i++) {\n          int v = -1;\n     \
-    \     for(int j = 0; j < n; j++)\n            if (!vis[j] and (v == -1 or dis[j]\
-    \ < dis[v]))\n              v = j;\n          if (v == -1 or dis[v] == COS_MAX)\
-    \ break;\n          vis[v] = true;\n          for(edge e : g[v]) {\n         \
-    \   if (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos + pot[v]\
-    \ - pot[e.to]; x < dis[e.to]) {\n              dis[e.to] = x, f[e.to] = min(f[v],\
-    \ e.cap);\n              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n    \
-    \        }\n          }\n        }\n      } else {\n        using T = pair<cosT,\
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n#line 1 \"graph/flow/MCMF.cpp\"\ntemplate<class capT, class\
+    \ cosT>\nstruct MCMF {\n  struct edge {\n    int to, rev;\n    capT cap;\n   \
+    \ cosT cos;\n    edge(int _to, capT _cap, cosT _cos, int _rev) :\n        to(_to),\
+    \ rev(_rev), cap(_cap), cos(_cos) {}\n  };\n\n  int n;\n  const capT CAP_MAX =\
+    \ numeric_limits<capT>::max();\n  const cosT COS_MAX = numeric_limits<cosT>::max();\n\
+    \  vector<vector<edge>> g;\n  vector<int> par, idx;\n  vector<capT> f;\n  vector<cosT>\
+    \ pot, dis;\n\n  MCMF(int _n) : n(_n), g(n), par(n),\n    idx(n), f(n), pot(n),\
+    \ dis(n) {}\n\n  void addEdge(int from, int to, capT cap, cosT cos) {\n    g[from].emplace_back(to,\
+    \ cap, cos, ssize(g[to]));\n    g[to].emplace_back(from, 0, -cos, ssize(g[from])\
+    \ - 1);\n  }\n\n  void initPotential(int s) {\n    fill(dis.begin(), dis.end(),\
+    \ COS_MAX);\n    dis[s] = 0;\n    for(int i = 1; i < n; i++) {\n      for(int\
+    \ v = 0; v < n; v++) {\n        if (dis[v] == COS_MAX) continue;\n        for(edge\
+    \ e : g[v])\n          if (e.cap != 0 and dis[v] + e.cos < dis[e.to])\n      \
+    \      dis[e.to] = dis[v] + e.cos;\n      }\n    }\n    pot.swap(dis);\n  }\n\n\
+    \  void initPotentialDAG(int s) {\n    fill(dis.begin(), dis.end(), COS_MAX);\n\
+    \    dis[s] = 0;\n    vector<int> topo = [&]() {\n      vector<int> topo;\n  \
+    \    vector<bool> vis(n, false);\n      auto dfs = [&](int v, auto &&self) ->\
+    \ void {\n        vis[v] = true;\n        for(edge e : g[v])\n          if (e.cap\
+    \ != 0 and !vis[e.to])\n            self(e.to, self);\n        topo.emplace_back(v);\n\
+    \      };\n      for(int v = 0; v < n; v++)\n        if (!vis[v])\n          dfs(v,\
+    \ dfs);\n      return topo;\n    }();\n    for(int v : topo | views::reverse)\n\
+    \      if (dis[v] != COS_MAX)\n        for(edge e : g[v])\n          if (e.cap\
+    \ != 0)\n            chmin(dis[e.to], dis[v] + e.cos);\n    pot.swap(dis);\n \
+    \ }\n\n  pair<capT, cosT> runFlow(int s, int t, bool dense = false) {\n    cosT\
+    \ cost = 0;\n    capT flow = 0;\n    while(true) {\n      fill(dis.begin(), dis.end(),\
+    \ COS_MAX);\n      dis[s] = 0, f[s] = CAP_MAX;\n      if (dense) {\n        vector<bool>\
+    \ vis(n, false);\n        for(int i = 0; i < n; i++) {\n          int v = -1;\n\
+    \          for(int j = 0; j < n; j++)\n            if (!vis[j] and (v == -1 or\
+    \ dis[j] < dis[v]))\n              v = j;\n          if (v == -1 or dis[v] ==\
+    \ COS_MAX) break;\n          vis[v] = true;\n          for(edge e : g[v]) {\n\
+    \            if (e.cap == 0) continue;\n            if (cosT x = dis[v] + e.cos\
+    \ + pot[v] - pot[e.to]; x < dis[e.to]) {\n              dis[e.to] = x, f[e.to]\
+    \ = min(f[v], e.cap);\n              par[e.to] = v, idx[e.to] = g[e.to][e.rev].rev;\n\
+    \            }\n          }\n        }\n      } else {\n        using T = pair<cosT,\
     \ int>;\n        priority_queue<T, vector<T>, greater<T>> pq;\n        pq.push(make_pair(dis[s],\
     \ s));\n        while(!pq.empty()) {\n          auto [d, v] = pq.top(); pq.pop();\n\
     \          if (dis[v] != d) continue;\n          for(edge e : g[v]) {\n      \
@@ -179,7 +178,7 @@ data:
   isVerificationFile: true
   path: test/assignment.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 20:44:03+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/assignment.test.cpp

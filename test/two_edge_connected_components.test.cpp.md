@@ -55,74 +55,74 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"graph/connectivity/ECC.cpp\"\
-    \nstruct ECC {\n  vector<int> vb, gv, vid;\n  vector<array<int, 2>> e;\n  int\
-    \ size = -1;\n\n  ECC(vector<array<int, 2>> &_e, int n) : vid(n), e(_e) {\n  \
-    \  auto newComp = [&]() { vb.emplace_back(ssize(gv)), size++; };\n\n    vector<vector<int>>\
-    \ g(n);\n    for(int i = 0; auto [u, v] : e) {\n      g[u].emplace_back(i);\n\
-    \      g[v].emplace_back(i++);\n    }\n\n    int t = 0, root;\n    vector<int>\
-    \ tin(n, -1), low(n), s;\n    vector<bool> vis(ssize(e), false);\n\n    auto extract\
-    \ = [&](int v) {\n      newComp();\n      do {\n        int u = s.back(); s.pop_back();\n\
-    \        vid[u] = size;\n        gv.emplace_back(u);\n      } while(gv.back()\
-    \ != v);\n    };\n\n    auto dfs = [&](int v, auto &&self) -> void {\n      tin[v]\
-    \ = low[v] = t++;\n      s.emplace_back(v);\n      for(int i : g[v]) if (!vis[i])\
-    \ {\n        int x = e[i][0] ^ e[i][1] ^ v;\n        vis[i] = true;\n        if\
-    \ (tin[x] != -1) {\n          low[v] = min(low[v], tin[x]);\n        } else {\n\
-    \          self(x, self);\n          low[v] = min(low[v], low[x]);\n         \
-    \ if (low[x] > tin[v]) extract(x);\n        }\n      }\n      if (v == root) extract(root);\n\
-    \    };\n\n    for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(root\
-    \ = v, dfs);\n\n    newComp();\n  }\n\n  vector<int> vertexGroup(int id) {\n \
-    \   return {gv.begin() + vb[id], gv.begin() + vb[id + 1]};\n  }\n  bool isBridge(int\
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n#line 1 \"graph/connectivity/ECC.cpp\"\nstruct ECC {\n  vector<int>\
+    \ vb, gv, vid;\n  vector<array<int, 2>> e;\n  int size = -1;\n\n  ECC(vector<array<int,\
+    \ 2>> &_e, int n) : vid(n), e(_e) {\n    auto newComp = [&]() { vb.emplace_back(ssize(gv)),\
+    \ size++; };\n\n    vector<vector<int>> g(n);\n    for(int i = 0; auto [u, v]\
+    \ : e) {\n      g[u].emplace_back(i);\n      g[v].emplace_back(i++);\n    }\n\n\
+    \    int t = 0, root;\n    vector<int> tin(n, -1), low(n), s;\n    vector<bool>\
+    \ vis(ssize(e), false);\n\n    auto extract = [&](int v) {\n      newComp();\n\
+    \      do {\n        int u = s.back(); s.pop_back();\n        vid[u] = size;\n\
+    \        gv.emplace_back(u);\n      } while(gv.back() != v);\n    };\n\n    auto\
+    \ dfs = [&](int v, auto &&self) -> void {\n      tin[v] = low[v] = t++;\n    \
+    \  s.emplace_back(v);\n      for(int i : g[v]) if (!vis[i]) {\n        int x =\
+    \ e[i][0] ^ e[i][1] ^ v;\n        vis[i] = true;\n        if (tin[x] != -1) {\n\
+    \          low[v] = min(low[v], tin[x]);\n        } else {\n          self(x,\
+    \ self);\n          low[v] = min(low[v], low[x]);\n          if (low[x] > tin[v])\
+    \ extract(x);\n        }\n      }\n      if (v == root) extract(root);\n    };\n\
+    \n    for(int v = 0; v < n; v++)\n      if (tin[v] == -1)\n        dfs(root =\
+    \ v, dfs);\n\n    newComp();\n  }\n\n  vector<int> vertexGroup(int id) {\n   \
+    \ return {gv.begin() + vb[id], gv.begin() + vb[id + 1]};\n  }\n  bool isBridge(int\
     \ id) { return vid[e[id][0]] != vid[e[id][1]]; }\n  vector<vector<int>> bridgeTree()\
     \ {\n    vector<vector<int>> g(size);\n    for(auto [u, v] : e) {\n      if ((u\
     \ = vid[u]) != (v = vid[v])) {\n        g[u].emplace_back(v);\n        g[v].emplace_back(u);\n\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 20:44:03+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/two_edge_connected_components.test.cpp

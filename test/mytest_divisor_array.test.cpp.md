@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: numtheory/divisor_array.cpp
     title: numtheory/divisor_array.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -54,69 +54,69 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"numtheory/divisor_array.cpp\"\
-    \ntemplate<int32_t C>\nclass divisor_array {\n  using i32 = int32_t;\n\n  static\
-    \ inline array<i32, C + 1> s = {};\n  static inline vector<i32> d;\n  static inline\
-    \ bool init = false;\n\n  public: \n\n  static void initialize() {\n    if (init)\
-    \ return;\n    init = true;\n    for(int i = 1; i < C; i++)\n      for(int j =\
-    \ i; j < C; j += i)\n        s[j]++;\n    for(int i = 1; i <= C; i++)\n      s[i]\
-    \ += s[i - 1];\n    d.resize(s[C]);\n    for(int i = C - 1; i >= 1; i--)\n   \
-    \   for(int j = i; j < C; j += i)\n        d[--s[j]] = i;\n  }\n\n  static span<const\
-    \ i32> divisor(int x) {\n    initialize();\n    return span(d.begin() + s[x],\
-    \ d.begin() + s[x + 1]);\n  }\n};\n\n//auto divisor = &divisor_array<>::divisor;\n\
-    #line 5 \"test/mytest_divisor_array.test.cpp\"\n\ntemplate<int32_t sz = 128>\n\
-    void test_small() {\n  if (sz == 0) return;\n  test_small<max(sz - 1, 0)>();\n\
-    \n  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x;\
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n#line 1 \"numtheory/divisor_array.cpp\"\ntemplate<int32_t\
+    \ C>\nclass divisor_array {\n  using i32 = int32_t;\n\n  static inline array<i32,\
+    \ C + 1> s = {};\n  static inline vector<i32> d;\n  static inline bool init =\
+    \ false;\n\n  public: \n\n  static void initialize() {\n    if (init) return;\n\
+    \    init = true;\n    for(int i = 1; i < C; i++)\n      for(int j = i; j < C;\
+    \ j += i)\n        s[j]++;\n    for(int i = 1; i <= C; i++)\n      s[i] += s[i\
+    \ - 1];\n    d.resize(s[C]);\n    for(int i = C - 1; i >= 1; i--)\n      for(int\
+    \ j = i; j < C; j += i)\n        d[--s[j]] = i;\n  }\n\n  static span<const i32>\
+    \ divisor(int x) {\n    initialize();\n    return span(d.begin() + s[x], d.begin()\
+    \ + s[x + 1]);\n  }\n};\n\n//auto divisor = &divisor_array<>::divisor;\n#line\
+    \ 5 \"test/mytest_divisor_array.test.cpp\"\n\ntemplate<int32_t sz = 128>\nvoid\
+    \ test_small() {\n  if (sz == 0) return;\n  test_small<max(sz - 1, 0)>();\n\n\
+    \  for(int x = 1; x < sz; x++) {\n    vi divisor;\n    for(int d = 1; d <= x;\
     \ d++)\n      if (x % d == 0)\n        divisor.emplace_back(d);\n    assert(ranges::equal(divisor,\
     \ divisor_array<sz>::divisor(x)));\n  }\n}\n\ntemplate<int32_t sz = (1 << 12)>\n\
     void test_power() {\n  if (sz == 0) return;\n  test_power<max(sz >> 1, 0)>();\n\
@@ -145,8 +145,8 @@ data:
   isVerificationFile: true
   path: test/mytest_divisor_array.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 20:44:03+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_divisor_array.test.cpp
 layout: document

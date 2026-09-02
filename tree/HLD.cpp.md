@@ -3,13 +3,13 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_2.test.cpp
     title: test/jump_on_tree_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/jump_on_tree_3.test.cpp
     title: test/jump_on_tree_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/lca_4.test.cpp
     title: test/lca_4.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"tree/HLD.cpp\"\nstruct HLD {\n  int n, root;\n  vi dep,\
@@ -171,7 +171,7 @@ data:
   path: tree/HLD.cpp
   requiredBy: []
   timestamp: '2026-09-02 17:05:06+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/vertex_set_path_composite.test.cpp
   - test/lca_4.test.cpp

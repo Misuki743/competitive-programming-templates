@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/point_add_rectangle_sum.test.cpp
     title: test/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest.test.cpp
     title: test/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/range_kth_smallest2.test.cpp
     title: test/range_kth_smallest2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/rectangle_add_point_get.test.cpp
     title: test/rectangle_add_point_get.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/static_range_frequency.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"misc/compression.cpp\"\ntemplate<class T, bool duplicate\
@@ -56,7 +56,7 @@ data:
   path: misc/compression.cpp
   requiredBy: []
   timestamp: '2026-03-22 16:32:23+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/static_range_frequency.test.cpp
   - test/point_add_rectangle_sum.test.cpp

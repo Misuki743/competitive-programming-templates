@@ -54,90 +54,89 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"graph/misc/2sat.cpp\"\n\
-    //source: KACTL\n\n/**\n * Author: Emil Lenngren, Simon Lindholm\n * Date: 2011-11-29\n\
-    \ * License: CC0\n * Source: folklore\n * Description: Calculates a valid assignment\
-    \ to boolean variables a, b, c,... to a 2-SAT problem, so that an expression of\
-    \ the type $(a\\|\\|b)\\&\\&(!a\\|\\|c)\\&\\&(d\\|\\|!b)\\&\\&...$ becomes true,\
-    \ or reports that it is unsatisfiable.\n * Negated variables are represented by\
-    \ bit-inversions (\\texttt{\\tilde{}x}).\n * Usage:\n *  TwoSat ts(number of boolean\
-    \ variables);\n *  ts.either(0, \\tilde3); // Var 0 is true or var 3 is false\n\
-    \ *  ts.setValue(2); // Var 2 is true\n *  ts.atMostOne({0,\\tilde1,2}); // <=\
-    \ 1 of vars 0, \\tilde1 and 2 are true\n *  ts.solve(); // Returns true iff it\
-    \ is solvable\n *  ts.values[0..N-1] holds the assigned values to the vars\n *\
-    \ Time: O(N+E), where N is the number of boolean variables, and E is the number\
-    \ of clauses.\n * Status: stress-tested\n */\n\n#define rep(i, a, b) for(int i\
-    \ = a; i < (b); ++i)\n#define sz(x) (int)(x).size()\nusing vi = vector<int>;\n\
-    \nstruct TwoSat {\n\tint N;\n\tvector<vi> gr;\n\tvi values; // 0 = false, 1 =\
-    \ true\n\n\tTwoSat(int n = 0) : N(n), gr(2*n) {}\n\n\tint addVar() { // (optional)\n\
-    \t\tgr.emplace_back();\n\t\tgr.emplace_back();\n\t\treturn N++;\n\t}\n\n\tvoid\
-    \ either(int f, int j) {\n\t\tf = max(2*f, -1-2*f);\n\t\tj = max(2*j, -1-2*j);\n\
-    \t\tgr[f].push_back(j^1);\n\t\tgr[j].push_back(f^1);\n\t}\n\tvoid setValue(int\
-    \ x) { either(x, x); }\n\n\tvoid atMostOne(const vi& li) { // (optional)\n\t\t\
-    if (sz(li) <= 1) return;\n\t\tint cur = ~li[0];\n\t\trep(i,2,sz(li)) {\n\t\t\t\
-    int next = addVar();\n\t\t\teither(cur, ~li[i]);\n\t\t\teither(cur, next);\n\t\
-    \t\teither(~li[i], next);\n\t\t\tcur = ~next;\n\t\t}\n\t\teither(cur, ~li[1]);\n\
-    \t}\n\n\tvi val, comp, z; int time = 0;\n\tint dfs(int i) {\n\t\tint low = val[i]\
-    \ = ++time, x; z.push_back(i);\n\t\tfor(int e : gr[i]) if (!comp[e])\n\t\t\tlow\
-    \ = min(low, val[e] ?: dfs(e));\n\t\tif (low == val[i]) do {\n\t\t\tx = z.back();\
-    \ z.pop_back();\n\t\t\tcomp[x] = low;\n\t\t\tif (values[x>>1] == -1)\n\t\t\t\t\
-    values[x>>1] = x&1;\n\t\t} while (x != i);\n\t\treturn val[i] = low;\n\t}\n\n\t\
-    bool solve() {\n\t\tvalues.assign(N, -1);\n\t\tval.assign(2*N, 0); comp = val;\n\
-    \t\trep(i,0,2*N) if (!comp[i]) dfs(i);\n\t\trep(i,0,N) if (comp[2*i] == comp[2*i+1])\
-    \ return 0;\n\t\treturn 1;\n\t}\n};\n#line 5 \"test/two_sat.test.cpp\"\n\nint\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  string p, cnf; cin\
-    \ >> p >> cnf;\n  int n, m; cin >> n >> m;\n\n  TwoSat ts(n);\n  while(m--) {\n\
-    \    int a, b, c; cin >> a >> b >> c;\n    a = (a > 0 ? a - 1 : ~(-(a + 1)));\n\
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n#line 1 \"graph/misc/2sat.cpp\"\n//source: KACTL\n\n/**\n\
+    \ * Author: Emil Lenngren, Simon Lindholm\n * Date: 2011-11-29\n * License: CC0\n\
+    \ * Source: folklore\n * Description: Calculates a valid assignment to boolean\
+    \ variables a, b, c,... to a 2-SAT problem, so that an expression of the type\
+    \ $(a\\|\\|b)\\&\\&(!a\\|\\|c)\\&\\&(d\\|\\|!b)\\&\\&...$ becomes true, or reports\
+    \ that it is unsatisfiable.\n * Negated variables are represented by bit-inversions\
+    \ (\\texttt{\\tilde{}x}).\n * Usage:\n *  TwoSat ts(number of boolean variables);\n\
+    \ *  ts.either(0, \\tilde3); // Var 0 is true or var 3 is false\n *  ts.setValue(2);\
+    \ // Var 2 is true\n *  ts.atMostOne({0,\\tilde1,2}); // <= 1 of vars 0, \\tilde1\
+    \ and 2 are true\n *  ts.solve(); // Returns true iff it is solvable\n *  ts.values[0..N-1]\
+    \ holds the assigned values to the vars\n * Time: O(N+E), where N is the number\
+    \ of boolean variables, and E is the number of clauses.\n * Status: stress-tested\n\
+    \ */\n\n#define rep(i, a, b) for(int i = a; i < (b); ++i)\n#define sz(x) (int)(x).size()\n\
+    using vi = vector<int>;\n\nstruct TwoSat {\n\tint N;\n\tvector<vi> gr;\n\tvi values;\
+    \ // 0 = false, 1 = true\n\n\tTwoSat(int n = 0) : N(n), gr(2*n) {}\n\n\tint addVar()\
+    \ { // (optional)\n\t\tgr.emplace_back();\n\t\tgr.emplace_back();\n\t\treturn\
+    \ N++;\n\t}\n\n\tvoid either(int f, int j) {\n\t\tf = max(2*f, -1-2*f);\n\t\t\
+    j = max(2*j, -1-2*j);\n\t\tgr[f].push_back(j^1);\n\t\tgr[j].push_back(f^1);\n\t\
+    }\n\tvoid setValue(int x) { either(x, x); }\n\n\tvoid atMostOne(const vi& li)\
+    \ { // (optional)\n\t\tif (sz(li) <= 1) return;\n\t\tint cur = ~li[0];\n\t\trep(i,2,sz(li))\
+    \ {\n\t\t\tint next = addVar();\n\t\t\teither(cur, ~li[i]);\n\t\t\teither(cur,\
+    \ next);\n\t\t\teither(~li[i], next);\n\t\t\tcur = ~next;\n\t\t}\n\t\teither(cur,\
+    \ ~li[1]);\n\t}\n\n\tvi val, comp, z; int time = 0;\n\tint dfs(int i) {\n\t\t\
+    int low = val[i] = ++time, x; z.push_back(i);\n\t\tfor(int e : gr[i]) if (!comp[e])\n\
+    \t\t\tlow = min(low, val[e] ?: dfs(e));\n\t\tif (low == val[i]) do {\n\t\t\tx\
+    \ = z.back(); z.pop_back();\n\t\t\tcomp[x] = low;\n\t\t\tif (values[x>>1] == -1)\n\
+    \t\t\t\tvalues[x>>1] = x&1;\n\t\t} while (x != i);\n\t\treturn val[i] = low;\n\
+    \t}\n\n\tbool solve() {\n\t\tvalues.assign(N, -1);\n\t\tval.assign(2*N, 0); comp\
+    \ = val;\n\t\trep(i,0,2*N) if (!comp[i]) dfs(i);\n\t\trep(i,0,N) if (comp[2*i]\
+    \ == comp[2*i+1]) return 0;\n\t\treturn 1;\n\t}\n};\n#line 5 \"test/two_sat.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  string p, cnf;\
+    \ cin >> p >> cnf;\n  int n, m; cin >> n >> m;\n\n  TwoSat ts(n);\n  while(m--)\
+    \ {\n    int a, b, c; cin >> a >> b >> c;\n    a = (a > 0 ? a - 1 : ~(-(a + 1)));\n\
     \    b = (b > 0 ? b - 1 : ~(-(b + 1)));\n    ts.either(a, b);\n  }\n\n  if (ts.solve())\
     \ {\n    cout << \"s SATISFIABLE\\n\";\n    cout << \"v \";\n    for(int i = 0;\
     \ i < n; i++)\n      cout << (ts.values[i] ? i + 1 : -(i + 1)) << ' ';\n    cout\
@@ -158,7 +157,7 @@ data:
   isVerificationFile: true
   path: test/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
+  timestamp: '2026-09-02 20:44:03+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/two_sat.test.cpp

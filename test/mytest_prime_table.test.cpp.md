@@ -9,9 +9,9 @@ data:
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -54,95 +54,94 @@ data:
     \ = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f), std::forward<Args>(args)...)\
     \ } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range R, class T =\
     \ ranges::range_value_t<R>, typename F>\n  requires R_invocable<T, F, T, T>\n\
-    \  void psum(R &&v, F f) {\n    if (!v.empty())\n      for(T p = *v.begin(); T\
-    \ &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
-    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &&v) {\n    if (!v.empty())\n\
+    \  void psum(R &v, F f) {\n    if (!ranges::empty(v))\n      for(T p = *v.begin();\
+    \ T &x : v | views::drop(1))\n        x = p = f(p, x);\n  }\n\n  template<ranges::forward_range\
+    \ R, class T = ranges::range_value_t<R>>\n  void psum(R &v) {\n    if (!ranges::empty(v))\n\
     \      for(T p = *v.begin(); T &x : v | views::drop(1))\n        x = p = p + x;\n\
-    \  }\n\n  template<ranges::forward_range R>\n  void unique(R &v) {\n    ranges::sort(v);\n\
-    \    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  R inv_perm(const R &p) {\n    R ret = p;\n    for(int i = 0; i < ssize(p);\
-    \ i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id(size(v));\n\
-    \    iota(id.begin(), id.end(), 0);\n    ranges::sort(id, {}, [&](int i) { return\
-    \ pair(proj(v[i]), i); });\n    return id;\n  }\n\n  template<ranges::random_access_range\
-    \ R, class F = identity>\n  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n\
-    \    vc<pii> lr;\n    for(int i = 0, j = 0; i < ssize(v); i = j) {\n      while(j\
-    \ < ssize(v) and proj(v[i]) == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n \
-    \   return lr;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0,\
-    \ T d = 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i\
-    \ * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range R>\n\
-    \  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x : v)\n\
-    \      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n  }\n\n\
-    \  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n    R\
-    \ val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n  \
-    \  for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  void unique(R &v) {\n   \
+    \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
+    \  template<ranges::random_access_range R>\n  R inv_perm(const R &p) {\n    R\
+    \ ret = p;\n    for(int i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return\
+    \ ret;\n  }\n\n  template<integral T>\n  vc<T> iota_vec(int n, T s = 0, T d =\
+    \ 1) {\n    vc<T> v(n);\n    for(int i = 0; i < n; i++)\n      v[i] = i * d +\
+    \ s;\n    return v;\n  }\n\n  template<ranges::random_access_range R, class F\
+    \ = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id = iota_vec<int>(ssize(v));\n\
+    \    ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });\n    return\
+    \ id;\n  }\n\n  template<ranges::random_access_range R, class F = identity>\n\
+    \  vc<pii> equal_subarrays(const R &v, F proj = {}) {\n    vc<pii> lr;\n    for(int\
+    \ i = 0, j = 0; i < ssize(v); i = j) {\n      while(j < ssize(v) and proj(v[i])\
+    \ == proj(v[j])) j++;\n      lr.eb(i, j);\n    }\n    return lr;\n  }\n\n  template<ranges::random_access_range\
+    \ R>\n  R compress(R &v) {\n    R val = v;\n    unique(val);\n    for(auto &x\
+    \ : v)\n      x = ranges::lower_bound(val, x) - val.begin();\n    return val;\n\
+    \  }\n\n  template<ranges::random_access_range R>\n  R compress_stable(R &v) {\n\
+    \    R val = v;\n    ranges::sort(val);\n    vi pos = iota_vec<int>(ssize(v));\n\
+    \    for(auto &x : v)\n      x = pos[ranges::lower_bound(val, x) - val.begin()]++;\n\
     \    return val;\n  }\n\n  template<integral T>\n  void set_bit(T &msk, int bit,\
     \ bool x) {\n    if (x) msk |= T(1) << bit;\n    else msk &= ~(T(1) << bit);\n\
     \  }\n  template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit;\
     \ }\n  template<integral T> bool get_bit(T msk, int bit) { return msk >> bit &\
-    \ T(1); }\n\n  template<signed_integral T> T floor_div(T a, T b) { return a /\
-    \ b - (a % b < 0); }\n  template<signed_integral T> T  ceil_div(T a, T b) { return\
-    \ a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return\
-    \ 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k ==\
-    \ 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a)\
-    \ b++;\n      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if\
-    \ (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return\
-    \ b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n\
-    \      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return\
-    \ b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n\
-    \    return b;\n  }\n\n  template<class T> bool chmin(T &a, T b) { return a >\
-    \ b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) { return a <\
-    \ b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n  \
-    \  T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n\
-    \    }\n    return b;\n  }\n\n  template<ranges::random_access_range R>\n  ll\
-    \ inversion_count(R v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int\
-    \ l, int r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid\
-    \ = (l + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n     \
-    \ {\n        int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n\
-    \          if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"numtheory/prime_table.cpp\"\
-    \ntemplate<int32_t C>\nclass prime_table {\n  static constexpr int32_t D = (C\
-    \ + 29) / 30 * 30;\n  static inline bitset<D / 2> table = {};\n  static inline\
-    \ vi prime;\n  static inline bool init = false;\n\n  static void initialize()\
-    \ {\n    if (init) return;\n    init = true;\n    prime = {2, 3, 5};\n    table[3\
-    \ / 2] = table[5 / 2] = true;\n    for(int i = 0; i < D; i += 30) {\n      table[(i\
-    \ + 01) / 2] = table[(i + 07) / 2] =\n      table[(i + 11) / 2] = table[(i + 13)\
-    \ / 2] =\n      table[(i + 17) / 2] = table[(i + 19) / 2] =\n      table[(i +\
-    \ 23) / 2] = table[(i + 29) / 2] = true;\n    }\n    table[1 / 2] = false;\n\n\
-    \    const int32_t S = sqrtl(D) + 10;\n    for(int i = 7, j = 4; i < S; i += j,\
-    \ j ^= 6) {\n      if (table[i / 2]) {\n        for(int k = ((i + 4) / 6 * 6 +\
-    \ 1) * i; k < D; k += 6 * i)\n          table[k / 2] = false;\n        for(int\
-    \ k = (i / 6 * 6 + 5) * i; k < D; k += 6 * i)\n          table[k / 2] = false;\n\
-    \      }\n    }\n\n    prime.reserve(1.1 * D / log(D));\n    for(int i = 0; i\
-    \ < D; i += 30) {\n      if (table[(i + 01) / 2]) prime.emplace_back(i + 01);\n\
-    \      if (table[(i + 07) / 2]) prime.emplace_back(i + 07);\n      if (table[(i\
-    \ + 11) / 2]) prime.emplace_back(i + 11);\n      if (table[(i + 13) / 2]) prime.emplace_back(i\
-    \ + 13);\n      if (table[(i + 17) / 2]) prime.emplace_back(i + 17);\n      if\
-    \ (table[(i + 19) / 2]) prime.emplace_back(i + 19);\n      if (table[(i + 23)\
-    \ / 2]) prime.emplace_back(i + 23);\n      if (table[(i + 29) / 2]) prime.emplace_back(i\
-    \ + 29);\n    }\n\n    int n = ssize(prime) - 1;\n    while(n >= 0 and prime[n]\
-    \ >= C) n--;\n    prime.resize(n + 1);\n  }\n\n  public:\n\n  static bool is_prime(int\
-    \ x) { \n    initialize();\n    return x == 2 or ((x & 1) and table[x / 2]);\n\
-    \  }\n  //make sure to not copy the array by using &x = prime_array()\n  static\
-    \ const vi& prime_array() {\n    initialize();\n    return prime;\n  }\n  static\
-    \ auto functions() {\n    return tuple(\n      &is_prime,\n      &prime_array\n\
-    \    );\n  }\n};\n\n//auto [is_prime, prime_array] = prime_table<>::functions();\n\
-    #line 5 \"test/mytest_prime_table.test.cpp\"\n\nvoid a_plus_b() {\n  int a, b;\
-    \ cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\ntemplate<int32_t N = 70>\nvoid\
-    \ check_small() {\n  if (N == 0) return;\n  {\n    prime_table<N> pt;\n\n    auto\
-    \ is_prime = [&](int x) {\n      if (x == 0 or x == 1) return false;\n      for(int\
-    \ i = 2; i < x; i++)\n        if (x % i == 0)\n          return false;\n     \
-    \ return true;\n    };\n\n    vi primes;\n    for(int i = 0; i < N; i++) {\n \
-    \     assert(pt.is_prime(i) == is_prime(i));\n      if (pt.is_prime(i))\n    \
-    \    primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
-    \  }\n  check_small<max(N - 1, 0)>();\n}\n\nbitset<(1 << 22)> is_prime = {};\n\
-    template<int32_t N = (1 << 22)>\nvoid check_power() {\n  if (N == 1) return;\n\
-    \  {\n    prime_table<N> pt;\n\n    vi primes;\n    for(int i = 0; i < N; i++)\
-    \ {\n      assert(pt.is_prime(i) == is_prime[i]);\n      if (pt.is_prime(i))\n\
+    \ T(1); }\n\n  template<integral T> T floor_div(T a, T b) { return a / b - (a\
+    \ % b < 0); }\n  template<integral T> T  ceil_div(T a, T b) { return a / b + (a\
+    \ % b > 0); }\n\n  ull kth_root(ull a, int k) {\n    if (a == 0) return 0ull;\n\
+    \    if (k >= 64) return 1ull;\n    if (k == 1) return a;\n    if (k == 2) {\n\
+    \      ull b = sqrtl(a);\n      while((__int128)(b + 1) * (b + 1) <= a) b++;\n\
+    \      while((__int128)b * b > a) b--;\n      return b;\n    }\n    if (k == 3)\
+    \ {\n      ull b = cbrtl(a);\n      while((__int128)(b + 1) * (b + 1) * (b + 1)\
+    \ <= a) b++;\n      while((__int128)b * b * b > a) b--;\n      return b;\n   \
+    \ }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull a, int k) {\n      __int128\
+    \ b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n      return b;\n    };\n\
+    \    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k) > a) b--;\n    return b;\n\
+    \  }\n\n  template<class T> bool chmin(T &a, T b) { return a > b ? a = b, 1 :\
+    \ 0; }\n  template<class T> bool chmax(T &a, T b) { return a < b ? a = b, 1 :\
+    \ 0; }\n\n  template<integral T>\n  T binpow(T a, ull k) {\n    T b = 1;\n   \
+    \ while(k) {\n      if (k & 1) b *= a;\n      a *= a, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(R\
+    \ v) {\n    ll f = 0;\n    auto tmp = v;\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n\
+    \      self(l, mid, self);\n      self(mid, r, self);\n      {\n        int i\
+    \ = l, j = mid, k = l;\n        while(i < mid and j < r) {\n          if (v[i]\
+    \ <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n\
+    \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
+    \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
+    \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
+    \ algorithm_extend;\n#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t C>\n\
+    class prime_table {\n  static constexpr int32_t D = (C + 29) / 30 * 30;\n  static\
+    \ inline bitset<D / 2> table = {};\n  static inline vi prime;\n  static inline\
+    \ bool init = false;\n\n  static void initialize() {\n    if (init) return;\n\
+    \    init = true;\n    prime = {2, 3, 5};\n    table[3 / 2] = table[5 / 2] = true;\n\
+    \    for(int i = 0; i < D; i += 30) {\n      table[(i + 01) / 2] = table[(i +\
+    \ 07) / 2] =\n      table[(i + 11) / 2] = table[(i + 13) / 2] =\n      table[(i\
+    \ + 17) / 2] = table[(i + 19) / 2] =\n      table[(i + 23) / 2] = table[(i + 29)\
+    \ / 2] = true;\n    }\n    table[1 / 2] = false;\n\n    const int32_t S = sqrtl(D)\
+    \ + 10;\n    for(int i = 7, j = 4; i < S; i += j, j ^= 6) {\n      if (table[i\
+    \ / 2]) {\n        for(int k = ((i + 4) / 6 * 6 + 1) * i; k < D; k += 6 * i)\n\
+    \          table[k / 2] = false;\n        for(int k = (i / 6 * 6 + 5) * i; k <\
+    \ D; k += 6 * i)\n          table[k / 2] = false;\n      }\n    }\n\n    prime.reserve(1.1\
+    \ * D / log(D));\n    for(int i = 0; i < D; i += 30) {\n      if (table[(i + 01)\
+    \ / 2]) prime.emplace_back(i + 01);\n      if (table[(i + 07) / 2]) prime.emplace_back(i\
+    \ + 07);\n      if (table[(i + 11) / 2]) prime.emplace_back(i + 11);\n      if\
+    \ (table[(i + 13) / 2]) prime.emplace_back(i + 13);\n      if (table[(i + 17)\
+    \ / 2]) prime.emplace_back(i + 17);\n      if (table[(i + 19) / 2]) prime.emplace_back(i\
+    \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
+    \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
+    \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
+    \ }\n\n  public:\n\n  static bool is_prime(int x) { \n    initialize();\n    return\
+    \ x == 2 or ((x & 1) and table[x / 2]);\n  }\n  //make sure to not copy the array\
+    \ by using &x = prime_array()\n  static const vi& prime_array() {\n    initialize();\n\
+    \    return prime;\n  }\n  static auto functions() {\n    return tuple(\n    \
+    \  &is_prime,\n      &prime_array\n    );\n  }\n};\n\n//auto [is_prime, prime_array]\
+    \ = prime_table<>::functions();\n#line 5 \"test/mytest_prime_table.test.cpp\"\n\
+    \nvoid a_plus_b() {\n  int a, b; cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\
+    \ntemplate<int32_t N = 70>\nvoid check_small() {\n  if (N == 0) return;\n  {\n\
+    \    prime_table<N> pt;\n\n    auto is_prime = [&](int x) {\n      if (x == 0\
+    \ or x == 1) return false;\n      for(int i = 2; i < x; i++)\n        if (x %\
+    \ i == 0)\n          return false;\n      return true;\n    };\n\n    vi primes;\n\
+    \    for(int i = 0; i < N; i++) {\n      assert(pt.is_prime(i) == is_prime(i));\n\
+    \      if (pt.is_prime(i))\n        primes.emplace_back(i);\n    }\n    assert(pt.prime_array()\
+    \ == primes);\n  }\n  check_small<max(N - 1, 0)>();\n}\n\nbitset<(1 << 22)> is_prime\
+    \ = {};\ntemplate<int32_t N = (1 << 22)>\nvoid check_power() {\n  if (N == 1)\
+    \ return;\n  {\n    prime_table<N> pt;\n\n    vi primes;\n    for(int i = 0; i\
+    \ < N; i++) {\n      assert(pt.is_prime(i) == is_prime[i]);\n      if (pt.is_prime(i))\n\
     \        primes.emplace_back(i);\n    }\n    assert(pt.prime_array() == primes);\n\
     \  }\n  check_power<max(N >> 1, 1)>();\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  check_small();\n\n  is_prime.set();\n  is_prime[0] = is_prime[1]\
@@ -174,8 +173,8 @@ data:
   isVerificationFile: true
   path: test/mytest_prime_table.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:22:39+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-02 20:44:03+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_prime_table.test.cpp
 layout: document
