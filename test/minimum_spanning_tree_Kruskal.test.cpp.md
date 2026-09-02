@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: ds/DSU/DSU.cpp
     title: ds/DSU/DSU.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree/Kruskal.cpp
     title: graph/minimum_spanning_tree/Kruskal.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/minimum_spanning_tree
@@ -124,9 +124,9 @@ data:
     \ 1 \"graph/minimum_spanning_tree/Kruskal.cpp\"\n//#include \"ds/DSU/DSU.cpp\"\
     \n\ntemplate<bool sorted = false, integral T>\nauto Kruskal(int n, vector<tuple<int,\
     \ int, T>> &e) {\n  vi ord;\n  if constexpr (sorted) {\n    ord.resize(n);\n \
-    \   iota(ord.begin(), ord.end(), 0ll);\n  } else {\n    ord = arg_sort(e, [](tuple<int,\
-    \ int, T> &t) { return get<2>(t); });\n  }\n\n  T cost = 0;\n  vi eid;\n  DSU\
-    \ dsu(n);\n  for(int i : ord) {\n    auto [u, v, w] = e[i];\n    if (dsu.merge(u,\
+    \   iota(ord.begin(), ord.end(), 0ll);\n  } else {\n    ord = arg_sort(e, [](const\
+    \ tuple<int, int, T> &t) { return get<2>(t); });\n  }\n\n  T cost = 0;\n  vi eid;\n\
+    \  DSU dsu(n);\n  for(int i : ord) {\n    auto [u, v, w] = e[i];\n    if (dsu.merge(u,\
     \ v))\n      cost += w, eid.emplace_back(i);\n  }\n\n  return pair(cost, eid);\n\
     }\n#line 6 \"test/minimum_spanning_tree_Kruskal.test.cpp\"\n\nint main() {\n \
     \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n\
@@ -147,8 +147,8 @@ data:
   isVerificationFile: true
   path: test/minimum_spanning_tree_Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 20:44:03+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-02 21:39:47+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/minimum_spanning_tree_Kruskal.test.cpp
 layout: document

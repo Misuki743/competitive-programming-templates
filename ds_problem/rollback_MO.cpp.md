@@ -15,10 +15,10 @@ data:
     \ H, T&, int, int> && (!R_invocable<void, H, T, int, int>)\nvc<T> rollback_MO(vc<pii>\
     \ qry, F init, G dec_l, H inc_r) {\n  int n = 1;\n  for(auto [l, r] : qry) chmax(n,\
     \ r);\n\n  const int B = ceilDiv(n, (int)(kth_root(ssize(qry), 2) + 1));\n\n \
-    \ vc<T> sol(size(qry));\n  auto ord = arg_sort(qry, [B](auto pr) { return pii(pr.first\
-    \ / B, pr.second); });\n  for(auto [l, r] : equal_subarrays(ord, [&](int i) {\
-    \ return qry[i].first / B; })) {\n    int ql = (qry[ord[l]].first / B + 1) * B;\n\
-    \    int qr = 0;\n    T ans = init(ql);\n    for(int i : views::counted(ord.begin()\
+    \ vc<T> sol(size(qry));\n  auto ord = arg_sort(qry, [B](const auto &pr) { return\
+    \ pii(pr.first / B, pr.second); });\n  for(auto [l, r] : equal_subarrays(ord,\
+    \ [&](int i) { return qry[i].first / B; })) {\n    int ql = (qry[ord[l]].first\
+    \ / B + 1) * B;\n    int qr = 0;\n    T ans = init(ql);\n    for(int i : views::counted(ord.begin()\
     \ + l, r - l)) {\n      while(qr < qry[i].second) inc_r(ans, ql, qr++);\n    \
     \  T tmp = ans;\n      for(int j = ql; j > qry[i].first; j--) dec_l(tmp, j, qr);\n\
     \      sol[i] = tmp;\n    }\n  }\n\n  return sol;\n}\n"
@@ -29,18 +29,18 @@ data:
     \ H, T, int, int>)\nvc<T> rollback_MO(vc<pii> qry, F init, G dec_l, H inc_r) {\n\
     \  int n = 1;\n  for(auto [l, r] : qry) chmax(n, r);\n\n  const int B = ceilDiv(n,\
     \ (int)(kth_root(ssize(qry), 2) + 1));\n\n  vc<T> sol(size(qry));\n  auto ord\
-    \ = arg_sort(qry, [B](auto pr) { return pii(pr.first / B, pr.second); });\n  for(auto\
-    \ [l, r] : equal_subarrays(ord, [&](int i) { return qry[i].first / B; })) {\n\
-    \    int ql = (qry[ord[l]].first / B + 1) * B;\n    int qr = 0;\n    T ans = init(ql);\n\
-    \    for(int i : views::counted(ord.begin() + l, r - l)) {\n      while(qr < qry[i].second)\
-    \ inc_r(ans, ql, qr++);\n      T tmp = ans;\n      for(int j = ql; j > qry[i].first;\
-    \ j--) dec_l(tmp, j, qr);\n      sol[i] = tmp;\n    }\n  }\n\n  return sol;\n\
-    }\n"
+    \ = arg_sort(qry, [B](const auto &pr) { return pii(pr.first / B, pr.second); });\n\
+    \  for(auto [l, r] : equal_subarrays(ord, [&](int i) { return qry[i].first / B;\
+    \ })) {\n    int ql = (qry[ord[l]].first / B + 1) * B;\n    int qr = 0;\n    T\
+    \ ans = init(ql);\n    for(int i : views::counted(ord.begin() + l, r - l)) {\n\
+    \      while(qr < qry[i].second) inc_r(ans, ql, qr++);\n      T tmp = ans;\n \
+    \     for(int j = ql; j > qry[i].first; j--) dec_l(tmp, j, qr);\n      sol[i]\
+    \ = tmp;\n    }\n  }\n\n  return sol;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: ds_problem/rollback_MO.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:05:06+08:00'
+  timestamp: '2026-09-02 21:39:47+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds_problem/rollback_MO.cpp

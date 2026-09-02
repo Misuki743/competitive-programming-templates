@@ -38,8 +38,8 @@ data:
   timestamp: '2026-09-02 17:22:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest_tree.test.cpp
   - test/mytest_auxiliary_tree.test.cpp
+  - test/mytest_tree.test.cpp
   - test/mytest_tree_diameter.test.cpp
 documentation_of: enumerate/enumerate_label_tree.cpp
 layout: document
