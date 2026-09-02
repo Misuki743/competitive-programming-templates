@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/primitive_root.cpp
     title: numtheory/primitive_root.cpp
   - icon: ':x:'
