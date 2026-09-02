@@ -132,25 +132,24 @@ data:
     \ }\n  friend istream& operator>>(istream& is, mint& b) {\n    int64_t val;\n\
     \    is >> val;\n    b = mint(val);\n    return is;\n  }\n};\n\ntemplate<> uint32_t\
     \ dynamic_modint<0>::mod = 2;\nusing mint = dynamic_modint<0>;\n#line 1 \"combi/binomial.cpp\"\
-    \n//#include<modint/Montgomery_modint.cpp>\n\ntemplate<class Mint>\nMint factorial(int\
-    \ n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n    if (dat.empty())\
-    \ dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
-    \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
-    \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
-    Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
-    \    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n    dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n    for(int\
-    \ i = ssize(dat) - 2; i >= size0; i--)\n      dat[i] = dat[i + 1] * (i + 1);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate<class Mint>\nMint inverse(int n) {\n  return\
-    \ factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n}\n\ntemplate<class Mint>\n\
-    Mint binomial(int n, int k) {\n  if (0 <= k and k <= n)\n    return factorial<Mint>(n)\
-    \ * factorial_inv<Mint>(k) * factorial_inv<Mint>(n - k);\n  else\n    return Mint(0);\n\
-    }\n\ntemplate<class Mint>\nMint catalan(int n) {\n  return binomial<Mint>(2 *\
-    \ n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\n//number of up-down path with n\
-    \ (+1), m (-1) and never touch y = -k\ntemplate<class Mint>\nMint excatalan(int\
-    \ n, int m, int k) {\n  if (k > m) return binomial<Mint>(n + m, m);\n  else if\
-    \ (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n\
-    \  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
+    \ntemplate<class Mint>\nMint factorial(int n) {\n  static vc<Mint> dat;\n  if\
+    \ (n >= ssize(dat)) {\n    if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n\
+    \    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n + 1))));\n    for(int\
+    \ i = size0; i < ssize(dat); i++)\n      dat[i] = dat[i - 1] * i;\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate<class Mint>\nMint factorial_inv(int n) {\n  static vc<Mint>\
+    \ dat;\n  if (n >= ssize(dat)) {\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n    dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n    for(int i = ssize(dat) - 2; i >= size0; i--)\n      dat[i]\
+    \ = dat[i + 1] * (i + 1);\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
+    Mint inverse(int n) {\n  return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
+    }\n\ntemplate<class Mint>\nMint binomial(int n, int k) {\n  if (0 <= k and k <=\
+    \ n)\n    return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
+    \ - k);\n  else\n    return Mint(0);\n}\n\ntemplate<class Mint>\nMint catalan(int\
+    \ n) {\n  return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\
+    \n//number of up-down path with n (+1), m (-1) and never touch y = -k\ntemplate<class\
+    \ Mint>\nMint excatalan(int n, int m, int k) {\n  if (k > m) return binomial<Mint>(n\
+    \ + m, m);\n  else if (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n\
+    \ + m, m - k);\n  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
     \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
     \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
     //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
@@ -171,7 +170,7 @@ data:
   isVerificationFile: true
   path: test/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 20:44:03+08:00'
+  timestamp: '2026-09-02 21:15:05+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/binomial_coefficient_prime_mod.test.cpp

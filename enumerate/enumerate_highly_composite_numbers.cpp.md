@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_enumerate_highly_composite_numbers.test.cpp
     title: test/mytest_enumerate_highly_composite_numbers.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/enumerate_highly_composite_numbers.cpp\"\ntemplate<typename\
@@ -31,7 +31,7 @@ data:
   path: enumerate/enumerate_highly_composite_numbers.cpp
   requiredBy: []
   timestamp: '2026-06-10 20:53:28+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_enumerate_highly_composite_numbers.test.cpp
 documentation_of: enumerate/enumerate_highly_composite_numbers.cpp
