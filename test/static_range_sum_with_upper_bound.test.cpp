@@ -21,7 +21,7 @@ int main() {
     ps.eb(n);
     for(int i = 0; i < n; i++)
       ps.back()[i] = xs[a[p[i]]];
-    pSum(ps.back());
+    psum(ps.back());
   }
 
   while(q--) {

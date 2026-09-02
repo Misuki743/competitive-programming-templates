@@ -27,7 +27,7 @@ namespace sieve_of_Eratosthenes {
     for(int i = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)
       _mpf[_id(i)] = i;
     for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)] == i) {
-      int k = _first_valid(max(i, ceilDiv(_C, i)));
+      int k = _first_valid(max(i, ceil_div(_C, i)));
       for(int j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)
         _mpf[_id(j)] = min<int32_t>(_mpf[_id(j)], i);
     }

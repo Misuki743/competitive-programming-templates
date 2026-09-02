@@ -1,4 +1,4 @@
-mt19937 rng(clock);
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 
 template<class M, M(*Mid)(), M(*Mop)(const M&, const M&), class T, T(*Tid)(), T(*Top)(const T&, const T&), M(*act)(const M&, const T&)>
 struct treap {

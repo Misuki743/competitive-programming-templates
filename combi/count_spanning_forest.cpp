@@ -6,7 +6,7 @@ Mint count_spanning_forest(vector<tuple<int, int, Mint>> e, int n, vector<int> r
   vector<int> id(n, 1);
   for(int x : r) id[x] = 0;
   id[0] -= 1;
-  pSum(id);
+  psum(id);
   for(int x : r) id[x] = -1;
 
   matrix<Mint> M(n - ssize(r));

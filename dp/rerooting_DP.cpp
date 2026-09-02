@@ -39,7 +39,7 @@ struct rerooting_DP {
         dp_down[x] = data[x];
         pre[i] = suf[i] = add_e(data[x], tree.parent_eid(x)), i++;
       }
-      pSum(pre, ee), pSum(suf | views::reverse, ee);
+      psum(pre, ee), psum(suf | views::reverse, ee);
       V tmp = data[v];
       dp_full[v] = data[v] = (deg ? add_v(suf[0], v) : id(v));
       for(int i = -1; int x : tree.childs(v)) {

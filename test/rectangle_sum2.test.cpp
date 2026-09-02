@@ -32,7 +32,7 @@ int main() {
   for(int i = 0; i < 20; i++) {
     for(int j = 0; j < n; j++)
       ps[i][j] = z[WM.perms[i][j]];
-    pSum(ps[i]);
+    psum(ps[i]);
   }
 
   while(q--) {

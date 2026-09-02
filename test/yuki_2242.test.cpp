@@ -15,7 +15,7 @@ int main() {
   for(auto &[a, b] : ab) { cin >> a >> b; a--, b--; }
 
   {
-    auto p = invPerm(argSort(h));
+    auto p = inv_perm(arg_sort(h));
     vi v(n);
     for(int i = 0; i < n; i++)
       v[p[i]] = h[i];

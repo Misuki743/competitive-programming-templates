@@ -6,6 +6,6 @@ vc<T> min_plus_convolution(vc<T> a, vc<T> b) {
   adjacent_difference(b.begin(), b.end(), b.begin());
   c[0] = a[0] + b[0];
   merge(a.begin() + 1, a.end(), b.begin() + 1, b.end(), c.begin() + 1);
-  pSum(c);
+  psum(c);
   return c;
 }

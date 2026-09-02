@@ -100,7 +100,7 @@ struct wavelet_matrix {
     if (inv_perms.empty()) {
       inv_perms = perms;
       for(auto &p : inv_perms)
-        p = invPerm(p);
+        p = inv_perm(p);
     }
 
     for(int i = 0; i <= H; i++)

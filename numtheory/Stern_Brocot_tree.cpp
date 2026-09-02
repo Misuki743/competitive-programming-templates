@@ -18,11 +18,11 @@ namespace Stern_Brocot_tree {
     vc<pair<char, ll>> path;
     while(f != m) {
       if (f < m) {
-        ll x = ceilDiv((i128)f.d * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);
+        ll x = ceil_div((i128)f.d * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);
         r = fraction{l.u * (x - 1) + m.u, l.d * (x - 1) + m.d};
         path.eb('L', x);
       } else {
-        ll x = ceilDiv((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u - (i128)f.u * r.d);
+        ll x = ceil_div((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u - (i128)f.u * r.d);
         l = fraction{r.u * (x - 1) + m.u, r.d * (x - 1) + m.d};
         path.eb('R', x);
       }
@@ -76,11 +76,11 @@ namespace Stern_Brocot_tree {
     vc<pair<char, ll>> path;
     while(f != m) {
       if (f < m) {
-        ll x = ceilDiv((i128)f.d * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);
+        ll x = ceil_div((i128)f.d * m.u - (i128)f.u * m.d, (i128)f.u * l.d - (i128)f.d * l.u);
         r = fraction{l.u * (x - 1) + m.u, l.d * (x - 1) + m.d};
         path.eb('L', x);
       } else {
-        ll x = ceilDiv((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u - (i128)f.u * r.d);
+        ll x = ceil_div((i128)f.u * m.d - (i128)f.d * m.u, (i128)f.d * r.u - (i128)f.u * r.d);
         l = fraction{r.u * (x - 1) + m.u, r.d * (x - 1) + m.d};
         path.eb('R', x);
       }

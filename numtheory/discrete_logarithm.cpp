@@ -18,15 +18,6 @@ ll discrete_logarithm(ll x, ll y, ll m) {
     else return ans + C;
   }
 
-  auto binpow = [m](ll a, ll k) {
-    ll b = 1;
-    while(k) {
-      if (k & 1) (b *= a) %= m;
-      (a *= a) %= m, k >>= 1;
-    }
-    return b;
-  };
-
   ll B = sqrtl(m);
   while(B * B < m) B++;
 

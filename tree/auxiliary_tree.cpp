@@ -18,7 +18,7 @@ struct auxiliary_tree {
         array<int, (1 << P) + 1> f = {};
         for(int v : vs)
           f[(proj(v) >> (i * P) & ((1 << P) - 1)) + 1]++;
-        pSum(f);
+        psum(f);
         vi nxt(size(vs));
         for(int v : vs)
           nxt[f[proj(v) >> (i * P) & ((1 << P) - 1)]++] = v;

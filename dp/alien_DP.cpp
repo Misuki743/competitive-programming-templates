@@ -3,7 +3,7 @@
 template<class T, T(*g)(T), bool convex>
 T alien_DP(T x, T Pl, T Pr) {
   while(Pl < Pr) {
-    T mid = floorDiv(Pl + Pr, T(2));
+    T mid = floor_div(Pl + Pr, T(2));
     if constexpr (convex) {
       if (g(mid) - g(mid + 1) <= x) Pl = mid + 1;
       else Pr = mid;

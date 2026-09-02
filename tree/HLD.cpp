@@ -47,7 +47,7 @@ struct HLD {
     {
       vi f(n + 2);
       for(int x : sz) f[x + 1]++;
-      pSum(f);
+      psum(f);
       for(int v = 0; v < n; v++)
         ord[n - 1 - (f[sz[v]]++)] = v;
     }
@@ -68,14 +68,14 @@ struct HLD {
       }
     }
 
-    inv_tin = invPerm(tin);
+    inv_tin = inv_perm(tin);
 
     lb = vc<int32_t>(n + 1);
     child_list = vi(n + 1);
     for(int v = 0; v < n; v++)
       if (v != root)
         lb[p[v]]++;
-    pSum(lb);
+    psum(lb);
     for(int v = 0; v < n; v++)
       if (v != root and head[v] == v)
         child_list[--lb[p[v]]] = v;

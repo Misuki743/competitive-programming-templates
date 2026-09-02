@@ -45,7 +45,7 @@ struct LCA {
 
     vi init(2 * n - 1);
     {
-      vi dfn_ord = invPerm(std::move(dfn));
+      vi dfn_ord = inv_perm(std::move(dfn));
 
       int nxt = 0, pre = root;
       for(int v : dfn_ord) {
@@ -66,7 +66,7 @@ struct LCA {
     {
       vi f(n);
       for(int x : dep) f[x]++;
-      pSum(f);
+      psum(f);
 
       vi rank(n);
       for(int v = 0; v < n; v++) {

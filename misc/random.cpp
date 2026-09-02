@@ -1,5 +1,5 @@
 namespace RNG {
-  mt19937_64 rng(clock);
+  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 
   //empty vector would be assumed to be n = 2
   vector<pii> prufer_recover(vector<int> prufer_code) {

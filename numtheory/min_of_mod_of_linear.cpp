@@ -31,7 +31,7 @@ pair<vc<int>, vc<int>> min_of_linear_segments(int a, int b, int mod) {
     r += k * p;
     s += k * q;
     while (1) {
-      int k = max(0ll, ceilDiv(det_l - y, det_r));
+      int k = max(0ll, ceil_div(det_l - y, det_r));
       if (det_l - k * det_r <= 0) break;
       det_l -= k * det_r;
       p += k * r;

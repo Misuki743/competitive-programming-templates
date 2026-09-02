@@ -20,7 +20,7 @@ int main() {
     u = p[u], v = p[v];
   LCA lc(e, p[0]);
 
-  vi inv_p = invPerm(p);
+  vi inv_p = inv_perm(p);
 
   while(q--) {
     int u, v; cin >> u >> v;
