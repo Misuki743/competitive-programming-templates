@@ -180,8 +180,8 @@ namespace algorithm_extend {
   template<integral T> void flip_bit(T &msk, int bit) { msk ^= T(1) << bit; }
   template<integral T> bool get_bit(T msk, int bit) { return msk >> bit & T(1); }
 
-  template<signed_integral T> T floor_div(T a, T b) { return a / b - (a % b < 0); }
-  template<signed_integral T> T  ceil_div(T a, T b) { return a / b + (a % b > 0); }
+  template<integral T> T floor_div(T a, T b) { return a / b - (a % b < 0); }
+  template<integral T> T  ceil_div(T a, T b) { return a / b + (a % b > 0); }
 
   ull kth_root(ull a, int k) {
     if (a == 0) return 0ull;
