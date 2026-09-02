@@ -1,5 +1,3 @@
-//#include<modint/Montgomery_modint.cpp>
-
 template<class Mint>
 Mint factorial(int n) {
   static vc<Mint> dat;
