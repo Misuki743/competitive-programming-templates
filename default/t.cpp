@@ -101,20 +101,20 @@ namespace algorithm_extend {
 
   template<ranges::forward_range R, class T = ranges::range_value_t<R>, typename F>
   requires R_invocable<T, F, T, T>
-  void psum(R &&v, F f) {
-    if (!v.empty())
+  void psum(R &v, F f) {
+    if (!ranges::empty(v))
       for(T p = *v.begin(); T &x : v | views::drop(1))
         x = p = f(p, x);
   }
 
   template<ranges::forward_range R, class T = ranges::range_value_t<R>>
-  void psum(R &&v) {
-    if (!v.empty())
+  void psum(R &v) {
+    if (!ranges::empty(v))
       for(T p = *v.begin(); T &x : v | views::drop(1))
         x = p = p + x;
   }
 
-  template<ranges::forward_range R>
+  template<ranges::random_access_range R>
   void unique(R &v) {
     ranges::sort(v);
     v.erase(ranges::unique(v).begin(), v.end());
@@ -128,10 +128,17 @@ namespace algorithm_extend {
     return ret;
   }
 
+  template<integral T>
+  vc<T> iota_vec(int n, T s = 0, T d = 1) {
+    vc<T> v(n);
+    for(int i = 0; i < n; i++)
+      v[i] = i * d + s;
+    return v;
+  }
+
   template<ranges::random_access_range R, class F = identity>
   vi arg_sort(const R &v, F proj = {}) {
-    vi id(size(v));
-    iota(id.begin(), id.end(), 0);
+    vi id = iota_vec<int>(ssize(v));
     ranges::sort(id, {}, [&](int i) { return pair(proj(v[i]), i); });
     return id;
   }
@@ -144,14 +151,6 @@ namespace algorithm_extend {
       lr.eb(i, j);
     }
     return lr;
-  }
-
-  template<integral T>
-  vc<T> iota_vec(int n, T s = 0, T d = 1) {
-    vc<T> v(n);
-    for(int i = 0; i < n; i++)
-      v[i] = i * d + s;
-    return v;
   }
 
   template<ranges::random_access_range R>

@@ -34,6 +34,14 @@ namespace algorithm_extend {
     return ret;
   }
 
+  template<integral T>
+  vc<T> iota_vec(int n, T s = 0, T d = 1) {
+    vc<T> v(n);
+    for(int i = 0; i < n; i++)
+      v[i] = i * d + s;
+    return v;
+  }
+
   template<ranges::random_access_range R, class F = identity>
   vi arg_sort(const R &v, F proj = {}) {
     vi id = iota_vec<int>(ssize(v));
@@ -49,14 +57,6 @@ namespace algorithm_extend {
       lr.eb(i, j);
     }
     return lr;
-  }
-
-  template<integral T>
-  vc<T> iota_vec(int n, T s = 0, T d = 1) {
-    vc<T> v(n);
-    for(int i = 0; i < n; i++)
-      v[i] = i * d + s;
-    return v;
   }
 
   template<ranges::random_access_range R>
