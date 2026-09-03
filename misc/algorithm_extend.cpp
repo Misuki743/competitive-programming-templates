@@ -34,7 +34,7 @@ namespace algorithm_extend {
     return ret;
   }
 
-  template<integral T>
+  template<class T>
   vc<T> iota_vec(int n, T s = 0, T d = 1) {
     vc<T> v(n);
     for(int i = 0; i < n; i++)
