@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: modint/dynamic_Montgomery_modint.cpp
     title: modint/dynamic_Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
   _extendedRequiredBy: []

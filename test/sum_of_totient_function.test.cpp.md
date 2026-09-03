@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/phi_vec.cpp
     title: numtheory/phi_vec.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
     title: numtheory/prefix_sum_of_dirichlet_inverse.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_totient_function
@@ -215,7 +215,7 @@ data:
   path: test/sum_of_totient_function.test.cpp
   requiredBy: []
   timestamp: '2026-09-03 11:26:39+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/sum_of_totient_function.test.cpp
 layout: document

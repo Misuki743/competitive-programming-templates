@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/factorize_pollard_rho.cpp
     title: numtheory/factorize_pollard_rho.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/primitive_root.cpp
     title: numtheory/primitive_root.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/two_square_sum.cpp
     title: numtheory/two_square_sum.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_square_sum
@@ -241,7 +241,7 @@ data:
   path: test/two_square_sum.test.cpp
   requiredBy: []
   timestamp: '2026-09-03 11:20:30+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/two_square_sum.test.cpp
 layout: document

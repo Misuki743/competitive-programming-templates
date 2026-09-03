@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_ll.cpp
     title: poly/convolution_ll.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: tree/centroid_tree.cpp
     title: tree/centroid_tree.cpp
   _extendedRequiredBy: []
