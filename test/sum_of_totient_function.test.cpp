@@ -2,11 +2,10 @@
 
 #include "../default/t.cpp"
 #include "../modint/Montgomery_modint.cpp"
-#include "../numtheory/linear_sieve.cpp"
-#include "../numtheory/phi_array.cpp"
+#include "../numtheory/phi_vec.cpp"
 #include "../numtheory/prefix_sum_of_dirichlet_inverse.cpp"
 
-auto F_small = phi_array<mint, 8'000'000>();
+auto F_small = phi_vec<mint>(8'000'000);
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
