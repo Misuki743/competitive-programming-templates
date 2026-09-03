@@ -313,6 +313,9 @@ data:
     path: test/predecessor_problem.test.cpp
     title: test/predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/prefix_sum_of_polynomial.test.cpp
+    title: test/prefix_sum_of_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -870,6 +873,7 @@ data:
   - test/mytest_mu_vec.test.cpp
   - test/deque_operate_all_composite.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/prefix_sum_of_polynomial.test.cpp
   - test/two_edge_connected_components.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/queue_operate_all_composite.test.cpp

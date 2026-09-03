@@ -40,14 +40,14 @@ data:
     path: test/polynomial_interpolation.test.cpp
     title: test/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/polynomial_taylor_shift.test.cpp
-    title: test/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series.test.cpp
     title: test/pow_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/prefix_sum_of_polynomial.test.cpp
+    title: test/prefix_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/product_of_polynomial_sequence.test.cpp
     title: test/product_of_polynomial_sequence.test.cpp
@@ -291,13 +291,13 @@ data:
   - test/inv_of_formal_power_series.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/sqrt_of_formal_power_series.test.cpp
+  - test/prefix_sum_of_polynomial.test.cpp
   - test/pow_of_formal_power_series.test.cpp
   - test/stirling_number_of_the_first_kind.test.cpp
   - test/multipoint_evaluation.test.cpp
   - test/bernoulli_number.test.cpp
   - test/log_of_formal_power_series.test.cpp
   - test/sharp_p_subset_sum.test.cpp
-  - test/polynomial_taylor_shift.test.cpp
   - test/subset_convolution.test.cpp
   - test/bell_number.test.cpp
   - test/exp_of_formal_power_series_sparse.test.cpp

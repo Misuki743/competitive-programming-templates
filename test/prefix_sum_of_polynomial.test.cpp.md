@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: combi/bernoulli_number.cpp
+    title: combi/bernoulli_number.cpp
+  - icon: ':heavy_check_mark:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
   - icon: ':heavy_check_mark:'
@@ -11,11 +14,17 @@ data:
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   - icon: ':heavy_check_mark:'
+    path: poly/FPS.cpp
+    title: poly/FPS.cpp
+  - icon: ':heavy_check_mark:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
   - icon: ':heavy_check_mark:'
     path: poly/Taylor_shift.cpp
     title: poly/Taylor_shift.cpp
+  - icon: ':heavy_check_mark:'
+    path: poly/prefix_polynomial.cpp
+    title: poly/prefix_polynomial.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,11 +32,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
+    PROBLEM: https://judge.yosupo.jp/problem/prefix_sum_of_polynomial
     links:
-    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
-  bundledCode: "#line 1 \"test/polynomial_taylor_shift.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\n\n#line 1 \"default/t.cpp\"\
+    - https://judge.yosupo.jp/problem/prefix_sum_of_polynomial
+  bundledCode: "#line 1 \"test/prefix_sum_of_polynomial.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/prefix_sum_of_polynomial\"\n\n#line 1 \"default/t.cpp\"\
     \n#include<bits/stdc++.h>\nusing namespace std;\n\n#define pb push_back\n#define\
     \ eb emplace_back\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
     using ldb = long double;\nusing pii = pair<int, int>;\nusing pll = pair<ll, ll>;\n\
@@ -179,29 +188,7 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
-    \ = Montgomery_modint<998'244'353>;\n#line 1 \"combi/binomial.cpp\"\ntemplate<class\
-    \ Mint>\nMint factorial(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat))\
-    \ {\n    if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
-    \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
-    \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
-    Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
-    \    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n    dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n    for(int\
-    \ i = ssize(dat) - 2; i >= size0; i--)\n      dat[i] = dat[i + 1] * (i + 1);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate<class Mint>\nMint inverse(int n) {\n  return\
-    \ factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n}\n\ntemplate<class Mint>\n\
-    Mint binomial(int n, int k) {\n  if (0 <= k and k <= n)\n    return factorial<Mint>(n)\
-    \ * factorial_inv<Mint>(k) * factorial_inv<Mint>(n - k);\n  else\n    return Mint(0);\n\
-    }\n\ntemplate<class Mint>\nMint catalan(int n) {\n  return binomial<Mint>(2 *\
-    \ n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\n//number of up-down path with n\
-    \ (+1), m (-1) and never touch y = -k\ntemplate<class Mint>\nMint excatalan(int\
-    \ n, int m, int k) {\n  if (k > m) return binomial<Mint>(n + m, m);\n  else if\
-    \ (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n\
-    \  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
-    \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
-    \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
-    //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
-    \ 1 \"poly/NTT.cpp\"\n//reference: https://judge.yosupo.jp/submission/69896\n\
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"poly/NTT.cpp\"\n//reference: https://judge.yosupo.jp/submission/69896\n\
     //remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD\n//remark: a.size()\
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
@@ -227,40 +214,175 @@ data:
     \ {};\n    int sz = ssize(a) + ssize(b) - 1;\n    int n = bit_ceil((u32)sz);\n\
     \n    a.resize(n, 0);\n    ntt(a, false);\n    b.resize(n, 0);\n    ntt(b, false);\n\
     \n    for(int i = 0; i < n; i++)\n      a[i] *= b[i];\n\n    ntt(a, true);\n\n\
-    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/Taylor_shift.cpp\"\
-    \n//#include \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n\n\
-    template<class Mint>\nvc<Mint> Taylor_shift(vc<Mint> f, Mint c) {\n  static NTT\
-    \ ntt;\n  int n = ssize(f);\n  vc<Mint> a = f;\n  for(int i = 0; i < n; i++)\n\
-    \    a[i] *= factorial<Mint>(i);\n  vc<Mint> b(n);\n  Mint pre = 1;\n  for(int\
-    \ i = 0; i < n; i++, pre *= c)\n    b[i] = pre * factorial_inv<Mint>(i);\n  ranges::reverse(b);\n\
-    \  f = ntt.conv(a, b);\n  f.erase(f.begin(), f.begin() + n - 1);\n  for(int i\
-    \ = 0; i < n; i++)\n    f[i] *= factorial_inv<Mint>(i);\n  return f;\n}\n#line\
-    \ 8 \"test/polynomial_taylor_shift.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n, c; cin >> n >> c;\n  vc<mint> a(n);\n  for(mint &x\
-    \ : a) cin >> x;\n  cout << Taylor_shift(a, mint(c)) << '\\n';\n\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
+    \    a.resize(sz);\n\n    return a;\n  }\n};\n#line 1 \"poly/FPS.cpp\"\n//#include\
+    \ \"modint/Montgomery_modint.cpp\"\n//#include \"poly/NTT.cpp\"\n\n//lagrange\
+    \ inversion formula:\n//  let f(x) be composition inverse of g(x) (i.e. f(g(x))\
+    \ = x) and [x^0]f(x) = [x^0]g(x) = 0, [x^1]f(x) != 0, [x^1]g(x) != 0, then\n//\
+    \  [x^n]g(x)^k = k/n [x^{n - k}] (x / f(x))^n\n//  [x^n]g(x) = 1/n [x^{n - 1}]\
+    \ (x / f(x))^n (for k = 1)\n\ntemplate<class Mint>\nstruct FPS : vector<Mint>\
+    \ {\n\n  static function<void(vector<Mint>&, bool)> dft;\n  static function<vector<Mint>(vector<Mint>,\
+    \ vector<Mint>)> conv;\n\n  FPS(vector<Mint> v) : vector<Mint>(v) {}\n\n  using\
+    \ vector<Mint>::vector;\n  FPS& operator+=(FPS b) {\n    if (ssize(*this) < ssize(b))\
+    \ this -> resize(ssize(b), 0);\n    for(int i = 0; i < ssize(b); i++)\n      (*this)[i]\
+    \ += b[i];\n    return *this;\n  }\n\n  FPS& operator-=(FPS b) {\n    if (ssize(*this)\
+    \ < ssize(b)) this -> resize(ssize(b), 0);\n    for(int i = 0; i < ssize(b); i++)\n\
+    \      (*this)[i] -= b[i];\n    return *this;\n  }\n\n  FPS& operator*=(FPS b)\
+    \ {\n    auto c = conv(*this, b);\n    this -> resize(size(c));\n    copy(c.begin(),\
+    \ c.end(), this -> begin());\n    return *this;\n  }\n\n  FPS& operator*=(Mint\
+    \ b) {\n    for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n  \
+    \  return *this;\n  }\n\n  FPS& operator/=(Mint b) {\n    b = Mint(1) / b;\n \
+    \   for(int i = 0; i < ssize(*this); i++)\n      (*this)[i] *= b;\n    return\
+    \ *this;\n  }\n\n  FPS& operator<<=(int x) {\n    this -> resize(ssize(*this)\
+    \ + x, Mint(0));\n    ranges::rotate(*this, this -> end() - x);\n    return *this;\n\
+    \  }\n\n  FPS& operator>>=(int x) {\n    if (x >= ssize(*this)) {\n      this\
+    \ -> resize(1);\n      (*this)[0] = 0;\n    } else {\n      ranges::rotate(*this,\
+    \ this -> begin() + x);\n      this -> resize(ssize(*this) - x);\n    }\n    return\
+    \ *this;\n  }\n\n  FPS shrink() {\n    FPS F = *this;\n    int size = ssize(F);\n\
+    \    while(size and F[size - 1] == 0) size -= 1;\n    F.resize(size);\n    return\
+    \ F;\n  }\n\n  FPS rev() {\n    FPS F = *this;\n    reverse(F.begin(), F.end());\n\
+    \    return F;\n  }\n\n  FPS integral() {\n    if (this -> empty()) return {0};\n\
+    \    vector<Mint> Inv(ssize(*this) + 1);\n    Inv[1] = 1;\n    for(int i = 2;\
+    \ i < ssize(Inv); i++)\n      Inv[i] = (Mint::get_mod() - Mint::get_mod() / i)\
+    \ * Inv[Mint::get_mod() % i];\n    FPS Q(ssize(*this) + 1, 0);\n    for(int i\
+    \ = 0; i < ssize(*this); i++)\n      Q[i + 1] = (*this)[i] * Inv[i + 1];\n   \
+    \ return Q;\n  }\n\n  FPS derivative() {\n    assert(!this -> empty());\n    FPS\
+    \ Q(ssize(*this) - 1);\n    for(int i = 1; i < ssize(*this); i++)\n      Q[i -\
+    \ 1] = (*this)[i] * i;\n    return Q;\n  }\n\n  Mint eval(Mint x) {\n    Mint\
+    \ base = 1, res = 0;\n    for(int i = 0; i < ssize(*this); i++, base *= x)\n \
+    \     res += (*this)[i] * base;\n    return res;\n  }\n\n  FPS inv(int k) { //\
+    \ 1 / FPS (mod x^k)\n    assert(!this -> empty() and (*this)[0] != 0);\n    FPS\
+    \ Q(1, 1 / (*this)[0]);\n    for(int i = 1; (1 << (i - 1)) < k; i++) {\n     \
+    \ FPS P = (*this);\n      P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 2) - P *\
+    \ Q);\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n  }\n\
+    \n  array<FPS, 2> div(FPS G) {\n    FPS F = this -> shrink();\n    G = G.shrink();\n\
+    \    assert(!G.empty());\n    if (ssize(G) > ssize(F))\n      return {{{}, F}};\n\
+    \    int n = ssize(F) - ssize(G) + 1;\n    auto FR = F, GR = G;\n    ranges::reverse(FR);\n\
+    \    ranges::reverse(GR);\n    FPS Q = FR * GR.inv(n);\n    Q.resize(n);\n   \
+    \ ranges::reverse(Q);\n    return {Q, (F - G * Q).shrink()};\n  }\n\n  FPS log(int\
+    \ k) {\n    assert(!this -> empty() and (*this)[0] == 1);\n    FPS Q = *this;\n\
+    \    Q = (Q.derivative() * Q.inv(k));\n    Q.resize(k - 1);\n    return Q.integral();\n\
+    \  }\n\n  FPS exp(int k) {\n    assert(!this -> empty() and (*this)[0] == 0);\n\
+    \    FPS Q(1, 1);\n    for(int i = 1; (1 << (i - 1)) < k; i++) {\n      FPS P\
+    \ = (*this);\n      P.resize(1 << i, 0);\n      Q = Q * (FPS(1, 1) + P - Q.log(1\
+    \ << i));\n      Q.resize(1 << i, 0);\n    }\n    Q.resize(k);\n    return Q;\n\
+    \  }\n\n  FPS pow(ll idx, int k) {\n    if (idx == 0) {\n      FPS res(k, 0);\n\
+    \      res[0] = 1;\n      return res;\n    }\n    for(int i = 0; i < ssize(*this)\
+    \ and i * idx < k; i++) {\n      if ((*this)[i] != 0) {\n        Mint Inv = 1\
+    \ / (*this)[i];\n        FPS Q(ssize(*this) - i);\n        for(int j = i; j <\
+    \ ssize(*this); j++)\n          Q[j - i] = (*this)[j] * Inv;\n        Q = (Q.log(k)\
+    \ * idx).exp(k);\n        FPS Q2(k, 0);\n        Mint Pow = (*this)[i].pow(idx);\n\
+    \        for(int j = 0; j + i * idx < k; j++)\n          Q2[j + i * idx] = Q[j]\
+    \ * Pow;\n        return Q2;\n      }\n    } \n    return FPS(k, 0);\n  }\n\n\
+    \  FPS pow(ll idx) {\n    int mxDeg = (ssize(*this) - 1) * idx;\n    FPS a = (*this);\n\
+    \    a.resize(bit_ceil((unsigned)(mxDeg + 1)));\n    dft(a, false);\n    for(Mint\
+    \ &x : a) x = x.pow(idx);\n    dft(a, true);\n    return FPS(a.begin(), a.begin()\
+    \ + mxDeg + 1);\n  }\n\n  vector<Mint> multieval(vector<Mint> xs) {\n    int n\
+    \ = ssize(xs);\n    vector<FPS> data(2 * n);\n    for(int i = 0; i < n; i++)\n\
+    \      data[n + i] = {-xs[i], 1};\n    for(int i = n - 1; i > 0; i--)\n      data[i]\
+    \ = data[i << 1] * data[i << 1 | 1];\n    data[1] = (this -> div(data[1]))[1];\n\
+    \    for(int i = 1; i < n; i++) {\n      data[i << 1] = data[i].div(data[i <<\
+    \ 1])[1];\n      data[i << 1 | 1] = data[i].div(data[i << 1 | 1])[1];\n    }\n\
+    \    vector<Mint> res(n);\n    for(int i = 0; i < n; i++)\n      res[i] = data[n\
+    \ + i].empty() ? 0 : data[n + i][0];\n    return res;\n  }\n\n  static vector<Mint>\
+    \ interpolate(vector<Mint> xs, vector<Mint> ys) {\n    assert(ssize(xs) == ssize(ys));\n\
+    \    int n = ssize(xs);\n    vector<FPS> data(2 * n), res(2 * n);\n    for(int\
+    \ i = 0; i < n; i++)\n      data[n + i] = {-xs[i], 1};\n    for(int i = n - 1;\
+    \ i > 0; i--)\n      data[i] = data[i << 1] * data[i << 1 | 1];\n    res[1] =\
+    \ data[1].derivative().div(data[1])[1];\n    for(int i = 1; i < n; i++) {\n  \
+    \    res[i << 1] = res[i].div(data[i << 1])[1];\n      res[i << 1 | 1] = res[i].div(data[i\
+    \ << 1 | 1])[1];\n    }\n    for(int i = 0; i < n; i++)\n      res[n + i][0] =\
+    \ ys[i] / res[n + i][0];\n    for(int i = n - 1; i > 0; i--)\n      res[i] = res[i\
+    \ << 1] * data[i << 1 | 1] + res[i << 1 | 1] * data[i << 1];\n    return res[1];\n\
+    \  }\n\n  static FPS allProd(vector<FPS> &fs) {\n    if (fs.empty()) return {1};\n\
+    \    auto dfs = [&](int l, int r, auto &self) -> FPS {\n      if (l + 1 == r)\n\
+    \        return fs[l];\n      else\n        return self(l, (l + r) / 2, self)\
+    \ * self((l + r) / 2, r, self);\n    };\n    return dfs(0, ssize(fs), dfs);\n\
+    \  }\n\n  static array<FPS, 2> fracSum(vector<array<FPS, 2>> &fs) {\n    if (fs.empty())\
+    \ return {FPS{1}, {1}};\n    auto dfs = [&](int l, int r, auto &self) -> array<FPS,\
+    \ 2> {\n      if (l + 1 == r)\n        return fs[l];\n      int mid = (l + r)\
+    \ / 2;\n      auto L = self(l, mid, self), R = self(mid, r, self);\n      return\
+    \ {FPS{L[0] * R[1] + L[1] * R[0]}, {L[1] * R[1]}};\n    };\n    return dfs(0,\
+    \ ssize(fs), dfs);\n  }\n\n  friend FPS operator+(FPS a, FPS b) { return a +=\
+    \ b; }\n  friend FPS operator-(FPS a, FPS b) { return a -= b; }\n  friend FPS\
+    \ operator*(FPS a, FPS b) { return a *= b; }\n  friend FPS operator*(FPS a, Mint\
+    \ b) { return a *= b; }\n  friend FPS operator/(FPS a, Mint b) { return a /= b;\
+    \ }\n  friend FPS operator<<(FPS a, int x) { return a <<= x; }\n  friend FPS operator>>(FPS\
+    \ a, int x) { return a >>= x; }\n};\n\nNTT ntt;\nusing fps = FPS<mint>;\ntemplate<>\n\
+    function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
+    function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/binomial.cpp\"\
+    \ntemplate<class Mint>\nMint factorial(int n) {\n  static vc<Mint> dat;\n  if\
+    \ (n >= ssize(dat)) {\n    if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n\
+    \    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n + 1))));\n    for(int\
+    \ i = size0; i < ssize(dat); i++)\n      dat[i] = dat[i - 1] * i;\n  }\n  return\
+    \ dat[n];\n}\n\ntemplate<class Mint>\nMint factorial_inv(int n) {\n  static vc<Mint>\
+    \ dat;\n  if (n >= ssize(dat)) {\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n    dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n    for(int i = ssize(dat) - 2; i >= size0; i--)\n      dat[i]\
+    \ = dat[i + 1] * (i + 1);\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
+    Mint inverse(int n) {\n  return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
+    }\n\ntemplate<class Mint>\nMint binomial(int n, int k) {\n  if (0 <= k and k <=\
+    \ n)\n    return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
+    \ - k);\n  else\n    return Mint(0);\n}\n\ntemplate<class Mint>\nMint catalan(int\
+    \ n) {\n  return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\
+    \n//number of up-down path with n (+1), m (-1) and never touch y = -k\ntemplate<class\
+    \ Mint>\nMint excatalan(int n, int m, int k) {\n  if (k > m) return binomial<Mint>(n\
+    \ + m, m);\n  else if (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n\
+    \ + m, m - k);\n  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
+    \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
+    \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
+    //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
+    \ 1 \"combi/bernoulli_number.cpp\"\n//#include<modint/Montgomery_modint.cpp>\n\
+    //#include<poly/NTTmint.cpp>\n//#include<poly/FPS.cpp>\n\ntemplate<class Mint>\n\
+    vc<Mint> bernoulli_number(int n) {\n  FPS<Mint> f(n + 1);\n  f[n] = Mint(1) /\
+    \ factorial<Mint>(n);\n  for(int i = n - 1; i > 0; i--)\n    f[i] = f[i + 1] *\
+    \ (i + 1);\n  f.erase(f.begin());\n  f = f.inv(n);\n  vc<Mint> v(n);\n  for(int\
+    \ i = 0; i < n; i++)\n    v[i] = f[i] * factorial<Mint>(i);\n  return v;\n}\n\
+    #line 1 \"poly/Taylor_shift.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\
+    \n//#include \"poly/NTT.cpp\"\n\ntemplate<class Mint>\nvc<Mint> Taylor_shift(vc<Mint>\
+    \ f, Mint c) {\n  static NTT ntt;\n  int n = ssize(f);\n  vc<Mint> a = f;\n  for(int\
+    \ i = 0; i < n; i++)\n    a[i] *= factorial<Mint>(i);\n  vc<Mint> b(n);\n  Mint\
+    \ pre = 1;\n  for(int i = 0; i < n; i++, pre *= c)\n    b[i] = pre * factorial_inv<Mint>(i);\n\
+    \  ranges::reverse(b);\n  f = ntt.conv(a, b);\n  f.erase(f.begin(), f.begin()\
+    \ + n - 1);\n  for(int i = 0; i < n; i++)\n    f[i] *= factorial_inv<Mint>(i);\n\
+    \  return f;\n}\n#line 1 \"poly/prefix_polynomial.cpp\"\ntemplate<class Mint>\n\
+    vc<Mint> prefix_polynomial(vc<Mint> F) {\n  const int n = ssize(F);\n  F.resize(bit_ceil(n\
+    \ * 2u));\n  Mint f0 = F[0];\n\n  auto B = bernoulli_number<Mint>(n);\n  vc<Mint>\
+    \ G(size(F));\n  for(int i = 0; i < n; i++) {\n    F[i] *= factorial<Mint>(i);\n\
+    \    G[i] = (i % 2 == 1 ? -1 : 1) * factorial_inv<Mint>(i) * B[i];\n  }\n  reverse(G.begin()\
+    \ + 1, G.end());\n  ntt.ntt(F, 0), ntt.ntt(G, 0);\n  for(int i = 0; i < ssize(F);\
+    \ i++)\n    F[i] *= G[i];\n  ntt.ntt(F, 1);\n  F.back() = 0;\n  ranges::rotate(F,\
+    \ prev(F.end()));\n  F.resize(n + 1);\n  for(int i = 0; i <= n; i++)\n    F[i]\
+    \ *= factorial_inv<Mint>(i);\n  F = Taylor_shift<Mint>(F, -1);\n  F[0] += f0;\n\
+    \n  return F;\n}\n#line 11 \"test/prefix_sum_of_polynomial.test.cpp\"\n\nint main()\
+    \ {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  vc<mint>\
+    \ F(n);\n  for(mint &x : F) cin >> x;\n  cout << prefix_polynomial(F) << '\\n';\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/prefix_sum_of_polynomial\"\
     \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
-    \n#include \"../combi/binomial.cpp\"\n#include \"../poly/NTT.cpp\"\n#include \"\
-    ../poly/Taylor_shift.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
-    \n  int n, c; cin >> n >> c;\n  vc<mint> a(n);\n  for(mint &x : a) cin >> x;\n\
-    \  cout << Taylor_shift(a, mint(c)) << '\\n';\n\n  return 0;\n}\n"
+    \n#include \"../poly/NTT.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../combi/binomial.cpp\"\
+    \n#include \"../combi/bernoulli_number.cpp\"\n#include \"../poly/Taylor_shift.cpp\"\
+    \n#include \"../poly/prefix_polynomial.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vc<mint> F(n);\n  for(mint &x : F) cin\
+    \ >> x;\n  cout << prefix_polynomial(F) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/Montgomery_modint.cpp
-  - combi/binomial.cpp
   - poly/NTT.cpp
+  - poly/FPS.cpp
+  - combi/binomial.cpp
+  - combi/bernoulli_number.cpp
   - poly/Taylor_shift.cpp
+  - poly/prefix_polynomial.cpp
   isVerificationFile: true
-  path: test/polynomial_taylor_shift.test.cpp
+  path: test/prefix_sum_of_polynomial.test.cpp
   requiredBy: []
   timestamp: '2026-09-03 22:17:13+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/polynomial_taylor_shift.test.cpp
+documentation_of: test/prefix_sum_of_polynomial.test.cpp
 layout: document
 redirect_from:
-- /verify/test/polynomial_taylor_shift.test.cpp
-- /verify/test/polynomial_taylor_shift.test.cpp.html
-title: test/polynomial_taylor_shift.test.cpp
+- /verify/test/prefix_sum_of_polynomial.test.cpp
+- /verify/test/prefix_sum_of_polynomial.test.cpp.html
+title: test/prefix_sum_of_polynomial.test.cpp
 ---

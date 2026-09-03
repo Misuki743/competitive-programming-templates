@@ -593,6 +593,9 @@ data:
     - icon: ':warning:'
       path: poly/pref_suf_prod_eval.cpp
       title: poly/pref_suf_prod_eval.cpp
+    - icon: ':heavy_check_mark:'
+      path: poly/prefix_polynomial.cpp
+      title: poly/prefix_polynomial.cpp
     - icon: ':warning:'
       path: poly/semi_online_convolution.cpp
       title: poly/semi_online_convolution.cpp
@@ -1024,6 +1027,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/predecessor_problem.test.cpp
       title: test/predecessor_problem.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/prefix_sum_of_polynomial.test.cpp
+      title: test/prefix_sum_of_polynomial.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/primality_test.test.cpp
       title: test/primality_test.test.cpp

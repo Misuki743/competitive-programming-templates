@@ -7,6 +7,9 @@ data:
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/bernoulli_number.test.cpp
+    title: test/bernoulli_number.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/prefix_sum_of_polynomial.test.cpp
+    title: test/prefix_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
@@ -97,6 +103,8 @@ data:
   - test/stirling_number_of_the_second_kind.test.cpp
   - test/yuki_2544.test.cpp
   - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/prefix_sum_of_polynomial.test.cpp
+  - test/bernoulli_number.test.cpp
   - test/counting_eulerian_circuits.test.cpp
   - test/polynomial_taylor_shift.test.cpp
   - test/bell_number.test.cpp

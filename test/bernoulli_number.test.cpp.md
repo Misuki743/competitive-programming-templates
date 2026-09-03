@@ -5,6 +5,9 @@ data:
     path: combi/bernoulli_number.cpp
     title: combi/bernoulli_number.cpp
   - icon: ':heavy_check_mark:'
+    path: combi/binomial.cpp
+    title: combi/binomial.cpp
+  - icon: ':heavy_check_mark:'
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':heavy_check_mark:'
@@ -178,7 +181,29 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
-    \ = Montgomery_modint<998'244'353>;\n#line 1 \"poly/NTT.cpp\"\n//reference: https://judge.yosupo.jp/submission/69896\n\
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"combi/binomial.cpp\"\ntemplate<class\
+    \ Mint>\nMint factorial(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat))\
+    \ {\n    if (dat.empty()) dat.eb(1);\n    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n    for(int i = size0; i < ssize(dat); i++)\n\
+    \      dat[i] = dat[i - 1] * i;\n  }\n  return dat[n];\n}\n\ntemplate<class Mint>\n\
+    Mint factorial_inv(int n) {\n  static vc<Mint> dat;\n  if (n >= ssize(dat)) {\n\
+    \    int size0 = ssize(dat);\n    dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
+    \ + 1))));\n    dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n    for(int\
+    \ i = ssize(dat) - 2; i >= size0; i--)\n      dat[i] = dat[i + 1] * (i + 1);\n\
+    \  }\n  return dat[n];\n}\n\ntemplate<class Mint>\nMint inverse(int n) {\n  return\
+    \ factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n}\n\ntemplate<class Mint>\n\
+    Mint binomial(int n, int k) {\n  if (0 <= k and k <= n)\n    return factorial<Mint>(n)\
+    \ * factorial_inv<Mint>(k) * factorial_inv<Mint>(n - k);\n  else\n    return Mint(0);\n\
+    }\n\ntemplate<class Mint>\nMint catalan(int n) {\n  return binomial<Mint>(2 *\
+    \ n, n) - binomial<Mint>(2 * n, n + 1);\n}\n\n//number of up-down path with n\
+    \ (+1), m (-1) and never touch y = -k\ntemplate<class Mint>\nMint excatalan(int\
+    \ n, int m, int k) {\n  if (k > m) return binomial<Mint>(n + m, m);\n  else if\
+    \ (k > m - n) return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n\
+    \  else return Mint(0);\n}\n\ntemplate<class Mint>\nauto binomial_functions()\
+    \ {\n  return tuple(\n    &factorial<Mint>,\n    &factorial_inv<Mint>,\n    &inverse<Mint>,\n\
+    \    &binomial<Mint>,\n    &catalan<Mint>,\n    &excatalan<Mint>\n  );\n}\n\n\
+    //auto [fac, faci, inv, binom, cat, excat] = binomial_functions<mint>();\n#line\
+    \ 1 \"poly/NTT.cpp\"\n//reference: https://judge.yosupo.jp/submission/69896\n\
     //remark: MOD = 2^K * C + 1, R is a primitive root modulo MOD\n//remark: a.size()\
     \ <= 2^K must be satisfied\n//some common modulo: 998244353  = 2^23 * 119 + 1,\
     \ R = 3\n//                    469762049  = 2^26 * 7   + 1, R = 3\n//        \
@@ -301,29 +326,30 @@ data:
     function<vector<mint>(vector<mint>, vector<mint>)> fps::conv = ntt.conv;\ntemplate<>\n\
     function<void(vector<mint>&, bool)> fps::dft = ntt.ntt;\n#line 1 \"combi/bernoulli_number.cpp\"\
     \n//#include<modint/Montgomery_modint.cpp>\n//#include<poly/NTTmint.cpp>\n//#include<poly/FPS.cpp>\n\
-    \ntemplate<class Mint>\nFPS<Mint> bernoulli_number(int n) {\n  fps fac(n + 2);\n\
-    \  fac[0] = 1;\n  for(int i = 1; i <= n + 1; i++)\n    fac[i] = fac[i - 1] * i;\n\
-    \  fps f(n + 2);\n  f[n + 1] = Mint(1) / fac[n + 1];\n  for(int i = n; i > 0;\
-    \ i--)\n    f[i] = f[i + 1] * (i + 1);\n  f.erase(f.begin());\n  f = f.inv(n +\
-    \ 1);\n  for(int i = 0; i <= n; i++)\n    f[i] *= fac[i];\n  return f;\n}\n#line\
-    \ 8 \"test/bernoulli_number.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  cout << bernoulli_number<mint>(n) <<\
-    \ '\\n';\n\n  return 0;\n}\n"
+    \ntemplate<class Mint>\nvc<Mint> bernoulli_number(int n) {\n  FPS<Mint> f(n +\
+    \ 1);\n  f[n] = Mint(1) / factorial<Mint>(n);\n  for(int i = n - 1; i > 0; i--)\n\
+    \    f[i] = f[i + 1] * (i + 1);\n  f.erase(f.begin());\n  f = f.inv(n);\n  vc<Mint>\
+    \ v(n);\n  for(int i = 0; i < n; i++)\n    v[i] = f[i] * factorial<Mint>(i);\n\
+    \  return v;\n}\n#line 9 \"test/bernoulli_number.test.cpp\"\n\nint main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  cout <<\
+    \ bernoulli_number<mint>(n + 1) << '\\n';\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\n\
-    #include \"../poly/NTT.cpp\"\n#include \"../poly/FPS.cpp\"\n#include \"../combi/bernoulli_number.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
-    \ >> n;\n  cout << bernoulli_number<mint>(n) << '\\n';\n\n  return 0;\n}\n"
+    #include \"../combi/binomial.cpp\"\n#include \"../poly/NTT.cpp\"\n#include \"\
+    ../poly/FPS.cpp\"\n#include \"../combi/bernoulli_number.cpp\"\n\nint main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin >> n;\n  cout <<\
+    \ bernoulli_number<mint>(n + 1) << '\\n';\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/Montgomery_modint.cpp
+  - combi/binomial.cpp
   - poly/NTT.cpp
   - poly/FPS.cpp
   - combi/bernoulli_number.cpp
   isVerificationFile: true
   path: test/bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
+  timestamp: '2026-09-03 22:17:13+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/bernoulli_number.test.cpp

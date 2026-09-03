@@ -52,7 +52,7 @@ data:
     \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
     \  template<ranges::random_access_range R, class T = ranges::range_value_t<R>>\n\
     \  vc<T> inv_perm(const R &p) {\n    vc<T> ret(p.begin(), p.end());\n    for(int\
-    \ i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<integral\
+    \ i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<class\
     \ T>\n  vc<T> iota_vec(int n, T s = 0, T d = 1) {\n    vc<T> v(n);\n    for(int\
     \ i = 0; i < n; i++)\n      v[i] = i * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range\
     \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id\
@@ -295,7 +295,7 @@ data:
     \ ranges::sort(v);\n    v.erase(ranges::unique(v).begin(), v.end());\n  }\n\n\
     \  template<ranges::random_access_range R, class T = ranges::range_value_t<R>>\n\
     \  vc<T> inv_perm(const R &p) {\n    vc<T> ret(p.begin(), p.end());\n    for(int\
-    \ i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<integral\
+    \ i = 0; i < ssize(p); i++)\n      ret[p[i]] = i;\n    return ret;\n  }\n\n  template<class\
     \ T>\n  vc<T> iota_vec(int n, T s = 0, T d = 1) {\n    vc<T> v(n);\n    for(int\
     \ i = 0; i < n; i++)\n      v[i] = i * d + s;\n    return v;\n  }\n\n  template<ranges::random_access_range\
     \ R, class F = identity>\n  vi arg_sort(const R &v, F proj = {}) {\n    vi id\
@@ -498,7 +498,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-09-03 14:56:16+08:00'
+  timestamp: '2026-09-03 22:17:13+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
