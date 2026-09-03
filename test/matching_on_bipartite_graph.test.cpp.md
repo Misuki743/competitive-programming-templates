@@ -104,28 +104,85 @@ data:
     \ v[j++], f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n\
     \        while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r;\
     \ i++)\n        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return\
-    \ f;\n  }\n}\n\nusing namespace algorithm_extend;\n#line 1 \"graph/flow/Dinic.cpp\"\
-    \ntemplate<class T>\nstruct Dinic {\n  struct edge {\n    int to, rev;\n    T\
-    \ cap;\n    edge(int _to, T _cap, int _rev)\n     : to(_to), rev(_rev), cap(_cap)\
-    \ {}\n  };\n\n  int n;\n  const T CAP_MAX = numeric_limits<T>::max();\n  vector<vector<edge>>\
-    \ g;\n  vector<int> lev, iter;\n\n  Dinic(int _n) : n(_n), g(n), lev(n), iter(n)\
-    \ {}\n\n  void addEdge(int from, int to, T cap) {\n    g[from].emplace_back(to,\
-    \ cap, ssize(g[to]));\n    g[to].emplace_back(from, 0, ssize(g[from]) - 1);\n\
-    \  }\n\n  bool bfs(int s, int t) {\n    fill(lev.begin(), lev.end(), INT_MAX);\n\
-    \    lev[s] = 0;\n    queue<int> q;\n    q.push(s);\n    while(!q.empty()) {\n\
-    \      int v = q.front(); q.pop();\n      for(edge &e : g[v]) if (e.cap > 0 and\
-    \ lev[e.to] == INT_MAX) {\n        lev[e.to] = lev[v] + 1;\n        q.push(e.to);\n\
-    \      }\n    }\n    return lev[t] != INT_MAX;\n  }\n\n  T runFlow(int s, int\
-    \ t) {\n    auto dfs = [&](int v, T f, auto &&self) -> T {\n      if (v == s)\
-    \ return f;\n      for(int &i = iter[v]; i < ssize(g[v]); i++) {\n        edge\
-    \ &e = g[v][i];\n        if (T tmp; lev[e.to] == lev[v] - 1 and g[e.to][e.rev].cap\
-    \ > 0) {\n          if ((tmp = self(e.to, min(f, g[e.to][e.rev].cap), self)) >\
-    \ 0) {\n            e.cap += tmp, g[e.to][e.rev].cap -= tmp;\n            return\
-    \ tmp;\n          }\n        }\n      }\n      return 0;\n    };\n    T flow =\
-    \ 0, del;\n    while(bfs(s, t)) {\n      fill(iter.begin(), iter.end(), 0);\n\
-    \      while((del = dfs(t, CAP_MAX, dfs)) > 0)\n        flow = (flow >= CAP_MAX\
-    \ - del ? CAP_MAX : flow + del);\n    }\n\n    return flow;\n  }\n\n  bool left(int\
-    \ idx) { return lev[idx] != INT_MAX; }\n};\n#line 5 \"test/matching_on_bipartite_graph.test.cpp\"\
+    \ f;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace Combinatorics {\n\
+    \  template<class Mint>\n  Mint factorial(int n) {\n    static vc<Mint> dat;\n\
+    \    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n      int size0\
+    \ = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n +\
+    \ 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
+    \ - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
+    \ factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n\
+    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
+    \ + 1))));\n      dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n  \
+    \    for(int i = ssize(dat) - 2; i >= size0; i--)\n        dat[i] = dat[i + 1]\
+    \ * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
+    \ inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
+    \  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if (0 <=\
+    \ k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
+    \ - k);\n    else\n      return Mint(0);\n  }\n\n  template<class Mint>\n  Mint\
+    \ catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n,\
+    \ n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never touch\
+    \ y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k) {\n  \
+    \  if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n) return\
+    \ binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return Mint(0);\n\
+    \  }\n\n  template<class Mint>\n  auto binomial_functions() {\n    return tuple(\n\
+    \      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
+    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
+    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
+    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
+    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
+    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
+    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
+    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
+    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
+    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
+    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
+    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
+    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
+    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
+    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
+    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
+    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
+    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
+    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
+    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
+    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
+    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
+    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
+    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
+    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
+    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
+    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"graph/flow/Dinic.cpp\"\ntemplate<class\
+    \ T>\nstruct Dinic {\n  struct edge {\n    int to, rev;\n    T cap;\n    edge(int\
+    \ _to, T _cap, int _rev)\n     : to(_to), rev(_rev), cap(_cap) {}\n  };\n\n  int\
+    \ n;\n  const T CAP_MAX = numeric_limits<T>::max();\n  vector<vector<edge>> g;\n\
+    \  vector<int> lev, iter;\n\n  Dinic(int _n) : n(_n), g(n), lev(n), iter(n) {}\n\
+    \n  void addEdge(int from, int to, T cap) {\n    g[from].emplace_back(to, cap,\
+    \ ssize(g[to]));\n    g[to].emplace_back(from, 0, ssize(g[from]) - 1);\n  }\n\n\
+    \  bool bfs(int s, int t) {\n    fill(lev.begin(), lev.end(), INT_MAX);\n    lev[s]\
+    \ = 0;\n    queue<int> q;\n    q.push(s);\n    while(!q.empty()) {\n      int\
+    \ v = q.front(); q.pop();\n      for(edge &e : g[v]) if (e.cap > 0 and lev[e.to]\
+    \ == INT_MAX) {\n        lev[e.to] = lev[v] + 1;\n        q.push(e.to);\n    \
+    \  }\n    }\n    return lev[t] != INT_MAX;\n  }\n\n  T runFlow(int s, int t) {\n\
+    \    auto dfs = [&](int v, T f, auto &&self) -> T {\n      if (v == s) return\
+    \ f;\n      for(int &i = iter[v]; i < ssize(g[v]); i++) {\n        edge &e = g[v][i];\n\
+    \        if (T tmp; lev[e.to] == lev[v] - 1 and g[e.to][e.rev].cap > 0) {\n  \
+    \        if ((tmp = self(e.to, min(f, g[e.to][e.rev].cap), self)) > 0) {\n   \
+    \         e.cap += tmp, g[e.to][e.rev].cap -= tmp;\n            return tmp;\n\
+    \          }\n        }\n      }\n      return 0;\n    };\n    T flow = 0, del;\n\
+    \    while(bfs(s, t)) {\n      fill(iter.begin(), iter.end(), 0);\n      while((del\
+    \ = dfs(t, CAP_MAX, dfs)) > 0)\n        flow = (flow >= CAP_MAX - del ? CAP_MAX\
+    \ : flow + del);\n    }\n\n    return flow;\n  }\n\n  bool left(int idx) { return\
+    \ lev[idx] != INT_MAX; }\n};\n#line 5 \"test/matching_on_bipartite_graph.test.cpp\"\
     \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int l, r,\
     \ m; cin >> l >> r >> m;\n  const int s = l + r, t = l + r + 1;\n  Dinic<int>\
     \ dinic(l + r + 2);\n  for(int i = 0; i < l; i++) dinic.addEdge(s, i, 1);\n  for(int\
@@ -150,7 +207,7 @@ data:
   isVerificationFile: true
   path: test/matching_on_bipartite_graph.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/matching_on_bipartite_graph.test.cpp

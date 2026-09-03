@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/binomial_coefficient_prime_mod.test.cpp
     title: test/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/stirling_number_of_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"modint/dynamic_modint.cpp\"\ntemplate<uint32_t ver>\nstruct\
@@ -69,7 +69,7 @@ data:
   path: modint/dynamic_modint.cpp
   requiredBy: []
   timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/binomial_coefficient_prime_mod.test.cpp
   - test/stirling_number_of_second_kind_small_p_large_n.test.cpp

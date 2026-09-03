@@ -104,39 +104,96 @@ data:
     \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
-    \ algorithm_extend;\n#line 1 \"graph/misc/2sat.cpp\"\n//source: KACTL\n\n/**\n\
-    \ * Author: Emil Lenngren, Simon Lindholm\n * Date: 2011-11-29\n * License: CC0\n\
-    \ * Source: folklore\n * Description: Calculates a valid assignment to boolean\
-    \ variables a, b, c,... to a 2-SAT problem, so that an expression of the type\
-    \ $(a\\|\\|b)\\&\\&(!a\\|\\|c)\\&\\&(d\\|\\|!b)\\&\\&...$ becomes true, or reports\
-    \ that it is unsatisfiable.\n * Negated variables are represented by bit-inversions\
-    \ (\\texttt{\\tilde{}x}).\n * Usage:\n *  TwoSat ts(number of boolean variables);\n\
-    \ *  ts.either(0, \\tilde3); // Var 0 is true or var 3 is false\n *  ts.setValue(2);\
-    \ // Var 2 is true\n *  ts.atMostOne({0,\\tilde1,2}); // <= 1 of vars 0, \\tilde1\
-    \ and 2 are true\n *  ts.solve(); // Returns true iff it is solvable\n *  ts.values[0..N-1]\
-    \ holds the assigned values to the vars\n * Time: O(N+E), where N is the number\
-    \ of boolean variables, and E is the number of clauses.\n * Status: stress-tested\n\
-    \ */\n\n#define rep(i, a, b) for(int i = a; i < (b); ++i)\n#define sz(x) (int)(x).size()\n\
-    using vi = vector<int>;\n\nstruct TwoSat {\n\tint N;\n\tvector<vi> gr;\n\tvi values;\
-    \ // 0 = false, 1 = true\n\n\tTwoSat(int n = 0) : N(n), gr(2*n) {}\n\n\tint addVar()\
-    \ { // (optional)\n\t\tgr.emplace_back();\n\t\tgr.emplace_back();\n\t\treturn\
-    \ N++;\n\t}\n\n\tvoid either(int f, int j) {\n\t\tf = max(2*f, -1-2*f);\n\t\t\
-    j = max(2*j, -1-2*j);\n\t\tgr[f].push_back(j^1);\n\t\tgr[j].push_back(f^1);\n\t\
-    }\n\tvoid setValue(int x) { either(x, x); }\n\n\tvoid atMostOne(const vi& li)\
-    \ { // (optional)\n\t\tif (sz(li) <= 1) return;\n\t\tint cur = ~li[0];\n\t\trep(i,2,sz(li))\
-    \ {\n\t\t\tint next = addVar();\n\t\t\teither(cur, ~li[i]);\n\t\t\teither(cur,\
-    \ next);\n\t\t\teither(~li[i], next);\n\t\t\tcur = ~next;\n\t\t}\n\t\teither(cur,\
-    \ ~li[1]);\n\t}\n\n\tvi val, comp, z; int time = 0;\n\tint dfs(int i) {\n\t\t\
-    int low = val[i] = ++time, x; z.push_back(i);\n\t\tfor(int e : gr[i]) if (!comp[e])\n\
-    \t\t\tlow = min(low, val[e] ?: dfs(e));\n\t\tif (low == val[i]) do {\n\t\t\tx\
-    \ = z.back(); z.pop_back();\n\t\t\tcomp[x] = low;\n\t\t\tif (values[x>>1] == -1)\n\
-    \t\t\t\tvalues[x>>1] = x&1;\n\t\t} while (x != i);\n\t\treturn val[i] = low;\n\
-    \t}\n\n\tbool solve() {\n\t\tvalues.assign(N, -1);\n\t\tval.assign(2*N, 0); comp\
-    \ = val;\n\t\trep(i,0,2*N) if (!comp[i]) dfs(i);\n\t\trep(i,0,N) if (comp[2*i]\
-    \ == comp[2*i+1]) return 0;\n\t\treturn 1;\n\t}\n};\n#line 5 \"test/two_sat.test.cpp\"\
-    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  string p, cnf;\
-    \ cin >> p >> cnf;\n  int n, m; cin >> n >> m;\n\n  TwoSat ts(n);\n  while(m--)\
-    \ {\n    int a, b, c; cin >> a >> b >> c;\n    a = (a > 0 ? a - 1 : ~(-(a + 1)));\n\
+    \ algorithm_extend;\n\nnamespace Combinatorics {\n  template<class Mint>\n  Mint\
+    \ factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n \
+    \     if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
+    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
+    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
+    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
+    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
+    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
+    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
+    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
+    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
+    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
+    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
+    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
+    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
+    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
+    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
+    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
+    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
+    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
+    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
+    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
+    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
+    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
+    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
+    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
+    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
+    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
+    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"graph/misc/2sat.cpp\"\n//source:\
+    \ KACTL\n\n/**\n * Author: Emil Lenngren, Simon Lindholm\n * Date: 2011-11-29\n\
+    \ * License: CC0\n * Source: folklore\n * Description: Calculates a valid assignment\
+    \ to boolean variables a, b, c,... to a 2-SAT problem, so that an expression of\
+    \ the type $(a\\|\\|b)\\&\\&(!a\\|\\|c)\\&\\&(d\\|\\|!b)\\&\\&...$ becomes true,\
+    \ or reports that it is unsatisfiable.\n * Negated variables are represented by\
+    \ bit-inversions (\\texttt{\\tilde{}x}).\n * Usage:\n *  TwoSat ts(number of boolean\
+    \ variables);\n *  ts.either(0, \\tilde3); // Var 0 is true or var 3 is false\n\
+    \ *  ts.setValue(2); // Var 2 is true\n *  ts.atMostOne({0,\\tilde1,2}); // <=\
+    \ 1 of vars 0, \\tilde1 and 2 are true\n *  ts.solve(); // Returns true iff it\
+    \ is solvable\n *  ts.values[0..N-1] holds the assigned values to the vars\n *\
+    \ Time: O(N+E), where N is the number of boolean variables, and E is the number\
+    \ of clauses.\n * Status: stress-tested\n */\n\n#define rep(i, a, b) for(int i\
+    \ = a; i < (b); ++i)\n#define sz(x) (int)(x).size()\nusing vi = vector<int>;\n\
+    \nstruct TwoSat {\n\tint N;\n\tvector<vi> gr;\n\tvi values; // 0 = false, 1 =\
+    \ true\n\n\tTwoSat(int n = 0) : N(n), gr(2*n) {}\n\n\tint addVar() { // (optional)\n\
+    \t\tgr.emplace_back();\n\t\tgr.emplace_back();\n\t\treturn N++;\n\t}\n\n\tvoid\
+    \ either(int f, int j) {\n\t\tf = max(2*f, -1-2*f);\n\t\tj = max(2*j, -1-2*j);\n\
+    \t\tgr[f].push_back(j^1);\n\t\tgr[j].push_back(f^1);\n\t}\n\tvoid setValue(int\
+    \ x) { either(x, x); }\n\n\tvoid atMostOne(const vi& li) { // (optional)\n\t\t\
+    if (sz(li) <= 1) return;\n\t\tint cur = ~li[0];\n\t\trep(i,2,sz(li)) {\n\t\t\t\
+    int next = addVar();\n\t\t\teither(cur, ~li[i]);\n\t\t\teither(cur, next);\n\t\
+    \t\teither(~li[i], next);\n\t\t\tcur = ~next;\n\t\t}\n\t\teither(cur, ~li[1]);\n\
+    \t}\n\n\tvi val, comp, z; int time = 0;\n\tint dfs(int i) {\n\t\tint low = val[i]\
+    \ = ++time, x; z.push_back(i);\n\t\tfor(int e : gr[i]) if (!comp[e])\n\t\t\tlow\
+    \ = min(low, val[e] ?: dfs(e));\n\t\tif (low == val[i]) do {\n\t\t\tx = z.back();\
+    \ z.pop_back();\n\t\t\tcomp[x] = low;\n\t\t\tif (values[x>>1] == -1)\n\t\t\t\t\
+    values[x>>1] = x&1;\n\t\t} while (x != i);\n\t\treturn val[i] = low;\n\t}\n\n\t\
+    bool solve() {\n\t\tvalues.assign(N, -1);\n\t\tval.assign(2*N, 0); comp = val;\n\
+    \t\trep(i,0,2*N) if (!comp[i]) dfs(i);\n\t\trep(i,0,N) if (comp[2*i] == comp[2*i+1])\
+    \ return 0;\n\t\treturn 1;\n\t}\n};\n#line 5 \"test/two_sat.test.cpp\"\n\nint\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(0);\n\n  string p, cnf; cin\
+    \ >> p >> cnf;\n  int n, m; cin >> n >> m;\n\n  TwoSat ts(n);\n  while(m--) {\n\
+    \    int a, b, c; cin >> a >> b >> c;\n    a = (a > 0 ? a - 1 : ~(-(a + 1)));\n\
     \    b = (b > 0 ? b - 1 : ~(-(b + 1)));\n    ts.either(a, b);\n  }\n\n  if (ts.solve())\
     \ {\n    cout << \"s SATISFIABLE\\n\";\n    cout << \"v \";\n    for(int i = 0;\
     \ i < n; i++)\n      cout << (ts.values[i] ? i + 1 : -(i + 1)) << ' ';\n    cout\
@@ -157,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/two_sat.test.cpp

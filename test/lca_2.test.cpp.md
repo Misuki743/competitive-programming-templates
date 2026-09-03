@@ -110,51 +110,108 @@ data:
     \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
-    \ algorithm_extend;\n#line 1 \"ds/RMQ.cpp\"\ntemplate<class T>\nstruct RMQ {\n\
-    \  uint64_t size;\n  vector<T> base;\n  vector<vector<T>> table;\n  vector<uint32_t>\
-    \ msk;\n\n  static const int lgw = 5;\n  static const int w = 1 << lgw;\n  RMQ(vector<T>\
-    \ _base) : size(ssize(_base)), base(_base), msk(size) {\n    msk.back() = 1;\n\
-    \    for(int i = size - 2; i >= 0; i--) {\n      msk[i] = msk[i + 1] << 1;\n \
-    \     while(msk[i] != 0 and base[i + countr_zero(msk[i])] >= base[i])\n      \
-    \  msk[i] ^= 1u << countr_zero(msk[i]);\n      msk[i] |= 1u;\n    }\n\n    table\
-    \ = vector(bit_width(size >> lgw), vector<T>(size >> lgw));\n    if (!table.empty())\n\
-    \      for(uint64_t i = 0; i + w <= size; i += w)\n        table[0][i >> lgw]\
-    \ = base[i + bit_width(msk[i]) - 1];\n    for(int i = 1; i < ssize(table); i++)\n\
-    \      for(uint64_t j = 0; j < (size >> lgw); j++)\n        if (j + (1 << (i -\
-    \ 1)) < (size >> lgw))\n          table[i][j] = min(table[i - 1][j], table[i -\
-    \ 1][j + (1 << (i - 1))]);\n        else\n          table[i][j] = table[i - 1][j];\n\
-    \  }\n\n  T query(int l, int r) {\n    if (l >= r) {\n      return numeric_limits<T>::max();\n\
-    \    } else if (r - l <= w) {\n      return base[l + bit_width(msk[l] & (~0u >>\
-    \ (w - (r - l)))) - 1];\n    } else {\n      T ret = min(query(l, l + w), query(r\
-    \ - w, r));\n      l = (l + w) >> lgw, r >>= lgw;\n      if (l == r) return ret;\n\
-    \      int range = bit_width((unsigned)(r - l)) - 1;\n      return min({ret, table[range][l],\
-    \ table[range][r - (1 << range)]});\n    }\n  }\n};\n#line 1 \"tree/LCA.cpp\"\n\
-    //#include \"ds/RMQ.cpp\"\n\nstruct LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int>\
-    \ rmq;\n\n  LCA(vc<pii> e, int root = 0) : rmq(precomp(e, root)) {}\n\n  vi precomp(vc<pii>\
-    \ &e, int root) {\n    const int n = ssize(e) + 1;\n\n    dep = tin = tout = mp\
-    \ = vi(n);\n\n    vi sz(n, 1), p(n), ord;\n    {\n      vi d(n);\n      for(auto\
-    \ &[u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;\n\n      d[root]\
-    \ = 0;\n      ord.reserve(n - 1);\n      for(int i = 0; i < n; i++) {\n      \
-    \  int v = i;\n        while(d[v] == 1) {\n          ord.emplace_back(v);\n  \
-    \        sz[p[v]] += sz[v];\n          d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n  \
-    \        v = p[v];\n        }\n      }\n      p[root] = root;\n    }\n\n    vi\
-    \ dfn(n);\n    {\n      vi nxt(n, 1);\n      for(int v : ord | views::reverse)\
-    \ {\n        dfn[v] = nxt[p[v]], nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v]\
-    \ + 1;\n        dep[v] = dep[p[v]] + 1;\n      }\n      vi().swap(ord);\n    \
-    \  vi().swap(sz);\n    }\n\n    vi init(2 * n - 1);\n    {\n      vi dfn_ord =\
-    \ inv_perm(std::move(dfn));\n\n      int nxt = 0, pre = root;\n      for(int v\
-    \ : dfn_ord) {\n        while(pre != p[v]) {\n          pre = p[pre], tout[pre]\
-    \ = nxt;\n          init[nxt++] = pre;\n        }\n        tin[v] = tout[v] =\
-    \ nxt;\n        init[nxt++] = pre = v;\n      }\n\n      while(pre != root) {\n\
-    \        pre = p[pre], tout[pre] = nxt;\n        init[nxt++] = pre;\n      }\n\
-    \    }\n\n    {\n      vi f(n);\n      for(int x : dep) f[x]++;\n      psum(f);\n\
-    \n      vi rank(n);\n      for(int v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n\
-    \        mp[rank[v]] = v;\n      }\n      for(int &v : init) v = rank[v];\n  \
-    \  }\n\n    return init;\n  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v])\
-    \ swap(u, v);\n    return mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int\
-    \ u, int v) {\n    return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool\
-    \ is_ancestor_of(int u, int v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n\
-    \  }\n};\n#line 1 \"misc/random.cpp\"\nnamespace RNG {\n  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
+    \ algorithm_extend;\n\nnamespace Combinatorics {\n  template<class Mint>\n  Mint\
+    \ factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n \
+    \     if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
+    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
+    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
+    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
+    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
+    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
+    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
+    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
+    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
+    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
+    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
+    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
+    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
+    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
+    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
+    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
+    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
+    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
+    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
+    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
+    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
+    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
+    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
+    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
+    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
+    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
+    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"ds/RMQ.cpp\"\ntemplate<class T>\n\
+    struct RMQ {\n  uint64_t size;\n  vector<T> base;\n  vector<vector<T>> table;\n\
+    \  vector<uint32_t> msk;\n\n  static const int lgw = 5;\n  static const int w\
+    \ = 1 << lgw;\n  RMQ(vector<T> _base) : size(ssize(_base)), base(_base), msk(size)\
+    \ {\n    msk.back() = 1;\n    for(int i = size - 2; i >= 0; i--) {\n      msk[i]\
+    \ = msk[i + 1] << 1;\n      while(msk[i] != 0 and base[i + countr_zero(msk[i])]\
+    \ >= base[i])\n        msk[i] ^= 1u << countr_zero(msk[i]);\n      msk[i] |= 1u;\n\
+    \    }\n\n    table = vector(bit_width(size >> lgw), vector<T>(size >> lgw));\n\
+    \    if (!table.empty())\n      for(uint64_t i = 0; i + w <= size; i += w)\n \
+    \       table[0][i >> lgw] = base[i + bit_width(msk[i]) - 1];\n    for(int i =\
+    \ 1; i < ssize(table); i++)\n      for(uint64_t j = 0; j < (size >> lgw); j++)\n\
+    \        if (j + (1 << (i - 1)) < (size >> lgw))\n          table[i][j] = min(table[i\
+    \ - 1][j], table[i - 1][j + (1 << (i - 1))]);\n        else\n          table[i][j]\
+    \ = table[i - 1][j];\n  }\n\n  T query(int l, int r) {\n    if (l >= r) {\n  \
+    \    return numeric_limits<T>::max();\n    } else if (r - l <= w) {\n      return\
+    \ base[l + bit_width(msk[l] & (~0u >> (w - (r - l)))) - 1];\n    } else {\n  \
+    \    T ret = min(query(l, l + w), query(r - w, r));\n      l = (l + w) >> lgw,\
+    \ r >>= lgw;\n      if (l == r) return ret;\n      int range = bit_width((unsigned)(r\
+    \ - l)) - 1;\n      return min({ret, table[range][l], table[range][r - (1 << range)]});\n\
+    \    }\n  }\n};\n#line 1 \"tree/LCA.cpp\"\n//#include \"ds/RMQ.cpp\"\n\nstruct\
+    \ LCA {\n  vi dep, tin, tout, mp;\n  RMQ<int> rmq;\n\n  LCA(vc<pii> e, int root\
+    \ = 0) : rmq(precomp(e, root)) {}\n\n  vi precomp(vc<pii> &e, int root) {\n  \
+    \  const int n = ssize(e) + 1;\n\n    dep = tin = tout = mp = vi(n);\n\n    vi\
+    \ sz(n, 1), p(n), ord;\n    {\n      vi d(n);\n      for(auto &[u, v] : e)\n \
+    \       p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;\n\n      d[root] = 0;\n      ord.reserve(n\
+    \ - 1);\n      for(int i = 0; i < n; i++) {\n        int v = i;\n        while(d[v]\
+    \ == 1) {\n          ord.emplace_back(v);\n          sz[p[v]] += sz[v];\n    \
+    \      d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n          v = p[v];\n        }\n  \
+    \    }\n      p[root] = root;\n    }\n\n    vi dfn(n);\n    {\n      vi nxt(n,\
+    \ 1);\n      for(int v : ord | views::reverse) {\n        dfn[v] = nxt[p[v]],\
+    \ nxt[p[v]] += sz[v];\n        nxt[v] = dfn[v] + 1;\n        dep[v] = dep[p[v]]\
+    \ + 1;\n      }\n      vi().swap(ord);\n      vi().swap(sz);\n    }\n\n    vi\
+    \ init(2 * n - 1);\n    {\n      vi dfn_ord = inv_perm(std::move(dfn));\n\n  \
+    \    int nxt = 0, pre = root;\n      for(int v : dfn_ord) {\n        while(pre\
+    \ != p[v]) {\n          pre = p[pre], tout[pre] = nxt;\n          init[nxt++]\
+    \ = pre;\n        }\n        tin[v] = tout[v] = nxt;\n        init[nxt++] = pre\
+    \ = v;\n      }\n\n      while(pre != root) {\n        pre = p[pre], tout[pre]\
+    \ = nxt;\n        init[nxt++] = pre;\n      }\n    }\n\n    {\n      vi f(n);\n\
+    \      for(int x : dep) f[x]++;\n      psum(f);\n\n      vi rank(n);\n      for(int\
+    \ v = 0; v < n; v++) {\n        rank[v] = --f[dep[v]];\n        mp[rank[v]] =\
+    \ v;\n      }\n      for(int &v : init) v = rank[v];\n    }\n\n    return init;\n\
+    \  }\n\n  int lca(int u, int v) {\n    if (tin[u] > tin[v]) swap(u, v);\n    return\
+    \ mp[rmq.query(tin[u], tout[v] + 1)];\n  }\n\n  int dis(int u, int v) {\n    return\
+    \ dep[u] + dep[v] - 2 * dep[lca(u, v)];\n  }\n\n  bool is_ancestor_of(int u, int\
+    \ v) {\n    return tin[u] <= tin[v] and tout[v] <= tout[u];\n  }\n};\n#line 1\
+    \ \"misc/random.cpp\"\nnamespace RNG {\n  mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());\n\
     \n  //empty vector would be assumed to be n = 2\n  vector<pii> prufer_recover(vector<int>\
     \ prufer_code) {\n    const int n = ssize(prufer_code) + 2;\n    assert(prufer_code.empty()\
     \ or (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n    vector<int>\
@@ -195,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/lca_2.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lca_2.test.cpp

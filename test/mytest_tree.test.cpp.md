@@ -119,56 +119,112 @@ data:
     \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
-    \ algorithm_extend;\n#line 1 \"tree/prufer_recover.cpp\"\n//empty vector would\
-    \ be assumed to be n = 2\nvc<pii> prufer_recover(vi prufer_code) {\n  const int\
-    \ n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or (ranges::min(prufer_code)\
-    \ >= 0 and ranges::max(prufer_code) < n));\n  vi d(n, 1);\n  for(int x : prufer_code)\
-    \ d[x]++;\n  min_heap<int> leaf;\n  for(int v = 0; v < n; v++)\n    if (d[v] ==\
-    \ 1)\n      leaf.emplace(v);\n  vc<pii> edges;\n  for(int x : prufer_code) {\n\
-    \    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v, x);\n    if (--d[x]\
-    \ == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top(); leaf.pop();\n  edges.emplace_back(v,\
-    \ leaf.top());\n  return edges;\n}\n#line 1 \"enumerate/enumerate_bit.cpp\"\n\n\
-    template<typename F, typename INT>\nrequires invocable<F, INT>\nvoid enumerate_subset(INT\
-    \ msk, F f) {\n  for(INT x = msk; x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n\
-    }\n#line 1 \"enumerate/enumerate_twelvefold.cpp\"\n//#include \"enumerate/bit.cpp\"\
-    \n\n//n^k\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_cartesian_power(int\
-    \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p(k);\n  auto dfs\
-    \ = [&](int i, auto &self) -> void {\n    if (i == k) {\n      f(p);\n    } else\
-    \ {\n      for(int x = 0; x < n; x++) {\n        p[i] = x;\n        self(i + 1,\
-    \ self);\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\n//factorial:\n//[1, 2, 6,\
-    \ 24, 120,\n// 720, 5040, 40320, 362880, 3628800,\n// 39916800, 479001600, 6227020800,\
-    \ 87178291200, 1307674368000]\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
-    void enumerate_permutation(int n, F f) {\n  assert(n >= 0);\n  vector<int> p(n);\n\
-    \  iota(p.begin(), p.end(), 0);\n  do { f(p); } while(next_permutation(p.begin(),\
-    \ p.end()));\n}\n\n//binom(n, k)\ntemplate<typename F>\nrequires invocable<F,\
-    \ vector<int>>\nvoid enumerate_combination(int n, int k, F f) {\n  assert(min(n,\
-    \ k) >= 0);\n  vector<int> p;\n  auto dfs = [&](auto &self) -> void {\n    if\
-    \ (ssize(p) == k) {\n      f(p);\n    } else {\n      for(int x = (p.empty() ?\
-    \ 0 : p.back() + 1); x + k - ssize(p) <= n; x++) {\n        p.emplace_back(x);\n\
-    \        self(self);\n        p.pop_back();\n      }\n    }\n  };\n  dfs(dfs);\n\
-    }\n\n//Bell's number:\n//[1, 2, 5, 15, 52,\n// 203, 877, 4140, 21147, 115975,\n\
-    // 678570, 4213597, 27644437, 190899322, 1382958545]\ntemplate<typename F>\nrequires\
-    \ invocable<F, vector<int>>\nvoid enumerate_set_partition(int n, F f) {\n  assert(n\
-    \ >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n  auto dfs = [&](auto &self)\
-    \ -> void {\n    if (msk == 0) {\n      f(p);\n    } else {\n      int x = msk\
-    \ & (-msk);\n      msk ^= x;\n      enumerate_subset(msk, [&](int sub) {\n   \
-    \     p.emplace_back(sub | x);\n        msk ^= sub;\n        self(self);\n   \
-    \     msk ^= sub;\n        p.pop_back();\n      });\n      msk ^= x;\n    }\n\
-    \  };\n  dfs(dfs);\n}\n\n//f[0] + f[1] + ... + f[n - 1] = sum, f[i] >= 0\n//binom(sum\
-    \ + (n - 1), sum)\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
-    void enumerate_multisubset(int n, int sum, F f) {\n  assert(min(n, sum) >= 0);\n\
-    \  vector<int> p(n);\n  auto dfs = [&](int i, auto &self) -> void {\n    if (i\
-    \ == n) {\n      if (sum == 0) f(p);\n    } else {\n      for(int x = sum; x >=\
-    \ 0; x--) {\n        p[i] = x, sum -= x;\n        self(i + 1, self);\n       \
-    \ sum += x;\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\n//partition number:\n\
-    //n = 10: 42\n//n = 20: 627\n//n = 30: 5604\n//n = 40: 37338\n//n = 50: 204226\n\
-    //n = 60: 966467\n//n = 70: 4087968\n//n = 80: 15796476\n//n = 90: 56634173\n\
-    //n = 100: 190569292\ntemplate<typename F>\nrequires invocable<F, vector<int>>\n\
-    void enumerate_integer_partition(int n, F f) {\n  assert(n >= 0);\n  vector<int>\
-    \ p;\n  auto dfs = [&](int s, auto &self) -> void {\n    if (s == 0) {\n     \
-    \ f(p);\n    } else {\n      for(int x = (p.empty() ? s : min(p.back(), s)); x\
-    \ > 0; x--) {\n        p.emplace_back(x);\n        self(s - x, self);\n      \
-    \  p.pop_back();\n      }\n    }\n  };\n  dfs(n, dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\
+    \ algorithm_extend;\n\nnamespace Combinatorics {\n  template<class Mint>\n  Mint\
+    \ factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n \
+    \     if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
+    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
+    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
+    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
+    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
+    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
+    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
+    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
+    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
+    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
+    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
+    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
+    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
+    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
+    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
+    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
+    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
+    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
+    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
+    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
+    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
+    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
+    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
+    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
+    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
+    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
+    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"tree/prufer_recover.cpp\"\n//empty\
+    \ vector would be assumed to be n = 2\nvc<pii> prufer_recover(vi prufer_code)\
+    \ {\n  const int n = ssize(prufer_code) + 2;\n  assert(prufer_code.empty() or\
+    \ (ranges::min(prufer_code) >= 0 and ranges::max(prufer_code) < n));\n  vi d(n,\
+    \ 1);\n  for(int x : prufer_code) d[x]++;\n  min_heap<int> leaf;\n  for(int v\
+    \ = 0; v < n; v++)\n    if (d[v] == 1)\n      leaf.emplace(v);\n  vc<pii> edges;\n\
+    \  for(int x : prufer_code) {\n    int v = leaf.top(); leaf.pop();\n    edges.emplace_back(v,\
+    \ x);\n    if (--d[x] == 1)\n      leaf.emplace(x);\n  }\n  int v = leaf.top();\
+    \ leaf.pop();\n  edges.emplace_back(v, leaf.top());\n  return edges;\n}\n#line\
+    \ 1 \"enumerate/enumerate_bit.cpp\"\n\ntemplate<typename F, typename INT>\nrequires\
+    \ invocable<F, INT>\nvoid enumerate_subset(INT msk, F f) {\n  for(INT x = msk;\
+    \ x > 0; x = (x - 1) & msk)\n    f(x);\n  f(0);\n}\n#line 1 \"enumerate/enumerate_twelvefold.cpp\"\
+    \n//#include \"enumerate/bit.cpp\"\n\n//n^k\ntemplate<typename F>\nrequires invocable<F,\
+    \ vector<int>>\nvoid enumerate_cartesian_power(int n, int k, F f) {\n  assert(min(n,\
+    \ k) >= 0);\n  vector<int> p(k);\n  auto dfs = [&](int i, auto &self) -> void\
+    \ {\n    if (i == k) {\n      f(p);\n    } else {\n      for(int x = 0; x < n;\
+    \ x++) {\n        p[i] = x;\n        self(i + 1, self);\n      }\n    }\n  };\n\
+    \  dfs(0, dfs);\n}\n\n//factorial:\n//[1, 2, 6, 24, 120,\n// 720, 5040, 40320,\
+    \ 362880, 3628800,\n// 39916800, 479001600, 6227020800, 87178291200, 1307674368000]\n\
+    template<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_permutation(int\
+    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p(n);\n  iota(p.begin(), p.end(),\
+    \ 0);\n  do { f(p); } while(next_permutation(p.begin(), p.end()));\n}\n\n//binom(n,\
+    \ k)\ntemplate<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_combination(int\
+    \ n, int k, F f) {\n  assert(min(n, k) >= 0);\n  vector<int> p;\n  auto dfs =\
+    \ [&](auto &self) -> void {\n    if (ssize(p) == k) {\n      f(p);\n    } else\
+    \ {\n      for(int x = (p.empty() ? 0 : p.back() + 1); x + k - ssize(p) <= n;\
+    \ x++) {\n        p.emplace_back(x);\n        self(self);\n        p.pop_back();\n\
+    \      }\n    }\n  };\n  dfs(dfs);\n}\n\n//Bell's number:\n//[1, 2, 5, 15, 52,\n\
+    // 203, 877, 4140, 21147, 115975,\n// 678570, 4213597, 27644437, 190899322, 1382958545]\n\
+    template<typename F>\nrequires invocable<F, vector<int>>\nvoid enumerate_set_partition(int\
+    \ n, F f) {\n  assert(n >= 0);\n  vector<int> p;\n  int msk = (1 << n) - 1;\n\
+    \  auto dfs = [&](auto &self) -> void {\n    if (msk == 0) {\n      f(p);\n  \
+    \  } else {\n      int x = msk & (-msk);\n      msk ^= x;\n      enumerate_subset(msk,\
+    \ [&](int sub) {\n        p.emplace_back(sub | x);\n        msk ^= sub;\n    \
+    \    self(self);\n        msk ^= sub;\n        p.pop_back();\n      });\n    \
+    \  msk ^= x;\n    }\n  };\n  dfs(dfs);\n}\n\n//f[0] + f[1] + ... + f[n - 1] =\
+    \ sum, f[i] >= 0\n//binom(sum + (n - 1), sum)\ntemplate<typename F>\nrequires\
+    \ invocable<F, vector<int>>\nvoid enumerate_multisubset(int n, int sum, F f) {\n\
+    \  assert(min(n, sum) >= 0);\n  vector<int> p(n);\n  auto dfs = [&](int i, auto\
+    \ &self) -> void {\n    if (i == n) {\n      if (sum == 0) f(p);\n    } else {\n\
+    \      for(int x = sum; x >= 0; x--) {\n        p[i] = x, sum -= x;\n        self(i\
+    \ + 1, self);\n        sum += x;\n      }\n    }\n  };\n  dfs(0, dfs);\n}\n\n\
+    //partition number:\n//n = 10: 42\n//n = 20: 627\n//n = 30: 5604\n//n = 40: 37338\n\
+    //n = 50: 204226\n//n = 60: 966467\n//n = 70: 4087968\n//n = 80: 15796476\n//n\
+    \ = 90: 56634173\n//n = 100: 190569292\ntemplate<typename F>\nrequires invocable<F,\
+    \ vector<int>>\nvoid enumerate_integer_partition(int n, F f) {\n  assert(n >=\
+    \ 0);\n  vector<int> p;\n  auto dfs = [&](int s, auto &self) -> void {\n    if\
+    \ (s == 0) {\n      f(p);\n    } else {\n      for(int x = (p.empty() ? s : min(p.back(),\
+    \ s)); x > 0; x--) {\n        p.emplace_back(x);\n        self(s - x, self);\n\
+    \        p.pop_back();\n      }\n    }\n  };\n  dfs(n, dfs);\n}\n#line 1 \"enumerate/enumerate_label_tree.cpp\"\
     \n//#include \"tree/prufer_recover.cpp\"\n//#include \"enumerate/enumerate_bit.cpp\"\
     \n//#include \"enumerate/enumerate_twelvefold.cpp\"\n\ntemplate<typename F>\n\
     requires invocable<F, vector<vector<int>>>\nvoid enumerate_label_tree(int n, F\
@@ -306,7 +362,7 @@ data:
   isVerificationFile: true
   path: test/mytest_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_tree.test.cpp

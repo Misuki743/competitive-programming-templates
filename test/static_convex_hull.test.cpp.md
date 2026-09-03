@@ -110,40 +110,97 @@ data:
     \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
-    \ algorithm_extend;\n#line 1 \"default/ttt.cpp\"\n#define rep(i, a, b) for(int\
-    \ i = a; i < (b); ++i)\n#define all(x) begin(x), end(x)\n#define sz(x) (int)(x).size()\n\
-    #line 1 \"geometry/point.cpp\"\n//source: KACTL\n/**\n * Author: Ulf Lundstrom\n\
-    \ * Date: 2009-02-26\n * License: CC0\n * Source: My head with inspiration from\
-    \ tinyKACTL\n * Description: Class to handle points in the plane.\n *  T can be\
-    \ e.g. double or long long. (Avoid int.)\n * Status: Works fine, used a lot\n\
-    \ */\n\ntemplate <class T> int sgn(T x) { return (x > 0) - (x < 0); }\ntemplate<class\
-    \ T>\nstruct Point {\n  typedef Point P;\n  T x, y;\n  explicit Point(T x=0, T\
-    \ y=0) : x(x), y(y) {}\n  bool operator<(P p) const { return tie(x,y) < tie(p.x,p.y);\
-    \ }\n  bool operator==(P p) const { return tie(x,y)==tie(p.x,p.y); }\n  P operator+(P\
-    \ p) const { return P(x+p.x, y+p.y); }\n  P operator-(P p) const { return P(x-p.x,\
-    \ y-p.y); }\n  P operator*(T d) const { return P(x*d, y*d); }\n  P operator/(T\
-    \ d) const { return P(x/d, y/d); }\n  T dot(P p) const { return x*p.x + y*p.y;\
-    \ }\n  T cross(P p) const { return x*p.y - y*p.x; }\n  T cross(P a, P b) const\
-    \ { return (a-*this).cross(b-*this); }\n  T dist2() const { return x*x + y*y;\
-    \ }\n  double dist() const { return sqrt((double)dist2()); }\n  // angle to x-axis\
-    \ in interval [-pi, pi]\n  double angle() const { return atan2(y, x); }\n  P unit()\
-    \ const { return *this/dist(); } // makes dist()=1\n  P perp() const { return\
-    \ P(-y, x); } // rotates +90 degrees\n  P normal() const { return perp().unit();\
-    \ }\n  // returns point rotated 'a' radians ccw around the origin\n  P rotate(double\
-    \ a) const {\n    return P(x*cos(a)-y*sin(a),x*sin(a)+y*cos(a)); }\n  friend ostream&\
-    \ operator<<(ostream& os, P p) {\n    return os << \"(\" << p.x << \",\" << p.y\
-    \ << \")\"; }\n};\n#line 1 \"geometry/convex_hull.cpp\"\n//soucre: KACTL\n//Returns\
-    \ a vector of the points of the convex hull in counter-clockwise order.\ntypedef\
-    \ Point<ll> P;\nvector<P> convexHull(vector<P> pts) {\n  if (sz(pts) <= 1) return\
-    \ pts;\n  sort(all(pts));\n  vector<P> h(sz(pts)+1);\n  int s = 0, t = 0;\n  for\
-    \ (int it = 2; it--; s = --t, reverse(all(pts)))\n    for (P p : pts) {\n    \
-    \  while (t >= s + 2 && h[t-2].cross(h[t-1], p) <= 0) t--;\n      h[t++] = p;\n\
-    \    }\n  return {h.begin(), h.begin() + t - (t == 2 && h[0] == h[1])};\n}\n#line\
-    \ 7 \"test/static_convex_hull.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--) {\n    int n; cin >> n;\n\
-    \    vector<P> pt(n);\n    for(auto &[x, y] : pt) cin >> x >> y;\n    \n    auto\
-    \ hull = convexHull(pt);\n    cout << ssize(hull) << '\\n';\n    for(auto [x,\
-    \ y] : hull) cout << x << ' ' << y << '\\n';\n  }\n\n  return 0;\n}\n\n"
+    \ algorithm_extend;\n\nnamespace Combinatorics {\n  template<class Mint>\n  Mint\
+    \ factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n \
+    \     if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
+    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
+    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
+    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
+    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
+    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
+    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
+    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
+    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
+    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
+    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
+    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
+    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
+    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
+    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
+    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
+    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
+    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
+    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
+    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
+    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
+    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
+    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
+    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
+    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
+    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
+    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"default/ttt.cpp\"\n#define rep(i,\
+    \ a, b) for(int i = a; i < (b); ++i)\n#define all(x) begin(x), end(x)\n#define\
+    \ sz(x) (int)(x).size()\n#line 1 \"geometry/point.cpp\"\n//source: KACTL\n/**\n\
+    \ * Author: Ulf Lundstrom\n * Date: 2009-02-26\n * License: CC0\n * Source: My\
+    \ head with inspiration from tinyKACTL\n * Description: Class to handle points\
+    \ in the plane.\n *  T can be e.g. double or long long. (Avoid int.)\n * Status:\
+    \ Works fine, used a lot\n */\n\ntemplate <class T> int sgn(T x) { return (x >\
+    \ 0) - (x < 0); }\ntemplate<class T>\nstruct Point {\n  typedef Point P;\n  T\
+    \ x, y;\n  explicit Point(T x=0, T y=0) : x(x), y(y) {}\n  bool operator<(P p)\
+    \ const { return tie(x,y) < tie(p.x,p.y); }\n  bool operator==(P p) const { return\
+    \ tie(x,y)==tie(p.x,p.y); }\n  P operator+(P p) const { return P(x+p.x, y+p.y);\
+    \ }\n  P operator-(P p) const { return P(x-p.x, y-p.y); }\n  P operator*(T d)\
+    \ const { return P(x*d, y*d); }\n  P operator/(T d) const { return P(x/d, y/d);\
+    \ }\n  T dot(P p) const { return x*p.x + y*p.y; }\n  T cross(P p) const { return\
+    \ x*p.y - y*p.x; }\n  T cross(P a, P b) const { return (a-*this).cross(b-*this);\
+    \ }\n  T dist2() const { return x*x + y*y; }\n  double dist() const { return sqrt((double)dist2());\
+    \ }\n  // angle to x-axis in interval [-pi, pi]\n  double angle() const { return\
+    \ atan2(y, x); }\n  P unit() const { return *this/dist(); } // makes dist()=1\n\
+    \  P perp() const { return P(-y, x); } // rotates +90 degrees\n  P normal() const\
+    \ { return perp().unit(); }\n  // returns point rotated 'a' radians ccw around\
+    \ the origin\n  P rotate(double a) const {\n    return P(x*cos(a)-y*sin(a),x*sin(a)+y*cos(a));\
+    \ }\n  friend ostream& operator<<(ostream& os, P p) {\n    return os << \"(\"\
+    \ << p.x << \",\" << p.y << \")\"; }\n};\n#line 1 \"geometry/convex_hull.cpp\"\
+    \n//soucre: KACTL\n//Returns a vector of the points of the convex hull in counter-clockwise\
+    \ order.\ntypedef Point<ll> P;\nvector<P> convexHull(vector<P> pts) {\n  if (sz(pts)\
+    \ <= 1) return pts;\n  sort(all(pts));\n  vector<P> h(sz(pts)+1);\n  int s = 0,\
+    \ t = 0;\n  for (int it = 2; it--; s = --t, reverse(all(pts)))\n    for (P p :\
+    \ pts) {\n      while (t >= s + 2 && h[t-2].cross(h[t-1], p) <= 0) t--;\n    \
+    \  h[t++] = p;\n    }\n  return {h.begin(), h.begin() + t - (t == 2 && h[0] ==\
+    \ h[1])};\n}\n#line 7 \"test/static_convex_hull.test.cpp\"\n\nint main() {\n \
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--)\
+    \ {\n    int n; cin >> n;\n    vector<P> pt(n);\n    for(auto &[x, y] : pt) cin\
+    \ >> x >> y;\n    \n    auto hull = convexHull(pt);\n    cout << ssize(hull) <<\
+    \ '\\n';\n    for(auto [x, y] : hull) cout << x << ' ' << y << '\\n';\n  }\n\n\
+    \  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\n\
     #include \"../default/t.cpp\"\n#include \"../default/ttt.cpp\"\n#include \"../geometry/point.cpp\"\
     \n#include \"../geometry/convex_hull.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
@@ -159,7 +216,7 @@ data:
   isVerificationFile: true
   path: test/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/static_convex_hull.test.cpp

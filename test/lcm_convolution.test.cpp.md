@@ -8,14 +8,8 @@ data:
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
   - icon: ':x:'
-    path: numtheory/lcm_convolution.cpp
-    title: numtheory/lcm_convolution.cpp
-  - icon: ':question:'
-    path: numtheory/linear_sieve.cpp
-    title: numtheory/linear_sieve.cpp
-  - icon: ':question:'
-    path: numtheory/zeta_mobius_on_divisibility_lattice.cpp
-    title: numtheory/zeta_mobius_on_divisibility_lattice.cpp
+    path: numtheory/zeta.cpp
+    title: numtheory/zeta.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -113,7 +107,64 @@ data:
     \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
-    \ algorithm_extend;\n#line 1 \"modint/Montgomery_modint.cpp\"\n//reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
+    \ algorithm_extend;\n\nnamespace Combinatorics {\n  template<class Mint>\n  Mint\
+    \ factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n \
+    \     if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
+    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
+    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
+    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
+    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
+    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
+    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
+    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
+    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
+    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
+    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
+    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
+    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
+    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
+    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
+    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
+    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
+    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
+    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
+    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
+    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
+    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
+    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
+    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
+    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
+    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
+    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
+    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
+    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
+    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
+    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
+    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
+    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
+    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
+    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
+    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
+    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
+    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
+    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
+    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
+    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
+    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
+    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
+    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
+    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
+    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
+    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"modint/Montgomery_modint.cpp\"\n\
+    //reference: https://github.com/NyaanNyaan/library/blob/master/modint/montgomery-modint.hpp#L10\n\
     //note: mod should be an odd prime less than 2^30.\n\ntemplate<uint32_t mod>\n\
     struct Montgomery_modint {\n  using mint = Montgomery_modint;\n  using i32 = int32_t;\n\
     \  using u32 = uint32_t;\n  using u64 = uint64_t;\n\n  static constexpr u32 get_r()\
@@ -144,74 +195,39 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
-    \ = Montgomery_modint<998'244'353>;\n#line 1 \"numtheory/linear_sieve.cpp\"\n\
-    template<int32_t C>\nclass linear_sieve {\n\n  static inline array<int, C> mpf\
-    \ = {};\n  static inline vi prime;\n  static inline bool init = false;\n\n  static\
-    \ void initialize() {\n    if (init) return;\n    init = true;\n    if (C > 2)\n\
-    \      iota(mpf.begin() + 2, mpf.end(), 2);\n    for(int i = 2; i < C; i++) {\n\
-    \      if (mpf[i] == i)\n        prime.emplace_back(i);\n      for(int64_t p :\
-    \ prime) {\n        if (p > mpf[i] or p * i >= C)\n          break;\n        mpf[p\
-    \ * i] = p;\n      }\n    }\n  }\n\n  public:\n\n  static vc<pii> prime_factorize(int\
-    \ x) {\n    initialize();\n    vc<pii> r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x],\
-    \ 0);\n      while(x % r.back().first == 0)\n        x /= r.back().first, r.back().second++;\n\
-    \    }\n    return r;\n  }\n\n  static vi prime_factor(int x) {\n    initialize();\n\
-    \    vi r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x]);\n      while(x\
-    \ % r.back() == 0)\n        x /= r.back();\n    }\n    return r;\n  }\n\n  static\
-    \ vi divisor(int x, bool sorted = true) {\n    initialize();\n    vi divisor =\
-    \ {1};\n    for(auto [p, f] : prime_factorize(x)) {\n      vi nxt;\n      nxt.reserve(ssize(divisor)\
-    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
-    \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
-    \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
-    \ }\n\n  static const vi& prime_array() {\n    initialize();\n    return prime;\n\
-    \  }\n  static const array<int, C>& mpf_array() {\n    initialize();\n    return\
-    \ mpf;\n  }\n\n  static auto functions() {\n    return tuple(\n      &prime_factorize,\n\
-    \      &prime_factor,\n      [](int x, bool sorted = true) { return divisor(x,\
-    \ sorted); },\n      &prime_array,\n      &mpf_array\n    );\n  }\n};\n\n//auto\
-    \ [prime_factorize, prime_factor, divisor, prime_array, mpf_array] = linear_sieve<>::functions();\n\
-    #line 1 \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\n//#include \"numtheory/linear_sieve\"\
-    \n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_divisor(vector<T>\
-    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
-    \ {\n    if (p >= ssize(f)) break;\n    for(int i = 1; i * p < ssize(f); i++)\n\
-    \      f[i * p] += f[i];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t C>\n\
-    vector<T> mobius_transform_on_divisor(vector<T> f) {\n  assert(ssize(f) <= C);\n\
-    \  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f)) break;\n\
-    \    for(int i = (ssize(f) - 1) / p; i > 0; i--)\n      f[i * p] -= f[i];\n  }\n\
-    \  return f;\n}\n\ntemplate<class T, int32_t C>\nvector<T> zeta_transform_on_multiple(vector<T>\
-    \ f) {\n  assert(ssize(f) <= C);\n  for(int64_t p : linear_sieve<C>::prime_array())\
-    \ {\n    if (p >= ssize(f)) break;\n    for(int i = (ssize(f) - 1) / p; i > 0;\
-    \ i--)\n      f[i] += f[i * p];\n  }\n  return f;\n}\n\ntemplate<class T, int32_t\
-    \ C>\nvector<T> mobius_transform_on_multiple(vector<T> f) {\n  assert(ssize(f)\
-    \ <= C);\n  for(int64_t p : linear_sieve<C>::prime_array()) {\n    if (p >= ssize(f))\
-    \ break;\n    for(int i = 1; i * p < ssize(f); i++)\n      f[i] -= f[i * p];\n\
-    \  }\n  return f;\n}\n#line 1 \"numtheory/lcm_convolution.cpp\"\n//#include \"\
-    numtheory/linear_sieve.cpp\"\n//#include \"numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
-    \n\ntemplate<class T, int32_t C>\nvector<T> lcm_convolution(vector<T> a, vector<T>\
-    \ b) {\n  assert(ssize(a) == ssize(b));\n  a = zeta_transform_on_divisor<T, C>(a);\n\
-    \  b = zeta_transform_on_divisor<T, C>(b);\n  for(int i = 0; i < ssize(a); i++)\n\
-    \    a[i] *= b[i];\n  return mobius_transform_on_divisor<T, C>(a);\n}\n#line 8\
-    \ \"test/lcm_convolution.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n);\n  for(mint\
-    \ &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(), mint(0));\n\
-    \  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution<mint, 1'000'001>(a,\
-    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"numtheory/zeta.cpp\"\ntemplate<ranges::random_access_range\
+    \ R>\nvoid zeta_divisor(R &v) {\n  primes(ssize(v), [&](int p) {\n    for(int\
+    \ i = 1; i * p < ssize(v); i++)\n      v[i * p] += v[i];\n  });\n}\n\ntemplate<ranges::random_access_range\
+    \ R>\nvoid mobius_divisor(R &v) {\n  primes(ssize(v), [&](int p) {\n    for(int\
+    \ i = (ssize(v) - 1) / p; i > 0; i--)\n      v[i * p] -= v[i];\n  });\n}\n\ntemplate<class\
+    \ T>\nvoid zeta_multiple(vc<T> &v) {\n  primes(ssize(v), [&](int p) {\n    for(int\
+    \ i = (ssize(v) - 1) / p; i > 0; i--)\n      v[i] += v[i * p];\n  });\n}\n\ntemplate<class\
+    \ T>\nvoid mobius_multiple(vc<T> &v) {\n  primes(ssize(v), [&](int p) {\n    for(int\
+    \ i = 1; i * p < ssize(v); i++)\n      v[i] -= v[i * p];\n  });\n}\n\ntemplate<class\
+    \ T>\nvc<T> lcm_convolution(vc<T> a, vc<T> b) {\n  assert(ssize(a) == ssize(b));\n\
+    \  zeta_divisor(a), zeta_divisor(b);\n  for(int i = 0; i < ssize(a); i++)\n  \
+    \  a[i] *= b[i];\n  mobius_divisor(a);\n  return a;\n}\n\ntemplate<class T>\n\
+    vc<T> gcd_convolution(vc<T> a, vc<T> b) {\n  assert(ssize(a) == ssize(b));\n \
+    \ zeta_multiple(a), zeta_multiple(b);\n  for(int i = 0; i < ssize(a); i++)\n \
+    \   a[i] *= b[i];\n  mobius_multiple(a);\n  return a;\n}\n#line 6 \"test/lcm_convolution.test.cpp\"\
+    \n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int n; cin\
+    \ >> n;\n  vc<mint> a(n + 1), b(n + 1);\n  for(mint &x : a | views::drop(1)) cin\
+    \ >> x;\n  for(mint &x : b | views::drop(1)) cin >> x;\n  cout << (lcm_convolution(a,\
+    \ b) | views::drop(1)) << '\\n';\n\n  return 0;\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\n#include\
-    \ \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/zeta_mobius_on_divisibility_lattice.cpp\"\
-    \n#include \"../numtheory/lcm_convolution.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int n; cin >> n;\n  vector<mint> a(n), b(n);\n  for(mint\
-    \ &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  a.insert(a.begin(), mint(0));\n\
-    \  b.insert(b.begin(), mint(0));\n  auto c = lcm_convolution<mint, 1'000'001>(a,\
-    \ b);\n  c.erase(c.begin());\n  cout << c << '\\n';\n\n  return 0;\n}\n\n"
+    \ \"../numtheory/zeta.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\
+    \n  int n; cin >> n;\n  vc<mint> a(n + 1), b(n + 1);\n  for(mint &x : a | views::drop(1))\
+    \ cin >> x;\n  for(mint &x : b | views::drop(1)) cin >> x;\n  cout << (lcm_convolution(a,\
+    \ b) | views::drop(1)) << '\\n';\n\n  return 0;\n}\n\n"
   dependsOn:
   - default/t.cpp
   - modint/Montgomery_modint.cpp
-  - numtheory/linear_sieve.cpp
-  - numtheory/zeta_mobius_on_divisibility_lattice.cpp
-  - numtheory/lcm_convolution.cpp
+  - numtheory/zeta.cpp
   isVerificationFile: true
   path: test/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/lcm_convolution.test.cpp
