@@ -73,8 +73,8 @@ data:
   timestamp: '2026-06-09 22:18:50+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki_1097.test.cpp
   - test/yuki_2242.test.cpp
+  - test/yuki_1097.test.cpp
 documentation_of: ds/doubling.cpp
 layout: document
 title: ds/doubling.cpp
