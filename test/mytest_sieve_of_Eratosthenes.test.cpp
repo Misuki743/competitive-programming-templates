@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "../default/t.cpp"
-#include "../numtheory/sieve_of_Eratosthenes.cpp"
 
 vc<pii> prime_factorize(int x) {
   vc<pii> v;
@@ -38,19 +37,19 @@ vi divisor(int x) {
   return v;
 }
 
-int mpf[1 << 10];
+int MPF[1 << 10];
 
 template<int32_t sz = 64>
 void check_small() {
   if (sz == 0) return;
   check_small<max(sz - 1, 0)>();
   for(int i = 1; i < sz; i++)
-    assert(mpf[i] == sieve_of_Eratosthenes::mpf(i));
+    assert(MPF[i] == sieve_of_Eratosthenes::mpf(i));
   for(int i = 1; i < sz; i++) {
     vc<pii> pf;
     sieve_of_Eratosthenes::factorize(i, [&](int p, int e) { pf.eb(p, e); });
     assert(pf == prime_factorize(i));
-    assert(sieve_of_Eratosthenes::divisor(i) == divisor(i));
+    assert(sieve_of_Eratosthenes::divisor(i) == ::divisor(i));
   }
 }
 
@@ -59,12 +58,12 @@ void check_power() {
   if (sz == 0) return;
   check_power<max(sz >> 1, 0)>();
   for(int i = 1; i < sz; i++)
-    assert(mpf[i] == sieve_of_Eratosthenes::mpf(i));
+    assert(MPF[i] == sieve_of_Eratosthenes::mpf(i));
   for(int i = 1; i < sz; i++) {
     vc<pii> pf;
     sieve_of_Eratosthenes::factorize(i, [&](int p, int e) { pf.eb(p, e); });
     assert(pf == prime_factorize(i));
-    assert(sieve_of_Eratosthenes::divisor(i) == divisor(i));
+    assert(sieve_of_Eratosthenes::divisor(i) == ::divisor(i));
   }
 }
 
@@ -77,7 +76,7 @@ int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   for(int x = 2; x < (1 << 10); x++)
-    mpf[x] = prime_factor(x)[0];
+    MPF[x] = prime_factor(x)[0];
 
   check_small();
   check_power();

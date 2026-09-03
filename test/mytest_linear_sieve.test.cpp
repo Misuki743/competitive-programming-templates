@@ -38,7 +38,7 @@ vi divisor(int x) {
   return v;
 }
 
-int mpf[1 << 10];
+int MPF[1 << 10];
 
 template<int32_t sz = 64>
 void check_small() {
@@ -46,11 +46,11 @@ void check_small() {
   check_small<max(sz - 1, 0)>();
   auto ls = linear_sieve<sz>();
   for(int i = 0; i < sz; i++)
-    assert(mpf[i] == ls.mpf_array()[i]);
+    assert(MPF[i] == ls.mpf_array()[i]);
   for(int i = 1; i < sz; i++) {
     assert(ls.prime_factorize(i) == prime_factorize(i));
     assert(ls.prime_factor(i) == prime_factor(i));
-    assert(ls.divisor(i) == divisor(i));
+    assert(ls.divisor(i) == ::divisor(i));
   }
 }
 
@@ -60,11 +60,11 @@ void check_power() {
   check_power<max(sz >> 1, 0)>();
   auto ls = linear_sieve<sz>();
   for(int i = 0; i < sz; i++)
-    assert(mpf[i] == ls.mpf_array()[i]);
+    assert(MPF[i] == ls.mpf_array()[i]);
   for(int i = 1; i < sz; i++) {
     assert(ls.prime_factorize(i) == prime_factorize(i));
     assert(ls.prime_factor(i) == prime_factor(i));
-    assert(ls.divisor(i) == divisor(i));
+    assert(ls.divisor(i) == ::divisor(i));
   }
 }
 
@@ -77,7 +77,7 @@ int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   for(int x = 2; x < (1 << 10); x++)
-    mpf[x] = prime_factor(x)[0];
+    MPF[x] = prime_factor(x)[0];
 
   check_small();
   check_power();
