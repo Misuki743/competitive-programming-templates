@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: segtree/segment_tree.cpp
     title: segtree/segment_tree.cpp
   - icon: ':question:'

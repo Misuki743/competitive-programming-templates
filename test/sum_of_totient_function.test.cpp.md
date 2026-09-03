@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/phi_vec.cpp
     title: numtheory/phi_vec.cpp
   - icon: ':x:'

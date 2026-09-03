@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/point_add_rectangle_sum2.test.cpp
     title: test/point_add_rectangle_sum2.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/static_range_sum_with_upper_bound.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/wavelet_matrix.cpp\"\ntemplate<class T, int H>\nstruct\
@@ -107,7 +107,7 @@ data:
   path: ds/wavelet_matrix.cpp
   requiredBy: []
   timestamp: '2026-09-02 17:05:06+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/point_add_rectangle_sum2.test.cpp
   - test/static_range_sum_with_upper_bound.test.cpp

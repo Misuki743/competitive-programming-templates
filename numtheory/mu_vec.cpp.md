@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_mu_vec.test.cpp
     title: test/mytest_mu_vec.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/mu_vec.cpp\"\ntemplate<class T>\nvc<T> mu_vec(int\
@@ -23,7 +23,7 @@ data:
   path: numtheory/mu_vec.cpp
   requiredBy: []
   timestamp: '2026-09-03 11:05:21+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_mu_vec.test.cpp
 documentation_of: numtheory/mu_vec.cpp

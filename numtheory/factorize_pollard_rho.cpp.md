@@ -9,13 +9,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest_factorize_sqrt.test.cpp
     title: test/mytest_factorize_sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primality_test.test.cpp
     title: test/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/primitive_root.test.cpp
     title: test/primitive_root.test.cpp
   - icon: ':x:'
