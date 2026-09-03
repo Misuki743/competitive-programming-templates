@@ -3,11 +3,9 @@
 //- f(p) = f'(p) for all p
 //
 //Return F'_p(n) for all n in Q_N
-template<class T, int32_t SQRT_N, typename F1, typename F2>
+template<class T, typename F1, typename F2>
 requires R_invocable<T, F1, ll> && R_invocable<T, F2, ll, ll, ll>
 vc<T> Lucy_DP(ll N, F1 F, F2 f) {
-  static prime_table<SQRT_N + 1> pt;
-
   ll x = sqrtl(N);
   while(x * (x + 1) <= N) x++;
   ll m = N / x;
@@ -19,7 +17,7 @@ vc<T> Lucy_DP(ll N, F1 F, F2 f) {
   for(ll i = 1; i < m; i++) dp.eb(F(i)), qs.eb(i);
   for(ll i = x; i >= 1; i--) dp.eb(F(N / i)), qs.eb(N / i);
 
-  for(ll p = 2; p * p <= N; p++) if (pt.is_prime(p)) {
+  for(ll p = 2; p * p <= N; p++) if (mpf(p) == p) {
     for(ll i = m + x - 2; i >= 0 and qs[i] >= p * p; i--)
       dp[i] += f(p, 1, p) * (dp[p - 2] - dp[id(qs[i] / p)]);
     /* for the case where f is not completely multiplicative (when would this be useful?)
@@ -37,11 +35,9 @@ vc<T> Lucy_DP(ll N, F1 F, F2 f) {
   return dp;
 }
 
-template<class T, int32_t SQRT_N, typename F1>
+template<class T, typename F1>
 requires R_invocable<T, F1, ll, ll, ll> 
 vc<T> inverse_Lucy_DP(ll N, vc<T> Fp, F1 f) {
-  static prime_table<SQRT_N + 1> pt;
-
   ll x = sqrtl(N);
   while(x * (x + 1) <= N) x++;
   ll m = N / x;
@@ -52,7 +48,7 @@ vc<T> inverse_Lucy_DP(ll N, vc<T> Fp, F1 f) {
   for(ll i = 1; i < m; i++) qs.eb(i);
   for(ll i = x; i >= 1; i--) qs.eb(N / i);
 
-  for(ll p = m; p > 1; p--) if (pt.is_prime(p)) {
+  for(ll p = m; p > 1; p--) if (mpf(p) == p) {
     for(ll i = m + x - 2; i >= 0 and qs[i] >= p * p; i--)
       for(ll e = 1, q = p; q * (ull)p <= qs[i]; q *= p, e++)
         Fp[i] += f(p, e, q) * (Fp[id(qs[i] / q)] - Fp[p - 1]) + f(p, e + 1, q * p);
