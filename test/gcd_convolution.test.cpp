@@ -2,22 +2,16 @@
 
 #include "../default/t.cpp"
 #include "../modint/Montgomery_modint.cpp"
-#include "../numtheory/linear_sieve.cpp"
-#include "../numtheory/zeta_mobius_on_divisibility_lattice.cpp"
-#include "../numtheory/gcd_convolution.cpp"
+#include "../numtheory/zeta.cpp"
 
 int main() {
   ios::sync_with_stdio(false), cin.tie(NULL);
 
   int n; cin >> n;
-  vector<mint> a(n), b(n);
-  for(mint &x : a) cin >> x;
-  for(mint &x : b) cin >> x;
-  a.insert(a.begin(), mint(0));
-  b.insert(b.begin(), mint(0));
-  auto c = gcd_convolution<mint, 1'000'001>(a, b);
-  c.erase(c.begin());
-  cout << c << '\n';
+  vc<mint> a(n + 1), b(n + 1);
+  for(mint &x : a | views::drop(1)) cin >> x;
+  for(mint &x : b | views::drop(1)) cin >> x;
+  cout << (gcd_convolution(a, b) | views::drop(1)) << '\n';
 
   return 0;
 }
