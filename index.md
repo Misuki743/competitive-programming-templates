@@ -35,7 +35,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: combi/bernoulli_number.cpp
       title: combi/bernoulli_number.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: combi/binomial.cpp
       title: combi/binomial.cpp
     - icon: ':warning:'
@@ -75,7 +75,7 @@ data:
       title: default/bits/stdc++.h
   - name: default
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: default/t.cpp
       title: default/t.cpp
     - icon: ':warning:'
@@ -132,7 +132,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.cpp
       title: ds/doubling.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_kth.cpp
       title: ds/dynamic_kth.cpp
     - icon: ':heavy_check_mark:'
@@ -399,10 +399,10 @@ data:
     - icon: ':warning:'
       path: linalg/suffix_xor_basis_i64.cpp
       title: linalg/suffix_xor_basis_i64.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor_basis_bitset.cpp
       title: linalg/xor_basis_bitset.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor_basis_i64.cpp
       title: linalg/xor_basis_i64.cpp
   - name: misc
@@ -433,7 +433,7 @@ data:
       title: misc/sharp_P_subset_sum.cpp
   - name: modint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: modint/Montgomery_modint.cpp
       title: modint/Montgomery_modint.cpp
     - icon: ':heavy_check_mark:'
@@ -548,7 +548,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/FPS_sqrt.cpp
       title: poly/FPS_sqrt.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/NTT.cpp
       title: poly/NTT.cpp
     - icon: ':warning:'
@@ -575,7 +575,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution_ll.cpp
       title: poly/convolution_ll.cpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_multiplicative.cpp
       title: poly/convolution_multiplicative.cpp
     - icon: ':warning:'
@@ -659,7 +659,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_substring.cpp
       title: string/longest_common_substring.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/palindromic_tree.cpp
       title: string/palindromic_tree.cpp
     - icon: ':warning:'
@@ -1201,22 +1201,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki_2242.test.cpp
       title: test/yuki_2242.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2544.test.cpp
       title: test/yuki_2544.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2606.test.cpp
       title: test/yuki_2606.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2613.test.cpp
       title: test/yuki_2613.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2654.test.cpp
       title: test/yuki_2654.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2895.test.cpp
       title: test/yuki_2895.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki_2895_2.test.cpp
       title: test/yuki_2895_2.test.cpp
 layout: toppage
