@@ -81,16 +81,14 @@ namespace sieve_of_Eratosthenes {
   template<typename F>
   requires invocable<F, int>
   void primes(int m, F f) {
-    if (_prime.back() < m) {
+    if (_next_valid(_prime.back()) < m) {
       if (m > _C) sieve(m);
       int s = _next_valid(_prime.back());
       for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)
         if (_mpf[_id(i)] == i)
           _prime.eb(i);
     }
-    for(int p : _prime) {
-      if (p >= m) break;
-      f(p);
-    }
+    for(int i = 0; i < ssize(_prime) and _prime[i] < m; i++)
+      f(_prime[i]);
   }
 }
