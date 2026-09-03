@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/pow_of_formal_power_series_sparse.test.cpp
     title: test/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
@@ -129,7 +129,7 @@ data:
   path: poly/sparse_polynomial_operations.cpp
   requiredBy: []
   timestamp: '2026-07-15 11:12:29+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp

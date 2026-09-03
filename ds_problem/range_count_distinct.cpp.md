@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/static_range_count_distinct.test.cpp
     title: test/static_range_count_distinct.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds_problem/range_count_distinct.cpp\"\n//#include<ds/fenwick_tree.cpp>\n\
@@ -32,7 +32,7 @@ data:
   path: ds_problem/range_count_distinct.cpp
   requiredBy: []
   timestamp: '2026-09-02 21:39:47+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/static_range_count_distinct.test.cpp
 documentation_of: ds_problem/range_count_distinct.cpp

@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds_problem/area_of_union_of_rectangles.cpp
     title: ds_problem/area_of_union_of_rectangles.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/acted_monoid_segment_tree.cpp
     title: segtree/acted_monoid_segment_tree.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: segtree/lazy_segment_tree.cpp
     title: segtree/lazy_segment_tree.cpp
   _extendedRequiredBy: []

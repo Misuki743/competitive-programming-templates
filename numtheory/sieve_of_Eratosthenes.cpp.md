@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest_sieve_of_Eratosthenes.test.cpp
-    title: test/mytest_sieve_of_Eratosthenes.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/sieve_of_Eratosthenes.cpp\"\nnamespace sieve_of_Eratosthenes\
@@ -83,9 +80,8 @@ data:
   path: numtheory/sieve_of_Eratosthenes.cpp
   requiredBy: []
   timestamp: '2026-09-03 09:49:40+08:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest_sieve_of_Eratosthenes.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: numtheory/sieve_of_Eratosthenes.cpp
 layout: document
 redirect_from:

@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/sqrt_mod.cpp
     title: numtheory/sqrt_mod.cpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_polynomial_operations.cpp
     title: poly/sparse_polynomial_operations.cpp
   _extendedRequiredBy: []

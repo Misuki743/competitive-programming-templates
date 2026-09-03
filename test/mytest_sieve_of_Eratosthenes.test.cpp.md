@@ -4,14 +4,11 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
-    path: numtheory/sieve_of_Eratosthenes.cpp
-    title: numtheory/sieve_of_Eratosthenes.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -137,94 +134,59 @@ data:
     \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
     \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
     \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
-    \ namespace sieve_of_Eratosthenes;\n#line 1 \"numtheory/sieve_of_Eratosthenes.cpp\"\
-    \nnamespace sieve_of_Eratosthenes {\n\n  int _C = 5;\n  vc<int32_t> _mpf, _prime\
-    \ = {2, 3};\n\n  //n % 6 == 1 or 5\n  int _id(int n) {\n    return (n - 2) / 6\
-    \ * 2 + (n % 6 == 1);\n  }\n\n  int _first_valid(int n) {\n    static int d[6]\
-    \ = {1, 0, 3, 2, 1, 0};\n    return n + d[n % 6];\n  }\n\n  int _next_valid(int\
-    \ n) {\n    static int d[6] = {1, 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n\
-    \  }\n\n  void sieve(int n) {\n    assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n\
-    \    n = _first_valid(bit_ceil(n * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n\
-    \    for(int i = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n   \
-    \   _mpf[_id(i)] = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d)\
-    \ if (_mpf[_id(i)] == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n\
-    \      for(int j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n\
-    \        _mpf[_id(j)] = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n \
-    \ }\n\n  int mpf(int n) {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return\
-    \ 2;\n    if (n % 3 == 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n\
-    \  }\n\n  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
-    \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
-    \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
-    \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
-    \ > 1) {\n      int p = mpf(n), e = 0;\n      while(n % p == 0) n /= p, e++;\n\
-    \      f(p, e);\n    }\n  }\n\n  vi divisor(int n) {\n    static array<int, 1\
-    \ << 12> buf;\n    if (n >= _C) sieve(n);\n    vi v = {1};\n    factorize(n, [&v](int\
-    \ p, int e) {\n      int old_size = ssize(v);\n      v.resize(old_size * (e +\
-    \ 1));\n      for(int i = old_size; i < ssize(v); i++)\n        v[i] = v[i - old_size]\
-    \ * p;\n      for(int d = old_size; d < ssize(v); d <<= 1) {\n        for(int\
-    \ i = 0; i + d < ssize(v); i += 2 * d) {\n          merge(v.begin() + i, v.begin()\
-    \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
-    \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
-    \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
-    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
-    \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
-    \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
-    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
-    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n#line\
-    \ 5 \"test/mytest_sieve_of_Eratosthenes.test.cpp\"\n\nvc<pii> prime_factorize(int\
-    \ x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if\
-    \ (x % d == 0) {\n      int f = 0;\n      while(x % d == 0)\n        x /= d, f++;\n\
-    \      v.emplace_back(d, f);\n    }\n  }\n  return v;\n}\n\nvi prime_factor(int\
-    \ x) {\n  vi v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if (x %\
-    \ d == 0) {\n      while(x % d == 0)\n        x /= d;\n      v.eb(d);\n    }\n\
-    \  }\n  return v;\n}\n\nvi divisor(int x) {\n  vi v;\n  for(int d = 1; d <= x;\
-    \ d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\nint mpf[1 << 10];\n\
-    \ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz == 0) return;\n  check_small<max(sz\
-    \ - 1, 0)>();\n  for(int i = 1; i < sz; i++)\n    assert(mpf[i] == sieve_of_Eratosthenes::mpf(i));\n\
-    \  for(int i = 1; i < sz; i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i,\
-    \ [&](int p, int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n\
-    \    assert(sieve_of_Eratosthenes::divisor(i) == divisor(i));\n  }\n}\n\ntemplate<int32_t\
-    \ sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
-    \ >> 1, 0)>();\n  for(int i = 1; i < sz; i++)\n    assert(mpf[i] == sieve_of_Eratosthenes::mpf(i));\n\
-    \  for(int i = 1; i < sz; i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i,\
-    \ [&](int p, int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n\
-    \    assert(sieve_of_Eratosthenes::divisor(i) == divisor(i));\n  }\n}\n\nvoid\
-    \ a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int x = 2;\
-    \ x < (1 << 10); x++)\n    mpf[x] = prime_factor(x)[0];\n\n  check_small();\n\
-    \  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../default/t.cpp\"\n#include \"../numtheory/sieve_of_Eratosthenes.cpp\"\n\nvc<pii>\
-    \ prime_factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <=\
-    \ x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x % d == 0)\n\
-    \        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n  return v;\n\
-    }\n\nvi prime_factor(int x) {\n  vi v;\n  int x0 = x;\n  for(int d = 2; d <= x0;\
-    \ d++) {\n    if (x % d == 0) {\n      while(x % d == 0)\n        x /= d;\n  \
-    \    v.eb(d);\n    }\n  }\n  return v;\n}\n\nvi divisor(int x) {\n  vi v;\n  for(int\
-    \ d = 1; d <= x; d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\n\
-    int mpf[1 << 10];\n\ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz\
-    \ == 0) return;\n  check_small<max(sz - 1, 0)>();\n  for(int i = 1; i < sz; i++)\n\
-    \    assert(mpf[i] == sieve_of_Eratosthenes::mpf(i));\n  for(int i = 1; i < sz;\
-    \ i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i, [&](int p,\
-    \ int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n    assert(sieve_of_Eratosthenes::divisor(i)\
-    \ == divisor(i));\n  }\n}\n\ntemplate<int32_t sz = (1 << 10)>\nvoid check_power()\
-    \ {\n  if (sz == 0) return;\n  check_power<max(sz >> 1, 0)>();\n  for(int i =\
-    \ 1; i < sz; i++)\n    assert(mpf[i] == sieve_of_Eratosthenes::mpf(i));\n  for(int\
+    \ namespace sieve_of_Eratosthenes;\n#line 4 \"test/mytest_sieve_of_Eratosthenes.test.cpp\"\
+    \n\nvc<pii> prime_factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d\
+    \ = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x\
+    \ % d == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n \
+    \ return v;\n}\n\nvi prime_factor(int x) {\n  vi v;\n  int x0 = x;\n  for(int\
+    \ d = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      while(x % d == 0)\n   \
+    \     x /= d;\n      v.eb(d);\n    }\n  }\n  return v;\n}\n\nvi divisor(int x)\
+    \ {\n  vi v;\n  for(int d = 1; d <= x; d++)\n    if (x % d == 0)\n      v.eb(d);\n\
+    \  return v;\n}\n\nint MPF[1 << 10];\n\ntemplate<int32_t sz = 64>\nvoid check_small()\
+    \ {\n  if (sz == 0) return;\n  check_small<max(sz - 1, 0)>();\n  for(int i = 1;\
+    \ i < sz; i++)\n    assert(MPF[i] == sieve_of_Eratosthenes::mpf(i));\n  for(int\
     \ i = 1; i < sz; i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i,\
     \ [&](int p, int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n\
-    \    assert(sieve_of_Eratosthenes::divisor(i) == divisor(i));\n  }\n}\n\nvoid\
+    \    assert(sieve_of_Eratosthenes::divisor(i) == ::divisor(i));\n  }\n}\n\ntemplate<int32_t\
+    \ sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
+    \ >> 1, 0)>();\n  for(int i = 1; i < sz; i++)\n    assert(MPF[i] == sieve_of_Eratosthenes::mpf(i));\n\
+    \  for(int i = 1; i < sz; i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i,\
+    \ [&](int p, int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n\
+    \    assert(sieve_of_Eratosthenes::divisor(i) == ::divisor(i));\n  }\n}\n\nvoid\
     \ a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint\
     \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int x = 2;\
-    \ x < (1 << 10); x++)\n    mpf[x] = prime_factor(x)[0];\n\n  check_small();\n\
+    \ x < (1 << 10); x++)\n    MPF[x] = prime_factor(x)[0];\n\n  check_small();\n\
+    \  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    ../default/t.cpp\"\n\nvc<pii> prime_factorize(int x) {\n  vc<pii> v;\n  int x0\
+    \ = x;\n  for(int d = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      int f =\
+    \ 0;\n      while(x % d == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n\
+    \    }\n  }\n  return v;\n}\n\nvi prime_factor(int x) {\n  vi v;\n  int x0 = x;\n\
+    \  for(int d = 2; d <= x0; d++) {\n    if (x % d == 0) {\n      while(x % d ==\
+    \ 0)\n        x /= d;\n      v.eb(d);\n    }\n  }\n  return v;\n}\n\nvi divisor(int\
+    \ x) {\n  vi v;\n  for(int d = 1; d <= x; d++)\n    if (x % d == 0)\n      v.eb(d);\n\
+    \  return v;\n}\n\nint MPF[1 << 10];\n\ntemplate<int32_t sz = 64>\nvoid check_small()\
+    \ {\n  if (sz == 0) return;\n  check_small<max(sz - 1, 0)>();\n  for(int i = 1;\
+    \ i < sz; i++)\n    assert(MPF[i] == sieve_of_Eratosthenes::mpf(i));\n  for(int\
+    \ i = 1; i < sz; i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i,\
+    \ [&](int p, int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n\
+    \    assert(sieve_of_Eratosthenes::divisor(i) == ::divisor(i));\n  }\n}\n\ntemplate<int32_t\
+    \ sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
+    \ >> 1, 0)>();\n  for(int i = 1; i < sz; i++)\n    assert(MPF[i] == sieve_of_Eratosthenes::mpf(i));\n\
+    \  for(int i = 1; i < sz; i++) {\n    vc<pii> pf;\n    sieve_of_Eratosthenes::factorize(i,\
+    \ [&](int p, int e) { pf.eb(p, e); });\n    assert(pf == prime_factorize(i));\n\
+    \    assert(sieve_of_Eratosthenes::divisor(i) == ::divisor(i));\n  }\n}\n\nvoid\
+    \ a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint\
+    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int x = 2;\
+    \ x < (1 << 10); x++)\n    MPF[x] = prime_factor(x)[0];\n\n  check_small();\n\
     \  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/sieve_of_Eratosthenes.cpp
   isVerificationFile: true
   path: test/mytest_sieve_of_Eratosthenes.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-03 13:42:04+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_sieve_of_Eratosthenes.test.cpp
 layout: document

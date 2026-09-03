@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: numtheory/linear_sieve.cpp
     title: numtheory/linear_sieve.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -168,21 +168,21 @@ data:
     \ x) {\n  vi v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if (x %\
     \ d == 0) {\n      while(x % d == 0)\n        x /= d;\n      v.eb(d);\n    }\n\
     \  }\n  return v;\n}\n\nvi divisor(int x) {\n  vi v;\n  for(int d = 1; d <= x;\
-    \ d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\nint mpf[1 << 10];\n\
+    \ d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\nint MPF[1 << 10];\n\
     \ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz == 0) return;\n  check_small<max(sz\
     \ - 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int i = 0; i < sz; i++)\n\
-    \    assert(mpf[i] == ls.mpf_array()[i]);\n  for(int i = 1; i < sz; i++) {\n \
+    \    assert(MPF[i] == ls.mpf_array()[i]);\n  for(int i = 1; i < sz; i++) {\n \
     \   assert(ls.prime_factorize(i) == prime_factorize(i));\n    assert(ls.prime_factor(i)\
-    \ == prime_factor(i));\n    assert(ls.divisor(i) == divisor(i));\n  }\n}\n\ntemplate<int32_t\
-    \ sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
-    \ >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int i = 0; i < sz; i++)\n\
-    \    assert(mpf[i] == ls.mpf_array()[i]);\n  for(int i = 1; i < sz; i++) {\n \
-    \   assert(ls.prime_factorize(i) == prime_factorize(i));\n    assert(ls.prime_factor(i)\
-    \ == prime_factor(i));\n    assert(ls.divisor(i) == divisor(i));\n  }\n}\n\nvoid\
-    \ a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int x = 2;\
-    \ x < (1 << 10); x++)\n    mpf[x] = prime_factor(x)[0];\n\n  check_small();\n\
-    \  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    \ == prime_factor(i));\n    assert(ls.divisor(i) == ::divisor(i));\n  }\n}\n\n\
+    template<int32_t sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n\
+    \  check_power<max(sz >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int\
+    \ i = 0; i < sz; i++)\n    assert(MPF[i] == ls.mpf_array()[i]);\n  for(int i =\
+    \ 1; i < sz; i++) {\n    assert(ls.prime_factorize(i) == prime_factorize(i));\n\
+    \    assert(ls.prime_factor(i) == prime_factor(i));\n    assert(ls.divisor(i)\
+    \ == ::divisor(i));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n\
+    \  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  for(int x = 2; x < (1 << 10); x++)\n    MPF[x] = prime_factor(x)[0];\n\
+    \n  check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     ../default/t.cpp\"\n#include \"../numtheory/linear_sieve.cpp\"\n\nvc<pii> prime_factorize(int\
     \ x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if\
@@ -191,29 +191,29 @@ data:
     \ x) {\n  vi v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if (x %\
     \ d == 0) {\n      while(x % d == 0)\n        x /= d;\n      v.eb(d);\n    }\n\
     \  }\n  return v;\n}\n\nvi divisor(int x) {\n  vi v;\n  for(int d = 1; d <= x;\
-    \ d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\nint mpf[1 << 10];\n\
+    \ d++)\n    if (x % d == 0)\n      v.eb(d);\n  return v;\n}\n\nint MPF[1 << 10];\n\
     \ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz == 0) return;\n  check_small<max(sz\
     \ - 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int i = 0; i < sz; i++)\n\
-    \    assert(mpf[i] == ls.mpf_array()[i]);\n  for(int i = 1; i < sz; i++) {\n \
+    \    assert(MPF[i] == ls.mpf_array()[i]);\n  for(int i = 1; i < sz; i++) {\n \
     \   assert(ls.prime_factorize(i) == prime_factorize(i));\n    assert(ls.prime_factor(i)\
-    \ == prime_factor(i));\n    assert(ls.divisor(i) == divisor(i));\n  }\n}\n\ntemplate<int32_t\
-    \ sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
-    \ >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int i = 0; i < sz; i++)\n\
-    \    assert(mpf[i] == ls.mpf_array()[i]);\n  for(int i = 1; i < sz; i++) {\n \
-    \   assert(ls.prime_factorize(i) == prime_factorize(i));\n    assert(ls.prime_factor(i)\
-    \ == prime_factor(i));\n    assert(ls.divisor(i) == divisor(i));\n  }\n}\n\nvoid\
-    \ a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint\
-    \ main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int x = 2;\
-    \ x < (1 << 10); x++)\n    mpf[x] = prime_factor(x)[0];\n\n  check_small();\n\
-    \  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
+    \ == prime_factor(i));\n    assert(ls.divisor(i) == ::divisor(i));\n  }\n}\n\n\
+    template<int32_t sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n\
+    \  check_power<max(sz >> 1, 0)>();\n  auto ls = linear_sieve<sz>();\n  for(int\
+    \ i = 0; i < sz; i++)\n    assert(MPF[i] == ls.mpf_array()[i]);\n  for(int i =\
+    \ 1; i < sz; i++) {\n    assert(ls.prime_factorize(i) == prime_factorize(i));\n\
+    \    assert(ls.prime_factor(i) == prime_factor(i));\n    assert(ls.divisor(i)\
+    \ == ::divisor(i));\n  }\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n\
+    \  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  for(int x = 2; x < (1 << 10); x++)\n    MPF[x] = prime_factor(x)[0];\n\
+    \n  check_small();\n  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - numtheory/linear_sieve.cpp
   isVerificationFile: true
   path: test/mytest_linear_sieve.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-09-03 13:42:04+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest_linear_sieve.test.cpp
 layout: document
