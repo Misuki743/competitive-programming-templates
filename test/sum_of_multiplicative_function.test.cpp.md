@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: numtheory/Lucy_DP.cpp
     title: numtheory/Lucy_DP.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/prime_table.cpp
     title: numtheory/prime_table.cpp
   _extendedRequiredBy: []

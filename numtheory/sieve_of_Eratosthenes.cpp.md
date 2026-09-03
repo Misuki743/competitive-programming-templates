@@ -40,11 +40,11 @@ data:
     \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
     \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
     \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
-    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_prime.back()\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
     \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
     \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
-    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int p : _prime)\
-    \ {\n      if (p >= m) break;\n      f(p);\n    }\n  }\n}\n"
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n"
   code: "namespace sieve_of_Eratosthenes {\n\n  int _C = 5;\n  vc<int32_t> _mpf, _prime\
     \ = {2, 3};\n\n  //n % 6 == 1 or 5\n  int _id(int n) {\n    return (n - 2) / 6\
     \ * 2 + (n % 6 == 1);\n  }\n\n  int _first_valid(int n) {\n    static int d[6]\
@@ -73,16 +73,16 @@ data:
     \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
     \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
     \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
-    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_prime.back()\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
     \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
     \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
-    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int p : _prime)\
-    \ {\n      if (p >= m) break;\n      f(p);\n    }\n  }\n}\n"
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: numtheory/sieve_of_Eratosthenes.cpp
   requiredBy: []
-  timestamp: '2026-09-02 17:05:06+08:00'
+  timestamp: '2026-09-03 09:49:40+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_sieve_of_Eratosthenes.test.cpp

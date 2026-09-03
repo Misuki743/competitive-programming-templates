@@ -145,38 +145,39 @@ data:
     \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
     \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
     \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
-    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_prime.back()\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
     \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
     \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
-    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int p : _prime)\
-    \ {\n      if (p >= m) break;\n      f(p);\n    }\n  }\n}\n\nusing namespace sieve_of_Eratosthenes;\n\
-    \nstruct HLD {\n  int n, root;\n  vi dep, sz, p, head, tin, tout, inv_tin, child_list,\
-    \ c, v_to_e;\n  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return\
-    \ p[head[v]]; }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e);\
-    \ }\n  HLD(vi _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p);\
-    \ v++) {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n\
-    \        e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n\
-    \  }\n\n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p\
-    \ = head = tin = tout = v_to_e = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n,\
-    \ -1);\n    {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v,\
-    \ p[v] ^= u, d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n;\
-    \ i++) {\n        int v = i;\n        while(d[v] == 1) {\n          d[v] = 0,\
-    \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
-    \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
-    \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
-    \ 1]++;\n      psum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
-    \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
-    \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
-    \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
-    \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
-    \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
-    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
-    \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
-    \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
-    \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
-    \ = 0; auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n\nstruct HLD {\n  int n, root;\n  vi dep,\
+    \ sz, p, head, tin, tout, inv_tin, child_list, c, v_to_e;\n  vc<int32_t> lb;\n\
+    \n  inline int head_parent(int v) const { return p[head[v]]; }\n\n  HLD(vc<pii>\
+    \ e, int _root = 0) : root(_root) { precompute(e); }\n  HLD(vi _p) {\n    vc<pii>\
+    \ e;\n    root = -1;\n    for(int v = 0; v < ssize(_p); v++) {\n      if (_p[v]\
+    \ == -1 or _p[v] == v)\n        root = v;\n      else\n        e.eb(v, _p[v]);\n\
+    \    }\n    assert(root != -1);\n    precompute(e);\n  }\n\n  void precompute(vc<pii>\
+    \ &e) {\n    n = ssize(e) + 1;\n\n    dep = p = head = tin = tout = v_to_e = vi(n);\n\
+    \    sz = vi(n, 1);\n\n    vi mx_child_sz(n, -1);\n    {\n      vi d(n);\n   \
+    \   for(auto [u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;\n    \
+    \  d[root] = 0;\n      for(int i = 0; i < n; i++) {\n        int v = i;\n    \
+    \    while(d[v] == 1) {\n          d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n      \
+    \    sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]], sz[v]);\n        \
+    \  v = p[v];\n        }\n      }\n      p[root] = root;\n    }\n\n    vi ord(n);\n\
+    \    {\n      vi f(n + 2);\n      for(int x : sz) f[x + 1]++;\n      psum(f);\n\
+    \      for(int v = 0; v < n; v++)\n        ord[n - 1 - (f[sz[v]]++)] = v;\n  \
+    \  }\n\n    {\n      head[root] = root, tout[root] = n;\n\n      vi add(n, 1);\n\
+    \      for(int v : ord | views::drop(1)) {\n        dep[v] = dep[p[v]] + 1;\n\
+    \        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]] += sz[v];\n      \
+    \  tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]] == sz[v])\n      \
+    \    mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n          head[v]\
+    \ = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n    lb = vc<int32_t>(n\
+    \ + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v < n; v++)\n      if\
+    \ (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int v = 0; v < n; v++)\n\
+    \      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]] = v;\n\
+    \    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n     \
+    \   child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i = 0;\
+    \ auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
     \ = i++;\n    }\n  }\n\n  auto query_path(int u, int v, bool edge = false) {\n\
     \    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if (dep[head[u]] > dep[head[v]])\n\
     \        swap(u, v);\n      lr.emplace_back(tin[head[v]], tin[v] + 1);\n     \
@@ -386,38 +387,39 @@ data:
     \ + i + d, v.begin() + i + d, v.begin() + min(i + 2 * d, (int)size(v)), buf.begin());\n\
     \          copy(buf.begin(), buf.begin() + min(2 * d, (int)size(v) - i), v.begin()\
     \ + i);\n        }\n      }\n    });\n    return v;\n  }\n\n  template<typename\
-    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_prime.back()\
+    \ F>\n  requires invocable<F, int>\n  void primes(int m, F f) {\n    if (_next_valid(_prime.back())\
     \ < m) {\n      if (m > _C) sieve(m);\n      int s = _next_valid(_prime.back());\n\
     \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
-    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int p : _prime)\
-    \ {\n      if (p >= m) break;\n      f(p);\n    }\n  }\n}\n\nusing namespace sieve_of_Eratosthenes;\n\
-    \nstruct HLD {\n  int n, root;\n  vi dep, sz, p, head, tin, tout, inv_tin, child_list,\
-    \ c, v_to_e;\n  vc<int32_t> lb;\n\n  inline int head_parent(int v) const { return\
-    \ p[head[v]]; }\n\n  HLD(vc<pii> e, int _root = 0) : root(_root) { precompute(e);\
-    \ }\n  HLD(vi _p) {\n    vc<pii> e;\n    root = -1;\n    for(int v = 0; v < ssize(_p);\
-    \ v++) {\n      if (_p[v] == -1 or _p[v] == v)\n        root = v;\n      else\n\
-    \        e.eb(v, _p[v]);\n    }\n    assert(root != -1);\n    precompute(e);\n\
-    \  }\n\n  void precompute(vc<pii> &e) {\n    n = ssize(e) + 1;\n\n    dep = p\
-    \ = head = tin = tout = v_to_e = vi(n);\n    sz = vi(n, 1);\n\n    vi mx_child_sz(n,\
-    \ -1);\n    {\n      vi d(n);\n      for(auto [u, v] : e)\n        p[u] ^= v,\
-    \ p[v] ^= u, d[u]++, d[v]++;\n      d[root] = 0;\n      for(int i = 0; i < n;\
-    \ i++) {\n        int v = i;\n        while(d[v] == 1) {\n          d[v] = 0,\
-    \ d[p[v]]--, p[p[v]] ^= v;\n          sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]],\
-    \ sz[v]);\n          v = p[v];\n        }\n      }\n      p[root] = root;\n  \
-    \  }\n\n    vi ord(n);\n    {\n      vi f(n + 2);\n      for(int x : sz) f[x +\
-    \ 1]++;\n      psum(f);\n      for(int v = 0; v < n; v++)\n        ord[n - 1 -\
-    \ (f[sz[v]]++)] = v;\n    }\n\n    {\n      head[root] = root, tout[root] = n;\n\
-    \n      vi add(n, 1);\n      for(int v : ord | views::drop(1)) {\n        dep[v]\
-    \ = dep[p[v]] + 1;\n        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]]\
-    \ += sz[v];\n        tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]]\
-    \ == sz[v])\n          mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n\
-    \          head[v] = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n  \
-    \  lb = vc<int32_t>(n + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v\
-    \ < n; v++)\n      if (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int\
-    \ v = 0; v < n; v++)\n      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]]\
-    \ = v;\n    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n\
-    \        child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i\
-    \ = 0; auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
+    \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
+    \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
+    \ namespace sieve_of_Eratosthenes;\n\nstruct HLD {\n  int n, root;\n  vi dep,\
+    \ sz, p, head, tin, tout, inv_tin, child_list, c, v_to_e;\n  vc<int32_t> lb;\n\
+    \n  inline int head_parent(int v) const { return p[head[v]]; }\n\n  HLD(vc<pii>\
+    \ e, int _root = 0) : root(_root) { precompute(e); }\n  HLD(vi _p) {\n    vc<pii>\
+    \ e;\n    root = -1;\n    for(int v = 0; v < ssize(_p); v++) {\n      if (_p[v]\
+    \ == -1 or _p[v] == v)\n        root = v;\n      else\n        e.eb(v, _p[v]);\n\
+    \    }\n    assert(root != -1);\n    precompute(e);\n  }\n\n  void precompute(vc<pii>\
+    \ &e) {\n    n = ssize(e) + 1;\n\n    dep = p = head = tin = tout = v_to_e = vi(n);\n\
+    \    sz = vi(n, 1);\n\n    vi mx_child_sz(n, -1);\n    {\n      vi d(n);\n   \
+    \   for(auto [u, v] : e)\n        p[u] ^= v, p[v] ^= u, d[u]++, d[v]++;\n    \
+    \  d[root] = 0;\n      for(int i = 0; i < n; i++) {\n        int v = i;\n    \
+    \    while(d[v] == 1) {\n          d[v] = 0, d[p[v]]--, p[p[v]] ^= v;\n      \
+    \    sz[p[v]] += sz[v];\n          chmax(mx_child_sz[p[v]], sz[v]);\n        \
+    \  v = p[v];\n        }\n      }\n      p[root] = root;\n    }\n\n    vi ord(n);\n\
+    \    {\n      vi f(n + 2);\n      for(int x : sz) f[x + 1]++;\n      psum(f);\n\
+    \      for(int v = 0; v < n; v++)\n        ord[n - 1 - (f[sz[v]]++)] = v;\n  \
+    \  }\n\n    {\n      head[root] = root, tout[root] = n;\n\n      vi add(n, 1);\n\
+    \      for(int v : ord | views::drop(1)) {\n        dep[v] = dep[p[v]] + 1;\n\
+    \        tin[v] = tin[p[v]] + add[p[v]];\n        add[p[v]] += sz[v];\n      \
+    \  tout[v] = tin[v] + sz[v];\n        if (mx_child_sz[p[v]] == sz[v])\n      \
+    \    mx_child_sz[p[v]] = 0, head[v] = head[p[v]];\n        else\n          head[v]\
+    \ = v;\n      }\n    }\n\n    inv_tin = inv_perm(tin);\n\n    lb = vc<int32_t>(n\
+    \ + 1);\n    child_list = vi(n + 1);\n    for(int v = 0; v < n; v++)\n      if\
+    \ (v != root)\n        lb[p[v]]++;\n    psum(lb);\n    for(int v = 0; v < n; v++)\n\
+    \      if (v != root and head[v] == v)\n        child_list[--lb[p[v]]] = v;\n\
+    \    for(int v = 0; v < n; v++)\n      if (v != root and head[v] != v)\n     \
+    \   child_list[--lb[p[v]]] = v;\n\n    v_to_e[root] = -1;\n    for(int i = 0;\
+    \ auto [u, v] : e) {\n      if (dep[u] > dep[v]) swap(u, v);\n      v_to_e[v]\
     \ = i++;\n    }\n  }\n\n  auto query_path(int u, int v, bool edge = false) {\n\
     \    vc<pii> lr;\n    while(head[u] != head[v]) {\n      if (dep[head[u]] > dep[head[v]])\n\
     \        swap(u, v);\n      lr.emplace_back(tin[head[v]], tin[v] + 1);\n     \
@@ -494,7 +496,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-09-02 22:57:23+08:00'
+  timestamp: '2026-09-03 09:49:40+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp

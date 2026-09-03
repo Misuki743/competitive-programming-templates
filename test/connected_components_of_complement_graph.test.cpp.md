@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/misc/complement_connectivity.cpp
     title: graph/misc/complement_connectivity.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/connected_components_of_complement_graph
@@ -142,7 +142,7 @@ data:
   path: test/connected_components_of_complement_graph.test.cpp
   requiredBy: []
   timestamp: '2026-09-02 22:57:23+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/connected_components_of_complement_graph.test.cpp
 layout: document

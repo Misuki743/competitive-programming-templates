@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: poly/NTT.cpp
     title: poly/NTT.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_arbitrary_mod.cpp
     title: poly/convolution_arbitrary_mod.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_1000000007
@@ -207,7 +207,7 @@ data:
   path: test/convolution_1e9+7.test.cpp
   requiredBy: []
   timestamp: '2026-09-02 22:57:23+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution_1e9+7.test.cpp
 layout: document

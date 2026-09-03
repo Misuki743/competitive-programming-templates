@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/counting_primes.test.cpp
     title: test/counting_primes.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prime_counting.cpp\"\nll prime_counting(ll N)\
@@ -32,7 +32,7 @@ data:
   path: numtheory/prime_counting.cpp
   requiredBy: []
   timestamp: '2026-07-26 01:44:55+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/counting_primes.test.cpp
 documentation_of: numtheory/prime_counting.cpp
