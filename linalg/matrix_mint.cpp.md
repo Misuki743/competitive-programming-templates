@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/counting_spanning_tree_directed.test.cpp
     title: test/counting_spanning_tree_directed.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/counting_spanning_tree_undirected.test.cpp
     title: test/counting_spanning_tree_undirected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
   - icon: ':x:'

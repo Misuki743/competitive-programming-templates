@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"acted_monoid/affine_sum.cpp\"\ntemplate<class U>\nstruct\
@@ -41,7 +41,7 @@ data:
   path: acted_monoid/affine_sum.cpp
   requiredBy: []
   timestamp: '2026-06-07 00:25:21+08:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/range_affine_range_sum.test.cpp
   - test/range_set_range_composite.test.cpp

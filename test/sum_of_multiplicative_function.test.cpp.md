@@ -10,9 +10,6 @@ data:
   - icon: ':x:'
     path: numtheory/Lucy_DP.cpp
     title: numtheory/Lucy_DP.cpp
-  - icon: ':question:'
-    path: numtheory/prime_table.cpp
-    title: numtheory/prime_table.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -111,44 +108,21 @@ data:
     \        }\n        while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++]\
     \ = v[j++];\n      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n\
     \    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n\nusing namespace\
-    \ algorithm_extend;\n\nnamespace Combinatorics {\n  template<class Mint>\n  Mint\
-    \ factorial(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n \
-    \     if (dat.empty()) dat.eb(1);\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
-    \ bit_ceil((uint32_t)(n + 1))));\n      for(int i = size0; i < ssize(dat); i++)\n\
-    \        dat[i] = dat[i - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class\
-    \ Mint>\n  Mint factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >=\
-    \ ssize(dat)) {\n      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(),\
-    \ bit_ceil((uint32_t)(n + 1))));\n      dat.back() = factorial<Mint>(ssize(dat)\
-    \ - 1).inverse();\n      for(int i = ssize(dat) - 2; i >= size0; i--)\n      \
-    \  dat[i] = dat[i + 1] * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class\
-    \ Mint>\n  Mint inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n\
-    \ - 1);\n  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if\
-    \ (0 <= k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k)\
-    \ * factorial_inv<Mint>(n - k);\n    else\n      return Mint(0);\n  }\n\n  template<class\
-    \ Mint>\n  Mint catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2\
-    \ * n, n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never\
-    \ touch y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k)\
-    \ {\n    if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n)\
-    \ return binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return\
-    \ Mint(0);\n  }\n\n  template<class Mint>\n  auto binomial_functions() {\n   \
-    \ return tuple(\n      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
-    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
-    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
-    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
-    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
-    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
-    \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
-    \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
-    \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
-    \ * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n    for(int i\
-    \ = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n      _mpf[_id(i)]\
-    \ = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d) if (_mpf[_id(i)]\
-    \ == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n      for(int\
-    \ j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n        _mpf[_id(j)]\
-    \ = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n  }\n\n  int mpf(int n)\
-    \ {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return 2;\n    if (n % 3 ==\
-    \ 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n  }\n\n\
-    \  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
+    \ algorithm_extend;\n\nnamespace sieve_of_Eratosthenes {\n\n  int _C = 5;\n  vc<int32_t>\
+    \ _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n  int _id(int n) {\n    return\
+    \ (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int _first_valid(int n) {\n    static\
+    \ int d[6] = {1, 0, 3, 2, 1, 0};\n    return n + d[n % 6];\n  }\n\n  int _next_valid(int\
+    \ n) {\n    static int d[6] = {1, 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n\
+    \  }\n\n  void sieve(int n) {\n    assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n\
+    \    n = _first_valid(bit_ceil(n * 1ull));\n    if (n <= _C) return;\n    _mpf.resize(_id(n));\n\
+    \    for(int i = _C, d = _next_valid(_C) - _C; i < n; i += d, d = 6 - d)\n   \
+    \   _mpf[_id(i)] = i;\n    for(int i = 5, d = 2; i * i < n; i += d, d = 6 - d)\
+    \ if (_mpf[_id(i)] == i) {\n      int k = _first_valid(max(i, ceil_div(_C, i)));\n\
+    \      for(int j = i * k, e = _next_valid(k) - k; j < n; j += i * e, e = 6 - e)\n\
+    \        _mpf[_id(j)] = min<int32_t>(_mpf[_id(j)], i);\n    }\n    _C = n;\n \
+    \ }\n\n  int mpf(int n) {\n    if (n == 1) return 0;\n    if (n % 2 == 0) return\
+    \ 2;\n    if (n % 3 == 0) return 3;\n    if (n >= _C) sieve(n);\n    return _mpf[_id(n)];\n\
+    \  }\n\n  template<typename F>\n  requires invocable<F, int, int>\n  void factorize(int\
     \ n, F f) {\n    if (n >= _C) sieve(n);\n    if (n % 2 == 0) f(2, countr_zero(n\
     \ * 1ull)), n >>= countr_zero(n * 1ull);\n    if (n % 3 == 0) {\n      int e =\
     \ 0;\n      while(n % 3 == 0) n /= 3, e++;\n      f(3, e);\n    }\n    while(n\
@@ -199,89 +173,59 @@ data:
     \ os, const mint& b) {\n    return os << b.get();\n  }\n  friend istream& operator>>(istream&\
     \ is, mint& b) {\n    int64_t val;\n    is >> val;\n    b = mint(val);\n    return\
     \ is;\n  }\n};\n\n//using mint = Montgomery_modint<1'000'000'007>;\nusing mint\
-    \ = Montgomery_modint<998'244'353>;\n#line 1 \"numtheory/prime_table.cpp\"\ntemplate<int32_t\
-    \ C>\nclass prime_table {\n  static constexpr int32_t D = (C + 29) / 30 * 30;\n\
-    \  static inline bitset<D / 2> table = {};\n  static inline vi prime;\n  static\
-    \ inline bool init = false;\n\n  static void initialize() {\n    if (init) return;\n\
-    \    init = true;\n    prime = {2, 3, 5};\n    table[3 / 2] = table[5 / 2] = true;\n\
-    \    for(int i = 0; i < D; i += 30) {\n      table[(i + 01) / 2] = table[(i +\
-    \ 07) / 2] =\n      table[(i + 11) / 2] = table[(i + 13) / 2] =\n      table[(i\
-    \ + 17) / 2] = table[(i + 19) / 2] =\n      table[(i + 23) / 2] = table[(i + 29)\
-    \ / 2] = true;\n    }\n    table[1 / 2] = false;\n\n    const int32_t S = sqrtl(D)\
-    \ + 10;\n    for(int i = 7, j = 4; i < S; i += j, j ^= 6) {\n      if (table[i\
-    \ / 2]) {\n        for(int k = ((i + 4) / 6 * 6 + 1) * i; k < D; k += 6 * i)\n\
-    \          table[k / 2] = false;\n        for(int k = (i / 6 * 6 + 5) * i; k <\
-    \ D; k += 6 * i)\n          table[k / 2] = false;\n      }\n    }\n\n    prime.reserve(1.1\
-    \ * D / log(D));\n    for(int i = 0; i < D; i += 30) {\n      if (table[(i + 01)\
-    \ / 2]) prime.emplace_back(i + 01);\n      if (table[(i + 07) / 2]) prime.emplace_back(i\
-    \ + 07);\n      if (table[(i + 11) / 2]) prime.emplace_back(i + 11);\n      if\
-    \ (table[(i + 13) / 2]) prime.emplace_back(i + 13);\n      if (table[(i + 17)\
-    \ / 2]) prime.emplace_back(i + 17);\n      if (table[(i + 19) / 2]) prime.emplace_back(i\
-    \ + 19);\n      if (table[(i + 23) / 2]) prime.emplace_back(i + 23);\n      if\
-    \ (table[(i + 29) / 2]) prime.emplace_back(i + 29);\n    }\n\n    int n = ssize(prime)\
-    \ - 1;\n    while(n >= 0 and prime[n] >= C) n--;\n    prime.resize(n + 1);\n \
-    \ }\n\n  public:\n\n  static bool is_prime(int x) { \n    initialize();\n    return\
-    \ x == 2 or ((x & 1) and table[x / 2]);\n  }\n  //make sure to not copy the array\
-    \ by using &x = prime_array()\n  static const vi& prime_array() {\n    initialize();\n\
-    \    return prime;\n  }\n  static auto functions() {\n    return tuple(\n    \
-    \  &is_prime,\n      &prime_array\n    );\n  }\n};\n\n//auto [is_prime, prime_array]\
-    \ = prime_table<>::functions();\n#line 1 \"numtheory/Lucy_DP.cpp\"\n//Given a\
-    \ multiplicative function f s.t.\n//- F(n), f(p^e) can be calculated quickly\n\
+    \ = Montgomery_modint<998'244'353>;\n#line 1 \"numtheory/Lucy_DP.cpp\"\n//Given\
+    \ a multiplicative function f s.t.\n//- F(n), f(p^e) can be calculated quickly\n\
     //- f(p) = f'(p) for all p\n//\n//Return F'_p(n) for all n in Q_N\ntemplate<class\
-    \ T, int32_t SQRT_N, typename F1, typename F2>\nrequires R_invocable<T, F1, ll>\
-    \ && R_invocable<T, F2, ll, ll, ll>\nvc<T> Lucy_DP(ll N, F1 F, F2 f) {\n  static\
-    \ prime_table<SQRT_N + 1> pt;\n\n  ll x = sqrtl(N);\n  while(x * (x + 1) <= N)\
-    \ x++;\n  ll m = N / x;\n\n  auto id = [&](ll n) { return n <= m ? n - 1 : m +\
-    \ x - 1 - N / n; };\n  vc<T> dp;\n  vll qs;\n  dp.reserve(m + x - 1), qs.reserve(m\
-    \ + x - 1);\n  for(ll i = 1; i < m; i++) dp.eb(F(i)), qs.eb(i);\n  for(ll i =\
-    \ x; i >= 1; i--) dp.eb(F(N / i)), qs.eb(N / i);\n\n  for(ll p = 2; p * p <= N;\
-    \ p++) if (pt.is_prime(p)) {\n    for(ll i = m + x - 2; i >= 0 and qs[i] >= p\
-    \ * p; i--)\n      dp[i] += f(p, 1, p) * (dp[p - 2] - dp[id(qs[i] / p)]);\n  \
-    \  /* for the case where f is not completely multiplicative (when would this be\
-    \ useful?)\n    ll i = m + x - 2;\n    while(i > 0 and qs[i - 1] >= p * p) i--;\n\
-    \    for(; i < m + x - 1; i++) {\n      for(ll q = p, e = 1; q * (ull)p <= qs[i];\
-    \ q *= p, e++) {\n        dp[i] -= f(p, e + 1, q * p);\n        dp[i] += f(p,\
-    \ e, q) * (dp[p - 1] - dp[id(qs[i] / q)]);\n      }\n    }\n    */\n  }\n\n  return\
-    \ dp;\n}\n\ntemplate<class T, int32_t SQRT_N, typename F1>\nrequires R_invocable<T,\
-    \ F1, ll, ll, ll> \nvc<T> inverse_Lucy_DP(ll N, vc<T> Fp, F1 f) {\n  static prime_table<SQRT_N\
-    \ + 1> pt;\n\n  ll x = sqrtl(N);\n  while(x * (x + 1) <= N) x++;\n  ll m = N /\
-    \ x;\n\n  auto id = [&](ll n) { return n <= m ? n - 1 : m + x - 1 - N / n; };\n\
-    \  vll qs;\n  qs.reserve(m + x - 1);\n  for(ll i = 1; i < m; i++) qs.eb(i);\n\
-    \  for(ll i = x; i >= 1; i--) qs.eb(N / i);\n\n  for(ll p = m; p > 1; p--) if\
-    \ (pt.is_prime(p)) {\n    for(ll i = m + x - 2; i >= 0 and qs[i] >= p * p; i--)\n\
-    \      for(ll e = 1, q = p; q * (ull)p <= qs[i]; q *= p, e++)\n        Fp[i] +=\
-    \ f(p, e, q) * (Fp[id(qs[i] / q)] - Fp[p - 1]) + f(p, e + 1, q * p);\n  }\n\n\
-    \  return Fp;\n}\n#line 7 \"test/sum_of_multiplicative_function.test.cpp\"\n\n\
-    using Mint = Montgomery_modint<469'762'049>;\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--) {\n    ll N, a, b; cin >>\
-    \ N >> a >> b;\n    auto Fp = Lucy_DP<Mint, (1 << 20)>(N, [](ll x) { return Mint(x)\
-    \ * (x + 1) * ((Mint::get_mod() + 1) / 2) - 1; }, [](ll, ll, ll q) { return Mint(q);\
-    \ });\n    auto Fp2 = Lucy_DP<Mint, (1 << 20)>(N, [](ll x) { return Mint(x) -\
-    \ 1; }, [](ll, ll, ll) { return Mint(1); });\n    for(int i = 0; i < ssize(Fp);\
-    \ i++)\n      Fp[i] = a * Fp2[i] + b * Fp[i];\n\n    cout << 1 + inverse_Lucy_DP<Mint,\
-    \ (1 << 20)>(N, Fp, [&](ll p, ll e, ll) -> Mint { return Mint(a) * e + Mint(b)\
-    \ * p; }).back() << '\\n';\n  }\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_multiplicative_function\"\
-    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
-    \n#include \"../numtheory/prime_table.cpp\"\n#include \"../numtheory/Lucy_DP.cpp\"\
+    \ T, typename F1, typename F2>\nrequires R_invocable<T, F1, ll> && R_invocable<T,\
+    \ F2, ll, ll, ll>\nvc<T> Lucy_DP(ll N, F1 F, F2 f) {\n  ll x = sqrtl(N);\n  while(x\
+    \ * (x + 1) <= N) x++;\n  ll m = N / x;\n\n  auto id = [&](ll n) { return n <=\
+    \ m ? n - 1 : m + x - 1 - N / n; };\n  vc<T> dp;\n  vll qs;\n  dp.reserve(m +\
+    \ x - 1), qs.reserve(m + x - 1);\n  for(ll i = 1; i < m; i++) dp.eb(F(i)), qs.eb(i);\n\
+    \  for(ll i = x; i >= 1; i--) dp.eb(F(N / i)), qs.eb(N / i);\n\n  for(ll p = 2;\
+    \ p * p <= N; p++) if (mpf(p) == p) {\n    for(ll i = m + x - 2; i >= 0 and qs[i]\
+    \ >= p * p; i--)\n      dp[i] += f(p, 1, p) * (dp[p - 2] - dp[id(qs[i] / p)]);\n\
+    \    /* for the case where f is not completely multiplicative (when would this\
+    \ be useful?)\n    ll i = m + x - 2;\n    while(i > 0 and qs[i - 1] >= p * p)\
+    \ i--;\n    for(; i < m + x - 1; i++) {\n      for(ll q = p, e = 1; q * (ull)p\
+    \ <= qs[i]; q *= p, e++) {\n        dp[i] -= f(p, e + 1, q * p);\n        dp[i]\
+    \ += f(p, e, q) * (dp[p - 1] - dp[id(qs[i] / q)]);\n      }\n    }\n    */\n \
+    \ }\n\n  return dp;\n}\n\ntemplate<class T, typename F1>\nrequires R_invocable<T,\
+    \ F1, ll, ll, ll> \nvc<T> inverse_Lucy_DP(ll N, vc<T> Fp, F1 f) {\n  ll x = sqrtl(N);\n\
+    \  while(x * (x + 1) <= N) x++;\n  ll m = N / x;\n\n  auto id = [&](ll n) { return\
+    \ n <= m ? n - 1 : m + x - 1 - N / n; };\n  vll qs;\n  qs.reserve(m + x - 1);\n\
+    \  for(ll i = 1; i < m; i++) qs.eb(i);\n  for(ll i = x; i >= 1; i--) qs.eb(N /\
+    \ i);\n\n  for(ll p = m; p > 1; p--) if (mpf(p) == p) {\n    for(ll i = m + x\
+    \ - 2; i >= 0 and qs[i] >= p * p; i--)\n      for(ll e = 1, q = p; q * (ull)p\
+    \ <= qs[i]; q *= p, e++)\n        Fp[i] += f(p, e, q) * (Fp[id(qs[i] / q)] - Fp[p\
+    \ - 1]) + f(p, e + 1, q * p);\n  }\n\n  return Fp;\n}\n#line 6 \"test/sum_of_multiplicative_function.test.cpp\"\
     \n\nusing Mint = Montgomery_modint<469'762'049>;\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int t; cin >> t;\n  while(t--) {\n    ll N, a, b; cin >>\
-    \ N >> a >> b;\n    auto Fp = Lucy_DP<Mint, (1 << 20)>(N, [](ll x) { return Mint(x)\
-    \ * (x + 1) * ((Mint::get_mod() + 1) / 2) - 1; }, [](ll, ll, ll q) { return Mint(q);\
-    \ });\n    auto Fp2 = Lucy_DP<Mint, (1 << 20)>(N, [](ll x) { return Mint(x) -\
-    \ 1; }, [](ll, ll, ll) { return Mint(1); });\n    for(int i = 0; i < ssize(Fp);\
-    \ i++)\n      Fp[i] = a * Fp2[i] + b * Fp[i];\n\n    cout << 1 + inverse_Lucy_DP<Mint,\
-    \ (1 << 20)>(N, Fp, [&](ll p, ll e, ll) -> Mint { return Mint(a) * e + Mint(b)\
-    \ * p; }).back() << '\\n';\n  }\n\n  return 0;\n}\n"
+    \ N >> a >> b;\n    auto Fp = Lucy_DP<Mint>(N, [](ll x) { return Mint(x) * (x\
+    \ + 1) * ((Mint::get_mod() + 1) / 2) - 1; }, [](ll, ll, ll q) { return Mint(q);\
+    \ });\n    auto Fp2 = Lucy_DP<Mint>(N, [](ll x) { return Mint(x) - 1; }, [](ll,\
+    \ ll, ll) { return Mint(1); });\n    for(int i = 0; i < ssize(Fp); i++)\n    \
+    \  Fp[i] = a * Fp2[i] + b * Fp[i];\n\n    cout << 1 + inverse_Lucy_DP<Mint>(N,\
+    \ Fp, [&](ll p, ll e, ll) -> Mint { return Mint(a) * e + Mint(b) * p; }).back()\
+    \ << '\\n';\n  }\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_multiplicative_function\"\
+    \n\n#include \"../default/t.cpp\"\n#include \"../modint/Montgomery_modint.cpp\"\
+    \n#include \"../numtheory/Lucy_DP.cpp\"\n\nusing Mint = Montgomery_modint<469'762'049>;\n\
+    \nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  int t; cin\
+    \ >> t;\n  while(t--) {\n    ll N, a, b; cin >> N >> a >> b;\n    auto Fp = Lucy_DP<Mint>(N,\
+    \ [](ll x) { return Mint(x) * (x + 1) * ((Mint::get_mod() + 1) / 2) - 1; }, [](ll,\
+    \ ll, ll q) { return Mint(q); });\n    auto Fp2 = Lucy_DP<Mint>(N, [](ll x) {\
+    \ return Mint(x) - 1; }, [](ll, ll, ll) { return Mint(1); });\n    for(int i =\
+    \ 0; i < ssize(Fp); i++)\n      Fp[i] = a * Fp2[i] + b * Fp[i];\n\n    cout <<\
+    \ 1 + inverse_Lucy_DP<Mint>(N, Fp, [&](ll p, ll e, ll) -> Mint { return Mint(a)\
+    \ * e + Mint(b) * p; }).back() << '\\n';\n  }\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
   - modint/Montgomery_modint.cpp
-  - numtheory/prime_table.cpp
   - numtheory/Lucy_DP.cpp
   isVerificationFile: true
   path: test/sum_of_multiplicative_function.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 10:52:15+08:00'
+  timestamp: '2026-09-03 11:20:30+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/sum_of_multiplicative_function.test.cpp

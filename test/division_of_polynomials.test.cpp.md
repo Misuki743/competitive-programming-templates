@@ -15,9 +15,9 @@ data:
     title: poly/NTT.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
@@ -110,33 +110,10 @@ data:
     \ v[j++], f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n\
     \        while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r;\
     \ i++)\n        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return\
-    \ f;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace Combinatorics {\n\
-    \  template<class Mint>\n  Mint factorial(int n) {\n    static vc<Mint> dat;\n\
-    \    if (n >= ssize(dat)) {\n      if (dat.empty()) dat.eb(1);\n      int size0\
-    \ = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n +\
-    \ 1))));\n      for(int i = size0; i < ssize(dat); i++)\n        dat[i] = dat[i\
-    \ - 1] * i;\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
-    \ factorial_inv(int n) {\n    static vc<Mint> dat;\n    if (n >= ssize(dat)) {\n\
-    \      int size0 = ssize(dat);\n      dat.resize(min(Mint::get_mod(), bit_ceil((uint32_t)(n\
-    \ + 1))));\n      dat.back() = factorial<Mint>(ssize(dat) - 1).inverse();\n  \
-    \    for(int i = ssize(dat) - 2; i >= size0; i--)\n        dat[i] = dat[i + 1]\
-    \ * (i + 1);\n    }\n    return dat[n];\n  }\n\n  template<class Mint>\n  Mint\
-    \ inverse(int n) {\n    return factorial_inv<Mint>(n) * factorial<Mint>(n - 1);\n\
-    \  }\n\n  template<class Mint>\n  Mint binomial(int n, int k) {\n    if (0 <=\
-    \ k and k <= n)\n      return factorial<Mint>(n) * factorial_inv<Mint>(k) * factorial_inv<Mint>(n\
-    \ - k);\n    else\n      return Mint(0);\n  }\n\n  template<class Mint>\n  Mint\
-    \ catalan(int n) {\n    return binomial<Mint>(2 * n, n) - binomial<Mint>(2 * n,\
-    \ n + 1);\n  }\n\n  //number of up-down path with n (+1), m (-1) and never touch\
-    \ y = -k\n  template<class Mint>\n  Mint excatalan(int n, int m, int k) {\n  \
-    \  if (k > m) return binomial<Mint>(n + m, m);\n    else if (k > m - n) return\
-    \ binomial<Mint>(n + m, m) - binomial<Mint>(n + m, m - k);\n    else return Mint(0);\n\
-    \  }\n\n  template<class Mint>\n  auto binomial_functions() {\n    return tuple(\n\
-    \      &factorial<Mint>,\n      &factorial_inv<Mint>,\n      &inverse<Mint>,\n\
-    \      &binomial<Mint>,\n      &catalan<Mint>,\n      &excatalan<Mint>\n    );\n\
-    \  }\n}\n\nusing namespace Combinatorics;\n\nnamespace sieve_of_Eratosthenes {\n\
-    \n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or 5\n\
-    \  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n  int\
-    \ _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
+    \ f;\n  }\n}\n\nusing namespace algorithm_extend;\n\nnamespace sieve_of_Eratosthenes\
+    \ {\n\n  int _C = 5;\n  vc<int32_t> _mpf, _prime = {2, 3};\n\n  //n % 6 == 1 or\
+    \ 5\n  int _id(int n) {\n    return (n - 2) / 6 * 2 + (n % 6 == 1);\n  }\n\n \
+    \ int _first_valid(int n) {\n    static int d[6] = {1, 0, 3, 2, 1, 0};\n    return\
     \ n + d[n % 6];\n  }\n\n  int _next_valid(int n) {\n    static int d[6] = {1,\
     \ 4, 3, 2, 1, 2};\n    return n + d[n % 6];\n  }\n\n  void sieve(int n) {\n  \
     \  assert(n <= (1 << 30));\n    _C = _first_valid(_C);\n    n = _first_valid(bit_ceil(n\
@@ -341,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 10:52:15+08:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-09-03 11:20:30+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/division_of_polynomials.test.cpp
 layout: document

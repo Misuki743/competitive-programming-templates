@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':x:'

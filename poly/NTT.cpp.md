@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/addition_of_big_integers_2.test.cpp
     title: test/addition_of_big_integers_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/bell_number.test.cpp
     title: test/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -24,22 +24,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/convolution_1e9+7.test.cpp
     title: test/convolution_1e9+7.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/division_of_polynomials.test.cpp
     title: test/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/exp_of_formal_power_series.test.cpp
     title: test/exp_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/frequency_table_of_tree_distance.test.cpp
     title: test/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inv_of_formal_power_series.test.cpp
     title: test/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
