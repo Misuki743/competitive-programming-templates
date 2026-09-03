@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/jump_on_tree.test.cpp
     title: test/jump_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/lca.test.cpp
     title: test/lca.test.cpp
   - icon: ':x:'
