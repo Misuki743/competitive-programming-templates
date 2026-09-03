@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/sum_of_totient_function.test.cpp
+    title: test/sum_of_totient_function.test.cpp
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/prefix_sum_of_dirichlet_inverse.cpp\"\n//f * g\
@@ -44,8 +47,9 @@ data:
   path: numtheory/prefix_sum_of_dirichlet_inverse.cpp
   requiredBy: []
   timestamp: '2026-07-24 22:33:41+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/sum_of_totient_function.test.cpp
 documentation_of: numtheory/prefix_sum_of_dirichlet_inverse.cpp
 layout: document
 redirect_from:

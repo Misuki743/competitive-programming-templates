@@ -6,16 +6,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/counting_spanning_tree_directed.test.cpp
     title: test/counting_spanning_tree_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/counting_spanning_tree_undirected.test.cpp
     title: test/counting_spanning_tree_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/determinant_of_matrix.test.cpp
     title: test/determinant_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inverse_matrix.test.cpp
     title: test/inverse_matrix.test.cpp
   - icon: ':x:'
@@ -172,12 +172,12 @@ data:
   verifiedWith:
   - test/matrix_rank.test.cpp
   - test/pow_of_matrix.test.cpp
-  - test/counting_spanning_tree_undirected.test.cpp
-  - test/counting_eulerian_circuits.test.cpp
   - test/counting_spanning_tree_directed.test.cpp
+  - test/counting_spanning_tree_undirected.test.cpp
   - test/system_of_linear_equations.test.cpp
-  - test/inverse_matrix.test.cpp
   - test/matrix_product.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/inverse_matrix.test.cpp
   - test/determinant_of_matrix.test.cpp
 documentation_of: linalg/matrix_mint.cpp
 layout: document

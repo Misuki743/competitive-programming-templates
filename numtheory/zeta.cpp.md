@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/gcd_convolution.test.cpp
     title: test/gcd_convolution.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/lcm_convolution.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"numtheory/zeta.cpp\"\ntemplate<ranges::random_access_range\
@@ -49,10 +49,10 @@ data:
   path: numtheory/zeta.cpp
   requiredBy: []
   timestamp: '2026-09-03 10:52:15+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/lcm_convolution.test.cpp
   - test/gcd_convolution.test.cpp
+  - test/lcm_convolution.test.cpp
 documentation_of: numtheory/zeta.cpp
 layout: document
 redirect_from:

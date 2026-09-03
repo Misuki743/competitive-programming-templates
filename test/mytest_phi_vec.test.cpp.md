@@ -139,7 +139,7 @@ data:
     \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
     \ namespace sieve_of_Eratosthenes;\n#line 1 \"numtheory/phi_vec.cpp\"\ntemplate<class\
     \ T>\nvc<T> phi_vec(int n) {\n  vc<T> phi(n);\n  if (n > 1) phi[1] = 1;\n  for(int\
-    \ i = 2; i < n; i++) {\n    T MPF = mpf(i);\n    phi[i] = phi[i / MPF] * (MPF\
+    \ i = 2; i < n; i++) {\n    int MPF = mpf(i);\n    phi[i] = phi[i / MPF] * (MPF\
     \ - (MPF != mpf(i / MPF)));\n  }\n  return phi;\n}\n#line 5 \"test/mytest_phi_vec.test.cpp\"\
     \n\nvc<pii> factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2;\
     \ d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x % d\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/mytest_phi_vec.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
+  timestamp: '2026-09-03 11:26:39+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest_phi_vec.test.cpp

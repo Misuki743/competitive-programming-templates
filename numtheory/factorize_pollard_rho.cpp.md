@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/chromatic_number.test.cpp
     title: test/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/factorize.test.cpp
     title: test/factorize.test.cpp
   - icon: ':x:'
@@ -73,13 +73,13 @@ data:
   timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest_factorize_sqrt.test.cpp
   - test/tetration_mod.test.cpp
+  - test/mytest_factorize_sqrt.test.cpp
   - test/primality_test.test.cpp
   - test/factorize.test.cpp
-  - test/two_square_sum.test.cpp
   - test/chromatic_number.test.cpp
   - test/primitive_root.test.cpp
+  - test/two_square_sum.test.cpp
 documentation_of: numtheory/factorize_pollard_rho.cpp
 layout: document
 redirect_from:

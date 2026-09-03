@@ -117,8 +117,8 @@ data:
   timestamp: '2026-06-06 23:34:13+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/range_affine_range_sum.test.cpp
   - test/range_add_range_min.test.cpp
+  - test/range_affine_range_sum.test.cpp
   - test/area_of_union_of_rectangles.test.cpp
 documentation_of: segtree/lazy_segment_tree.cpp
 layout: document

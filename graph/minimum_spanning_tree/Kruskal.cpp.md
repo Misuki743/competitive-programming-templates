@@ -36,8 +36,8 @@ data:
   timestamp: '2026-09-02 21:39:47+08:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/minimum_spanning_tree_Kruskal.test.cpp
   - test/minimum_spanning_tree_Prim.test.cpp
+  - test/minimum_spanning_tree_Kruskal.test.cpp
 documentation_of: graph/minimum_spanning_tree/Kruskal.cpp
 layout: document
 redirect_from:

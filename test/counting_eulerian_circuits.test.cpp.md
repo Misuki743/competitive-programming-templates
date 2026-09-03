@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: combi/count_eulerian_circuit.cpp
     title: combi/count_eulerian_circuit.cpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: combi/count_spanning_forest.cpp
     title: combi/count_spanning_forest.cpp
   - icon: ':question:'
