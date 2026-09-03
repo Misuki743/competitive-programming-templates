@@ -15,7 +15,7 @@ data:
   - icon: ':x:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/yuki_2544.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/binomial.cpp\"\ntemplate<class Mint>\nMint factorial(int\
@@ -89,19 +89,19 @@ data:
   path: combi/binomial.cpp
   requiredBy: []
   timestamp: '2026-09-02 21:15:05+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/pow_of_formal_power_series_sparse.test.cpp
-  - test/binomial_coefficient_prime_mod.test.cpp
-  - test/inv_of_formal_power_series_sparse.test.cpp
   - test/stirling_number_of_the_second_kind.test.cpp
-  - test/yuki_2544.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/counting_eulerian_circuits.test.cpp
-  - test/polynomial_taylor_shift.test.cpp
-  - test/bell_number.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
   - test/log_of_formal_power_series_sparse.test.cpp
+  - test/bell_number.test.cpp
+  - test/yuki_2544.test.cpp
+  - test/counting_eulerian_circuits.test.cpp
+  - test/binomial_coefficient_prime_mod.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/pow_of_formal_power_series_sparse.test.cpp
+  - test/polynomial_taylor_shift.test.cpp
+  - test/inv_of_formal_power_series_sparse.test.cpp
 documentation_of: combi/binomial.cpp
 layout: document
 redirect_from:

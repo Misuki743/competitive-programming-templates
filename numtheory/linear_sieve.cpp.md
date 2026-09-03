@@ -6,15 +6,6 @@ data:
   - icon: ':x:'
     path: test/mytest_linear_sieve.test.cpp
     title: test/mytest_linear_sieve.test.cpp
-  - icon: ':x:'
-    path: test/mytest_mu_array.test.cpp
-    title: test/mytest_mu_array.test.cpp
-  - icon: ':x:'
-    path: test/mytest_phi_array.test.cpp
-    title: test/mytest_phi_array.test.cpp
-  - icon: ':x:'
-    path: test/sum_of_totient_function.test.cpp
-    title: test/sum_of_totient_function.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
@@ -75,9 +66,6 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest_linear_sieve.test.cpp
-  - test/mytest_mu_array.test.cpp
-  - test/mytest_phi_array.test.cpp
-  - test/sum_of_totient_function.test.cpp
 documentation_of: numtheory/linear_sieve.cpp
 layout: document
 redirect_from:

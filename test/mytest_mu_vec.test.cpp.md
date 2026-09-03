@@ -5,11 +5,8 @@ data:
     path: default/t.cpp
     title: default/t.cpp
   - icon: ':x:'
-    path: numtheory/linear_sieve.cpp
-    title: numtheory/linear_sieve.cpp
-  - icon: ':x:'
-    path: numtheory/phi_array.cpp
-    title: numtheory/phi_array.cpp
+    path: numtheory/mu_vec.cpp
+    title: numtheory/mu_vec.cpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -20,7 +17,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest_phi_array.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"test/mytest_mu_vec.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n\n#line 1 \"default/t.cpp\"\n#include<bits/stdc++.h>\nusing namespace std;\n\
     \n#define pb push_back\n#define eb emplace_back\n\nusing ll = long long;\nusing\
     \ ull = unsigned long long;\nusing ldb = long double;\nusing pii = pair<int, int>;\n\
@@ -163,77 +160,52 @@ data:
     \      for(int i = s, d = _next_valid(s) - s; i < m; i += d, d = 6 - d)\n    \
     \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
     \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
-    \ namespace sieve_of_Eratosthenes;\n#line 1 \"numtheory/linear_sieve.cpp\"\ntemplate<int32_t\
-    \ C>\nclass linear_sieve {\n\n  static inline array<int, C> mpf = {};\n  static\
-    \ inline vi prime;\n  static inline bool init = false;\n\n  static void initialize()\
-    \ {\n    if (init) return;\n    init = true;\n    if (C > 2)\n      iota(mpf.begin()\
-    \ + 2, mpf.end(), 2);\n    for(int i = 2; i < C; i++) {\n      if (mpf[i] == i)\n\
-    \        prime.emplace_back(i);\n      for(int64_t p : prime) {\n        if (p\
-    \ > mpf[i] or p * i >= C)\n          break;\n        mpf[p * i] = p;\n      }\n\
-    \    }\n  }\n\n  public:\n\n  static vc<pii> prime_factorize(int x) {\n    initialize();\n\
-    \    vc<pii> r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x], 0);\n     \
-    \ while(x % r.back().first == 0)\n        x /= r.back().first, r.back().second++;\n\
-    \    }\n    return r;\n  }\n\n  static vi prime_factor(int x) {\n    initialize();\n\
-    \    vi r;\n    while(mpf[x]) {\n      r.emplace_back(mpf[x]);\n      while(x\
-    \ % r.back() == 0)\n        x /= r.back();\n    }\n    return r;\n  }\n\n  static\
-    \ vi divisor(int x, bool sorted = true) {\n    initialize();\n    vi divisor =\
-    \ {1};\n    for(auto [p, f] : prime_factorize(x)) {\n      vi nxt;\n      nxt.reserve(ssize(divisor)\
-    \ * (f + 1));\n      for(int64_t i = 0, q = 1; i <= f; i++, q *= p)\n        for(int\
-    \ d : divisor)\n          nxt.emplace_back(d * q);\n      divisor.swap(nxt);\n\
-    \    }\n    if (sorted)\n      ranges::sort(divisor);\n    return divisor;\n \
-    \ }\n\n  static const vi& prime_array() {\n    initialize();\n    return prime;\n\
-    \  }\n  static const array<int, C>& mpf_array() {\n    initialize();\n    return\
-    \ mpf;\n  }\n\n  static auto functions() {\n    return tuple(\n      &prime_factorize,\n\
-    \      &prime_factor,\n      [](int x, bool sorted = true) { return divisor(x,\
-    \ sorted); },\n      &prime_array,\n      &mpf_array\n    );\n  }\n};\n\n//auto\
-    \ [prime_factorize, prime_factor, divisor, prime_array, mpf_array] = linear_sieve<>::functions();\n\
-    #line 1 \"numtheory/phi_array.cpp\"\ntemplate<class T, int32_t C>\narray<T, C>\
-    \ phi_array() {\n  array<T, C> phi = {};\n  if (C > 1) phi[1] = T(1);\n  auto\
-    \ &mpf = linear_sieve<C>::mpf_array();\n  for(int i = 2; i < C; i++)\n    phi[i]\
-    \ = phi[i / mpf[i]] * (mpf[i] == mpf[i / mpf[i]] ? mpf[i] : T(mpf[i] - 1));\n\
-    \  return phi;\n}\n#line 6 \"test/mytest_phi_array.test.cpp\"\n\nvc<pii> factorize(int\
-    \ x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if\
-    \ (x % d == 0) {\n      int f = 0;\n      while(x % d == 0)\n        x /= d, f++;\n\
-    \      v.emplace_back(d, f);\n    }\n  }\n  return v;\n}\n\nint phi[1 << 10];\n\
-    \ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz == 0) return;\n  check_small<max(sz\
-    \ - 1, 0)>();\n  auto phi2 = phi_array<int, sz>();\n  for(int i = 0; i < sz; i++)\n\
-    \    assert(phi[i] == phi2[i]);\n}\n\ntemplate<int32_t sz = (1 << 10)>\nvoid check_power()\
-    \ {\n  if (sz == 0) return;\n  check_power<max(sz >> 1, 0)>();\n  auto phi2 =\
-    \ phi_array<int, sz>();\n  for(int i = 0; i < sz; i++)\n    assert(phi[i] == phi2[i]);\n\
-    }\n\nvoid a_plus_b() {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n\
-    }\n\nint main() {\n  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int\
-    \ x = 1; x < (1 << 10); x++)\n    for(int y = 1; y <= x; y++)\n      if (gcd(x,\
-    \ y) == 1)\n        phi[x]++;\n\n  check_small();\n  check_power();\n  a_plus_b();\n\
-    \n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    ../default/t.cpp\"\n#include \"../numtheory/linear_sieve.cpp\"\n#include \"../numtheory/phi_array.cpp\"\
+    \ namespace sieve_of_Eratosthenes;\n#line 1 \"numtheory/mu_vec.cpp\"\ntemplate<class\
+    \ T>\nvc<T> mu_vec(int n) {\n  vc<T> mu(n);\n  if (n > 1) mu[1] = 1;\n  for(int\
+    \ i = 2; i < n; i++) {\n    int MPF = mpf(i);\n    mu[i] = MPF == mpf(i / MPF)\
+    \ ? T(0) : -mu[i / MPF];\n  }\n  return mu;\n}\n#line 5 \"test/mytest_mu_vec.test.cpp\"\
     \n\nvc<pii> factorize(int x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2;\
     \ d <= x0; d++) {\n    if (x % d == 0) {\n      int f = 0;\n      while(x % d\
     \ == 0)\n        x /= d, f++;\n      v.emplace_back(d, f);\n    }\n  }\n  return\
-    \ v;\n}\n\nint phi[1 << 10];\n\ntemplate<int32_t sz = 64>\nvoid check_small()\
-    \ {\n  if (sz == 0) return;\n  check_small<max(sz - 1, 0)>();\n  auto phi2 = phi_array<int,\
-    \ sz>();\n  for(int i = 0; i < sz; i++)\n    assert(phi[i] == phi2[i]);\n}\n\n\
-    template<int32_t sz = (1 << 10)>\nvoid check_power() {\n  if (sz == 0) return;\n\
-    \  check_power<max(sz >> 1, 0)>();\n  auto phi2 = phi_array<int, sz>();\n  for(int\
-    \ i = 0; i < sz; i++)\n    assert(phi[i] == phi2[i]);\n}\n\nvoid a_plus_b() {\n\
-    \  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  for(int x = 1; x < (1 << 10); x++)\n    for(int y = 1; y\
-    \ <= x; y++)\n      if (gcd(x, y) == 1)\n        phi[x]++;\n\n  check_small();\n\
+    \ v;\n}\n\nint mu[1 << 15];\n\ntemplate<int32_t sz = 64>\nvoid check_small() {\n\
+    \  if (sz == 0) return;\n  check_small<max(sz - 1, 0)>();\n  auto mu2 = mu_vec<int>(sz);\n\
+    \  for(int i = 0; i < sz; i++)\n    assert(mu[i] == mu2[i]);\n}\n\ntemplate<int32_t\
+    \ sz = (1 << 15)>\nvoid check_power() {\n  if (sz == 0) return;\n  check_power<max(sz\
+    \ >> 1, 0)>();\n  auto mu2 = mu_vec<int>(sz);\n  for(int i = 0; i < sz; i++)\n\
+    \    assert(mu[i] == mu2[i]);\n}\n\nvoid a_plus_b() {\n  int x, y; cin >> x >>\
+    \ y;\n  cout << x + y << '\\n';\n}\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  for(int x = 1; x < (1 << 15); x++) {\n    mu[x] = 1;\n \
+    \   for(auto [p, f] : factorize(x)) {\n      if (f == 1) mu[x] = -mu[x];\n   \
+    \   else mu[x] = 0;\n    }\n  }\n\n  check_small();\n  check_power();\n  a_plus_b();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    ../default/t.cpp\"\n#include \"../numtheory/mu_vec.cpp\"\n\nvc<pii> factorize(int\
+    \ x) {\n  vc<pii> v;\n  int x0 = x;\n  for(int d = 2; d <= x0; d++) {\n    if\
+    \ (x % d == 0) {\n      int f = 0;\n      while(x % d == 0)\n        x /= d, f++;\n\
+    \      v.emplace_back(d, f);\n    }\n  }\n  return v;\n}\n\nint mu[1 << 15];\n\
+    \ntemplate<int32_t sz = 64>\nvoid check_small() {\n  if (sz == 0) return;\n  check_small<max(sz\
+    \ - 1, 0)>();\n  auto mu2 = mu_vec<int>(sz);\n  for(int i = 0; i < sz; i++)\n\
+    \    assert(mu[i] == mu2[i]);\n}\n\ntemplate<int32_t sz = (1 << 15)>\nvoid check_power()\
+    \ {\n  if (sz == 0) return;\n  check_power<max(sz >> 1, 0)>();\n  auto mu2 = mu_vec<int>(sz);\n\
+    \  for(int i = 0; i < sz; i++)\n    assert(mu[i] == mu2[i]);\n}\n\nvoid a_plus_b()\
+    \ {\n  int x, y; cin >> x >> y;\n  cout << x + y << '\\n';\n}\n\nint main() {\n\
+    \  ios::sync_with_stdio(false), cin.tie(NULL);\n\n  for(int x = 1; x < (1 << 15);\
+    \ x++) {\n    mu[x] = 1;\n    for(auto [p, f] : factorize(x)) {\n      if (f ==\
+    \ 1) mu[x] = -mu[x];\n      else mu[x] = 0;\n    }\n  }\n\n  check_small();\n\
     \  check_power();\n  a_plus_b();\n\n  return 0;\n}\n"
   dependsOn:
   - default/t.cpp
-  - numtheory/linear_sieve.cpp
-  - numtheory/phi_array.cpp
+  - numtheory/mu_vec.cpp
   isVerificationFile: true
-  path: test/mytest_phi_array.test.cpp
+  path: test/mytest_mu_vec.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 10:52:15+08:00'
+  timestamp: '2026-09-03 11:05:21+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/mytest_phi_array.test.cpp
+documentation_of: test/mytest_mu_vec.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest_phi_array.test.cpp
-- /verify/test/mytest_phi_array.test.cpp.html
-title: test/mytest_phi_array.test.cpp
+- /verify/test/mytest_mu_vec.test.cpp
+- /verify/test/mytest_mu_vec.test.cpp.html
+title: test/mytest_mu_vec.test.cpp
 ---

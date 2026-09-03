@@ -6,15 +6,15 @@ data:
   - icon: ':x:'
     path: test/counting_eulerian_circuits.test.cpp
     title: test/counting_eulerian_circuits.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/counting_spanning_tree_directed.test.cpp
     title: test/counting_spanning_tree_directed.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/counting_spanning_tree_undirected.test.cpp
     title: test/counting_spanning_tree_undirected.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"combi/count_spanning_forest.cpp\"\n//#include \"modint/Montgomery_modint.cpp\"\
@@ -40,11 +40,11 @@ data:
   path: combi/count_spanning_forest.cpp
   requiredBy: []
   timestamp: '2026-09-02 17:05:06+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/counting_spanning_tree_directed.test.cpp
   - test/counting_spanning_tree_undirected.test.cpp
   - test/counting_eulerian_circuits.test.cpp
+  - test/counting_spanning_tree_directed.test.cpp
 documentation_of: combi/count_spanning_forest.cpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
   - icon: ':x:'

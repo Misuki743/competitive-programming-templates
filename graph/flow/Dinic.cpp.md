@@ -63,8 +63,8 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/matching_on_bipartite_graph.test.cpp
   - test/bipartitematching.test.cpp
+  - test/matching_on_bipartite_graph.test.cpp
 documentation_of: graph/flow/Dinic.cpp
 layout: document
 redirect_from:

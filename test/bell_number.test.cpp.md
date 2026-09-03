@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: combi/bell_number.cpp
     title: combi/bell_number.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
   - icon: ':question:'

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: combi/binomial.cpp
     title: combi/binomial.cpp
   - icon: ':x:'
     path: combi/count_eulerian_circuit.cpp
     title: combi/count_eulerian_circuit.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: combi/count_spanning_forest.cpp
     title: combi/count_spanning_forest.cpp
   - icon: ':question:'
     path: default/t.cpp
     title: default/t.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_mint.cpp
     title: linalg/matrix_mint.cpp
   - icon: ':question:'

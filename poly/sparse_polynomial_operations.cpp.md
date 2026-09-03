@@ -6,7 +6,7 @@ data:
   - icon: ':x:'
     path: test/exp_of_formal_power_series_sparse.test.cpp
     title: test/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/inv_of_formal_power_series_sparse.test.cpp
     title: test/inv_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/sqrt_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/sparse_polynomial_operations.cpp\"\n//#include<poly/FPS.cpp>\n\
@@ -129,13 +129,13 @@ data:
   path: poly/sparse_polynomial_operations.cpp
   requiredBy: []
   timestamp: '2026-07-15 11:12:29+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/log_of_formal_power_series_sparse.test.cpp
+  - test/exp_of_formal_power_series_sparse.test.cpp
+  - test/sqrt_of_formal_power_series_sparse.test.cpp
   - test/pow_of_formal_power_series_sparse.test.cpp
   - test/inv_of_formal_power_series_sparse.test.cpp
-  - test/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/exp_of_formal_power_series_sparse.test.cpp
-  - test/log_of_formal_power_series_sparse.test.cpp
 documentation_of: poly/sparse_polynomial_operations.cpp
 layout: document
 redirect_from:

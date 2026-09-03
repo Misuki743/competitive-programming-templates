@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: modint/Montgomery_modint.cpp
     title: modint/Montgomery_modint.cpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: numtheory/zeta.cpp
     title: numtheory/zeta.cpp
   _extendedRequiredBy: []
