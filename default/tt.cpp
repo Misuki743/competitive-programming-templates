@@ -121,9 +121,9 @@ namespace algorithm_extend {
     v.erase(ranges::unique(v).begin(), v.end());
   }
 
-  template<ranges::random_access_range R>
-  R inv_perm(const R &p) {
-    R ret = p;
+  template<ranges::random_access_range R, class T = ranges::range_value_t<R>>
+  vc<T> inv_perm(const R &p) {
+    vc<T> ret(p.begin(), p.end());
     for(int i = 0; i < ssize(p); i++)
       ret[p[i]] = i;
     return ret;
@@ -225,9 +225,9 @@ namespace algorithm_extend {
   }
 
   template<ranges::random_access_range R>
-  ll inversion_count(R v) {
+  ll inversion_count(const R &r) {
     ll f = 0;
-    auto tmp = v;
+    vc<ranges::range_value_t<R>> v(r.begin(), r.end()), tmp(r.begin(), r.end());
     auto dc = [&](int l, int r, auto &self) -> void {
       if (l + 1 >= r) return;
       int mid = (l + r) / 2;
