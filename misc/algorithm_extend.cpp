@@ -129,6 +129,17 @@ namespace algorithm_extend {
     return b;
   }
 
+  template<integral T>
+  T binpow(T a, ull k, T mod) {
+    a %= mod;
+    T b = 1 % mod;
+    while(k) {
+      if (k & 1) (b *= a) %= mod;
+      (a *= a) %= mod, k >>= 1;
+    }
+    return b;
+  }
+
   template<ranges::random_access_range R>
   ll inversion_count(const R &r) {
     ll f = 0;
