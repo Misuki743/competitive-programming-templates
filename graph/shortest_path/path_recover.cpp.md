@@ -28,8 +28,8 @@ data:
   timestamp: '2026-03-22 16:32:23+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/shortest_path_dense.test.cpp
   - test/shortest_path_sparse.test.cpp
+  - test/shortest_path_dense.test.cpp
 documentation_of: graph/shortest_path/path_recover.cpp
 layout: document
 redirect_from:

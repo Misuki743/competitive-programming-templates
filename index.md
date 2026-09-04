@@ -450,6 +450,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: numtheory/Lucy_DP.cpp
       title: numtheory/Lucy_DP.cpp
+    - icon: ':warning:'
+      path: numtheory/Pisano_period.cpp
+      title: numtheory/Pisano_period.cpp
     - icon: ':heavy_check_mark:'
       path: numtheory/Stern_Brocot_tree.cpp
       title: numtheory/Stern_Brocot_tree.cpp

@@ -54,17 +54,19 @@ data:
     \ return a > b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) {\
     \ return a < b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull\
     \ k) {\n    T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a,\
-    \ k >>= 1;\n    }\n    return b;\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  ll inversion_count(const R &r) {\n    ll f = 0;\n    vc<ranges::range_value_t<R>>\
-    \ v(r.begin(), r.end()), tmp(r.begin(), r.end());\n    auto dc = [&](int l, int\
-    \ r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l\
-    \ + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n      {\n \
-    \       int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n     \
-    \     if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n"
+    \ k >>= 1;\n    }\n    return b;\n  }\n\n  template<integral T>\n  T binpow(T\
+    \ a, ull k, T mod) {\n    a %= mod;\n    T b = 1 % mod;\n    while(k) {\n    \
+    \  if (k & 1) (b *= a) %= mod;\n      (a *= a) %= mod, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(const\
+    \ R &r) {\n    ll f = 0;\n    vc<ranges::range_value_t<R>> v(r.begin(), r.end()),\
+    \ tmp(r.begin(), r.end());\n    auto dc = [&](int l, int r, auto &self) -> void\
+    \ {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n      self(l,\
+    \ mid, self);\n      self(mid, r, self);\n      {\n        int i = l, j = mid,\
+    \ k = l;\n        while(i < mid and j < r) {\n          if (v[i] <= v[j]) tmp[k++]\
+    \ = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n        }\n    \
+    \    while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++] = v[j++];\n\
+    \      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n    };\n\n\
+    \    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n"
   code: "namespace algorithm_extend {\n\n  template<typename R, typename F, typename...\
     \ Args>\n  concept R_invocable = requires(F&& f, Args&&... args) {\n    { std::invoke(std::forward<F>(f),\
     \ std::forward<Args>(args)...) } -> std::same_as<R>;\n  };\n\n  template<ranges::forward_range\
@@ -110,22 +112,24 @@ data:
     \ return a > b ? a = b, 1 : 0; }\n  template<class T> bool chmax(T &a, T b) {\
     \ return a < b ? a = b, 1 : 0; }\n\n  template<integral T>\n  T binpow(T a, ull\
     \ k) {\n    T b = 1;\n    while(k) {\n      if (k & 1) b *= a;\n      a *= a,\
-    \ k >>= 1;\n    }\n    return b;\n  }\n\n  template<ranges::random_access_range\
-    \ R>\n  ll inversion_count(const R &r) {\n    ll f = 0;\n    vc<ranges::range_value_t<R>>\
-    \ v(r.begin(), r.end()), tmp(r.begin(), r.end());\n    auto dc = [&](int l, int\
-    \ r, auto &self) -> void {\n      if (l + 1 >= r) return;\n      int mid = (l\
-    \ + r) / 2;\n      self(l, mid, self);\n      self(mid, r, self);\n      {\n \
-    \       int i = l, j = mid, k = l;\n        while(i < mid and j < r) {\n     \
-    \     if (v[i] <= v[j]) tmp[k++] = v[i++];\n          else tmp[k++] = v[j++],\
-    \ f += mid - i;\n        }\n        while(i < mid) tmp[k++] = v[i++];\n      \
-    \  while(j < r) tmp[k++] = v[j++];\n      }\n      for(int i = l; i < r; i++)\n\
-    \        v[i] = tmp[i];\n    };\n\n    dc(0, ssize(v), dc);\n\n    return f;\n\
-    \  }\n}\n"
+    \ k >>= 1;\n    }\n    return b;\n  }\n\n  template<integral T>\n  T binpow(T\
+    \ a, ull k, T mod) {\n    a %= mod;\n    T b = 1 % mod;\n    while(k) {\n    \
+    \  if (k & 1) (b *= a) %= mod;\n      (a *= a) %= mod, k >>= 1;\n    }\n    return\
+    \ b;\n  }\n\n  template<ranges::random_access_range R>\n  ll inversion_count(const\
+    \ R &r) {\n    ll f = 0;\n    vc<ranges::range_value_t<R>> v(r.begin(), r.end()),\
+    \ tmp(r.begin(), r.end());\n    auto dc = [&](int l, int r, auto &self) -> void\
+    \ {\n      if (l + 1 >= r) return;\n      int mid = (l + r) / 2;\n      self(l,\
+    \ mid, self);\n      self(mid, r, self);\n      {\n        int i = l, j = mid,\
+    \ k = l;\n        while(i < mid and j < r) {\n          if (v[i] <= v[j]) tmp[k++]\
+    \ = v[i++];\n          else tmp[k++] = v[j++], f += mid - i;\n        }\n    \
+    \    while(i < mid) tmp[k++] = v[i++];\n        while(j < r) tmp[k++] = v[j++];\n\
+    \      }\n      for(int i = l; i < r; i++)\n        v[i] = tmp[i];\n    };\n\n\
+    \    dc(0, ssize(v), dc);\n\n    return f;\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: misc/algorithm_extend.cpp
   requiredBy: []
-  timestamp: '2026-09-03 22:17:13+08:00'
+  timestamp: '2026-09-04 17:39:10+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: misc/algorithm_extend.cpp

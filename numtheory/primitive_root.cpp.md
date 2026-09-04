@@ -35,8 +35,8 @@ data:
   timestamp: '2026-09-02 17:47:14+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/primitive_root.test.cpp
   - test/two_square_sum.test.cpp
+  - test/primitive_root.test.cpp
 documentation_of: numtheory/primitive_root.cpp
 layout: document
 redirect_from:
