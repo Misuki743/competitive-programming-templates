@@ -71,13 +71,13 @@ data:
     \ msk &= ~(T(1) << bit);\n  }\n  template<integral T> void flip_bit(T &msk, int\
     \ bit) { msk ^= T(1) << bit; }\n  template<integral T> bool get_bit(T msk, int\
     \ bit) { return msk >> bit & T(1); }\n\n  template<integral T> T floor_div(T a,\
-    \ T b) { return a / b - (a % b < 0); }\n  template<integral T> T  ceil_div(T a,\
-    \ T b) { return a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n   \
-    \ if (a == 0) return 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return\
-    \ a;\n    if (k == 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b > a) b--;\n      return b;\n\
-    \    }\n    if (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b +\
-    \ 1) * (b + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n\
+    \ T b) { return a / b - ((a ^ b) < 0 and a % b); }\n  template<integral T> T \
+    \ ceil_div(T a, T b) { return a / b + ((a ^ b) > 0 and a % b); }\n\n  ull kth_root(ull\
+    \ a, int k) {\n    if (a == 0) return 0ull;\n    if (k >= 64) return 1ull;\n \
+    \   if (k == 1) return a;\n    if (k == 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b\
+    \ + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b > a) b--;\n      return\
+    \ b;\n    }\n    if (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b\
+    \ + 1) * (b + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n\
     \      return b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull\
     \ a, int k) {\n      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n\
     \      return b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k)\
@@ -317,13 +317,13 @@ data:
     \ msk &= ~(T(1) << bit);\n  }\n  template<integral T> void flip_bit(T &msk, int\
     \ bit) { msk ^= T(1) << bit; }\n  template<integral T> bool get_bit(T msk, int\
     \ bit) { return msk >> bit & T(1); }\n\n  template<integral T> T floor_div(T a,\
-    \ T b) { return a / b - (a % b < 0); }\n  template<integral T> T  ceil_div(T a,\
-    \ T b) { return a / b + (a % b > 0); }\n\n  ull kth_root(ull a, int k) {\n   \
-    \ if (a == 0) return 0ull;\n    if (k >= 64) return 1ull;\n    if (k == 1) return\
-    \ a;\n    if (k == 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b + 1)\
-    \ * (b + 1) <= a) b++;\n      while((__int128)b * b > a) b--;\n      return b;\n\
-    \    }\n    if (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b +\
-    \ 1) * (b + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n\
+    \ T b) { return a / b - ((a ^ b) < 0 and a % b); }\n  template<integral T> T \
+    \ ceil_div(T a, T b) { return a / b + ((a ^ b) > 0 and a % b); }\n\n  ull kth_root(ull\
+    \ a, int k) {\n    if (a == 0) return 0ull;\n    if (k >= 64) return 1ull;\n \
+    \   if (k == 1) return a;\n    if (k == 2) {\n      ull b = sqrtl(a);\n      while((__int128)(b\
+    \ + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b > a) b--;\n      return\
+    \ b;\n    }\n    if (k == 3) {\n      ull b = cbrtl(a);\n      while((__int128)(b\
+    \ + 1) * (b + 1) * (b + 1) <= a) b++;\n      while((__int128)b * b * b > a) b--;\n\
     \      return b;\n    }\n    ull b = powl(a, 1.0L / k);\n    auto pw = [](ull\
     \ a, int k) {\n      __int128 b = 1;\n      for(int i = 0; i < k; i++) b *= a;\n\
     \      return b;\n    };\n    while(pw(b + 1, k) <= a) b++;\n    while(pw(b, k)\
@@ -504,7 +504,7 @@ data:
   isVerificationFile: false
   path: default/tt.cpp
   requiredBy: []
-  timestamp: '2026-09-04 17:39:10+08:00'
+  timestamp: '2026-09-15 23:33:09+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: default/tt.cpp
