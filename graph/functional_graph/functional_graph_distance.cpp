@@ -14,7 +14,7 @@ struct functional_graph_distance {
     int nxt = 0;
     auto calc = [&](int s) -> void {
       {
-        auto dfs = [&](int v, auto self) -> void {
+        auto dfs = [&](int v, auto &self) -> void {
           ccId[v] = nxt;
           for(int x : g[v])
             if (ccId[x] == -1)
@@ -26,7 +26,7 @@ struct functional_graph_distance {
       vector<int> cycle;
       {
         vector<int> sta;
-        auto dfs = [&](int v, auto self) -> void {
+        auto dfs = [&](int v, auto &self) -> void {
           if (inSta[v]) {
             while(sta.back() != v) {
               cycle.emplace_back(sta.back());
@@ -48,7 +48,7 @@ struct functional_graph_distance {
 
       {
         int t = 0;
-        auto dfs = [&](int v, int p, int id, auto self) -> void {
+        auto dfs = [&](int v, int p, int id, auto &self) -> void {
           tin[v] = t++;
           for(int x : g[v]) if (!onCycle[x] and x != p) {
             treeId[x] = id, dep[x] = dep[v] + 1;

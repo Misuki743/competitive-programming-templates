@@ -12,7 +12,7 @@ array<vector<int>, 2> cycle_detection(vector<array<int, 2>> &e) {
 
   vector<bool> vis(n, false), inStack(n, false);
   vector<int> vs, es;
-  auto dfs = [&](int v, int p, auto self) -> bool {
+  auto dfs = [&](int v, int p, auto &self) -> bool {
     vis[v] = inStack[v] = true;
     vs.emplace_back(v);
     for(int i : g[v]) {

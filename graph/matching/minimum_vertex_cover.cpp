@@ -17,7 +17,7 @@ array<vector<int>, 2> MVC(vector<vi> &g, vi& btoa) {
         g2[u].emplace_back(v + n1);
     }
   }
-  auto dfs = [&](int v, auto self) -> void {
+  auto dfs = [&](int v, auto &self) -> void {
     vis[v] = true;
     for(int x : g2[v])
       if (!vis[x])

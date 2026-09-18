@@ -8,7 +8,7 @@
 
 template<class Mint>
 FPS<Mint> path_counting(FPS<Mint> f, FPS<Mint> g, vector<int> lb) {
-  auto calc = [&](int l, int r, FPS<Mint> f, auto self) -> FPS<Mint> {
+  auto calc = [&](int l, int r, FPS<Mint> f, auto &self) -> FPS<Mint> {
     if (l == r) {
       dbg(r);
       dbg(f << lb[r]);

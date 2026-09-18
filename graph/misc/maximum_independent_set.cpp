@@ -14,7 +14,7 @@ vector<int> maximum_independent_set(vector<ull> g, int n) {
         pre[j] = pre[j ^ (1 << i)];
 
   ull best = 0;
-  auto dfs = [&](int v, ull is, ull adj, auto self) -> void {
+  auto dfs = [&](int v, ull is, ull adj, auto &self) -> void {
     if (v == n / 2 - 1) {
       is |= pre[~adj & ((1LL << (n / 2)) - 1)];
       if (popcount(is) > popcount(best))

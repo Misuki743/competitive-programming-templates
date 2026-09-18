@@ -40,7 +40,7 @@ array<vector<int>, 2> eulerian_trail(int n, vector<array<int, 2>> &e) {
 
   vector<int> vid, eid, ptr(n);
   vector<bool> visE(ssize(e), false);
-  auto dfs = [&](int v, auto self) -> void {
+  auto dfs = [&](int v, auto &self) -> void {
     for(int &i = ptr[v]; i < ssize(g[v]); i++) {
       if (visE[g[v][i]]) continue;
       int tmp = g[v][i];

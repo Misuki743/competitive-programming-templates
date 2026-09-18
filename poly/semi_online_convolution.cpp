@@ -4,7 +4,7 @@
 
 template<class Mint>
 FPS<Mint> semi_online_convolution(FPS<Mint> f, FPS<Mint> g) {
-  auto calc = [&](int l, int r, auto self) -> void {
+  auto calc = [&](int l, int r, auto &self) -> void {
     if (l + 1 >= r) return;
     int mid = (l + r) / 2;
     self(l, mid, self);
