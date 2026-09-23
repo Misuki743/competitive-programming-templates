@@ -146,8 +146,8 @@ data:
     \ i = 0; (1 << i) < ssize(pre); i++)\n    for(int j = 0; j < ssize(pre); j++)\n\
     \      if ((j >> i & 1) and popcount(pre[j ^ (1 << i)]) > popcount(pre[j]))\n\
     \        pre[j] = pre[j ^ (1 << i)];\n\n  ull best = 0;\n  auto dfs = [&](int\
-    \ v, ull is, ull adj, auto self) -> void {\n    if (v == n / 2 - 1) {\n      is\
-    \ |= pre[~adj & ((1LL << (n / 2)) - 1)];\n      if (popcount(is) > popcount(best))\n\
+    \ v, ull is, ull adj, auto &self) -> void {\n    if (v == n / 2 - 1) {\n     \
+    \ is |= pre[~adj & ((1LL << (n / 2)) - 1)];\n      if (popcount(is) > popcount(best))\n\
     \        best = is;\n    } else  {\n      self(v - 1, is, adj, self);\n      adj\
     \ |= g[v];\n      if (~adj >> v & 1)\n        self(v - 1, is | (1LL << v), adj,\
     \ self);\n    }\n  };\n\n  dfs(n - 1, 0, 0, dfs);\n\n  vector<int> mis;\n  for(int\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: true
   path: test/maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
+  timestamp: '2026-09-18 22:45:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/maximum_independent_set.test.cpp

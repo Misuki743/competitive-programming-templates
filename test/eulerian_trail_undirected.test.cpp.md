@@ -152,7 +152,7 @@ data:
     \   if (s != -1) \n      return {};\n\n  if (s == -1)\n    for(int v = 0; v <\
     \ n; v++)\n      if (indeg[v] | outdeg[v])\n        s = v;\n\n  if (s == -1)\n\
     \    s = 0;\n\n  vector<int> vid, eid, ptr(n);\n  vector<bool> visE(ssize(e),\
-    \ false);\n  auto dfs = [&](int v, auto self) -> void {\n    for(int &i = ptr[v];\
+    \ false);\n  auto dfs = [&](int v, auto &self) -> void {\n    for(int &i = ptr[v];\
     \ i < ssize(g[v]); i++) {\n      if (visE[g[v][i]]) continue;\n      int tmp =\
     \ g[v][i];\n      int x = v ^ e[tmp][0] ^ e[tmp][1];\n      visE[tmp] = true;\n\
     \      self(x, self);\n      vid.emplace_back(x);\n      eid.emplace_back(tmp);\n\
@@ -179,7 +179,7 @@ data:
   isVerificationFile: true
   path: test/eulerian_trail_undirected.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
+  timestamp: '2026-09-18 22:45:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/eulerian_trail_undirected.test.cpp

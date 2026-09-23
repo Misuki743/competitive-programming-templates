@@ -442,6 +442,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: modint/dynamic_modint.cpp
       title: modint/dynamic_modint.cpp
+  - name: new_poly
+    pages:
+    - icon: ':warning:'
+      path: new_poly/FPS.cpp
+      title: new_poly/FPS.cpp
+    - icon: ':warning:'
+      path: new_poly/NTT.cpp
+      title: new_poly/NTT.cpp
   - name: numtheory
     pages:
     - icon: ':warning:'
@@ -790,6 +798,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7.test.cpp
       title: test/convolution_1e9+7.test.cpp
+    - icon: ':x:'
+      path: test/convolution_1e9+7_2.test.cpp
+      title: test/convolution_1e9+7_2.test.cpp
+    - icon: ':x:'
+      path: test/convolution_2.test.cpp
+      title: test/convolution_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/counting_eulerian_circuits.test.cpp
       title: test/counting_eulerian_circuits.test.cpp

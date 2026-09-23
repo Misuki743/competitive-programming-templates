@@ -14,7 +14,7 @@ data:
     \ |g|)lg(|f| + |g|)) time complexity.\n\n//#include<modint/Montgomery_modint.cpp>\n\
     //#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\ntemplate<class Mint>\n\
     FPS<Mint> path_counting(FPS<Mint> f, FPS<Mint> g, vector<int> lb) {\n  auto calc\
-    \ = [&](int l, int r, FPS<Mint> f, auto self) -> FPS<Mint> {\n    if (l == r)\
+    \ = [&](int l, int r, FPS<Mint> f, auto &self) -> FPS<Mint> {\n    if (l == r)\
     \ {\n      dbg(r);\n      dbg(f << lb[r]);\n      return f; \n    } else if (l\
     \ + 1 == r) {\n      dbg(r);\n      dbg((f * g) << lb[l]);\n      return (f *\
     \ g) >> (lb[r] - lb[l]);\n    } else {\n      FPS<Mint> ret = (f >> (lb[r] - lb[l]))\
@@ -28,7 +28,7 @@ data:
     //in O(n(D + |g|)lg(n(D + |g|))lgn + (|f| + |g|)lg(|f| + |g|)) time complexity.\n\
     \n//#include<modint/Montgomery_modint.cpp>\n//#include<poly/FPS.cpp>\n//#include<poly/NTTmint.cpp>\n\
     \ntemplate<class Mint>\nFPS<Mint> path_counting(FPS<Mint> f, FPS<Mint> g, vector<int>\
-    \ lb) {\n  auto calc = [&](int l, int r, FPS<Mint> f, auto self) -> FPS<Mint>\
+    \ lb) {\n  auto calc = [&](int l, int r, FPS<Mint> f, auto &self) -> FPS<Mint>\
     \ {\n    if (l == r) {\n      dbg(r);\n      dbg(f << lb[r]);\n      return f;\
     \ \n    } else if (l + 1 == r) {\n      dbg(r);\n      dbg((f * g) << lb[l]);\n\
     \      return (f * g) >> (lb[r] - lb[l]);\n    } else {\n      FPS<Mint> ret =\
@@ -42,7 +42,7 @@ data:
   isVerificationFile: false
   path: combi/path_counting.cpp
   requiredBy: []
-  timestamp: '2026-06-07 01:41:25+08:00'
+  timestamp: '2026-09-18 22:45:18+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: combi/path_counting.cpp

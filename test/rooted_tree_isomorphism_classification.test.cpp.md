@@ -141,7 +141,7 @@ data:
     \ namespace sieve_of_Eratosthenes;\n#line 1 \"tree/tree_hash.cpp\"\ntemplate<bool\
     \ ordered = false>\nauto tree_hash(vvi &g, int root = 0) {\n  int nxt = 0;\n \
     \ static map<vi, int> seq_to_id;\n  vi subtree_id(size(g));\n  auto dfs = [&](int\
-    \ v, int p, auto self) -> int {\n    vi seq;\n    seq.reserve(ssize(g[v]));\n\
+    \ v, int p, auto &self) -> int {\n    vi seq;\n    seq.reserve(ssize(g[v]));\n\
     \    for(int x : g[v]) if (x != p)\n      seq.emplace_back(self(x, v, self));\n\
     \    if constexpr (!ordered)\n      ranges::sort(seq);\n    auto [ite, insert]\
     \ = seq_to_id.emplace(seq, nxt);\n    if (insert) nxt++;\n    return subtree_id[v]\
@@ -163,7 +163,7 @@ data:
   isVerificationFile: true
   path: test/rooted_tree_isomorphism_classification.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
+  timestamp: '2026-09-18 22:45:18+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/rooted_tree_isomorphism_classification.test.cpp

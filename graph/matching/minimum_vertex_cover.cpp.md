@@ -15,9 +15,9 @@ data:
     \ false);\n  vector<vector<int>> g2(n1 + n2);\n  for(int u = 0; u < n1; u++) {\n\
     \    for(int v : g[u]) {\n      if (btoa[v] == u)\n        g2[v + n1].emplace_back(u);\n\
     \      else\n        g2[u].emplace_back(v + n1);\n    }\n  }\n  auto dfs = [&](int\
-    \ v, auto self) -> void {\n    vis[v] = true;\n    for(int x : g2[v])\n      if\
-    \ (!vis[x])\n        self(x, self);\n  };\n  for(int i = 0; i < n1; i++)\n   \
-    \ if (!ml[i] and !vis[i])\n      dfs(i, dfs);\n\n  array<vector<int>, 2> vc;\n\
+    \ v, auto &self) -> void {\n    vis[v] = true;\n    for(int x : g2[v])\n     \
+    \ if (!vis[x])\n        self(x, self);\n  };\n  for(int i = 0; i < n1; i++)\n\
+    \    if (!ml[i] and !vis[i])\n      dfs(i, dfs);\n\n  array<vector<int>, 2> vc;\n\
     \  for(int i = 0; i < n1; i++)\n    if (!vis[i])\n      vc[0].push_back(i);\n\
     \  for(int i = 0; i < n2; i++)\n    if (vis[i + n1])\n      vc[1].push_back(i);\n\
     \n  return vc;\n}\n"
@@ -27,8 +27,8 @@ data:
     \n  vector<bool> vis(n1 + n2, false);\n  vector<vector<int>> g2(n1 + n2);\n  for(int\
     \ u = 0; u < n1; u++) {\n    for(int v : g[u]) {\n      if (btoa[v] == u)\n  \
     \      g2[v + n1].emplace_back(u);\n      else\n        g2[u].emplace_back(v +\
-    \ n1);\n    }\n  }\n  auto dfs = [&](int v, auto self) -> void {\n    vis[v] =\
-    \ true;\n    for(int x : g2[v])\n      if (!vis[x])\n        self(x, self);\n\
+    \ n1);\n    }\n  }\n  auto dfs = [&](int v, auto &self) -> void {\n    vis[v]\
+    \ = true;\n    for(int x : g2[v])\n      if (!vis[x])\n        self(x, self);\n\
     \  };\n  for(int i = 0; i < n1; i++)\n    if (!ml[i] and !vis[i])\n      dfs(i,\
     \ dfs);\n\n  array<vector<int>, 2> vc;\n  for(int i = 0; i < n1; i++)\n    if\
     \ (!vis[i])\n      vc[0].push_back(i);\n  for(int i = 0; i < n2; i++)\n    if\
@@ -37,7 +37,7 @@ data:
   isVerificationFile: false
   path: graph/matching/minimum_vertex_cover.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-09-18 22:45:18+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/matching/minimum_vertex_cover.cpp

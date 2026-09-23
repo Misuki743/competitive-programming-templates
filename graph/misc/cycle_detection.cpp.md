@@ -20,7 +20,7 @@ data:
     \ g(n);\n  for(int i = 0; auto [u, v] : e) {\n    if (u == v) return {{{u}, {i}}};\n\
     \    if constexpr (!directed)\n      g[v].emplace_back(i);\n    g[u].emplace_back(i++);\n\
     \  }\n\n  vector<bool> vis(n, false), inStack(n, false);\n  vector<int> vs, es;\n\
-    \  auto dfs = [&](int v, int p, auto self) -> bool {\n    vis[v] = inStack[v]\
+    \  auto dfs = [&](int v, int p, auto &self) -> bool {\n    vis[v] = inStack[v]\
     \ = true;\n    vs.emplace_back(v);\n    for(int i : g[v]) {\n      if (i == p)\
     \ continue;\n      int x = v ^ e[i][0] ^ e[i][1];\n      es.emplace_back(i);\n\
     \      if (inStack[x]) {\n        vs = vector<int>(ranges::find(vs, x), vs.end());\n\
@@ -34,7 +34,7 @@ data:
     \  vector<vector<int>> g(n);\n  for(int i = 0; auto [u, v] : e) {\n    if (u ==\
     \ v) return {{{u}, {i}}};\n    if constexpr (!directed)\n      g[v].emplace_back(i);\n\
     \    g[u].emplace_back(i++);\n  }\n\n  vector<bool> vis(n, false), inStack(n,\
-    \ false);\n  vector<int> vs, es;\n  auto dfs = [&](int v, int p, auto self) ->\
+    \ false);\n  vector<int> vs, es;\n  auto dfs = [&](int v, int p, auto &self) ->\
     \ bool {\n    vis[v] = inStack[v] = true;\n    vs.emplace_back(v);\n    for(int\
     \ i : g[v]) {\n      if (i == p) continue;\n      int x = v ^ e[i][0] ^ e[i][1];\n\
     \      es.emplace_back(i);\n      if (inStack[x]) {\n        vs = vector<int>(ranges::find(vs,\
@@ -48,7 +48,7 @@ data:
   isVerificationFile: false
   path: graph/misc/cycle_detection.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-09-18 22:45:18+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/cycle_detection_undirected.test.cpp
