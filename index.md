@@ -447,7 +447,7 @@ data:
     - icon: ':warning:'
       path: new_poly/FPS.cpp
       title: new_poly/FPS.cpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: new_poly/NTT.cpp
       title: new_poly/NTT.cpp
   - name: numtheory
@@ -798,10 +798,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7.test.cpp
       title: test/convolution_1e9+7.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/convolution_1e9+7_2.test.cpp
       title: test/convolution_1e9+7_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/convolution_2.test.cpp
       title: test/convolution_2.test.cpp
     - icon: ':heavy_check_mark:'

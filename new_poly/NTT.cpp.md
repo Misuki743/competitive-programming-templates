@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_1e9+7_2.test.cpp
+    title: test/convolution_1e9+7_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/convolution_2.test.cpp
+    title: test/convolution_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"new_poly/NTT.cpp\"\nnamespace NTT {\n  template<class Mint>\n\
@@ -93,8 +99,10 @@ data:
   path: new_poly/NTT.cpp
   requiredBy: []
   timestamp: '2026-09-23 00:03:08+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/convolution_2.test.cpp
+  - test/convolution_1e9+7_2.test.cpp
 documentation_of: new_poly/NTT.cpp
 layout: document
 redirect_from:
