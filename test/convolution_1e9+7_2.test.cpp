@@ -2,7 +2,7 @@
 
 #include "../default/t.cpp"
 #include "../modint/Montgomery_modint.cpp"
-#include "../poly_new/NTT.cpp"
+#include "../new_poly/NTT.cpp"
 
 using Mint = Montgomery_modint<1'000'000'007>;
 
