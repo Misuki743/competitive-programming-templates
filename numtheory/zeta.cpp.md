@@ -51,8 +51,8 @@ data:
   timestamp: '2026-09-03 10:52:15+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/gcd_convolution.test.cpp
   - test/lcm_convolution.test.cpp
+  - test/gcd_convolution.test.cpp
 documentation_of: numtheory/zeta.cpp
 layout: document
 redirect_from:

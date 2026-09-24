@@ -48,7 +48,19 @@ data:
     \ = 1; (1 << (i - 1)) < k; i++) {\n      vc<Mint> c(1 << i);\n      ranges::copy(a\
     \ | views::take(1 << i), c.begin());\n      b = b * (vc<Mint>(1, 1) + c - log(b,\
     \ 1 << i));\n      b.resize(1 << i);\n    }\n    b.resize(k);\n    return b;\n\
-    \  }\n}\n\nusing namespace FPS;\n"
+    \  }\n\n  template<class Mint>\n  vc<Mint> pow(vc<Mint> a, ll e, int k = -1) {\n\
+    \    if (k == -1) k = ssize(a);\n    if (e == 0) {\n      vc<Mint> b(k);\n   \
+    \   b[0] = 1;\n      return b;\n    }\n    \n    int s = 0;\n    while(s < ssize(a)\
+    \ and a[s] == 0) s++;\n\n    if (s == ssize(a) or (__int128)s * e >= k) return\
+    \ vc<Mint>(k);\n\n    Mint ps = a[s].pow(e);\n    Mint iv = Mint(a[s]).inverse();\n\
+    \    for(Mint &x : a) x *= iv;\n    a >>= s;\n\n    a = log(a);\n    for(Mint\
+    \ &x : a) x *= e;\n    a = exp(a);\n\n    for(Mint &x : a) x *= ps;\n    a.resize(k);\n\
+    \    ranges::rotate(a, a.end() - s * e);\n    fill(a.begin(), a.begin() + s *\
+    \ e, Mint(0));\n\n    return a;\n  }\n\n  template<class Mint>\n  vc<Mint> FPS_product(vc<vc<Mint>>\
+    \ &fs) {\n    if (empty(fs)) return {1};\n    auto dc = [&](int l, int r, auto\
+    \ &self) -> vector<Mint> {\n      if (l + 1 == r) return fs[l];\n      int mid\
+    \ = (l + r) / 2;\n      return self(l, mid, self) * self(mid, r, self);\n    };\n\
+    \    return dc(0, ssize(fs), dc);\n  }\n}\n\nusing namespace FPS;\n"
   code: "namespace FPS {\n  \n  template<class T>\n  vc<T>& operator+=(vc<T> &a, const\
     \ vc<T> b) {\n    if (size(a) < size(b)) a.resize(size(b), 0);\n    for(int i\
     \ = 0; i < ssize(a); i++)\n      a[i] += b[i];\n    return a;\n  }\n\n  template<class\
@@ -88,12 +100,25 @@ data:
     \ ssize(a);\n    vc<Mint> b(1, 1);\n    for(int i = 1; (1 << (i - 1)) < k; i++)\
     \ {\n      vc<Mint> c(1 << i);\n      ranges::copy(a | views::take(1 << i), c.begin());\n\
     \      b = b * (vc<Mint>(1, 1) + c - log(b, 1 << i));\n      b.resize(1 << i);\n\
-    \    }\n    b.resize(k);\n    return b;\n  }\n}\n\nusing namespace FPS;\n"
+    \    }\n    b.resize(k);\n    return b;\n  }\n\n  template<class Mint>\n  vc<Mint>\
+    \ pow(vc<Mint> a, ll e, int k = -1) {\n    if (k == -1) k = ssize(a);\n    if\
+    \ (e == 0) {\n      vc<Mint> b(k);\n      b[0] = 1;\n      return b;\n    }\n\
+    \    \n    int s = 0;\n    while(s < ssize(a) and a[s] == 0) s++;\n\n    if (s\
+    \ == ssize(a) or (__int128)s * e >= k) return vc<Mint>(k);\n\n    Mint ps = a[s].pow(e);\n\
+    \    Mint iv = Mint(a[s]).inverse();\n    for(Mint &x : a) x *= iv;\n    a >>=\
+    \ s;\n\n    a = log(a);\n    for(Mint &x : a) x *= e;\n    a = exp(a);\n\n   \
+    \ for(Mint &x : a) x *= ps;\n    a.resize(k);\n    ranges::rotate(a, a.end() -\
+    \ s * e);\n    fill(a.begin(), a.begin() + s * e, Mint(0));\n\n    return a;\n\
+    \  }\n\n  template<class Mint>\n  vc<Mint> FPS_product(vc<vc<Mint>> &fs) {\n \
+    \   if (empty(fs)) return {1};\n    auto dc = [&](int l, int r, auto &self) ->\
+    \ vector<Mint> {\n      if (l + 1 == r) return fs[l];\n      int mid = (l + r)\
+    \ / 2;\n      return self(l, mid, self) * self(mid, r, self);\n    };\n    return\
+    \ dc(0, ssize(fs), dc);\n  }\n}\n\nusing namespace FPS;\n"
   dependsOn: []
   isVerificationFile: false
   path: new_poly/FPS.cpp
   requiredBy: []
-  timestamp: '2026-09-24 00:49:28+08:00'
+  timestamp: '2026-09-24 17:47:59+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: new_poly/FPS.cpp

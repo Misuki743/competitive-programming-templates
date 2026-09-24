@@ -28,8 +28,8 @@ data:
   timestamp: '2026-09-03 11:26:39+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/sum_of_totient_function.test.cpp
   - test/mytest_phi_vec.test.cpp
+  - test/sum_of_totient_function.test.cpp
 documentation_of: numtheory/phi_vec.cpp
 layout: document
 redirect_from:

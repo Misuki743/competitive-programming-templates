@@ -66,9 +66,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/lca_2.test.cpp
+  - test/mytest_auxiliary_tree.test.cpp
   - test/lca_3.test.cpp
   - test/static_RMQ_2.test.cpp
-  - test/mytest_auxiliary_tree.test.cpp
 documentation_of: ds/RMQ.cpp
 layout: document
 redirect_from:
