@@ -129,6 +129,48 @@ namespace FPS {
     b.resize(k);
     return b;
   }
+
+  template<class Mint>
+  vc<Mint> pow(vc<Mint> a, ll e, int k = -1) {
+    if (k == -1) k = ssize(a);
+    if (e == 0) {
+      vc<Mint> b(k);
+      b[0] = 1;
+      return b;
+    }
+    
+    int s = 0;
+    while(s < ssize(a) and a[s] == 0) s++;
+
+    if (s == ssize(a) or (__int128)s * e >= k) return vc<Mint>(k);
+
+    Mint ps = a[s].pow(e);
+    Mint iv = Mint(a[s]).inverse();
+    for(Mint &x : a) x *= iv;
+    a >>= s;
+
+    a = log(a);
+    for(Mint &x : a) x *= e;
+    a = exp(a);
+
+    for(Mint &x : a) x *= ps;
+    a.resize(k);
+    ranges::rotate(a, a.end() - s * e);
+    fill(a.begin(), a.begin() + s * e, Mint(0));
+
+    return a;
+  }
+
+  template<class Mint>
+  vc<Mint> FPS_product(vc<vc<Mint>> &fs) {
+    if (empty(fs)) return {1};
+    auto dc = [&](int l, int r, auto &self) -> vector<Mint> {
+      if (l + 1 == r) return fs[l];
+      int mid = (l + r) / 2;
+      return self(l, mid, self) * self(mid, r, self);
+    };
+    return dc(0, ssize(fs), dc);
+  }
 }
 
 using namespace FPS;
