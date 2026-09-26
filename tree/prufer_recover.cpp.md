@@ -42,8 +42,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest_auxiliary_tree.test.cpp
-  - test/mytest_tree.test.cpp
   - test/mytest_tree_diameter.test.cpp
+  - test/mytest_tree.test.cpp
 documentation_of: tree/prufer_recover.cpp
 layout: document
 redirect_from:

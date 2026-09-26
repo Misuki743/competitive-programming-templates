@@ -193,16 +193,20 @@ data:
     \ false);\n    b.resize(n, 0);\n    if constexpr (neg_b)\n      ranges::reverse(b\
     \ | views::drop(1));\n    DFT(b, false);\n\n    for(int i = 0; i < n; i++)\n \
     \     a[i] *= b[i];\n\n    DFT(a, true);\n    if constexpr (!neg_b)\n      a.resize(sz);\n\
-    \n    return a;\n  }\n\n  template<class T1, class T2>\n  vc<T1> vec_conversion(vc<T2>\
-    \ &a) {\n    vc<T1> r(size(a));\n    for(int i = 0; i < ssize(a); i++) {\n   \
-    \   if constexpr (is_integral_v<T2>)\n        r[i] = a[i];\n      else\n     \
-    \   r[i] = a[i].get();\n    }\n    return r;\n  }\n\n  //(T1 = mint): n * mod^2\
-    \ < prod of mods(~= 5e26) should hold\n  //(T1 = ll): result should be within\
-    \ long long\n  template<class T1, class T2>\n  vc<T1> convolution_CRT(vc<T2> a,\
-    \ vc<T2> b) {\n    using Mint0 = Montgomery_modint<998'244'353>;\n    using Mint1\
-    \ = Montgomery_modint<469'762'049>;\n    using Mint2 = Montgomery_modint<167'772'161>;\n\
-    \n    if (empty(a) or empty(b)) return {};\n\n    auto x = convolution(vec_conversion<Mint0>(a),\n\
-    \                         vec_conversion<Mint0>(b));\n    auto y = convolution(vec_conversion<Mint1>(a),\n\
+    \n    return a;\n  }\n\n  template<class Mint>\n  vc<Mint> full_pow(vc<Mint> a,\
+    \ int e) {\n    if (e == 0) return vc<Mint>(1, 1);\n\n    int sz = (ssize(a) -\
+    \ 1) * e + 1;\n    a.resize(bit_ceil(sz * 1ull));\n    DFT(a, 0);\n    for(Mint\
+    \ &x : a) x = x.pow(e);\n    DFT(a, 1);\n    a.resize(sz);\n\n    return a;\n\
+    \  }\n\n  template<class T1, class T2>\n  vc<T1> vec_conversion(vc<T2> &a) {\n\
+    \    vc<T1> r(size(a));\n    for(int i = 0; i < ssize(a); i++) {\n      if constexpr\
+    \ (is_integral_v<T2>)\n        r[i] = a[i];\n      else\n        r[i] = a[i].get();\n\
+    \    }\n    return r;\n  }\n\n  using Mint0 = Montgomery_modint<998'244'353>;\n\
+    \  using Mint1 = Montgomery_modint<469'762'049>;\n  using Mint2 = Montgomery_modint<167'772'161>;\n\
+    \n  //(T1 = mint): n * mod^2 < prod of mods(~= 5e26) should hold\n  //(T1 = ll):\
+    \ result should be within long long\n  template<class T1, class T2>\n  vc<T1>\
+    \ convolution_CRT(vc<T2> a, vc<T2> b) {\n    if (empty(a) or empty(b)) return\
+    \ {};\n\n    auto x = convolution(vec_conversion<Mint0>(a),\n                \
+    \         vec_conversion<Mint0>(b));\n    auto y = convolution(vec_conversion<Mint1>(a),\n\
     \                         vec_conversion<Mint1>(b));\n    auto z = convolution(vec_conversion<Mint2>(a),\n\
     \                         vec_conversion<Mint2>(b));\n\n    static constexpr uint32_t\
     \ mod0 = 998'244'353, mod1 = 469'762'049;\n    static const Mint1 im0 = 1 / Mint1(mod0);\n\
@@ -210,8 +214,18 @@ data:
     \ const T1 m0 = mod0, m0m1 = m0 * mod1;\n\n    vc<T1> r(size(x));\n    for(int\
     \ i = 0; i < ssize(x); i++) {\n      int y0 = x[i].get();\n      int y1 = (im0\
     \ * (y[i] - y0)).get();\n      int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();\n\
-    \      r[i] = y0 + m0 * y1 + m0m1 * y2;\n    }\n\n    return r;\n  }\n}\n\nusing\
-    \ namespace NTT;\n#line 6 \"test/convolution_2.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \      r[i] = y0 + m0 * y1 + m0m1 * y2;\n    }\n\n    return r;\n  }\n\n  template<class\
+    \ T1, class T2>\n  vc<T1> full_pow_CRT(vc<T2> a, int e) {\n    if (e == 0) return\
+    \ vc<T1>(1, 1);\n\n    auto x = full_pow(vec_conversion<Mint0>(a), 2);\n    auto\
+    \ y = full_pow(vec_conversion<Mint1>(a), 2);\n    auto z = full_pow(vec_conversion<Mint2>(a),\
+    \ 2);\n\n    static constexpr uint32_t mod0 = 998'244'353, mod1 = 469'762'049;\n\
+    \    static const Mint1 im0 = 1 / Mint1(mod0);\n    static const Mint2 im1 = 1\
+    \ / Mint2(mod1), im0m1 = im1 / mod0;\n    static const T1 m0 = mod0, m0m1 = m0\
+    \ * mod1;\n\n    vc<T1> r(size(x));\n    for(int i = 0; i < ssize(x); i++) {\n\
+    \      int y0 = x[i].get();\n      int y1 = (im0 * (y[i] - y0)).get();\n     \
+    \ int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();\n      r[i] = y0 + m0 * y1\
+    \ + m0m1 * y2;\n    }\n\n    return r;\n  }\n}\n\nusing namespace NTT;\n#line\
+    \ 6 \"test/convolution_2.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
     \ cin.tie(NULL);\n\n  int n, m; cin >> n >> m;\n  vector<mint> a(n), b(m);\n \
     \ for(mint &x : a) cin >> x;\n  for(mint &x : b) cin >> x;\n  cout << convolution(a,\
     \ b) << '\\n';\n\n  return 0;\n}\n"
@@ -228,7 +242,7 @@ data:
   isVerificationFile: true
   path: test/convolution_2.test.cpp
   requiredBy: []
-  timestamp: '2026-09-23 23:39:00+08:00'
+  timestamp: '2026-09-26 13:58:48+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/convolution_2.test.cpp
