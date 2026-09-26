@@ -60,6 +60,20 @@ namespace NTT {
     return a;
   }
 
+  template<class Mint>
+  vc<Mint> full_pow(vc<Mint> a, int e) {
+    if (e == 0) return vc<Mint>(1, 1);
+
+    int sz = (ssize(a) - 1) * e + 1;
+    a.resize(bit_ceil(sz * 1ull));
+    DFT(a, 0);
+    for(Mint &x : a) x = x.pow(e);
+    DFT(a, 1);
+    a.resize(sz);
+
+    return a;
+  }
+
   template<class T1, class T2>
   vc<T1> vec_conversion(vc<T2> &a) {
     vc<T1> r(size(a));
@@ -72,14 +86,14 @@ namespace NTT {
     return r;
   }
 
+  using Mint0 = Montgomery_modint<998'244'353>;
+  using Mint1 = Montgomery_modint<469'762'049>;
+  using Mint2 = Montgomery_modint<167'772'161>;
+
   //(T1 = mint): n * mod^2 < prod of mods(~= 5e26) should hold
   //(T1 = ll): result should be within long long
   template<class T1, class T2>
   vc<T1> convolution_CRT(vc<T2> a, vc<T2> b) {
-    using Mint0 = Montgomery_modint<998'244'353>;
-    using Mint1 = Montgomery_modint<469'762'049>;
-    using Mint2 = Montgomery_modint<167'772'161>;
-
     if (empty(a) or empty(b)) return {};
 
     auto x = convolution(vec_conversion<Mint0>(a),
@@ -88,6 +102,30 @@ namespace NTT {
                          vec_conversion<Mint1>(b));
     auto z = convolution(vec_conversion<Mint2>(a),
                          vec_conversion<Mint2>(b));
+
+    static constexpr uint32_t mod0 = 998'244'353, mod1 = 469'762'049;
+    static const Mint1 im0 = 1 / Mint1(mod0);
+    static const Mint2 im1 = 1 / Mint2(mod1), im0m1 = im1 / mod0;
+    static const T1 m0 = mod0, m0m1 = m0 * mod1;
+
+    vc<T1> r(size(x));
+    for(int i = 0; i < ssize(x); i++) {
+      int y0 = x[i].get();
+      int y1 = (im0 * (y[i] - y0)).get();
+      int y2 = (im0m1 * (z[i] - y0) - im1 * y1).get();
+      r[i] = y0 + m0 * y1 + m0m1 * y2;
+    }
+
+    return r;
+  }
+
+  template<class T1, class T2>
+  vc<T1> full_pow_CRT(vc<T2> a, int e) {
+    if (e == 0) return vc<T1>(1, 1);
+
+    auto x = full_pow(vec_conversion<Mint0>(a), 2);
+    auto y = full_pow(vec_conversion<Mint1>(a), 2);
+    auto z = full_pow(vec_conversion<Mint2>(a), 2);
 
     static constexpr uint32_t mod0 = 998'244'353, mod1 = 469'762'049;
     static const Mint1 im0 = 1 / Mint1(mod0);
