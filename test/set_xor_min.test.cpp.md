@@ -138,33 +138,36 @@ data:
     \    if (_mpf[_id(i)] == i)\n          _prime.eb(i);\n    }\n    for(int i = 0;\
     \ i < ssize(_prime) and _prime[i] < m; i++)\n      f(_prime[i]);\n  }\n}\n\nusing\
     \ namespace sieve_of_Eratosthenes;\n#line 1 \"ds/binary_trie.cpp\"\ntemplate<int\
-    \ mxBit, bool duplicate = false>\nstruct binary_trie {\n  vector<array<int, 2>>\
-    \ nxt;\n  vector<int> cnt;\n\n  binary_trie(int size = 0) : nxt(1, {-1, -1}),\
-    \ cnt(1) {\n    nxt.reserve(size);\n    cnt.reserve(size);\n  }\n\n  int count(ull\
-    \ x) {\n    int v = 0;\n    for(int bit = mxBit; bit >= 0; bit--) {\n      ull\
-    \ to = x >> bit & 1;\n      if (nxt[v][to] == -1) return 0;\n      v = nxt[v][to];\n\
-    \    }\n    return cnt[v];\n  }\n\n  void insert(ull x) {\n    if constexpr (!duplicate)\
-    \ {\n      if (count(x)) return;\n    }\n    int v = 0;\n    cnt[0] += 1;\n  \
-    \  for(int bit = mxBit; bit >= 0; bit--) {\n      ull to = x >> bit & 1;\n   \
-    \   if (nxt[v][to] == -1) {\n        nxt[v][to] = ssize(nxt);\n        nxt.push_back({-1,\
-    \ -1});\n        cnt.emplace_back();\n      }\n      v = nxt[v][to], cnt[v] +=\
-    \ 1;\n    }\n  }\n\n  void erase(ull x) {\n    if (!count(x)) return;\n    int\
-    \ v = 0;\n    cnt[0] -= 1;\n    for(int bit = mxBit; bit >= 0; bit--)\n      v\
-    \ = nxt[v][x >> bit & 1], cnt[v] -= 1;\n  }\n\n  ull query_min(ull Xor = 0LL)\
-    \ {\n    assert(cnt[0] > 0);\n    ull res = 0;\n    int v = 0;\n    for(int bit\
-    \ = mxBit; bit >= 0; bit--) {\n      ull to = Xor >> bit & 1;\n      if (nxt[v][to]\
-    \ != -1 and cnt[nxt[v][to]] >= 1)\n        v = nxt[v][to];\n      else\n     \
-    \   res |= 1LL << bit, v = nxt[v][to ^ 1];\n    }\n    return res;\n  }\n};\n\
-    #line 5 \"test/set_xor_min.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
-    \ cin.tie(NULL);\n\n  binary_trie<29> tr(500'000 * 30);\n\n  int q; cin >> q;\n\
-    \  while(q--) {\n    int t, x; cin >> t >> x;\n    if (t == 0)\n      tr.insert(x);\n\
+    \ W, bool duplicate = false>\nstruct binary_trie {\n  vc<array<int32_t, 2>> nxt;\n\
+    \  vi cnt;\n\n  binary_trie(int size = 1) : nxt(1, {-1, -1}), cnt(1) {\n    nxt.reserve(size),\
+    \ cnt.reserve(size);\n  }\n\n  int count(ull x) {\n    int v = 0;\n    for(int\
+    \ i = W - 1; i >= 0; i--) {\n      v = nxt[v][x >> i & 1];\n      if (v == -1)\
+    \ return 0;\n    }\n    return cnt[v];\n  }\n\n  void insert(ull x) {\n    if\
+    \ constexpr (!duplicate)\n      if (count(x))\n        return;\n    int v = 0;\n\
+    \    cnt[0]++;\n    for(int i = W - 1; i >= 0; i--) {\n      if (nxt[v][x >> i\
+    \ & 1] == -1) {\n        nxt[v][x >> i & 1] = ssize(nxt);\n        nxt.pb({-1,\
+    \ -1}), cnt.eb();\n      }\n      v = nxt[v][x >> i & 1], cnt[v]++;\n    }\n \
+    \ }\n\n  void erase(ull x) {\n    if (!count(x)) return;\n    int v = 0;\n   \
+    \ cnt[0]--;\n    for(int i = W - 1; i >= 0; i--)\n      v = nxt[v][x >> i & 1],\
+    \ cnt[v]--;\n  }\n\n  ull query_min(ull XOR = 0ull) {\n    assert(cnt[0] > 0);\n\
+    \    ull ans = 0;\n    for(int i = W - 1, v = 0; i >= 0; i--) {\n      ull to\
+    \ = XOR >> i & 1;\n      if (nxt[v][to] != -1 and cnt[nxt[v][to]] > 0)\n     \
+    \   v = nxt[v][to];\n      else\n        ans |= 1ull << i, v = nxt[v][to ^ 1];\n\
+    \    }\n    return ans;\n  }\n\n  ull kth(int k, ull XOR = 0ull) {\n    assert(cnt[0]\
+    \ > k);\n    ull ans = 0;\n    for(int i = W - 1, v = 0; i >= 0; i--) {\n    \
+    \  ull to = XOR >> i & 1;\n      if (nxt[v][to] != -1 and cnt[nxt[v][to]] <= k)\n\
+    \         k -= cnt[nxt[v][to]], to ^= 1;\n      else if (nxt[v][to] == -1)\n \
+    \       to ^= 1;\n      v = nxt[v][to], ans |= to << i;\n    }\n    return ans\
+    \ ^ XOR;\n  }\n};\n#line 5 \"test/set_xor_min.test.cpp\"\n\nint main() {\n  ios::sync_with_stdio(false),\
+    \ cin.tie(NULL);\n\n  binary_trie<30> tr(500'000 * 30 + 1);\n\n  int q; cin >>\
+    \ q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n    if (t == 0)\n      tr.insert(x);\n\
     \    else if (t == 1)\n      tr.erase(x);\n    else if (t == 2)\n      cout <<\
     \ tr.query_min(x) << '\\n';\n  }\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
     \ \"../default/t.cpp\"\n#include \"../ds/binary_trie.cpp\"\n\nint main() {\n \
-    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binary_trie<29> tr(500'000\
-    \ * 30);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >> x;\n\
-    \    if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
+    \ ios::sync_with_stdio(false), cin.tie(NULL);\n\n  binary_trie<30> tr(500'000\
+    \ * 30 + 1);\n\n  int q; cin >> q;\n  while(q--) {\n    int t, x; cin >> t >>\
+    \ x;\n    if (t == 0)\n      tr.insert(x);\n    else if (t == 1)\n      tr.erase(x);\n\
     \    else if (t == 2)\n      cout << tr.query_min(x) << '\\n';\n  }\n\n  return\
     \ 0;\n}\n"
   dependsOn:
@@ -173,7 +176,7 @@ data:
   isVerificationFile: true
   path: test/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2026-09-03 11:20:30+08:00'
+  timestamp: '2026-09-26 15:33:30+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/set_xor_min.test.cpp
