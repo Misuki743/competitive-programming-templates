@@ -41,7 +41,7 @@ data:
     \ M L = Mid(), R = Mid();\n    push(trunc(l += size)), push(trunc(r += size) -\
     \ 1);\n    for(; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = Mop(L, data[l++]);\n\
     \      if (r & 1) R = Mop(data[--r], R);\n    }\n    return Mop(L, R);\n  }\n\n\
-    \  int firstTrue(int i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n\
+    \  int first_true(int i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n\
     \    push(trunc(i + size)), push(trunc(size << 1) - 1);\n    for(int l = i + size,\
     \ r = size << 1; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
     \      if (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
@@ -52,7 +52,7 @@ data:
     \ << 1, tag[v]);\n        apply(v << 1 | 1, tag[v]);\n        tag[v] = Tid();\n\
     \      }\n      if (f(Mop(pre, data[v << 1])))\n        v = v << 1;\n      else\n\
     \        pre = Mop(pre, data[v << 1]), v = v << 1 | 1;\n    }\n    return v -\
-    \ size;\n  }\n\n  int lastTrue(int i, function<bool(const M&)> f) {\n    vector<int>\
+    \ size;\n  }\n\n  int last_true(int i, function<bool(const M&)> f) {\n    vector<int>\
     \ idL, idR;\n    push(trunc(size)), push(trunc((i + 1) + size) - 1);\n    for(int\
     \ l = size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
     \      if (r & 1) idR.emplace_back(--r);\n    }\n    idR.insert(idR.end(), idL.rbegin(),\
@@ -87,7 +87,7 @@ data:
     \ M L = Mid(), R = Mid();\n    push(trunc(l += size)), push(trunc(r += size) -\
     \ 1);\n    for(; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) L = Mop(L, data[l++]);\n\
     \      if (r & 1) R = Mop(data[--r], R);\n    }\n    return Mop(L, R);\n  }\n\n\
-    \  int firstTrue(int i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n\
+    \  int first_true(int i, function<bool(const M&)> f) {\n    vector<int> idL, idR;\n\
     \    push(trunc(i + size)), push(trunc(size << 1) - 1);\n    for(int l = i + size,\
     \ r = size << 1; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
     \      if (r & 1) idR.emplace_back(--r);\n    }\n    idL.insert(idL.end(), idR.rbegin(),\
@@ -98,7 +98,7 @@ data:
     \ << 1, tag[v]);\n        apply(v << 1 | 1, tag[v]);\n        tag[v] = Tid();\n\
     \      }\n      if (f(Mop(pre, data[v << 1])))\n        v = v << 1;\n      else\n\
     \        pre = Mop(pre, data[v << 1]), v = v << 1 | 1;\n    }\n    return v -\
-    \ size;\n  }\n\n  int lastTrue(int i, function<bool(const M&)> f) {\n    vector<int>\
+    \ size;\n  }\n\n  int last_true(int i, function<bool(const M&)> f) {\n    vector<int>\
     \ idL, idR;\n    push(trunc(size)), push(trunc((i + 1) + size) - 1);\n    for(int\
     \ l = size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {\n      if (l & 1) idL.emplace_back(l++);\n\
     \      if (r & 1) idR.emplace_back(--r);\n    }\n    idR.insert(idR.end(), idL.rbegin(),\
@@ -114,7 +114,7 @@ data:
   isVerificationFile: false
   path: segtree/lazy_segment_tree.cpp
   requiredBy: []
-  timestamp: '2026-06-06 23:34:13+08:00'
+  timestamp: '2026-10-12 19:32:09+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/area_of_union_of_rectangles.test.cpp
