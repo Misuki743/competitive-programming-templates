@@ -63,7 +63,7 @@ struct lazy_segment_tree {
     return Mop(L, R);
   }
 
-  int firstTrue(int i, function<bool(const M&)> f) {
+  int first_true(int i, function<bool(const M&)> f) {
     vector<int> idL, idR;
     push(trunc(i + size)), push(trunc(size << 1) - 1);
     for(int l = i + size, r = size << 1; l < r; l >>= 1, r >>= 1) {
@@ -96,7 +96,7 @@ struct lazy_segment_tree {
     return v - size;
   }
 
-  int lastTrue(int i, function<bool(const M&)> f) {
+  int last_true(int i, function<bool(const M&)> f) {
     vector<int> idL, idR;
     push(trunc(size)), push(trunc((i + 1) + size) - 1);
     for(int l = size, r = (i + 1) + size; l < r; l >>= 1, r >>= 1) {
