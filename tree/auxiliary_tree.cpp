@@ -1,6 +1,7 @@
 //#include "ds/RMQ.cpp"
 //#include "tree/LCA.cpp"
 
+//0 is always the root
 struct auxiliary_tree {
   LCA lca;
 
