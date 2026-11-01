@@ -3,7 +3,7 @@ namespace FPS {
   template<class T>
   vc<T>& operator+=(vc<T> &a, const vc<T> b) {
     if (size(a) < size(b)) a.resize(size(b), 0);
-    for(int i = 0; i < ssize(a); i++)
+    for(int i = 0; i < ssize(b); i++)
       a[i] += b[i];
     return a;
   }
@@ -11,7 +11,7 @@ namespace FPS {
   template<class T>
   vc<T>& operator-=(vc<T> &a, const vc<T> b) {
     if (size(a) < size(b)) a.resize(size(b), 0);
-    for(int i = 0; i < ssize(a); i++)
+    for(int i = 0; i < ssize(b); i++)
       a[i] -= b[i];
     return a;
   }
